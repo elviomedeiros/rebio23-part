@@ -1,2 +1,2 @@
-# rebio23-part
-Manuscrito sobre partição da diversidade na REBIO Guaribas
+# mxr23_Q
+Manuscrito MXR REBio 2023
