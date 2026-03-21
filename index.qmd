@@ -136,7 +136,17 @@ The results section should follow the model in <https://elviomedeiros.github.io/
 
 Authorship of this paper is based on @credit2026.
 
-Author1: Writing – review & editing, Writing – original draft, Formal analysis, Data curation, Conceptualization. Author2: Writing – review & editing, Data curation, Conceptualization. Author3: Writing – review & editing, Formal analysis, Data curation, Conceptualization.
+Ellen Gomes da Silva: Data curation, Formal analysis, Investigation, Software, Visualization, Writing – original draft, Writing – review & editing.
+
+Mayara Mirelly da Silva Monteiro: Data curation, Formal analysis, Software.
+
+Marcela Vitória Bernardo da Silva: Writing – original draft, Writing – review & editing..
+
+Ludmilla Cavalcanti Antunes Lucena: Writing – review & editing.
+
+Thais Xavier de Melo: Supervision.
+
+Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analysis, Funding Acquisition, Methodology, Project Administration, Resources, Supervision, Validation.
 
 # Ethical approval {.unnumbered}
 
