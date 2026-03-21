@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Manuscript REBIO2-Part"
+  title: "Manuscript REBIO23-Part"
   navbar:
     left:
     - href: index.qmd
