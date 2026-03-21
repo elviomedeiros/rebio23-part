@@ -75,5 +75,61 @@
     "title": "Title",
     "section": "Tables",
     "text": "Tables"
+  },
+  {
+    "objectID": "index - cópia.html",
+    "href": "index - cópia.html",
+    "title": "Title",
+    "section": "",
+    "text": "The scientific research follows the model shown in the figured cross-referenced here (Figure 1)."
+  },
+  {
+    "objectID": "index - cópia.html#study-area-and-sampling-design",
+    "href": "index - cópia.html#study-area-and-sampling-design",
+    "title": "Title",
+    "section": "2.1 Study Area and Sampling Design",
+    "text": "2.1 Study Area and Sampling Design\nSee publications by Gouveia et al. (2017)."
+  },
+  {
+    "objectID": "index - cópia.html#sec-data-col",
+    "href": "index - cópia.html#sec-data-col",
+    "title": "Title",
+    "section": "2.2 Data Collection",
+    "text": "2.2 Data Collection\nSee publications by Macêdo et al. (2019)."
+  },
+  {
+    "objectID": "index - cópia.html#statistical-analyses",
+    "href": "index - cópia.html#statistical-analyses",
+    "title": "Title",
+    "section": "2.3 Statistical Analyses",
+    "text": "2.3 Statistical Analyses\nHere you can add your statistical analyses and follow the text with the RStudio code. Following the model in https://elviomedeiros.github.io/Bentos2006_Q/.\n\n\nCode: Summary\nplot(1:10)"
+  },
+  {
+    "objectID": "index - cópia.html#environmental-variables",
+    "href": "index - cópia.html#environmental-variables",
+    "title": "Title",
+    "section": "3.1 Environmental variables",
+    "text": "3.1 Environmental variables"
+  },
+  {
+    "objectID": "index - cópia.html#community-structure",
+    "href": "index - cópia.html#community-structure",
+    "title": "Title",
+    "section": "3.2 Community structure",
+    "text": "3.2 Community structure"
+  },
+  {
+    "objectID": "index - cópia.html#figures",
+    "href": "index - cópia.html#figures",
+    "title": "Title",
+    "section": "Figures",
+    "text": "Figures\n\n\n\n\n\n\nFigure 1: Etapas do desenvolvimento da pesquisa científica."
+  },
+  {
+    "objectID": "index - cópia.html#tables",
+    "href": "index - cópia.html#tables",
+    "title": "Title",
+    "section": "Tables",
+    "text": "Tables"
   }
 ]
