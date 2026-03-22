@@ -23,56 +23,56 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "",
     "text": "The scientific research follows the model shown in the figured cross-referenced here (Figure 2)."
   },
   {
     "objectID": "index.html#study-area-and-sampling-design",
     "href": "index.html#study-area-and-sampling-design",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "2.1 Study Area and Sampling Design",
-    "text": "2.1 Study Area and Sampling Design\nThe Guaribas Biological Reserve (REBIO Guaribas) (Figure 1), located in the state of Paraíba, represents one of the last remnants of the Atlantic Forest in the state. The conservation unit is composed of discontinuous areas. According to the Köppen classification, the regional climate is warm and humid, with a dry season in summer and a rainy season in winter, with mean temperatures ranging from 24 °C to 26 °C (MMA, 2003). REBIO Guaribas harbors rare, endemic, and endangered species, as well as important headwaters (MMA, 2003). Despite its ecological relevance, anthropogenic activities are still observed in its surroundings, such as sugarcane cultivation, fruit and vegetable farming, and the conversion of land into pasture areas (Medeiros et al., 2008). The hydrography of the study area is composed of first- and second-order streams (Strahler, 1964), which drain in a south–north direction and are part of the tributary network of the Camaratuba River (Gouveia et al., 2017)."
+    "text": "2.1 Study Area and Sampling Design\nA Reserva Biológica Guaribas (REBIO Guaribas), localizada no Estado da Paraíba, constitui um dos últimos remanescentes de Floresta Atlântica do estado. A unidade de conservação é formada por áreas descontínuas. De acordo com a classificação de Köppen, o clima da região é quente e úmido, com estação seca no verão e chuvosa no inverno, apresentando temperaturas médias entre 24°C e 26°C (MMA, 2003).\nA REBIO Guaribas abriga espécies raras, endêmicas e ameaçadas de extinção, além de importantes nascentes (MMA, 2003). Apesar de sua relevância ecológica, ainda são observadas atividades antrópicas em seu entorno, como o plantio de cana-de-açúcar, o cultivo de frutas e hortaliças e a formação de áreas de pastagens (Medeiros et al., 2008).\nA hidrografia da área de estudo é composta por cursos d’água de primeira e segunda ordem (Strahler, 1964), que drenam no sentido sul-norte e integram a rede de afluentes que alimentam o Rio Camaratuba (Gouveia et al., 2017)."
   },
   {
     "objectID": "index.html#sec-data-col",
     "href": "index.html#sec-data-col",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "2.2 Data Collection",
     "text": "2.2 Data Collection\nSee publications by Macêdo et al. (2019)."
   },
   {
     "objectID": "index.html#statistical-analyses",
     "href": "index.html#statistical-analyses",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "2.3 Statistical Analyses",
     "text": "2.3 Statistical Analyses\nHere you can add your statistical analyses and follow the text with the RStudio code. Following the model in https://elviomedeiros.github.io/Bentos2006_Q/.\n\n\nCode: Summary\nplot(1:10)"
   },
   {
     "objectID": "index.html#environmental-variables",
     "href": "index.html#environmental-variables",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "3.1 Environmental variables",
     "text": "3.1 Environmental variables"
   },
   {
     "objectID": "index.html#community-structure",
     "href": "index.html#community-structure",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "3.2 Community structure",
     "text": "3.2 Community structure"
   },
   {
     "objectID": "index.html#figures",
     "href": "index.html#figures",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "Figures",
     "text": "Figures\n\n\n\n\n\n\nFigure 1: Map of the area of influence of REBIO Guaribas, located in the municipalities of Mamanguape.\n\n\n\n\n\n\n\n\n\nFigure 2: Etapas do desenvolvimento da pesquisa científica."
   },
   {
     "objectID": "index.html#tables",
     "href": "index.html#tables",
-    "title": "Application of additive diversity partitioning in zooplankton as biological indicators in Atlantic Forest streams (Brazil)",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
     "section": "Tables",
     "text": "Tables"
   },
@@ -131,5 +131,12 @@
     "title": "Title",
     "section": "Tables",
     "text": "Tables"
+  },
+  {
+    "objectID": "index.html#additive-partitioning-of-diversity",
+    "href": "index.html#additive-partitioning-of-diversity",
+    "title": "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)",
+    "section": "3.3 Additive partitioning of diversity",
+    "text": "3.3 Additive partitioning of diversity"
   }
 ]
