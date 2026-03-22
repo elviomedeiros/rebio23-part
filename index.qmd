@@ -121,6 +121,130 @@ Para a aplicação da partição da diversidade em componentes alfa (α), beta (
 #| code-overflow: wrap
 #| code-summary: "Code: Summary"
 
+#REBIO23 - ORGANIZANDO DADOS----
+#####....----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+#shell.exec(getwd())
+getwd()
+setwd("C:/Users/ellen/Downloads")
+library(openxlsx)
+
+##CARREGANDO MATRIZES BRUTAS----
+
+habitat <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-habitat.xlsx",
+                    rowNames = T,
+                    colNames = T,
+                    sheet = "ambiente")
+grupos <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-habitat.xlsx",
+                   rowNames = T,
+                   colNames = T,
+                   sheet = "grupos")
+
+###REMOVENDO LINHAS ZERADAS DE HABITAT----
+rownames(habitat)
+del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
+del_rows
+m_hab <- habitat[!(row.names(habitat) %in% c(del_rows)),]
+m_hab
+
+###REMOVENDO LINHAS ZERADAS DE GRUPOS----
+rownames(grupos)
+del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
+del_rows
+grupos <- grupos[!(row.names(grupos) %in% c(del_rows)),]
+grupos
+
+###PARTICIONANDO TABELA DE GRUPOS----
+t_grps <- grupos[!(row.names(grupos) %in% del_rows),]
+
+
+##SALVANDO MATRIZES FINAIS REMOVIDAS AS LINHAS/COLUNAS ZERADAS----
+
+write.table(t_grps, "t_grps.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+write.table(m_hab, "m_hab.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+t_grps <- read.csv("t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_hab <- read.csv("m_hab.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+#REBIO23 - MATRIZ DE CONTAGEM----
+#####....----
+
+library(openxlsx)
+zoo <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-zoopl.xlsx",
+                       rowNames = T,
+                       colNames = T,
+                       sheet = "rebio23_80ml")
+zoo [1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
+
+str(zoo)
+#View(zoo)
+zoo[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
+#View(zoo)
+print(zoo[1:8,1:8])
+str(zoo)
+mode(zoo)
+class(zoo)
+
+###REMOVENDO LINHAS ZERADAS
+rownames(zoo)
+del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
+del_rows
+zoo <- zoo[!(row.names(zoo) %in% c(del_rows)),]
+zoo
+colnames(zoo)
+m_trab <- zoo
+colnames(m_trab) <- as.character(unlist(m_trab[1, ]))
+m_trab <- m_trab[-1, ]
+
+#Criando a matriz de cada período
+zoo_seco <- m_trab[grepl("^S", rownames(m_trab)), ]
+zoo_chuvoso <- m_trab[grepl("^C", rownames(m_trab)), ]
+
+##SALVANDO MATRIZ FINAL
+#PERÍODO SECO
+write.table(zoo_seco, "zoo_seco.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+zoo_seco <- read.csv("zoo_seco.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+zoo_seco
+
+#PERÍODO CHUVOSO
+write.table(zoo_chuvoso, "zoo_chuvoso.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+zoo_chuvoso <- read.csv("zoo_chuvoso.csv",
+                     sep = ";", dec = ".",
+                     row.names = 1,
+                     header = TRUE,
+                     na.strings = NA)
+zoo_chuvoso
+
 plot(1:10)
 ```
 
