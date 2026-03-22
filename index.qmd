@@ -94,7 +94,7 @@ Data and methods are discussed in @sec-data-col. This citation will appear in th
 
 ## Study Area and Sampling Design
 
-A Reserva Biológica Guaribas (REBIO Guaribas), localizada no Estado da Paraíba, constitui um dos últimos remanescentes de Floresta Atlântica do estado. A unidade de conservação é formada por áreas descontínuas. De acordo com a classificação de Köppen, o clima da região é quente e úmido, com estação seca no verão e chuvosa no inverno, apresentando temperaturas médias entre 24°C e 26°C [@mma2003].
+A Reserva Biológica Guaribas (REBIO Guaribas) (@fig-mapa), localizada no Estado da Paraíba, constitui um dos últimos remanescentes de Floresta Atlântica do estado. A unidade de conservação é formada por áreas descontínuas. De acordo com a classificação de Köppen, o clima da região é quente e úmido, com estação seca no verão e chuvosa no inverno, apresentando temperaturas médias entre 24°C e 26°C [@mma2003].
 
 A REBIO Guaribas abriga espécies raras, endêmicas e ameaçadas de extinção, além de importantes nascentes [@mma2003]. Apesar de sua relevância ecológica, ainda são observadas atividades antrópicas em seu entorno, como o plantio de cana-de-açúcar, o cultivo de frutas e hortaliças e a formação de áreas de pastagens [@medeiros2008].
 
@@ -245,7 +245,6 @@ zoo_chuvoso <- read.csv("zoo_chuvoso.csv",
                      na.strings = NA)
 zoo_chuvoso
 
-plot(1:10)
 ```
 
 # Results
@@ -296,7 +295,7 @@ This study did not require ethical approval as it did not involve human particip
 
 ## Figures {.unnumbered}
 
-![Map of the area of influence of REBIO Guaribas, located in the municipalities of Mamanguape.](images/Mapa.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/Mapa.png){#fig-mapa}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
