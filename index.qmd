@@ -94,7 +94,7 @@ Data and methods are discussed in @sec-data-col. This citation will appear in th
 
 ## Study Area and Sampling Design
 
-The Guaribas Biological Reserve (REBIO Guaribas), located in the state of Paraíba, represents one of the last remnants of the Atlantic Forest in the state. The conservation unit is composed of discontinuous areas. According to the Köppen classification, the regional climate is warm and humid, with a dry season in summer and a rainy season in winter, with mean temperatures ranging from 24 °C to 26 °C ([@mma2003]). REBIO Guaribas harbors rare, endemic, and endangered species, as well as important headwaters ([@mma2003]). Despite its ecological relevance, anthropogenic activities are still observed in its surroundings, such as sugarcane cultivation, fruit and vegetable farming, and the conversion of land into pasture areas ([@medeiros2008]). The hydrography of the study area is composed of first- and second-order streams ([@strahler1964]), which drain in a south–north direction and are part of the tributary network of the Camaratuba River ([@gouveia2017]).
+The Guaribas Biological Reserve (REBIO Guaribas) (@fig-mapa), located in the state of Paraíba, represents one of the last remnants of the Atlantic Forest in the state. The conservation unit is composed of discontinuous areas. According to the Köppen classification, the regional climate is warm and humid, with a dry season in summer and a rainy season in winter, with mean temperatures ranging from 24 °C to 26 °C [@mma2003]. REBIO Guaribas harbors rare, endemic, and endangered species, as well as important headwaters [@mma2003]. Despite its ecological relevance, anthropogenic activities are still observed in its surroundings, such as sugarcane cultivation, fruit and vegetable farming, and the conversion of land into pasture areas [@medeiros2008]. The hydrography of the study area is composed of first- and second-order streams [@strahler1964], which drain in a south–north direction and are part of the tributary network of the Camaratuba River [@gouveia2017].
 
 ## Data Collection {#sec-data-col}
 
@@ -140,7 +140,7 @@ Ellen Gomes da Silva: Data curation, Formal analysis, Investigation, Software, V
 
 Mayara Mirelly da Silva Monteiro: Data curation, Formal analysis, Software.
 
-Marcela Vitória Bernardo da Silva: Writing – original draft, Writing – review & editing..
+Marcela Vitória Bernardo da Silva: Writing – original draft, Writing – review & editing.
 
 Ludmilla Cavalcanti Antunes Lucena: Writing – review & editing.
 
@@ -163,6 +163,8 @@ This study did not require ethical approval as it did not involve human particip
 # Figures and Tables {.unnumbered}
 
 ## Figures {.unnumbered}
+
+![Map of the area of influence of REBIO Guaribas, located in the municipalities of Mamanguape.](images/Mapa.png){#fig-mapa}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
