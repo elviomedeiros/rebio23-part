@@ -106,7 +106,9 @@ See publications by @macêdo2019.
 
 ## Statistical Analyses
 
-Here you can add your statistical analyses and follow the text with the RStudio code. Following the model in <https://elviomedeiros.github.io/Bentos2006_Q/>.
+Todos os dados foram organizados em tabelas, gráficos e figuras, e analisados por meio de testes estatísticos utilizando pacotes que permitem avaliar a estrutura do habitat e da comunidade, no ambiente de programação integrado R e RStudio [@rstudioteam; @rcoreteam2017].
+
+Para a aplicação da partição da diversidade em componentes alfa (α), beta (β) e gama (γ), foram utilizados os pacotes *vegan*, *eulerr* e *VennDiagram*, e a função *adipart*. Essa abordagem permite decompor a diversidade em diferentes escalas espaciais, que contribuem para a compreensão da distribuição da riqueza de espécies entre os diferentes componentes da diversidade [@chen2011; @oksanen2015; @jost2007; @medeiros2021].
 
 ```{r, CHUNK-TITLE}
 #| eval: false
