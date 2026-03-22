@@ -409,9 +409,176 @@ gt(df_seco_arredondado, rowname_col = "Espécies", caption = "Descritores da div
 
 ```
 
+```{r}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Summary"
+
+####PERÍODO CHUVOSO
+#Transpondo a matriz zoo_chuvoso
+zoo_chuvoso <- t(zoo_chuvoso)
+zoo_chuvoso <- as.data.frame(zoo_chuvoso)
+zoo_chuvoso[] <- lapply(zoo_chuvoso, function(x) as.numeric(as.character(x)))
+str(zoo_chuvoso)
+#View(zoo_chuvoso)
+zoo_chuvoso
+print(zoo_chuvoso[1:5,1:5])
+zoo_chuvoso[1:5,1:5]
+str(zoo_chuvoso)
+mode(zoo_chuvoso)
+class(zoo_chuvoso)
+
+#Informações básicas
+range(zoo_chuvoso) #menor e maior valores
+length(zoo_chuvoso) #no. de colunas
+ncol(zoo_chuvoso) #no. de N colunas
+nrow(zoo_chuvoso) #no. de M linhas
+sum(lengths(zoo_chuvoso)) #soma os nos. de colunas
+length(as.matrix(zoo_chuvoso)) #tamanho da matriz m x n
+sum(zoo_chuvoso == 0) #número de observações igual a zero
+sum(zoo_chuvoso > 0) #número de observações maiores que zero
+#calculando a proporção de zeros na matriz
+zeros <- (sum(zoo_chuvoso == 0)/length(as.matrix(zoo_chuvoso)))*100
+zeros
+
+####Descritores da diversidade
+#?apply
+Sum <- rowSums(zoo_chuvoso)
+#ou
+Sum <- apply(zoo_chuvoso,1,sum)
+Sum
+## Abundância relativa (%)
+RA <- (Sum / sum(Sum)) * 100 # percentage
+## Media
+Mean <- rowMeans(zoo_chuvoso)
+Mean
+## Ou
+Mean <- apply(zoo_chuvoso,1,mean)
+Mean
+## Desvio padrão
+DP <- apply(zoo_chuvoso,1,sd)
+DP
+## Máximo
+Max <- apply(zoo_chuvoso,1,max)
+Max 
+## Mínimo
+Min <- apply(zoo_chuvoso,1,min)
+Min
+## Mínimo não-zero
+MinZ <- apply(zoo_chuvoso, 1, function(row) {
+  non_zero_values <- row[row > 0]  # Filter out zero values
+  if (length(non_zero_values) == 0) {
+    return(0)  # If all values are zero, return 0
+  } else {
+    return(min(non_zero_values))  # Return the minimum of non-zero values
+  }
+})
+MinZ
+
+#Riqueza
+m_pa <- zoo_chuvoso
+m_pa[m_pa != 0] <- 1
+rowSums(m_pa)
+library(vegan)
+bin <- decostand(zoo_chuvoso,"pa")
+bin[1:10, 1:10]
+S <- apply(bin,1,sum)
+S
+#OU
+Riqueza <- specnumber(zoo_chuvoso)
+Riqueza
+Riqueza_total <- specnumber(colSums(zoo_chuvoso))
+Riqueza_total
+#OU
+FO <- rowSums(zoo_chuvoso > 0) / ncol(zoo_chuvoso) * 100
+FO
+
+#Índices de Diversidade
+#Shannon
+H <- diversity(zoo_chuvoso, index = "shannon")
+H
+
+#Simpson
+D <- diversity(zoo_chuvoso, "simpson")
+D
+D[is.na(D)] <- 0 #substitui NA ou NaN por 0
+D
+
+#Equitabilidade de Pielou
+E <- H/log(specnumber(zoo_chuvoso))
+E
+E[is.na(E)] <- 0 #substitui NA ou NaN por 0
+E
+
+#Assimetria e curtose
+library(moments)
+Assimetria <- apply(zoo_chuvoso,1,skewness)
+Assimetria
+Curtose <- apply(zoo_chuvoso,1,kurtosis)
+Curtose
+
+#Tabela de Descritores
+Descritores1 <- cbind(Sum, RA, Mean, DP, Max, Min, MinZ, FO, S, E, H, D)
+Descritores1 <- as.data.frame(Descritores1)
+Descritores1
+#Descritores1 <- Descritores1 %>% rownames_to_column(var="Espécies") #da nome a primeira coluna
+SomaTotalD <- apply(Descritores1,2,sum)
+SomaTotalD
+MediaTotalD <- apply(Descritores1,2,mean)
+MediaTotalD
+DPTotalD <- apply(Descritores1,2,sd)
+DPTotalD
+Descritores2 <- cbind(SomaTotalD, MediaTotalD, DPTotalD)
+Descritores2 <- as.data.frame(Descritores2)
+Descritores2 <- t(Descritores2)
+Descritores2
+DescritoresFinal <- rbind(Descritores1, Descritores2)
+DescritoresFinal
+DescritoresFinal <- round (DescritoresFinal, 2)
+DescritoresFinal
+
+####Fazendo uma tabela
+library(gt)
+df_chuvoso <- DescritoresFinal
+ncol(df_chuvoso); nrow(df_chuvoso) #no. de N colunas x M linhas
+df_chuvoso <- cbind("Espécies" = rownames(df_chuvoso), df_chuvoso)
+gt(df_chuvoso, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
+
+#ARREDONDAR CASA DÉCIMAL
+ncol(df_chuvoso)
+nrow(df_chuvoso)
+#Adicionar a coluna 'Pontos' com os nomes das linhas
+#df <- cbind(SPP = rownames(df), df)
+#Arredondar os valores para duas casas decimais
+df_chuvoso_arredondado <- df_chuvoso %>%
+  mutate(across(where(is.numeric), ~ round(., 1)))
+#Exibir a tabela arredondada com gt
+gt(df_chuvoso_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
+
+```
+
 ## Additive partitioning of diversity
 
 Os diagramas de Venn evidenciaram a distribuição da riqueza de espécies entre os riachos Barro Branco e Caiana nos períodos seco e chuvoso, permitindo identificar como diferentes espécies são compartilhadas ou exclusivas entre os ambientes. No período seco (Figura 3), foram registradas 27 espécies compartilhadas entre os riachos. O riacho Caiana apresentou α-diversidade de 46 espécies, das quais 19 eram exclusivas, enquanto o Barro Branco apresentou 39 espécies, com 12 exclusivas. Considerando ambos os riachos, a γ-diversidade totalizou 58 espécies. No período chuvoso (Figura 4), o número de espécies compartilhadas permaneceu inalterada, com 27 espécies. Contudo, houve redução da diversidade local (α), no número de espécies exclusivas e da diversidade regional (γ). No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies exclusivas, enquanto no riacho Barro Branco, foram registradas 33 espécies compartilhadas, com 6 exclusivas. Porém, a γ-diversidade totalizou 40 espécies. De modo geral, os resultados indicam variação no número de espécies exclusivas dos riachos nos dois períodos hidrológicos, embora a maior parte da riqueza tenha sido compartilhada entre os riachos.
+
+```{r}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Summary"
+
+```
 
 # Discussion
 
