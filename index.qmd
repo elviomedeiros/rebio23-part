@@ -94,7 +94,7 @@ Data and methods are discussed in @sec-data-col. This citation will appear in th
 
 ## Study Area and Sampling Design
 
-A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 (Leal *et al.*, 2025; MMA, 2003). São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C (MMA, 2003).
+A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 [@leal2025] (Leal *et al.*, 2025; MMA, 2003). São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C (MMA, 2003) .
 
 	Por se tratar de uma unidade de conservação e por compor um dos últimos remanescentes de Floresta Atlântica do Estado da Paraíba, a reserva tornou-se essencial no que diz respeito à conservação de espécies raras, endêmicas e ameaçadas de extinção, além de proteger nascentes de importantes riachos (MMA, 2003). Entretanto, ainda é possível observar atividades antrópicas na região, como o plantio de cana-de-açúcar, o cultivo de frutas e hortaliças e a formação de áreas de pastagens.
 
