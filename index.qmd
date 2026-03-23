@@ -578,6 +578,192 @@ Os diagramas de Venn evidenciaram a distribuição da riqueza de espécies entre
 #| code-overflow: wrap
 #| code-summary: "Code: Summary"
 
+#REBIO23 - DIAGRAMA DE VENN, PERÍODO SECO ----
+#####....----
+
+m_bruta_seco <- m_trab
+
+#Inserindo coluna para agrupamentos
+ncol(m_bruta_seco); nrow(m_bruta_seco) #no. de N colunas x M linhas
+m_bruta_seco_g <- cbind(Grupos = rownames(m_bruta_seco), m_bruta_seco)
+# Mantém a tabela completa
+m_bruta_seco_g <- cbind(Grupos = rownames(m_bruta_seco), m_bruta_seco)
+m_bruta_seco_g <- as.data.frame(m_bruta_seco_g)
+
+# Vetor de agrupamento
+agrup1 <- substr(m_bruta_seco_g$Grupos, 1, 3)
+agrup1
+
+# Filtra apenas os grupos que começam com "S"
+m_bruta_seco_g_s <- m_bruta_seco_g[startsWith(agrup1, "S"), ]
+m_bruta_seco_g_s$Grupos <- agrup1[startsWith(agrup1, "S")]  # ajusta a coluna Grupos
+m_bruta_seco_g_s
+
+# Agora pode calcular médias
+library(dplyr)
+m_avg_s <- m_bruta_seco_g_s %>%
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
+
+m_avg_s <- as.data.frame(m_avg_s)
+rownames(m_avg_s) <- m_avg_s$Grupos
+m_avg_s$Grupos <- NULL
+m_avg_s
+#Salvando a matriz
+write.table(m_avg_s,
+            "m_avgcsv.csv",
+            append = F,
+            quote = TRUE,
+            sep = ";", dec = ",",
+            row.names = T)
+m_avg1_csv <- read.csv("m_avgcsv.csv",
+                       sep = ";", dec = ",",
+                       header = T,
+                       row.names = 1,
+                       na.strings = NA)
+library("gt")
+m_venn <- as.data.frame(t(m_avg_s))
+m_venn
+gt(round(m_venn, 2), rownames_to_stub = TRUE)
+m_venn[m_venn !=0] <- 1 #matriz binária
+m_venn
+library("eulerr")
+#set.seed() #this seed changes the orientation of the sets        
+plot(euler(m_venn), counts = TRUE, fontface = 1)
+# Load required libraries
+library(VennDiagram)
+library(ggvenn)
+SB <- rownames(m_venn)[which(m_venn$`S-B` == 1)]
+SC <- rownames(m_venn)[which(m_venn$`S-C` == 1)]
+
+overlap_SB_SC <- intersect(SB, SC)
+
+#######Visualizar número de espécies em cada grupo e sobreposição
+cat("Número de espécies S-B:", length(SB), "\n")
+cat("Número de espécies S-C:", length(SC), "\n")
+cat("Número de espécies em ambos (S-B ∩ S-C):", length(overlap_SB_SC), "\n")
+
+#########Plotar
+grid.newpage()
+draw.pairwise.venn(
+  area1 = length(SB),
+  area2 = length(SC),
+  cross.area = length(overlap_SB_SC),
+  category = c("S-B", "S-C"),
+  lty = rep("blank", 2),
+  fill = c("grey40", "grey70"),
+  alpha = rep(0.5, 2),
+  cat.pos = c(0, 0),
+  cat.dist = rep(0.025, 2)
+)
+
+##############Salvar em PNG
+venn.diagram(
+  x = list(SB, SC),
+  category.names = c("S-B", "S-C"),
+  filename = "fig-venn_SB_SC_seco.png",
+  height = 2000,
+  width = 2000,
+  resolution = 300,
+  lty = "blank",
+  fill = c("grey40", "grey70"),
+  alpha = 0.5
+)
+
+
+#REBIO23 - DIAGRAMA DE VENN, PERÍODO CHUVOSO ----
+#####....----
+
+m_bruta_chuvoso <- m_trab
+
+#Inserindo coluna para agrupamentos
+ncol(m_bruta_chuvoso); nrow(m_bruta_chuvoso) #no. de N colunas x M linhas
+m_bruta_chuvoso_g <- cbind(Grupos = rownames(m_bruta_chuvoso), m_bruta_chuvoso)
+# Mantém a tabela completa
+m_bruta_chuvoso_g <- cbind(Grupos = rownames(m_bruta_chuvoso), m_bruta_chuvoso)
+m_bruta_chuvoso_g <- as.data.frame(m_bruta_chuvoso_g)
+
+#Vetor de agrupamento
+agrup1 <- substr(m_bruta_chuvoso_g$Grupos, 1, 3)
+agrup1
+
+#Filtra apenas os grupos que começam com "C"
+m_bruta_chuvoso_g_c <- m_bruta_chuvoso_g[startsWith(agrup1, "C"), ]
+m_bruta_chuvoso_g_c$Grupos <- agrup1[startsWith(agrup1, "C")]  # ajusta a coluna Grupos
+m_bruta_chuvoso_g_c
+
+#Médias
+library(dplyr)
+m_avg_c <- m_bruta_chuvoso_g_c %>%
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
+
+m_avg_c <- as.data.frame(m_avg_c)
+rownames(m_avg_c) <- m_avg_c$Grupos
+m_avg_c$Grupos <- NULL
+m_avg_c
+
+##Salvando a matriz
+write.table(m_avg_c,
+            "m_avgcsv.csv",
+            append = F,
+            quote = TRUE,
+            sep = ";", dec = ",",
+            row.names = T)
+m_avg1_csv <- read.csv("m_avgcsv.csv",
+                       sep = ";", dec = ",",
+                       header = T,
+                       row.names = 1,
+                       na.strings = NA)
+library("gt")
+m_venn <- as.data.frame(t(m_avg_c))
+m_venn
+gt(round(m_venn, 2), rownames_to_stub = TRUE)
+m_venn[m_venn !=0] <- 1 #matriz binária
+m_venn
+library("eulerr")
+#set.seed() #this seed changes the orientation of the sets        
+plot(euler(m_venn), counts = TRUE, fontface = 1)
+# Load required libraries
+library(VennDiagram)
+library(ggvenn)
+CB <- rownames(m_venn)[which(m_venn$`C-B` == 1)]
+CC <- rownames(m_venn)[which(m_venn$`C-C` == 1)]
+
+overlap_CB_CC <- intersect(CB, CC)
+
+####Visualizar número de espécies em cada grupo e sobreposição
+cat("Número de espécies C-B:", length(CB), "\n")
+cat("Número de espécies C-C:", length(CC), "\n")
+cat("Número de espécies em ambos (C-B ∩ C-C):", length(overlap_CB_CC), "\n")
+
+#Plotar
+grid.newpage()
+draw.pairwise.venn(
+  area1 = length(CB),
+  area2 = length(CC),
+  cross.area = length(overlap_CB_CC),
+  category = c("C-B", "C-C"),
+  lty = rep("blank", 2),
+  fill = c("grey40", "grey70"),
+  alpha = rep(0.5, 2),
+  cat.pos = c(0, 0),
+  cat.dist = rep(0.025, 2)
+)
+
+#Salvar em PNG
+venn.diagram(
+  x = list(CB, CC),
+  category.names = c("C-B", "C-C"),
+  filename = "fig-venn_CB_CC_chuvoso.png",
+  height = 2000,
+  width = 2000,
+  resolution = 300,
+  lty = "blank",
+  fill = c("grey40", "grey70"),
+  alpha = 0.5
+)
+
 ```
 
 # Discussion
