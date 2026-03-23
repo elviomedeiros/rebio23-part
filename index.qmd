@@ -112,7 +112,7 @@ Por sua vez, na partição multiplicativa, a diversidade gama é expressa como o
 
 O presente estudo teve como objetivo determinar a riqueza de espécies na comunidade zooplanctônica e avaliar a partição da diversidade em diferentes escalas espaciais em ambientes aquáticos da Reserva Biológica Guaribas nos períodos seco e chuvoso.
 
-*Objetivo específico*
+**Objetivo específico**
 
 Verificar se os métodos aditivos e multiplicativos para o cálculo da partição da diversidade podem indicar o estado ecológico de ambientes sob diferentes níveis de impactos antropogênicos e períodos.
 
@@ -1019,7 +1019,7 @@ Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analys
 
 # Ethical approval {.unnumbered}
 
-This study did not require ethical approval as it did not involve human participants or sensitive data. Field surveys were conducted based on collection permit number (IEF-10327-6 and SISBIO-10.635-7).
+O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
 # References {.unnumbered}
 
