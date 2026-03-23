@@ -94,11 +94,11 @@ Data and methods are discussed in @sec-data-col. This citation will appear in th
 
 ## Study Area and Sampling Design
 
-A Reserva Biológica Guaribas (REBIO Guaribas) (@fig-mapa), localizada no Estado da Paraíba, constitui um dos últimos remanescentes de Floresta Atlântica do estado. A unidade de conservação é formada por áreas descontínuas. De acordo com a classificação de Köppen, o clima da região é quente e úmido, com estação seca no verão e chuvosa no inverno, apresentando temperaturas médias entre 24°C e 26°C [@mma2003].
+A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 (Leal *et al.*, 2025; MMA, 2003). São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C (MMA, 2003).
 
-A REBIO Guaribas abriga espécies raras, endêmicas e ameaçadas de extinção, além de importantes nascentes [@mma2003]. Apesar de sua relevância ecológica, ainda são observadas atividades antrópicas em seu entorno, como o plantio de cana-de-açúcar, o cultivo de frutas e hortaliças e a formação de áreas de pastagens [@medeiros2008].
+	Por se tratar de uma unidade de conservação e por compor um dos últimos remanescentes de Floresta Atlântica do Estado da Paraíba, a reserva tornou-se essencial no que diz respeito à conservação de espécies raras, endêmicas e ameaçadas de extinção, além de proteger nascentes de importantes riachos (MMA, 2003). Entretanto, ainda é possível observar atividades antrópicas na região, como o plantio de cana-de-açúcar, o cultivo de frutas e hortaliças e a formação de áreas de pastagens.
 
-A hidrografia da área de estudo é composta por cursos d’água de primeira e segunda ordem (Strahler, 1964), que drenam no sentido sul-norte e integram a rede de afluentes que alimentam o Rio Camaratuba [@gouveia2017].
+	A área selecionada para o presente estudo, SEMA 02, abriga os riachos Caiana e Barro Branco que drenam no sentido sul-norte e cujos cursos não se estendem por mais de 10 km antes de desaguarem no Rio Camaratuba, o qual, por sua vez, deságua no oceano Atlântico. Ambos os riachos nascem dentro da reserva, entretanto, o Caiana flui sobre uma área de floresta modificada para pastoreio e plantios, enquanto o Barro Branco flui parcialmente por uma área de Floresta Atlântica no interior da unidade (Figura 1)
 
 ## Data Collection {#sec-data-col}
 
