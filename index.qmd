@@ -1049,11 +1049,11 @@ gt(df_chuvoso_arredondado, rowname_col = "Espécies", caption = "Descritores da 
 
 ## Partitioning of diversity
 
-A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco (Figura 3) e chuvoso (Figura 4), destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
+A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco (@fig-venn-seco) e chuvoso (@fig-venn-chuvoso), destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
 
-No período seco (Figura 3), foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
+No período seco (@fig-venn-seco), foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
 
-No período chuvoso (Figura 4), o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
+No período chuvoso (@fig-venn-chuvoso), o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
 
 De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos.
 
@@ -1264,13 +1264,13 @@ A tabela e figuras (Figuras 5A,5B e 5C e Figuras 6A, 6B e 6C) abordam duas escal
 
 **Período seco**
 
-Em uma escala mais ampla, considerando ambos os riachos (Tabela 2, Figura 5A), a diversidade alfa (α) observada entre os riachos Barro Branco e Caiana foi significativamente menor e diferente (0,12%) do que o esperado (0,19%; P\<0,999).
+Em uma escala mais ampla, considerando ambos os riachos (Tabela 2, @fig-diversidadeobs-riachos-seco), a diversidade alfa (α) observada entre os riachos Barro Branco e Caiana foi significativamente menor e diferente (0,12%) do que o esperado (0,19%; P\<0,999).
 
 A diversidade observada entre os habitats (β1) foi de 0,10%, tendo um valor menor do que o esperado (0,15%; P\<0,999). Contudo, a respeito da diversidade entre todos os pontos (β2), a riqueza observada (0,51%) é ligeiramente similar à esperada (0,50%), com um valor de significância P=0,477. Entre os riachos Barro Branco e Caiana (β3), o valor observado (0,27%) foi maior do que o esperado (0,16%), com valor de significância P=0,001.
 
-A α-diversidade observada no riacho Barro Branco (Tabela 2, Figura 5B) foi significativamente menor e diferente (0,20%) do esperado (0,27%; P\<0,999). O mesmo acontece na diversidade entre os habitats (β1), com 0,15% de diversidade observada (P\<0,999). Entretanto, a diversidade entre os pontos (β2) foi significativamente maior (0,65%) que o esperado (0,53%; P=0,001).
+A α-diversidade observada no riacho Barro Branco (Tabela 2, @fig-diversidadeobs-bb-seco) foi significativamente menor e diferente (0,20%) do esperado (0,27%; P\<0,999). O mesmo acontece na diversidade entre os habitats (β1), com 0,15% de diversidade observada (P\<0,999). Entretanto, a diversidade entre os pontos (β2) foi significativamente maior (0,65%) que o esperado (0,53%; P=0,001).
 
-No Caiana (Tabela 2; Figura 5C), a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
+No Caiana (Tabela 2; @fig-diversidadeobs-ca-seco), a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
 
 ```{r}
 #| eval: false
@@ -1671,13 +1671,13 @@ ggplot(diversity_data_seco.ca, aes(fill = Componente, y = Percentage, x = Type))
 
 **Período chuvoso**
 
-No período chuvoso, considerando ambos os riachos (Tabela 2; Figura 6A), a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999).
+No período chuvoso, considerando ambos os riachos (Tabela 2; @fig-diversidadeobs-riachos-chuvoso), a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999).
 
 A diversidade β2 observada (0,48%) foi superior ao esperado (0,27%), com nível de significância P=0,001. Foi observada em β3 uma diversidade acima (0,16%) do esperado (0,04%; P=0,001).
 
-No Barro Branco (Tabela 2; Figura 6B), a α-diversidade observada foi de 0,24%, abaixo do esperado (0,44%; P\<0,999). Sua diversidade entre habitats apresentou valor observado de 0,13%, inferior ao esperado (0,18%; P=0,003). Entre os pontos, o valor observado (0,63%) foi superior ao esperado (0,38%; P=0,001).
+No Barro Branco (Tabela 2; @fig-diversidadeobs-bb-chuvoso), a α-diversidade observada foi de 0,24%, abaixo do esperado (0,44%; P\<0,999). Sua diversidade entre habitats apresentou valor observado de 0,13%, inferior ao esperado (0,18%; P=0,003). Entre os pontos, o valor observado (0,63%) foi superior ao esperado (0,38%; P=0,001).
 
-O Caiana (Tabela 2; Figura 6C) também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
+O Caiana (Tabela 2; @fig-diversidadeobs-ca-chuvoso) também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
 
@@ -2341,6 +2341,22 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 ![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Seco.png){#fig-pcaseco}
 
 ![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Chuvoso.png){#fig-pcachuvoso}
+
+![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período seco (S).](imagens/venn_seco.png){#fig-venn-seco}
+
+![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período chuvoso (C).](imagens/venn_chuvoso.png){#fig-venn-chuvoso}
+
+![Diversidade observada e esperada do período seco, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/diversidade_obs_seco.png){#fig-diversidadeobs-riachos-seco}
+
+![](imagens/diversidade_obs__bb_seco.png){#fig-diversidadeobs-bb-seco}
+
+![](imagens/diversidade_obs__ca_seco.png){#fig-diversidadeobs-ca-seco}
+
+![Diversidade observada e esperada do período chuvoso, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/diversidade_obs__chuvoso.png){#fig-diversidadeobs-riachos-chuvoso}
+
+![](imagens/diversidade_obs__bb_chuvoso.png){#fig-diversidadeobs-bb-chuvoso}
+
+![](imagens/diversidade_obs__ca_chuvoso.png){#fig-diversidadeobs-ca-chuvoso}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
