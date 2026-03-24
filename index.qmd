@@ -326,6 +326,397 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 #| code-overflow: wrap
 #| code-summary: "Code: Summary"
 
+#REBIO23 - PCA - SECO----
+#####....----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+library(openxlsx)
+dados_bruto <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio-habitat.xlsx",
+                         rowNames = T,
+                         colNames = T,
+                         sheet = "habitat_t",
+                         na.strings = "n/a",
+                         startRow = 2)
+
+#deletar o ponto onze
+row.names(dados_bruto)
+del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3")
+m_cort <- dados_bruto[!(row.names(dados_bruto) %in% del_rows), ]
+
+#SELECIONANDO VARIÁVEIS
+m_cort <- m_cort [, c("Cond_uS.cm","Turb_ntu", "pH", "Vel_m.s", "Slope", "Depth_max_cm",
+                      "Depth_avg_cm", "Depth_mar_cm", "Width_m", "Mud", "Sand", "Gravel_f", 
+                      "Gravel_c", "Cobbles", "Rocks", "Bedrock", "Macrophytes", "Grass", 
+                      "Subm_veg", "Overh_veg", "Leaf_l", "Algae_f", "Algae_a", "Root_masses",
+                      "Debris_l", "Debris_s")]
+str(m_cort)
+
+# CRIANDO MATRIZ DE MÉDIAS
+library("tidyverse")
+#Inserindo coluna para agrupamentos
+data <- m_cort
+nrow(data); ncol(data) #no. de N colunas x M linhas
+data_g <- cbind(Grupos = rownames(data), data)
+data_g
+grps <- substr(data_g[, 1], 1,7)
+grps
+data_g <- data_g %>% mutate(Grupos=c(grps))
+#data_avg <- aggregate(data_g[, 9:9], list(data_g$Grupos), mean)
+#data_avg
+data_avg <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(.x, na.rm = TRUE)))
+data_avg
+data_dp <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), list(mean = mean, sd = sd)))
+#?across
+data_dp <- data_avg
+#Primeira coluna para nomes das linhas 
+data_dp <- as.data.frame(data_dp)
+class(data_dp)
+rownames(data_dp) <- data_dp[,1]
+data_dp[,1] <- NULL
+data_dp <- round(data_dp, 1)
+data_dp
+m_cort <- data_dp
+
+#SELECIONANDO VARIÁVEIS
+m_trans <- t(m_cort)
+colnames(m_trans)
+seco <- t(m_trans[, c("S-B-P05", "S-B-P06", "S-B-P07",
+                      "S-B-P08", "S-B-P09", "S-B-P10", 
+                      "S-C-P12", "S-C-P13", "S-C-P14",
+                      "S-C-P15", "S-C-P16", "S-C-P17",
+                      "S-C-P18", "S-C-P19", "S-C-P20")])
+
+chuvoso <- t(m_trans[, c("C-B-P05", "C-B-P06", "C-B-P07", 
+                         "C-B-P08", "C-B-P09", "C-B-P10",
+                         "C-C-P12", "C-C-P13", "C-C-P14",
+                         "C-C-P15", "C-C-P16", "C-C-P17",
+                         "C-C-P18", "C-C-P19", "C-C-P20")])
+
+###### seco
+seco <- as.data.frame(seco)
+seco[] <- lapply(seco, as.numeric)
+###### chuvoso
+chuvoso <- as.data.frame(chuvoso)
+chuvoso[] <- lapply(chuvoso, as.numeric)
+
+################################################################################
+####SECO
+
+# CRIANDO MATRIZ DE MÉDIAS
+library("tidyverse")
+#Inserindo coluna para agrupamentos
+data <- seco
+nrow(data); ncol(data) #no. de N colunas x M linhas
+data_g <- cbind(Grupos = rownames(data), data)
+data_g
+grps <- substr(data_g[, 1], 5,7)
+grps
+data_g <- data_g %>% mutate(Grupos=c(grps))
+#data_avg <- aggregate(data_g[, 9:9], list(data_g$Grupos), mean)
+#data_avg
+data_avg <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(.x, na.rm = TRUE)))
+data_avg
+data_dp <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), list(mean = mean, sd = sd)))
+#?across
+data_dp <- data_avg
+#Primeira coluna para nomes das linhas 
+data_dp <- as.data.frame(data_dp)
+class(data_dp)
+rownames(data_dp) <- data_dp[,1]
+data_dp[,1] <- NULL
+data_dp <- round(data_dp, 1)
+data_dp
+seco <- data_dp
+############################
+# Pacotes
+############################
+library(vegan)
+library(gplots)
+library(psych)
+library(tidyverse)
+library(ggplot2)
+
+############################
+# Pré-processamento da matriz
+############################
+m_trab <- seco
+m_trns <- sqrt(m_trab) # transformação
+
+# Remover linhas e colunas com todos os valores = 0
+m_trns <- m_trns[rowSums(m_trns) > 0, ]
+m_trns <- m_trns[, colSums(m_trns) > 0]
+
+############################
+# Distância e Cluster
+############################
+vegdist_mat <- vegdist(m_trns, method = "bray", diag = TRUE, upper = FALSE)
+cluster_uas <- hclust(vegdist_mat, method = "average")
+
+plot(cluster_uas, main = "Cluster Dendrogram - Bray-Curtis", hang = 0.1)
+rect.hclust(cluster_uas, k = 2, h = NULL)
+
+as.matrix(vegdist_mat)[1:6, 1:6]
+
+############################
+# Heatmap (UAs)
+############################
+col <- rev(heat.colors(999))
+
+heatmap.2(as.matrix(vegdist_mat),
+          Rowv = as.dendrogram(cluster_uas),
+          Colv = as.dendrogram(cluster_uas),
+          key = TRUE, tracecol = NA, revC = TRUE,
+          col = col,
+          density.info = "none",
+          xlab = "UA´s", ylab = "UA´s",
+          mar = c(6, 6) + 0.2)
+
+############################
+# Cluster das variaves
+############################
+cluster_spp <- hclust(vegdist(t(m_trns), method = "bray", diag = TRUE, upper = FALSE),
+                      method = "average")
+plot(cluster_spp, main = "Dendrograma dos atributos")
+
+heatmap.2(t(as.matrix(m_trns)),
+          Colv = as.dendrogram(cluster_uas),
+          Rowv = as.dendrogram(cluster_spp),
+          key = TRUE, tracecol = NA, revC = TRUE,
+          col = col,
+          density.info = "none",
+          xlab = "Unidades amostrais", ylab = "Espécies",
+          mar = c(6, 6) + 0.1)
+
+############################
+# PCA
+############################
+pca <- prcomp(m_trns)
+plot(pca, type = "l")
+summary(pca)
+
+pairs.panels(m_trns[,1:min(26, ncol(m_trns))], 
+             method = "pearson",
+             scale = FALSE, lm = FALSE,
+             hist.col = "#00AFBB", pch = 19,
+             density = TRUE, ellipses = TRUE, alpha = 0.5)
+
+############################
+# PCA - diferentes escalas
+############################
+pca_ce <- prcomp(m_trns, center = TRUE, scale = FALSE)
+pca_cs <- prcomp(m_trns, center = TRUE, scale = TRUE)
+pca_sc <- prcomp(m_trns, scale = TRUE)
+
+par(mfrow = c(3,1))
+plot(pca_ce, type = "l")
+plot(pca_cs, type = "l")
+plot(pca_sc, type = "l")
+par(mfrow = c(1,1))
+
+summary(pca_sc)
+plot(pca_sc, type = "l", main = "Scree Plot (scaled data - m_trns)")
+
+############################
+# Agrupamentos
+############################
+add.col <- rownames_to_column(as.data.frame(m_trns), var = "UAs")
+agrup <- substr(add.col$UAs, 1, 1)
+m_pca_agrup <- add.col %>%
+  mutate(Agrupamentos = agrup, .before = UAs)
+
+############################
+# Biplot da PCA
+############################
+pca_seco <- biplot(pca_sc, choices = 1:2, scale = 1,
+                      main = "Biplot da PCA - seco",
+                      xlab = "PC1 UAs", ylab = "PC2 UAs", cex = 0.8)
+ggsave(pca_seco, dpi = 500, filename = "pca_seco.png")
+
+var_exp <- round((pca_sc$sdev^2 / sum(pca_sc$sdev^2)) * 100, 2)
+var_exp
+
+############################
+# PCA Scores
+############################
+pca_scores <- cbind(Agrupamento = m_pca_agrup$Agrupamentos, 
+                    m_trns, 
+                    pca_sc$x[,1:2])
+
+ggplot(pca_scores, aes(PC1, PC2, col = Agrupamento, fill = Agrupamento)) +
+  stat_ellipse(geom = "polygon", col = "black", alpha = 0.5) +
+  geom_point(shape = 21, col = "black")
+
+############################
+# Correlação entre matriz original e eixos da PCA
+############################
+cor(m_trns, pca_scores[, c("PC1", "PC2")])
+
+################################################################################
+#REBIO23 - PCA - CHUVOSO----
+#####....----
+
+# CRIANDO MATRIZ DE MÉDIAS
+library("tidyverse")
+#Inserindo coluna para agrupamentos
+data <- chuvoso
+nrow(data); ncol(data) #no. de N colunas x M linhas
+data_g <- cbind(Grupos = rownames(data), data)
+data_g
+grps <- substr(data_g[, 1], 5,7)
+grps
+data_g <- data_g %>% mutate(Grupos=c(grps))
+#data_avg <- aggregate(data_g[, 9:9], list(data_g$Grupos), mean)
+#data_avg
+data_avg <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(.x, na.rm = TRUE)))
+data_avg
+data_dp <- data_g %>% 
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), list(mean = mean, sd = sd)))
+#?across
+data_dp <- data_avg
+#Primeira coluna para nomes das linhas 
+data_dp <- as.data.frame(data_dp)
+class(data_dp)
+rownames(data_dp) <- data_dp[,1]
+data_dp[,1] <- NULL
+data_dp <- round(data_dp, 1)
+data_dp
+chuvoso <- data_dp
+############################
+# Pacotes
+############################
+library(vegan)
+library(gplots)
+library(psych)
+library(tidyverse)
+library(ggplot2)
+
+############################
+# Pré-processamento da matriz
+############################
+m_trab <- chuvoso
+m_trns <- sqrt(m_trab) # transformação
+
+# Remover linhas e colunas com todos os valores = 0
+m_trns <- m_trns[rowSums(m_trns) > 0, ]
+m_trns <- m_trns[, colSums(m_trns) > 0]
+
+############################
+# Distância e Cluster
+############################
+vegdist_mat <- vegdist(m_trns, method = "bray", diag = TRUE, upper = FALSE)
+cluster_uas <- hclust(vegdist_mat, method = "average")
+
+plot(cluster_uas, main = "Cluster Dendrogram - Bray-Curtis", hang = 0.1)
+rect.hclust(cluster_uas, k = 2, h = NULL)
+
+as.matrix(vegdist_mat)[1:6, 1:6]
+
+############################
+# Heatmap (UAs)
+############################
+col <- rev(heat.colors(999))
+
+heatmap.2(as.matrix(vegdist_mat),
+          Rowv = as.dendrogram(cluster_uas),
+          Colv = as.dendrogram(cluster_uas),
+          key = TRUE, tracecol = NA, revC = TRUE,
+          col = col,
+          density.info = "none",
+          xlab = "UA´s", ylab = "UA´s",
+          mar = c(6, 6) + 0.2)
+
+############################
+# Cluster das variaves
+############################
+cluster_spp <- hclust(vegdist(t(m_trns), method = "bray", diag = TRUE, upper = FALSE),
+                      method = "average")
+plot(cluster_spp, main = "Dendrograma dos atributos")
+
+heatmap.2(t(as.matrix(m_trns)),
+          Colv = as.dendrogram(cluster_uas),
+          Rowv = as.dendrogram(cluster_spp),
+          key = TRUE, tracecol = NA, revC = TRUE,
+          col = col,
+          density.info = "none",
+          xlab = "Unidades amostrais", ylab = "Espécies",
+          mar = c(6, 6) + 0.1)
+
+############################
+# PCA
+############################
+pca <- prcomp(m_trns)
+plot(pca, type = "l")
+summary(pca)
+
+pairs.panels(m_trns[,1:min(26, ncol(m_trns))], 
+             method = "pearson",
+             scale = FALSE, lm = FALSE,
+             hist.col = "#00AFBB", pch = 19,
+             density = TRUE, ellipses = TRUE, alpha = 0.5)
+
+############################
+# PCA - diferentes escalas
+############################
+pca_ce <- prcomp(m_trns, center = TRUE, scale = FALSE)
+pca_cs <- prcomp(m_trns, center = TRUE, scale = TRUE)
+pca_sc <- prcomp(m_trns, scale = TRUE)
+
+par(mfrow = c(3,1))
+plot(pca_ce, type = "l")
+plot(pca_cs, type = "l")
+plot(pca_sc, type = "l")
+par(mfrow = c(1,1))
+
+summary(pca_sc)
+plot(pca_sc, type = "l", main = "Scree Plot (scaled data - m_trns)")
+
+############################
+# Agrupamentos
+############################
+add.col <- rownames_to_column(as.data.frame(m_trns), var = "UAs")
+agrup <- substr(add.col$UAs, 1, 1)
+m_pca_agrup <- add.col %>%
+  mutate(Agrupamentos = agrup, .before = UAs)
+
+############################
+# Biplot da PCA
+############################
+pca_chuvoso <- biplot(pca_sc, choices = 1:2, scale = 1,
+                      main = "Biplot da PCA - Chuvoso",
+                      xlab = "PC1 UAs", ylab = "PC2 UAs", cex = 0.8)
+ggsave(pca_chuvoso, dpi = 500, filename = "pca_chuvoso.png")
+
+var_exp <- round((pca_sc$sdev^2 / sum(pca_sc$sdev^2)) * 100, 2)
+var_exp
+
+############################
+# PCA Scores
+############################
+pca_scores <- cbind(Agrupamento = m_pca_agrup$Agrupamentos, 
+                    m_trns, 
+                    pca_sc$x[,1:2])
+
+ggplot(pca_scores, aes(PC1, PC2, col = Agrupamento, fill = Agrupamento)) +
+  stat_ellipse(geom = "polygon", col = "black", alpha = 0.5) +
+  geom_point(shape = 21, col = "black")
+
+############################
+# Correlação entre matriz original e eixos da PCA
+############################
+cor(m_trns, pca_scores[, c("PC1", "PC2")])
 
 
 ```
@@ -363,7 +754,9 @@ Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* s
 #| code-overflow: wrap
 #| code-summary: "Code: Summary"
 
-####PERÍODO SECO
+#REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO SECO----
+#####....----
+
 #Transpondo a matriz zoo_seco
 zoo_seco
 zoo_seco <- t(zoo_seco)
@@ -504,20 +897,11 @@ df_seco_arredondado <- df_seco %>%
 # Exibir a tabela arredondada com gt
 gt(df_seco_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
 
-```
 
-```{r}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Summary"
 
-####PERÍODO CHUVOSO
+#REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO CHUVOSO----
+#####....----
+
 #Transpondo a matriz zoo_chuvoso
 zoo_chuvoso <- t(zoo_chuvoso)
 zoo_chuvoso <- as.data.frame(zoo_chuvoso)
