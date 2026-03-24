@@ -47,8 +47,11 @@ author:
     affiliations:
       - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, 666, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
 keywords:
-  - La Palma
-  - Earthquakes
+  - Floresta Atlântica
+  - Zooplâncton
+  - Riachos tropicais
+  - Partição da diversidade
+  - Sazonalidade climática
 date: "`r Sys.Date()`"
 abstract: "Abstract"
 lang: "en-US"
