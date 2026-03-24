@@ -305,13 +305,13 @@ The results section should follow the model in <https://elviomedeiros.github.io/
 
 ## Environmental variables
 
-É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver Figura 1).
+É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa).
 
 Os resultados da Análise de Componentes Principais (PCA) evidenciaram uma clara diferenciação das unidades amostrais com base nas características físicas e estruturais do habitat. Ao longo dos riachos e períodos amostrais analisados.
 
-No período seco (Figura 2A), observou-se que as UAs P05, P07 e P08, pertencentes ao riacho Barro Branco, apresentaram maior associação a liteira, algas filamentosas e aderidas. Em contraste, a UA P06 do Barro Branco, juntamente com as UAs P16, P17 e P20, do Caiana, esteve associada principalmente às variáveis estruturais, como a presença de pedras, profundidade máxima, mínima e marginal, largura e vegetação submersa. Além disso, P10 do Barro Branco e P18 do Caiana apresentaram associação evidente ao pH, cujos valores variaram de ácido a levemente neutro.
+No período seco (@fig-pcaseco), observou-se que as UAs P05, P07 e P08, pertencentes ao riacho Barro Branco, apresentaram maior associação a liteira, algas filamentosas e aderidas. Em contraste, a UA P06 do Barro Branco, juntamente com as UAs P16, P17 e P20, do Caiana, esteve associada principalmente às variáveis estruturais, como a presença de pedras, profundidade máxima, mínima e marginal, largura e vegetação submersa. Além disso, P10 do Barro Branco e P18 do Caiana apresentaram associação evidente ao pH, cujos valores variaram de ácido a levemente neutro.
 
-No período chuvoso (Figura 2B), a distribuição das unidades amostrais no espaço da biplot indicou alterações nos padrões de associação observados no período seco. As UAs P05 e P06 do Barro Branco, assim como a UA P18 do Caiana, estiveram associadas principalmente à presença de lama, macrófitas, vegetação submersa, folhiço e detritos. Por outro lado, as P08, P10 e P16 apresentaram maior associação com algas filamentosas e aderidas, vegetação marginal e largura média do canal.
+No período chuvoso (@fig-pcachuvoso), a distribuição das unidades amostrais no espaço da biplot indicou alterações nos padrões de associação observados no período seco. As UAs P05 e P06 do Barro Branco, assim como a UA P18 do Caiana, estiveram associadas principalmente à presença de lama, macrófitas, vegetação submersa, folhiço e detritos. Por outro lado, as P08, P10 e P16 apresentaram maior associação com algas filamentosas e aderidas, vegetação marginal e largura média do canal.
 
 De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
 
@@ -1666,7 +1666,6 @@ ggplot(diversity_data_seco.ca, aes(fill = Componente, y = Percentage, x = Type))
 
 ```
 
-
 **Período chuvoso**
 
 No período chuvoso, considerando ambos os riachos (Tabela 2; Figura 6A), a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999).
@@ -2157,7 +2156,6 @@ part.ca_seco
 
 ```
 
-
 **Período chuvoso**
 
 A α-diversidade observada em ambos os riachos (Tabela 3) foi de 3,56%, sendo inferior significativamente ao esperado (9,29%; P\<0,999). Mesmo no período chuvoso, suas β-diversidades atingiram valores acima do esperado. β~1~ apresentou 2,96% do esperado (1,13%; P=0,001), β~2~ obteve um valor observado de 2,52%, acima do esperado (1,04%; P=0,001), já em β~3~, foi observada uma diversidade de 1,11% acima do esperado (1,00%; P=0,001). A γ-diversidade total foi de 10,55.
@@ -2234,7 +2232,6 @@ part.ca_chuvoso <- multipart(y = fauna.zoo.ca_chuvoso, x = escala.ca_chuvoso, in
 part.ca_chuvoso
 
 ```
-
 
 # Discussion
 
@@ -2337,6 +2334,10 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 ## Figures {.unnumbered}
 
 ![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/Mapa.png){#fig-mapa}
+
+![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Seco.png){#fig-pcaseco}
+
+![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Chuvoso.png){#fig-pcachuvoso}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
