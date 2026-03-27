@@ -143,15 +143,20 @@ Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), 
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
-em que, ![Fórmula da densidade.](imagens/fórmula densidade.png){#Fig-densidade width="185"}
-
-A densidade em número de indivíduos por m³ de uma espécie (Dsp) para um determinado habitat será o número de indivíduos da espécie (Nsp), dividido pelo volume total filtrado (Vf) [@bowen2017].
+$$
+Dsp = \frac{Nsp}{Vf}
+$$ , onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
 
 Além disso, as fórmulas de partição aditiva e multiplicativa também foram aplicadas:
 
-![Fórmula da partição aditiva (\**) e multiplicativa (*\*\*).](imagens/formula.png){#fig-formula fig-align="center" width="151"}
+$$
+\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{ (*)}
+$$ {#eq-part}\
+$$
+\beta_i=\gamma/\alpha_i \text{ (**)}
+$$
 
-Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβᵢ @fig-formula. A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2025; @whittaker1972].
+Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-part). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2025; @whittaker1972].
 
 ## Statistical Analyses
 
