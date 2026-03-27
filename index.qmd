@@ -143,9 +143,8 @@ Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo d
 
 $$
 Dsp = \frac{Nsp}{Vf}
-$$ , onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
-
-A densidade em número de indivíduos por m³ de uma espécie (Dsp) para um determinado habitat será o número de indivíduos da espécie (Nsp), dividido pelo volume total filtrado (Vf) [@bowen2017].
+$$
+onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
 
 Além disso, as fórmulas de partição aditiva e multiplicativa também foram aplicadas:
 
@@ -157,7 +156,7 @@ $$
 \beta_i=\gamma/\alpha_i \text{ (**)}
 $$
 
-Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-part). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2025; @whittaker1972].
+Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-part). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
 
 **Environmental data**
 
@@ -179,13 +178,9 @@ Para a realização das análises estatísticas, foram utilizados pacotes que pe
 
 Foram empregados pacotes sobre partição da diversidade para que fosse possível decompor ou particionar a diversidade em componentes alfa (α), beta (β) e gama (γ). A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou unidades amostrais únicas. Diversidade gama, ou diversidade regional, corresponde a escalas espaciais maiores, enquanto que a diversidade beta manifesta-se quando há variação na diversidade entre os ambientes ou escalas espaciais [@chao2012; @farias2020a].
 
-Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2015]. Funções como adipart e multipart também foram empregadas. A função adipart foi utilizada para a partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade) e multipart para partição multiplicativa da diversidade, que conterá os valores médios da α-diversidade em níveis mais baixos de uma hierarquia e comparados com a diversidade total gama.
+Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. Funções como adipart e multipart também foram empregadas. A função adipart foi utilizada para a partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade) e multipart para partição multiplicativa da diversidade, que conterá os valores médios da α-diversidade em níveis mais baixos de uma hierarquia e comparados com a diversidade total gama.
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
-
-**Collection Authorization**
-
-O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
 ```{r}
 #| eval: false
