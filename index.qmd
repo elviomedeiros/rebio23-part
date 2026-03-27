@@ -121,8 +121,6 @@ Verificar se os métodos aditivos e multiplicativos para o cálculo da partiçã
 
 ## Material and Methods
 
-Data and methods are discussed in @sec-data-col. This citation will appear in the bibliography section (@gouveia2017; @medeiros2008).
-
 **Study Area and Sampling Design**
 
 A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 @leal2025a; @mma2003. São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C [@mma2003].
@@ -158,15 +156,14 @@ $$ {#eq-part}\
 $$
 \beta_i=\gamma/\alpha_i \text{ (**)}
 $$
+
 Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-part). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2025; @whittaker1972].
 
 **Environmental data**
 
 Dentre as variáveis ambientais, realizou-se a medição das variáveis físicas e químicas, morfometria, qualidade da água e estrutura do habitat com o intuito de fornecer informações acerca do habitat em que as espécies foram encontradas. As variáveis químicas foram estimadas por meio de medidores de pH (TECNOPON MPA-210), condutividade (μS/cm) (TECNOPON MCS-150) e turbidez da água (NTU), utilizando equipamentos de bancada no Laboratório de Ecologia (LABECO) – Campus V. As variáveis temperatura (°C) e oxigênio dissolvido (mg/L) (Lutron DO-5510) e velocidade da água (m/s) foram medidas em campo, sendo está última medida utilizando o método da bóia de [@maitland1990].
 
-```         
 Para a avaliação morfométrica de cada habitat nas 15 unidades amostrais (UAs), foram estabelecidos transectos nos quais foram medidos a largura e o comprimento com o auxílio de uma trena métrica. A profundidade e largura foram medidas em três seções equidistantes ao longo de cada transecto, também utilizando a trena métrica. A altitude, a forma e a distância entre as unidades amostrais foram determinadas através de dados obtidos por GPS. Esses dados foram empregados para calcular a área superficial, o volume e a distância entre os pontos de coleta.
-```
 
 Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes estudados quanto à disponibilidade de recursos, os seguintes aspectos foram quantificados em cada ambiente: presença de macrófitas, vegetação submersa, vegetação flutuante, algas, vegetação ripária, liteira, raízes e galhos de árvores próximas. Os ambientes também foram classificados quanto ao tipo de substrato, sendo estimadas as proporções de lama, areia, pedras, seixos, entre outros. De acordo com a metodologia proposta por [@medeiros2008], estes dados, levantados por meio de análise visual, estimam a contribuição proporcional de cada componente. Considerando que a maioria desses elementos estão concentrados nas margens, as medições foram obtidas a partir de transectos paralelos à margem dos ambientes estudados. Estes dados representam a proporção média (%) de cobertura dos aspectos medidos para cada trecho [@medeiros2008].
 
@@ -328,8 +325,6 @@ zoo_chuvoso
 ```
 
 # Results
-
-The results section should follow the model in <https://elviomedeiros.github.io/Bentos2006_Q/>.
 
 ## Environmental variables
 
