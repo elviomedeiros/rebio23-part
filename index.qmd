@@ -123,7 +123,7 @@ Verificar se os métodos aditivos e multiplicativos para o cálculo da partiçã
 
 Data and methods are discussed in @sec-data-col. This citation will appear in the bibliography section (@gouveia2017; @medeiros2008).
 
-## Study Area and Sampling Design
+**Study Area and Sampling Design**
 
 A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 @leal2025a; @mma2003. São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C [@mma2003].
 
@@ -131,7 +131,7 @@ Por se tratar de uma unidade de conservação e por compor um dos últimos reman
 
 A área selecionada para o presente estudo, SEMA 02, abriga os riachos Caiana e Barro Branco que drenam no sentido sul-norte e cujos cursos não se estendem por mais de 10 km antes de desaguarem no Rio Camaratuba, o qual, por sua vez, deságua no oceano Atlântico. Ambos os riachos nascem dentro da reserva, entretanto, o Caiana flui sobre uma área de floresta modificada para pastoreio e plantios, enquanto o Barro Branco flui parcialmente por uma área de Floresta Atlântica no interior da unidade (Figura 1)
 
-## Data Collection {#sec-data-col}
+**Data Collection**
 
 As coletas ocorreram entre novembro de 2023 a fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (Figura 1), localizados dentro e no entorno da Reserva Biológica. Para cada unidade amostral, foram coletadas três subamostras, uma em cada habitat, a fim de realizar uma análise estatística mais rigorosa [@martinelli2004].
 
@@ -143,9 +143,15 @@ Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), 
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
+<<<<<<< HEAD
 $$
 Dsp = \frac{Nsp}{Vf}
 $$ , onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
+=======
+em que, ![Fórmula da densidade.](imagens/fórmula%20densidade.png){#Fig-densidade width="185"}
+
+A densidade em número de indivíduos por m³ de uma espécie (Dsp) para um determinado habitat será o número de indivíduos da espécie (Nsp), dividido pelo volume total filtrado (Vf) [@bowen2017].
+>>>>>>> 018d876eef25647faa2c8035377e3c5fe3214a6a
 
 Além disso, as fórmulas de partição aditiva e multiplicativa também foram aplicadas:
 
@@ -158,7 +164,19 @@ $$
 
 Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-part). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (**γ**) é resultado da diversidade média local (**α₁**) e da soma das diferenças entre as unidades amostrais (**βᵢ**). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2025; @whittaker1972].
 
-## Statistical Analyses
+**Environmental data**
+
+Dentre as variáveis ambientais, realizou-se a medição das variáveis físicas e químicas, morfometria, qualidade da água e estrutura do habitat com o intuito de fornecer informações acerca do habitat em que as espécies foram encontradas. As variáveis químicas foram estimadas por meio de medidores de pH (TECNOPON MPA-210), condutividade (μS/cm) (TECNOPON MCS-150) e turbidez da água (NTU), utilizando equipamentos de bancada no Laboratório de Ecologia (LABECO) – Campus V. As variáveis temperatura (°C) e oxigênio dissolvido (mg/L) (Lutron DO-5510) e velocidade da água (m/s) foram medidas em campo, sendo está última medida utilizando o método da bóia de [@maitland1990].
+
+	Para a avaliação morfométrica de cada habitat nas 15 unidades amostrais (UAs), foram estabelecidos transectos nos quais foram medidos a largura e o comprimento com o auxílio de uma trena métrica. A profundidade e largura foram medidas em três seções equidistantes ao longo de cada transecto, também utilizando a trena métrica. A altitude, a forma e a distância entre as unidades amostrais foram determinadas através de dados obtidos por GPS. Esses dados foram empregados para calcular a área superficial, o volume e a distância entre os pontos de coleta.
+
+Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes estudados quanto à disponibilidade de recursos, os seguintes aspectos foram quantificados em cada ambiente: presença de macrófitas, vegetação submersa, vegetação flutuante, algas, vegetação ripária, liteira, raízes e galhos de árvores próximas. Os ambientes também foram classificados quanto ao tipo de substrato, sendo estimadas as proporções de lama, areia, pedras, seixos, entre outros. De acordo com a metodologia proposta por [@medeiros2008], estes dados, levantados por meio de análise visual, estimam a contribuição proporcional de cada componente. Considerando que a maioria desses elementos estão concentrados nas margens, as medições foram obtidas a partir de transectos paralelos à margem dos ambientes estudados. Estes dados representam a proporção média (%) de cobertura dos aspectos medidos para cada trecho [@medeiros2008].
+
+**Data Analysis**
+
+Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e devidamente etiquetadas. Em seguida, realizou-se a confirmação de identificação das espécies por um especialista. Os dados de riqueza (R) e abundância total foram analisados com o objetivo de investigar os padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas.
+
+**Statistical Analyses**
 
 Os dados foram organizados em formatos de tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis através de técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022; @zar1999].
 
@@ -169,6 +187,10 @@ Foram empregados pacotes sobre partição da diversidade para que fosse possíve
 Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2015]. Funções como adipart e multipart também foram empregadas. A função adipart foi utilizada para a partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade) e multipart para partição multiplicativa da diversidade, que conterá os valores médios da α-diversidade em níveis mais baixos de uma hierarquia e comparados com a diversidade total gama.
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
+
+**Collection Authorization**
+
+O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
 ```{r}
 #| eval: false
