@@ -10,21 +10,21 @@ author:
     email: ellensilva958@gmail.com
     roles: []
     affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, 666, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
+      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
   - name: Mayara Mirelly da Silva Monteiro
     orcid: 0009-0001-3332-1340
     corresponding: false
     email: mayaramirelly68@gmail.com
     roles: []
     affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, 666, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
+      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
   - name: Marcela Vitória Bernardo da Silva
     orcid: 0009-0002-7483-5978
     corresponding: false
     email: marcelavb122@gmail.com
     roles: []
     affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, 666, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
+      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
   - name: Ludmilla Cavalcanti Antunes Lucena
     orcid: 0009-0006-4510-2600
     corresponding: false
@@ -45,7 +45,7 @@ author:
     email: elviomedeiros@servidor.uepb.edu.br
     roles: []
     affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, 666, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
+      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
 keywords:
   - Floresta Atlântica
   - Zooplâncton
