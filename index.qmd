@@ -1108,11 +1108,11 @@ library(dplyr)
 m_avg_s <- m_bruta_seco_g_s %>%
   group_by(Grupos) %>%
   summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
-
 m_avg_s <- as.data.frame(m_avg_s)
 rownames(m_avg_s) <- m_avg_s$Grupos
 m_avg_s$Grupos <- NULL
 m_avg_s
+
 #Salvando a matriz
 write.table(m_avg_s,
             "m_avgcsv.csv",
@@ -1131,6 +1131,34 @@ m_venn
 gt(round(m_venn, 2), rownames_to_stub = TRUE)
 m_venn[m_venn !=0] <- 1 #matriz binária
 m_venn
+
+##Salvar como .xlsx
+library(openxlsx)
+write.xlsx(m_venn, "venn_seco.xlsx", rowNames = TRUE)
+
+##Salvar tabela como gt
+tabela_gt <- gt::gt(m_venn, rownames_to_stub = TRUE)
+gtsave(tabela_gt, "gt-auspre-s_gttable.html")
+gtsave(tabela_gt, "fig-auspre-s_gttable.png")
+saveRDS(tabela_gt, "gt-auspre-s_gttable.rds")
+
+
+# Tabela final ajustada no Excel
+library(readxl)
+seco_gttable <- read_excel(
+  path  = "venn_seco.xlsx",
+  sheet = "Sheet 1",
+  range = "A1:C59")
+seco_gttable
+library(gt)
+seco_gttable <- gt(seco_gttable)
+seco_gttable <- sub_missing(seco_gttable,
+                      columns = everything(), missing_text = "")
+#seco_gttable <- fmt_number(seco_gttable, columns = "F.O.(%)", decimals = 1)
+seco_gttable
+gtsave(seco_gttable, "gt-seco_gttable_xlsx.html")
+saveRDS(seco_gttable, "gt-seco_gttable_xlsx.rds")
+
 library("eulerr")
 #set.seed() #this seed changes the orientation of the sets        
 plot(euler(m_venn), counts = TRUE, fontface = 1)
@@ -1225,6 +1253,35 @@ m_venn
 gt(round(m_venn, 2), rownames_to_stub = TRUE)
 m_venn[m_venn !=0] <- 1 #matriz binária
 m_venn
+
+
+##Salvar como .xlsx
+library(openxlsx)
+write.xlsx(m_venn, "venn_chuvoso.xlsx", rowNames = TRUE)
+
+##Salvar tabela como gt
+tabela_gt <- gt::gt(m_venn, rownames_to_stub = TRUE)
+gtsave(tabela_gt, "gt-auspre-c_gttable.html")
+gtsave(tabela_gt, "fig-auspre-c_gttable.png")
+saveRDS(tabela_gt, "gt-auspre-c_gttable.rds")
+
+##Tabela final ajustada no Excel
+library(readxl)
+chuvoso_gttable <- read_excel(
+  path  = "venn_chuvoso.xlsx",
+  sheet = "Sheet 1",
+  range = "A1:C59")
+chuvoso_gttable
+library(gt)
+chuvoso_gttable <- gt(chuvoso_gttable)
+chuvoso_gttable <- sub_missing(chuvoso_gttable,
+                      columns = everything(), missing_text = "")
+#chuvoso_gttable <- fmt_number(chuvoso_gttable, columns = "F.O.(%)", decimals = 1)
+chuvoso_gttable
+gtsave(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.html")
+saveRDS(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.rds")
+
+
 library("eulerr")
 #set.seed() #this seed changes the orientation of the sets        
 plot(euler(m_venn), counts = TRUE, fontface = 1)
@@ -1306,7 +1363,7 @@ m_part_seco <- zoo_seco
 
 #ler matriz escalas_seco
 
-escalas_seco <- zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
+escalas_seco <- zoo <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
                                  rowNames = T, colNames = T,
                                  sheet = "escalas_seco")
 
@@ -1329,6 +1386,7 @@ dim(escala.ca_seco)
 #ler matriz fauna total
 fauna.zoo_seco <- m_part_seco
 fauna.zoo_seco[] <- lapply(fauna.zoo_seco, function(x) as.numeric(as.character(x)))
+fauna.zoo_seco <- t(fauna.zoo_seco)
 head(fauna.zoo_seco)
 ncol(fauna.zoo_seco)
 dim(fauna.zoo_seco)
