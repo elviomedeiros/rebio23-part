@@ -205,11 +205,11 @@ library(openxlsx)
 
 ##CARREGANDO MATRIZES BRUTAS----
 
-habitat <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-habitat.xlsx",
+habitat <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-habitat.xlsx",
                     rowNames = T,
                     colNames = T,
                     sheet = "ambiente")
-grupos <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-habitat.xlsx",
+grupos <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-habitat.xlsx",
                    rowNames = T,
                    colNames = T,
                    sheet = "grupos")
@@ -259,13 +259,10 @@ m_hab <- read.csv("m_hab.csv",
 #####....----
 
 library(openxlsx)
-zoo <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio23-zoopl.xlsx",
+zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
                        rowNames = T,
                        colNames = T,
                        sheet = "rebio23_80ml")
-zoo [1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
-
-str(zoo)
 #View(zoo)
 zoo[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
 #View(zoo)
@@ -346,14 +343,14 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 #REBIO23 - PCA - SECO----
 #####....----
 
-dev.off()
-rm(list=ls(all=TRUE))
-cat("\014")
+#dev.off()
+#rm(list=ls(all=TRUE))
+#cat("\014")
 library(openxlsx)
-dados_bruto <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Estágio/Planilhas REBIO23/rebio-habitat.xlsx",
+dados_bruto <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-habitat.xlsx",
                          rowNames = T,
                          colNames = T,
-                         sheet = "habitat_t",
+                         sheet = "ambiente",
                          na.strings = "n/a",
                          startRow = 2)
 
@@ -1142,19 +1139,17 @@ gtsave(tabela_gt, "gt-auspre-s_gttable.html")
 gtsave(tabela_gt, "fig-auspre-s_gttable.png")
 saveRDS(tabela_gt, "gt-auspre-s_gttable.rds")
 
-
-# Tabela final ajustada no Excel
+## Tabela final ajustada no Excel
 library(readxl)
-seco_gttable <- read_excel(
+library(gt)
+seco_df <- read_excel(
   path  = "venn_seco.xlsx",
   sheet = "Sheet 1",
-  range = "A1:C59")
-seco_gttable
-library(gt)
-seco_gttable <- gt(seco_gttable)
-seco_gttable <- sub_missing(seco_gttable,
-                      columns = everything(), missing_text = "")
-#seco_gttable <- fmt_number(seco_gttable, columns = "F.O.(%)", decimals = 1)
+  range = "A1:C59"
+)
+seco_gttable <- gt(seco_df) |>
+  cols_label(`...1` = "Espécies") |>
+  sub_missing(columns = everything(), missing_text = "")
 seco_gttable
 gtsave(seco_gttable, "gt-seco_gttable_xlsx.html")
 saveRDS(seco_gttable, "gt-seco_gttable_xlsx.rds")
@@ -1254,7 +1249,6 @@ gt(round(m_venn, 2), rownames_to_stub = TRUE)
 m_venn[m_venn !=0] <- 1 #matriz binária
 m_venn
 
-
 ##Salvar como .xlsx
 library(openxlsx)
 write.xlsx(m_venn, "venn_chuvoso.xlsx", rowNames = TRUE)
@@ -1267,16 +1261,16 @@ saveRDS(tabela_gt, "gt-auspre-c_gttable.rds")
 
 ##Tabela final ajustada no Excel
 library(readxl)
-chuvoso_gttable <- read_excel(
+library(gt)
+chuvoso_df <- read_excel(
   path  = "venn_chuvoso.xlsx",
   sheet = "Sheet 1",
-  range = "A1:C59")
-chuvoso_gttable
-library(gt)
-chuvoso_gttable <- gt(chuvoso_gttable)
-chuvoso_gttable <- sub_missing(chuvoso_gttable,
-                      columns = everything(), missing_text = "")
-#chuvoso_gttable <- fmt_number(chuvoso_gttable, columns = "F.O.(%)", decimals = 1)
+  range = "A1:C59"
+)
+chuvoso_gttable <- gt(chuvoso_df) |>
+  cols_label(
+    `...1` = "Espécies"
+  )
 chuvoso_gttable
 gtsave(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.html")
 saveRDS(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.rds")
@@ -1363,7 +1357,7 @@ m_part_seco <- zoo_seco
 
 #ler matriz escalas_seco
 
-escalas_seco <- zoo <- read.xlsx("C:/Users/ellen/Dropbox/Universidade/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
+escalas_seco <- zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
                                  rowNames = T, colNames = T,
                                  sheet = "escalas_seco")
 
@@ -1466,6 +1460,35 @@ library(gt)
 print(diversity_data_seco)
 str(part.geral_seco)
 gt(diversity_data_seco)
+
+##Salvar como .xlsx
+library(openxlsx)
+write.xlsx(diversity_data_seco, "diversity_data_seco.xlsx", rowNames = TRUE)
+
+##Salvar tabela como gt
+tabela_gt <- gt::gt(diversity_data_seco, rownames_to_stub = FALSE)
+tabela_gt
+gtsave(tabela_gt, "gt-adip-riac_s_gttable.html")
+gtsave(tabela_gt, "fig-adip-riac_s_gttable.png")
+saveRDS(tabela_gt, "gt-adip-riac_s_gttable.rds")
+
+# Tabela final ajustada no Excel
+library(readxl)
+adip_riac_s_gttable <- read_excel(
+  path  = "diversity_data_seco.xlsx",
+  sheet = "Sheet 1",
+  range = "A1:J8")
+# remover coluna ...1
+adip_riac_s_gttable <- adip_riac_s_gttable[, -1]
+adip_riac_s_gttable
+library(gt)
+adip_riac_s_gttable <- gt(adip_riac_s_gttable)
+adip_riac_s_gttable <- sub_missing(adip_riac_s_gttable,
+                      columns = everything(), missing_text = "")
+#adip_riac_s_gttable <- fmt_number(adip_riac_s_gttable, columns = "F.O.(%)", decimals = 1)
+adip_riac_s_gttable
+gtsave(adip_riac_s_gttable, "gt_adip-riac_s_gttable_xlsx.html")
+saveRDS(adip_riac_s_gttable, "gt_adip-riac_s_gttable_xlsx.rds")
 
 #########################################################################
 # Criar dataframe com valores observados e esperados
@@ -1576,6 +1599,36 @@ library(gt)
 print(diversity_data_seco.bb)
 str(part.bb_seco)
 gt(diversity_data_seco.bb)
+
+
+##Salvar como .xlsx
+library(openxlsx)
+write.xlsx(diversity_data_seco.bb, "diversity_data_seco.bb.xlsx", rowNames = TRUE)
+
+##Salvar tabela como gt
+tabela_gt <- gt::gt(diversity_data_seco.bb, rownames_to_stub = FALSE)
+tabela_gt
+gtsave(tabela_gt, "gt-adip-bb_s_gttable.html")
+gtsave(tabela_gt, "fig-adip-bb_s_gttable.png")
+saveRDS(tabela_gt, "gt-adip-bb_s_gttable.rds")
+
+# Tabela final ajustada no Excel
+library(readxl)
+adip_bb_s_gttable <- read_excel(
+  path  = "diversity_data_seco.bb.xlsx",
+  sheet = "Sheet 1",
+  range = "A1:J6")
+# remover coluna ...1
+adip_bb_s_gttable <- adip_bb_s_gttable[, -1]
+adip_bb_s_gttable
+library(gt)
+adip_bb_s_gttable <- gt(adip_bb_s_gttable)
+adip_bb_s_gttable <- sub_missing(adip_bb_s_gttable,
+                      columns = everything(), missing_text = "")
+#adip_bb_s_gttable <- fmt_number(adip_bb_s_gttable, columns = "F.O.(%)", decimals = 1)
+adip_bb_s_gttable
+gtsave(adip_bb_s_gttable, "gt_adip-bb_s_gttable_xlsx.html")
+saveRDS(adip_bb_s_gttable, "gt_adip-bb_s_gttable_xlsx.rds")
 
 #######################################################################
 # Criar dataframe com valores observados e esperados
@@ -1688,6 +1741,35 @@ library(gt)
 print(diversity_data_seco.ca)
 str(part.ca_seco)
 gt(diversity_data_seco.ca)
+
+##Salvar como .xlsx
+library(openxlsx)
+write.xlsx(diversity_data_seco.bb, "diversity_data_seco.ca.xlsx", rowNames = TRUE)
+
+##Salvar tabela como gt
+tabela_gt <- gt::gt(diversity_data_seco.ca, rownames_to_stub = FALSE)
+tabela_gt
+gtsave(tabela_gt, "gt-adip-ca_s_gttable.html")
+gtsave(tabela_gt, "fig-adip-ca_s_gttable.png")
+saveRDS(tabela_gt, "gt-adip-ca_s_gttable.rds")
+
+# Tabela final ajustada no Excel
+library(readxl)
+adip_ca_s_gttable <- read_excel(
+  path  = "diversity_data_seco.ca.xlsx",
+  sheet = "Sheet 1",
+  range = "A1:J6")
+# remover coluna ...1
+adip_ca_s_gttable <- adip_ca_s_gttable[, -1]
+adip_ca_s_gttable
+library(gt)
+adip_ca_s_gttable <- gt(adip_ca_s_gttable)
+adip_ca_s_gttable <- sub_missing(adip_ca_s_gttable,
+                      columns = everything(), missing_text = "")
+#adip_bb_s_gttable <- fmt_number(adip_ca_s_gttable, columns = "F.O.(%)", decimals = 1)
+adip_ca_s_gttable
+gtsave(adip_ca_s_gttable, "gt_adip-ca_s_gttable_xlsx.html")
+saveRDS(adip_ca_s_gttable, "gt_adip-ca_s_gttable_xlsx.rds")
 
 ########################################################
 # Criar dataframe com valores observados e esperados
