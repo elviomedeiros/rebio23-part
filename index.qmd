@@ -72,12 +72,9 @@ format:
     toc: true
     code-line-numbers: true
     colorlinks: true
-    execute:
-      echo: false
   docx:
-    execute:
-      echo: false
-    reference-doc: custom-reference.docx
+    reference-doc: refs/custom-markdown-word.docx
+    echo: false
 execute:
   echo: true
   result: hold
