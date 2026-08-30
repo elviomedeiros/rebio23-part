@@ -1,7 +1,7 @@
 ---
-title: "Aplicação da partição aditiva da diversidade em zooplâncton como indicadores biológicos em riachos de Floresta Atlântica (Brasil)"
+title: "Partição aditiva da diversidade do zooplâncton como bioindicadora em riachos de Floresta Atlântica"
 subtitle: |
-  Subtitle 1  
+  Acta Limnologica Brasiliensia  
   Subtitle 2   
 author:
   - name: Ellen Gomes da Silva
@@ -108,9 +108,11 @@ Na partição aditiva, a diversidade de espécies é decomposta em componentes a
 
 Por sua vez, na partição multiplicativa, a diversidade gama é expressa como o produto das diversidades alfa média e beta, podendo ser interpretada como a diferenciação entre as comunidades [@jost2007; @whittaker1972]. A aplicação conjunta dessas abordagens permite uma maior compreensão dos padrões de diversidade, especialmente naqueles que estão sujeitos à atividade antrópica, como riachos de Floresta Atlântica. Portanto, torna-se crucial realizar estudos acerca do zooplâncton utilizando essas métricas para compreender sua dinâmica espacial, avaliar a influência de fatores ambientais e o estado ecológico de ecossistemas aquáticos.
 
-## Objective
+## Objectives
 
 O presente estudo teve como objetivo determinar a riqueza de espécies na comunidade zooplanctônica e avaliar a partição da diversidade em diferentes escalas espaciais em ambientes aquáticos da Reserva Biológica Guaribas nos períodos seco e chuvoso.
+
+<!--# This study describes the richness and density of zooplankton, comparatively between two small head water streams: one that originates withing a protected area - Biological Reserve, or REBIO, according to @brasil2000 - and its course extends beyond its administrative boundaries [@mma2003] and a second one that flows entirely outside of the conservation unit. We use hierarchical additive partitioning to evaluate the relative contribution of different spatial scales to the diversity of zooplankton assemblages in these two streams subject to different levels of environmental pressures. Given the importance of the Atlantic Forest to the biodiversity [@pereira2026], we aim with this study, (1) to infer environmental degradation from species turnover [@baselga2010] and (2) to associate beta-diversity to the ecological health of sites inside and surrounding a protected area of Atlantic Forest. This will enable decision makers to take action on the influence of anthropogenic threats and the ecological consequences of the management of the riparian zone. Given the expected different levels of environmental pressures [@gouveia2017], we hypothesize that the diversity is not homogeneously distributed among the different spatial scales but concentrated at the finer levels of pools and river reaches. Some environmental features (reach morphology, habitat structure, and water quality) are also described to explore possible explaining factors for the observed patterns. -->
 
 **Objetivo específico**
 
@@ -138,19 +140,13 @@ Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), 
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
-$$
-Dsp = \frac{Nsp}{Vf}
-$$ {#eq-densidade} onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
+$$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade} onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
 
 Além disso, as fórmulas de partição aditiva e multiplicativa também foram aplicadas:
 
-$$
-\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{ (*)}
-$$ {#eq-aditiva}\
+$$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{ (*)}$$ {#eq-aditiva}\
 
-$$
-\beta_i=\gamma/\alpha_i \text{ (**)}
-$$ {#eq-multiplicativa}
+$$\beta_i=\gamma/\alpha_i \text{ (**)}$$ {#eq-multiplicativa}
 
 Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-aditiva). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
 
