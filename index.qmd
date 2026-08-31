@@ -110,6 +110,8 @@ Por sua vez, na partição multiplicativa, a diversidade gama é expressa como o
 
 <!--# Essas abordagens são baseadas nos conceitos de turnover and nestedness. Species turnover and nestedness are two distinct components used to break down and understand beta diversity—which measures how much species composition changes between different communities or sites [@baselga2010], where, turnover is the replacement of some species by different species from one site to another, while nestedness is the loss or gain of species where poorer sites contain a strict subset of the species found at richer sites. -->
 
+CITAR: [@ligeiro2010; @crist2003; @ávila2011; @shell2018; @baselga2012; @baselga2010]
+
 ## Objectives
 
 O presente estudo teve como objetivo determinar a riqueza de espécies na comunidade zooplanctônica e avaliar a partição da diversidade em diferentes escalas espaciais em ambientes aquáticos da Reserva Biológica Guaribas nos períodos seco e chuvoso.
