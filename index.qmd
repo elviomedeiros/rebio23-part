@@ -1,8 +1,9 @@
 ---
 title: "Partição aditiva da diversidade do zooplâncton como bioindicadora em riachos de Floresta Atlântica"
 subtitle: |
-  Acta Limnologica Brasiliensia  
-  Subtitle 2   
+  Contrasting conservation conditions shape the spatial partitioning of zooplankton diversity in Atlantic Forest streams<br>
+  ON<br>
+  Acta Limnologica Brasiliensia
 author:
   - name: Ellen Gomes da Silva
     orcid: 0009-0008-6580-8162
