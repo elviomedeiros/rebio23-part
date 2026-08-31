@@ -341,7 +341,7 @@ No período chuvoso (@fig-pcachuvoso), a distribuição das unidades amostrais n
 
 De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
 
-```{r}
+```{r PCA - seco}
 #| eval: false
 #| message: false
 #| warning: false
@@ -350,7 +350,7 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
+#| code-summary: "Code: PCA - Seco"
 
 #REBIO23 - PCA - SECO----
 #####....----
@@ -587,7 +587,19 @@ ggplot(pca_scores, aes(PC1, PC2, col = Agrupamento, fill = Agrupamento)) +
 ############################
 cor(m_trns, pca_scores[, c("PC1", "PC2")])
 
-################################################################################
+```
+
+```{r PCA - chuvoso}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: PCA - Chuvoso"
+
 #REBIO23 - PCA - CHUVOSO----
 #####....----
 
@@ -747,6 +759,7 @@ cor(m_trns, pca_scores[, c("PC1", "PC2")])
 
 ```
 
+
 ## Community structure
 
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
@@ -769,7 +782,7 @@ Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chy
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
 
-```{r}
+```{r estrutura - seco}
 #| eval: false
 #| message: false
 #| warning: false
@@ -778,7 +791,7 @@ Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* s
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
+#| code-summary: "Code: Estrutura - Seco"
 
 #REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO SECO----
 #####....----
@@ -923,7 +936,18 @@ df_seco_arredondado <- df_seco %>%
 # Exibir a tabela arredondada com gt
 gt(df_seco_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
 
+```
 
+```{r estrutura - chuvoso}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Estrutura - Chuvoso"
 
 #REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO CHUVOSO----
 #####....----
@@ -1068,7 +1092,9 @@ df_chuvoso_arredondado <- df_chuvoso %>%
 #Exibir a tabela arredondada com gt
 gt(df_chuvoso_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
 
+
 ```
+
 
 ## Partitioning of diversity
 
@@ -1080,7 +1106,7 @@ No período chuvoso (@fig-venn-chuvoso), o número de espécies compartilhadas p
 
 De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos.
 
-```{r}
+```{r venn - seco}
 #| eval: false
 #| message: false
 #| warning: false
@@ -1089,7 +1115,7 @@ De modo geral, os resultados indicam que o número de espécies exclusivas vario
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
+#| code-summary: "Code: Venn - Seco"
 
 #REBIO23 - DIAGRAMA DE VENN, PERÍODO SECO ----
 #####....----
@@ -1209,6 +1235,18 @@ venn.diagram(
   alpha = 0.5
 )
 
+```
+
+```{r venn - chuvoso}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Venn - Chuvoso"
 
 #REBIO23 - DIAGRAMA DE VENN, PERÍODO CHUVOSO ----
 #####....----
@@ -1333,6 +1371,7 @@ venn.diagram(
 
 ```
 
+
 ## Additive partition
 
 Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
@@ -1349,7 +1388,7 @@ A α-diversidade observada no riacho Barro Branco (Tabela 2, @fig-diversidadeobs
 
 No Caiana (Tabela 2; @fig-diversidadeobs-ca-seco), a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
 
-```{r}
+```{r inserindo tabela}
 #| eval: false
 #| message: false
 #| warning: false
@@ -1358,10 +1397,7 @@ No Caiana (Tabela 2; @fig-diversidadeobs-ca-seco), a diversidade estimada no com
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
-
-#REBIO23 - PARTIÇÃO ADITIVA - PERÍODO SECO----
-#####....----
+#| code-summary: "Code: Inserindo Tabela"
 
 library(tibble); library(tidyverse); library(forcats); library(openxlsx); library(Rcpp); library(readxl); library(dplyr)
 
@@ -1410,7 +1446,23 @@ head(fauna.zoo.ca_seco)
 ncol(fauna.zoo.ca_seco)
 dim(fauna.zoo.ca_seco)
 
-#############################################################################
+```
+
+
+```{r aditiva - seco}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Aditivo - Seco"
+
+#REBIO23 - PARTIÇÃO ADITIVA - PERÍODO SECO----
+#####....----
+
 #COMANDO
 #PARTIÇÃO GERAL
 
@@ -1847,7 +1899,7 @@ O Caiana (Tabela 2; @fig-diversidadeobs-ca-chuvoso) também demonstrou α-divers
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
 
-```{r}
+```{r inserido tabela}
 #| eval: false
 #| message: false
 #| warning: false
@@ -1856,10 +1908,7 @@ Diversidades com significância P menor que 0,999 indicam que a diversidade obse
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
-
-##REBIO23 - PARTIÇÃO ADITIVA - PERÍODO CHUVOSO----
-#####....----
+#| code-summary: "Code: Inserindo Tabela"
 
 library(tibble); library(tidyverse); library(forcats); library(openxlsx); library(Rcpp); library(readxl); library(dplyr)
 
@@ -1907,7 +1956,23 @@ head(fauna.zoo.ca_chuvoso)
 ncol(fauna.zoo.ca_chuvoso)
 dim(fauna.zoo.ca_chuvoso)
 
-#############################################################################
+```
+
+
+```{r aditiva - chuvoso}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| echo: true
+#| purl: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Aditiva - Chuvoso"
+
+##REBIO23 - PARTIÇÃO ADITIVA - PERÍODO CHUVOSO----
+#####....----
+
 #COMANDO
 #PARTIÇÃO GERAL
 
@@ -2258,7 +2323,7 @@ Em relação ao riacho Barro Branco (Tabela 3), o alfa observado (2,75%) foi inf
 
 A α-diversidade observada no Caiana (Tabela 3) foi de 3,08%, quando o esperado era que fosse 4,89% (P\<0,999). Assim como no Barro Branco, as β-diversidades observadas foram maiores que o esperado (P=0,001), tendo em vista que β~1~ foi de 1,97% e β~2~ apresentou valores de 1,85%. O patrimônio regional de espécies atingiu o valor de 6,08%.
 
-```{r}
+```{r multiplicativa - seco}
 #| eval: false
 #| message: false
 #| warning: false
@@ -2267,7 +2332,7 @@ A α-diversidade observada no Caiana (Tabela 3) foi de 3,08%, quando o esperado 
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
+#| code-summary: "Code: Multiplicativa - Seco"
 
 #REBIO23 - PARTIÇÃO MULTIPLICATIVA - PERÍODO SECO----
 #####....----
@@ -2333,7 +2398,7 @@ No Barro Branco (Tabela 3), a α-diversidade observada (2,64%) foi inferior ao e
 
 O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao esperado (10,25%; P\<0,999). A diversidade observada em β~1~ foi de 2,80%, valor superior ao esperado (1,13%; P=0,001). β~2~ apresentou 2,44% superior ao esperado (1,04%; P=0,001). A contribuição de γ-diversidade foi de 11,62%.
 
-```{r}
+```{r multiplicativa - chuvoso}
 #| eval: false
 #| message: false
 #| warning: false
@@ -2342,12 +2407,11 @@ O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao espe
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Summary"
+#| code-summary: "Code: Multiplicativa - Chuvoso"
 
 #REBIO23 - PARTIÇÃO MULTIPLICATIVA - PERÍODO CHUVOSO----
 #####....----
 
-#############################################################################
 #COMANDO
 #PARTIÇÃO GERAL
 #multipart.geral_chuvoso <- multipart(y = fauna.zoo_chuvoso, x = escala.total_chuvoso, index = "renyi",
