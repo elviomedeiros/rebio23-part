@@ -2592,6 +2592,54 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 ## Tables {.unnumbered}
 
+<details>
+
+<summary>Tab.: Dry-period presence–absence table</summary>
+
+```{r tbl-seco_gttable}
+#| echo: false
+#| tbl-cap: "Dry-period presence–absence table."
+readRDS("gt-seco_gttable_xlsx.rds")
+```
+
+</details>
+
+<details>
+
+<summary>Tab.: Presence–absence table for the rainy period</summary>
+
+```{r tbl-chuvoso_gttable}
+#| echo: false
+#| tbl-cap: "Presence–absence table for the rainy period."
+readRDS("gt-chuvoso_gttable_xlsx.rds")
+```
+
+</details>
+
+<details>
+
+<summary>Tab.: Additive partitioning table among streams</summary>
+
+```{r tbl-adip-riac-s_gttable}
+#| echo: false
+#| tbl-cap: "Additive partitioning table among streams."
+readRDS("gt_adip-riac_s_gttable_xlsx.rds")
+```
+
+</details>
+
+<details>
+
+<summary>Tab.: Additive partitioning of diversity in Barro Branco stream</summary>
+
+```{r tbl-adip-bb-s_gttable}
+#| echo: false
+#| tbl-cap: "Additive partitioning of diversity in Barro Branco stream."
+readRDS("gt_adip-bb_s_gttable_xlsx.rds")
+```
+
+</details>
+
 \pagebreak
 \newpage
 
