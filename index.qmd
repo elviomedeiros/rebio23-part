@@ -759,7 +759,6 @@ cor(m_trns, pca_scores[, c("PC1", "PC2")])
 
 ```
 
-
 ## Community structure
 
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
@@ -1095,7 +1094,6 @@ gt(df_chuvoso_arredondado, rowname_col = "Espécies", caption = "Descritores da 
 
 ```
 
-
 ## Partitioning of diversity
 
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco (@fig-venn-seco) e chuvoso (@fig-venn-chuvoso), destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
@@ -1371,7 +1369,6 @@ venn.diagram(
 
 ```
 
-
 ## Additive partition
 
 Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
@@ -1447,7 +1444,6 @@ ncol(fauna.zoo.ca_seco)
 dim(fauna.zoo.ca_seco)
 
 ```
-
 
 ```{r aditiva - seco}
 #| eval: false
@@ -1957,7 +1953,6 @@ ncol(fauna.zoo.ca_chuvoso)
 dim(fauna.zoo.ca_chuvoso)
 
 ```
-
 
 ```{r aditiva - chuvoso}
 #| eval: false
