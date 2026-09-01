@@ -2635,6 +2635,18 @@ readRDS("gt_adip-bb_s_gttable_xlsx.rds")
 
 </details>
 
+<details>
+
+<summary>Tab.: Additive partitioning of diversity in Caiana stream</summary>
+
+```{r tbl-adip-ca-s_gttable}
+#| echo: false
+#| tbl-cap: "Additive partitioning of diversity in Caiana stream."
+readRDS("gt_adip-ca_s_gttable_xlsx.rds")
+```
+
+</details>
+
 \pagebreak
 \newpage
 
