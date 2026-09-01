@@ -2589,11 +2589,11 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 <details>
 
-<summary>Tab.: Dry-period presence–absence table</summary>
+<summary>Tab.: Tabela de ausência e presença de espécies durante o período seco</summary>
 
 ```{r tbl-seco_gttable}
 #| echo: false
-#| tbl-cap: "Dry-period presence–absence table."
+#| tbl-cap: "Tabela de ausência e presença de espécies durante o período seco."
 readRDS("gt-seco_gttable_xlsx.rds")
 ```
 
@@ -2601,11 +2601,11 @@ readRDS("gt-seco_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Presence–absence table for the rainy period</summary>
+<summary>Tab.: Tabela de ausência e presença de espécies durante o período chuvoso</summary>
 
 ```{r tbl-chuvoso_gttable}
 #| echo: false
-#| tbl-cap: "Presence–absence table for the rainy period."
+#| tbl-cap: "Tabela de ausência e presença de espécies durante o período chuvoso."
 readRDS("gt-chuvoso_gttable_xlsx.rds")
 ```
 
@@ -2613,11 +2613,11 @@ readRDS("gt-chuvoso_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Additive partitioning table among streams</summary>
+<summary>Tab.: Tabela da partição aditiva entre os riachos durante o período seco</summary>
 
 ```{r tbl-adip-riac-s_gttable}
 #| echo: false
-#| tbl-cap: "Additive partitioning table among streams."
+#| tbl-cap: "Tabela da partição aditiva entre os riachos durante o período seco."
 readRDS("gt_adip-riac_s_gttable_xlsx.rds")
 ```
 
@@ -2625,11 +2625,11 @@ readRDS("gt_adip-riac_s_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Additive partitioning of diversity in Barro Branco stream</summary>
+<summary>Tab.: Tabela da partição aditiva do riacho Barro Branco durante o período seco</summary>
 
 ```{r tbl-adip-bb-s_gttable}
 #| echo: false
-#| tbl-cap: "Additive partitioning of diversity in Barro Branco stream."
+#| tbl-cap: "Tabela da partição aditiva do riacho Barro Branco durante o período seco."
 readRDS("gt_adip-bb_s_gttable_xlsx.rds")
 ```
 
@@ -2637,11 +2637,11 @@ readRDS("gt_adip-bb_s_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Additive partitioning of diversity in Caiana stream</summary>
+<summary>Tab.: Tabela da partição aditiva do riacho Caiana durante o período seco</summary>
 
 ```{r tbl-adip-ca-s_gttable}
 #| echo: false
-#| tbl-cap: "Additive partitioning of diversity in Caiana stream."
+#| tbl-cap: "Tabela da partição aditiva do riacho Caiana durante o período seco."
 readRDS("gt_adip-ca_s_gttable_xlsx.rds")
 ```
 
