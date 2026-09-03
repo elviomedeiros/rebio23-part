@@ -177,8 +177,6 @@ Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e 
 
 <!--# Zooplankton was sampled at habitats within each sampling site, hereafter referred to as habitat samples. Collections were performed in the main channel of the streams at the surface water. At each sampling habitat, a plankton net (30 cm mouth diameter, 70 cm length, and 60 μm mesh size) was used to filter 50 L of water. The net was rinsed between successive samples to prevent clogging and carryover of organisms. Each sample was concentrated to a final volume of 80 mL for laboratory analyses. Following collection, zooplankton samples were anesthetized with commercial sparkling water and subsequently preserved in 4% formalin. Sucrose was added to the preserved material to reduce the loss of eggs by female cladocerans and minimize deformation of zooplankton carapaces [@haney1973]. In the laboratory, samples had their zooplankton identified and counted using a Sedgewick–Rafter counting chamber. The analyses focused on representatives of Rotifera, Cladocera, and Copepoda. Taxonomic identification was based on specialized literature and confirmed by specialists. To evaluate whether the sampling effort adequately represented the zooplankton assemblage, species accumulation curves were calculated ####VOLTAR AQUI COM O MÉTODO DETALHADO####.-->
 
-<!--# AQUI -->
-
 ## Análises estatísticas
 
 ## <!--# Statistical analyses -->
@@ -204,6 +202,8 @@ Foram empregados pacotes sobre partição da diversidade para que fosse possíve
 Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. Funções como adipart e multipart também foram empregadas. A função adipart foi utilizada para a partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade) e multipart para partição multiplicativa da diversidade, que conterá os valores médios da α-diversidade em níveis mais baixos de uma hierarquia e comparados com a diversidade total gama.
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
+
+<!--# AQUI -->
 
 <!--# Environmental variables were assessed for multivariate collinearity, excluding redundant variables and combining those that conveyed similar information to reduce data redundancy, following the approach described by @legendre1998.-->
 
