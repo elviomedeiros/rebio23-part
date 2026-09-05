@@ -2588,7 +2588,7 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 ## Figures {.unnumbered}
 
-![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/Mapa.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/mapa.png){#fig-mapa}
 
 ![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Seco.png){#fig-pcaseco}
 
