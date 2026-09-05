@@ -290,32 +290,32 @@ nutrientes <- na.omit(nutrientes)
 
 ##SALVANDO MATRIZES FINAIS----
 
-write.table(m_part_cols, "results/m_hab_part.csv",
+write.table(m_part_cols, "res/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-write.table(nutrientes, "results/t_nutri.csv",
+write.table(nutrientes, "res/t_nutri.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-write.table(t_grps, "results/t_grps.csv",
+write.table(t_grps, "res/t_grps.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-t_grps <- read.csv("results/t_grps.csv",
+t_grps <- read.csv("res/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-t_nutri <- read.csv("results/t_nutri.csv",
+t_nutri <- read.csv("res/t_nutri.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
                   na.strings = NA)
-m_hab <- read.csv("results/m_hab_part.csv",
+m_hab <- read.csv("res/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -339,12 +339,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("results/t_grps.csv",
+t_grps <- read.csv("res/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab <- read.csv("results/m_hab_part.csv",
+m_hab <- read.csv("res/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -354,7 +354,7 @@ m_hab <- read.csv("results/m_hab_part.csv",
 
 library(psych)
 colnames(m_hab)
-png("results/fig-h.hab_pairs.png")
+png("res/fig-h.hab_pairs.png")
 pairs.panels(m_hab[,1:8],
              method = "pearson", # correlation method
              scale = FALSE, lm = FALSE,
@@ -368,13 +368,13 @@ cor <- cor(m_hab)
 cor
 
 library(corrplot)
-png("results/fig-hab_corrplot.png")
+png("res/fig-hab_corrplot.png")
 corrplot(cor, method = "circle")
 dev.off()
 
 ##DELETANDO COLINEARES OU INDESEJADAS----
 
-sink(file = "results/colineares.txt", append = F, split = T)
+sink(file = "res/colineares.txt", append = F, split = T)
 colnames(m_hab)
 del_cols <- c("", "")
 #del_cols <- grep("^n\\.", colnames(m_hab), value = TRUE)
@@ -393,12 +393,12 @@ colnames(m_hab_part)
 m_hab_part
 sink()
 
-write.table(m_hab_part, "results/m_hab_part.csv",
+write.table(m_hab_part, "res/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_hab_part <- read.csv("results/m_hab_part.csv",
+m_hab_part <- read.csv("res/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -466,12 +466,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("results/t_grps.csv",
+t_grps <- read.csv("res/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("results/m_hab_part.csv",
+m_hab_part <- read.csv("res/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -501,12 +501,12 @@ m_sh <- asin(sqrt(decostand(m_sh, method = "total", MARGIN = 2)))
 hab_trns <- cbind(m_sh, m_wm)
 
 # Salvado m_hab_trns
-write.table(hab_trns, "results/m_hab_trns.csv",
+write.table(hab_trns, "res/m_hab_trns.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_hab_trns <- read.table("results/m_hab_trns.csv",
+m_hab_trns <- read.table("res/m_hab_trns.csv",
                          sep = ";", dec = ".",
                          row.names = 1,
                          header = TRUE,
@@ -551,12 +551,12 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 
 #TABELA DE HABITAT----
 
-m_hab_part <- read.csv("m_hab_part.csv",
+m_hab_part <- read.csv("res/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-t_grps <- read.csv("t_grps.csv",
+t_grps <- read.csv("res/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -588,16 +588,23 @@ m_wide <- m %>%
 
 m_wide
 m_wide <- as.data.frame(m_wide)
-m_wide <- m_wide[, c("Variable", "Ponto5", "Ponto6", "Ponto7", "Ponto8", "Ponto9", "Ponto10")] #sequência das colunas (ou linhas)
+cols <- colnames(m_wide)
+col_order <- c(
+  "Variable",
+  cols[cols != "Variable"][
+    order(as.numeric(gsub("Ponto", "", cols[cols != "Variable"])))
+  ]
+)
+m_wide <- m_wide[, c(col_order)] #sequência das colunas (ou linhas)
 m_wide
 
 # Salvado m_wide
-write.table(m_wide, "m_wide_hab.txt",
+write.table(m_wide, "res/m_wide_hab.txt",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_wide_hab <- read.table("m_wide_hab.txt",
+m_wide_hab <- read.table("res/m_wide_hab.txt",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -605,17 +612,17 @@ m_wide_hab <- read.table("m_wide_hab.txt",
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide, file = "tabela de habitat.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("tabela de habitat.xlsx")
+#write.xlsx(m_wide, file = "res/tabela de habitat.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de habitat.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "tabela de habitat.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res/tabela de habitat.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
 hab_gttable <- read_excel(
-  path  = "tabela de habitat.xlsx",
+  path  = "res/tabela de habitat.xlsx",
   sheet = "tabela_final",
-  range = "A1:G26") #ajustar para o tamanho da tabela final 
+  range = "A1:P21") #ajustar para o tamanho da tabela final 
 hab_gttable
 library(gt)
 hab_gttable <- gt(hab_gttable)
@@ -623,8 +630,8 @@ hab_gttable <- sub_missing(hab_gttable,
                       columns = everything(), missing_text = "")
 #hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
 hab_gttable
-gtsave(hab_gttable, "gt-hab_gttable_xlsx.html")
-saveRDS(hab_gttable, "gt-hab_gttable_xlsx.rds")
+gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
+saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
 ```
 
 ```{r hab_var_summ}
