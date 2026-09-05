@@ -31,8 +31,6 @@ format:
     comments:
       hypothesis: true
 
-editor: visual
-
 execute: 
   warning: false
   error: false
