@@ -159,7 +159,7 @@ As coletas ocorreram entre novembro de 2023 a fevereiro de 2024 durante o perío
 
 ## Coleta de dados ambientais
 
-## <!--# Environmental data collection -->
+<!--# Environmental data collection -->
 
 Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindooxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat,** por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
 
@@ -177,7 +177,7 @@ Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes 
 
 ## Amostragem do zooplâncton
 
-## <!--# Zooplankton sampling -->
+<!--# Zooplankton sampling -->
 
 Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO~2~ (adição de água com gás). Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004].
 
@@ -191,7 +191,7 @@ Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e 
 
 ## Análises estatísticas
 
-## <!--# Statistical analyses -->
+<!--# Statistical analyses -->
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
