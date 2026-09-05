@@ -80,7 +80,7 @@ format:
     reference-doc: refs/custom-rmarkdown-word.docx
     echo: false
 execute:
-  echo: true
+  echo: false
   result: hold
   warning: false
 always_allow_html: yes
