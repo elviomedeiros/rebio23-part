@@ -2758,25 +2758,17 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 ![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/mapa.png){#fig-mapa}
 
-![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Seco.png){#fig-pcaseco}
+![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/pesquisa_cientifica.jpg){#fig-pcaseco}
 
-![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/PCA_Chuvoso.png){#fig-pcachuvoso}
+![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/pesquisa_cientifica.jpg){#fig-pcachuvoso}
 
-![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período seco (S).](imagens/venn_seco.png){#fig-venn-seco}
+![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período seco (S).](imagens/pesquisa_cientifica.jpg){#fig-venn-seco}
 
-![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período chuvoso (C).](imagens/venn_chuvoso.png){#fig-venn-chuvoso}
+![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período chuvoso (C).](imagens/pesquisa_cientifica.jpg){#fig-venn-chuvoso}
 
-![Diversidade observada e esperada do período seco, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/diversidade_obs_seco.png){#fig-diversidadeobs-riachos-seco}
+![Diversidade observada e esperada do período seco, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/pesquisa_cientifica.jpg){#fig-diversidadeobs-riachos-seco}
 
-![](imagens/diversidade_obs__bb_seco.png){#fig-diversidadeobs-bb-seco}
-
-![](imagens/diversidade_obs__ca_seco.png){#fig-diversidadeobs-ca-seco}
-
-![Diversidade observada e esperada do período chuvoso, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/diversidade_obs__chuvoso.png){#fig-diversidadeobs-riachos-chuvoso}
-
-![](imagens/diversidade_obs__bb_chuvoso.png){#fig-diversidadeobs-bb-chuvoso}
-
-![](imagens/diversidade_obs__ca_chuvoso.png){#fig-diversidadeobs-ca-chuvoso}
+![Diversidade observada e esperada do período chuvoso, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/pesquisa_cientifica.jpg){#fig-diversidadeobs-riachos-chuvoso}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
@@ -2787,6 +2779,7 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 <summary>Tab.: Tabela de ausência e presença de espécies durante o período seco</summary>
 
 ```{r tbl-seco_gttable}
+#| eval: false
 #| echo: false
 #| tbl-cap: "Tabela de ausência e presença de espécies durante o período seco."
 readRDS("gt-seco_gttable_xlsx.rds")
@@ -2799,6 +2792,7 @@ readRDS("gt-seco_gttable_xlsx.rds")
 <summary>Tab.: Tabela de ausência e presença de espécies durante o período chuvoso</summary>
 
 ```{r tbl-chuvoso_gttable}
+#| eval: false
 #| echo: false
 #| tbl-cap: "Tabela de ausência e presença de espécies durante o período chuvoso."
 readRDS("gt-chuvoso_gttable_xlsx.rds")
@@ -2811,6 +2805,7 @@ readRDS("gt-chuvoso_gttable_xlsx.rds")
 <summary>Tab.: Tabela da partição aditiva entre os riachos durante o período seco</summary>
 
 ```{r tbl-adip-riac-s_gttable}
+#| eval: false
 #| echo: false
 #| tbl-cap: "Tabela da partição aditiva entre os riachos durante o período seco."
 readRDS("gt_adip-riac_s_gttable_xlsx.rds")
@@ -2823,6 +2818,7 @@ readRDS("gt_adip-riac_s_gttable_xlsx.rds")
 <summary>Tab.: Tabela da partição aditiva do riacho Barro Branco durante o período seco</summary>
 
 ```{r tbl-adip-bb-s_gttable}
+#| eval: false
 #| echo: false
 #| tbl-cap: "Tabela da partição aditiva do riacho Barro Branco durante o período seco."
 readRDS("gt_adip-bb_s_gttable_xlsx.rds")
@@ -2835,6 +2831,7 @@ readRDS("gt_adip-bb_s_gttable_xlsx.rds")
 <summary>Tab.: Tabela da partição aditiva do riacho Caiana durante o período seco</summary>
 
 ```{r tbl-adip-ca-s_gttable}
+#| eval: false
 #| echo: false
 #| tbl-cap: "Tabela da partição aditiva do riacho Caiana durante o período seco."
 readRDS("gt_adip-ca_s_gttable_xlsx.rds")
