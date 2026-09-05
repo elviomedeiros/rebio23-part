@@ -67,22 +67,27 @@ format:
     code-fold: true
     code-overflow: scroll
     embed-resources: true
+    execute:
+      echo: true
   pdf:
     lof: true
     lot: true
     toc: true
     code-line-numbers: true
     colorlinks: true
+    execute:
+      echo: true
   docx:
     lof: true
     lot: true
     toc: true
     reference-doc: refs/custom-rmarkdown-word.docx
-    echo: false
+    execute:
+      echo: false #add echo: to code chunk options (#|) to overide specific chunk
 execute:
-  echo: false
   result: hold
   warning: false
+  message: false
 always_allow_html: yes
 editor_options: 
   chunk_output_type: console
@@ -369,7 +374,6 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 #| message: false
 #| warning: false
 #| results: false
-#| echo: true
 #| purl: false
 #| code-fold: true
 #| code-overflow: wrap
