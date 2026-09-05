@@ -215,7 +215,7 @@ Os gráficos e figuras sobre as partições foram realizados no programa estatí
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
 
-<!--# ####AMBIENTAIS#### Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998]. These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis.-->
+<!--# ####AMBIENTAIS#### Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998]. -->
 
 ```{r env-rebio23part_org}
 #| eval: false
@@ -226,7 +226,7 @@ Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e
 #| code-overflow: wrap
 #| code-summary: "Code: Importing and organizing environment data"
 
-#REBIO23 - ORGANIZANDO DADOS----
+#REBIO23-part - ORGANIZANDO DADOS----
 
 dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
@@ -238,111 +238,279 @@ library(openxlsx)
 habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
                     rowNames = T,
                     colNames = T,
-                    sheet = "ambiente")
-grupos <- read.xlsx("dados/rebio23-habitat.xlsx",
+                    sheet = "ambiente",
+                    startRow = 2)
+# Identify columns containing only NA values
+all.na <- names(habitat)[colSums(!is.na(habitat)) == 0]
+all.na <- c(all.na, "w.Temp_C", "w.DO_mg.L")
+# Remove those columns by name
+m_hab_part <- habitat[, !names(habitat) %in% all.na, drop = FALSE]
+# Removendo linhas por nome
+rownames(m_hab_part)
+del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3",
+              "S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3")
+del_rows
+m_hab_part <- m_hab_part[!(row.names(m_hab_part) %in% c(del_rows)),]
+m_hab_part
+# Remove columns with at least one NA
+m_hab_part <- m_hab_part[, colSums(is.na(m_hab_part)) == 0, drop = FALSE]
+
+###REMOVENDO COLUNAS ZERADAS DE HABITAT----
+
+sum <- colSums(m_hab_part)
+sum
+zero_sum <- names(which(colSums(m_hab_part) == 0))
+zero_sum #nomes das colunas zeradas
+m_part_cols <- m_hab_part[(colSums(m_hab_part) != 0)] #em != a exclamação inverte o sentido
+zero_sum2 <- names(which(colSums(m_part_cols) == 0))
+zero_sum2 #nomes das colunas zeradas
+sum<-colSums(m_part_cols)
+sum
+
+t_grps <- read.xlsx("dados/rebio23-habitat.xlsx",
                    rowNames = T,
                    colNames = T,
-                   sheet = "grupos")
-
-###REMOVENDO LINHAS ZERADAS DE HABITAT----
-rownames(habitat)
-del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
-del_rows
-m_hab <- habitat[!(row.names(habitat) %in% c(del_rows)),]
-m_hab
+                   sheet = "grupos",
+                   startRow = 2)
 
 ###REMOVENDO LINHAS ZERADAS DE GRUPOS----
-rownames(grupos)
-del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
+
+rownames(t_grps)
 del_rows
-grupos <- grupos[!(row.names(grupos) %in% c(del_rows)),]
-grupos
+t_grps <- t_grps[!(row.names(t_grps) %in% c(del_rows)),]
+t_grps
 
-###PARTICIONANDO TABELA DE GRUPOS----
-t_grps <- grupos[!(row.names(grupos) %in% del_rows),]
+###SEPARANDO NUTRIENTES----
 
+nutri <- grep("^n\\.", colnames(habitat), value = TRUE)
+nutri
+nutrientes <- habitat[, nutri, drop = FALSE]
+nutrientes <- nutrientes[, colSums(!is.na(nutrientes)) > 0, drop = FALSE]
+nutrientes <- na.omit(nutrientes)
 
-##SALVANDO MATRIZES FINAIS REMOVIDAS AS LINHAS/COLUNAS ZERADAS----
+##SALVANDO MATRIZES FINAIS----
 
-write.table(t_grps, "t_grps.csv",
+write.table(m_part_cols, "results/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-write.table(m_hab, "m_hab.csv",
+write.table(nutrientes, "results/t_nutri.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-t_grps <- read.csv("t_grps.csv",
+write.table(t_grps, "results/t_grps.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+t_grps <- read.csv("results/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab <- read.csv("m_hab.csv",
+t_nutri <- read.csv("results/t_nutri.csv",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+m_hab <- read.csv("results/m_hab_part.csv",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+```
+
+```{r env-rebio23part_corr}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Correlations of environment data" 
+
+#REBIO23-part----
+
+##ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_grps <- read.csv("results/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
+m_hab <- read.csv("results/m_hab_part.csv",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
 
-#REBIO23 - MATRIZ DE CONTAGEM----
-#####....----
+##CORRELOGRAMA E REMOÇÃO DE VARIÁVEIS REDUNDANTES OU DESNECESSÁRIAS----
 
-library(openxlsx)
-zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
-                       rowNames = T,
-                       colNames = T,
-                       sheet = "rebio23_80ml")
-#View(zoo)
-zoo[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
-#View(zoo)
-print(zoo[1:8,1:8])
-str(zoo)
-mode(zoo)
-class(zoo)
+library(psych)
+colnames(m_hab)
+png("results/fig-h.hab_pairs.png")
+pairs.panels(m_hab[,1:8],
+             method = "pearson", # correlation method
+             scale = FALSE, lm = FALSE,
+             hist.col = "#00AFBB", pch = 19,
+             density = TRUE,  # show density plots
+             ellipses = TRUE, # show correlation ellipses
+             alpha = 0.5)
+dev.off()
 
-###REMOVENDO LINHAS ZERADAS
-rownames(zoo)
-del_rows <- c("S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3", "C-C-P11-H1","C-C-P11-H2","C-C-P11-H3")
-del_rows
-zoo <- zoo[!(row.names(zoo) %in% c(del_rows)),]
-zoo
-colnames(zoo)
-m_trab <- zoo
-colnames(m_trab) <- as.character(unlist(m_trab[1, ]))
-m_trab <- m_trab[-1, ]
+cor <- cor(m_hab)
+cor
 
-#Criando a matriz de cada período
-zoo_seco <- m_trab[grepl("^S", rownames(m_trab)), ]
-zoo_chuvoso <- m_trab[grepl("^C", rownames(m_trab)), ]
+library(corrplot)
+png("results/fig-hab_corrplot.png")
+corrplot(cor, method = "circle")
+dev.off()
 
-##SALVANDO MATRIZ FINAL
-#PERÍODO SECO
-write.table(zoo_seco, "zoo_seco.csv",
+##DELETANDO COLINEARES OU INDESEJADAS----
+
+sink(file = "results/colineares.txt", append = F, split = T)
+colnames(m_hab)
+del_cols <- c("", "")
+#del_cols <- grep("^n\\.", colnames(m_hab), value = TRUE)
+m_hab_part <- m_hab[, !(colnames(m_hab) %in% del_cols)]
+
+##SOMANDO REDUNDANTES----
+
+m_hab_part$h.Algae <- m_hab_part$h.Algae_f + m_hab_part$h.Algae_a
+m_hab_part <- m_hab_part[, !(colnames(m_hab_part)
+                           %in% c("h.Algae_f", "h.Algae_a"))]
+m_hab_part$h.Debris <- m_hab_part$h.Debris_l + m_hab_part$h.Debris_s
+m_hab_part <- m_hab_part[, !(colnames(m_hab_part)
+                         %in% c("h.Debris_l", "h.Debris_s"))]
+
+colnames(m_hab_part)
+m_hab_part
+sink()
+
+write.table(m_hab_part, "results/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-zoo_seco <- read.csv("zoo_seco.csv",
+m_hab_part <- read.csv("results/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+
+
+```
+
+```{r env-rebio23part_corr_test}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Correlations tests of environment data" 
+
+colnames(m_hab_part)
+library(PerformanceAnalytics)
+chart.Correlation(m_hab_part[, c(1:20)], histogram=TRUE)
+# ***p<0.001, **p<0.01, *p<0.05, .p<0.10
+
+library(Hmisc)
+mat <- as.matrix(m_hab_part[, 1:20])
+res <- rcorr(mat, type = "pearson")
+cor_mat <- res$r
+p_mat   <- res$P
+
+stars <- ifelse(p_mat < 0.001, "***",
+         ifelse(p_mat < 0.01,  "**",
+         ifelse(p_mat < 0.05,  "*", "")))
+
+cor_star <- ifelse(p_mat < 0.05,
+                   paste0(round(cor_mat, 2), stars),
+                   NA)
+
+cor_star <- matrix(
+  cor_star,
+  nrow = nrow(cor_mat),
+  dimnames = dimnames(cor_mat)
+)
+
+cor_star[upper.tri(cor_star, diag = TRUE)] <- NA
+cor_star <- noquote(cor_star)
+print(cor_star, na.print = "")
+```
+
+<!--# These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons.-->
+
+```{r env-PCA_org}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Organizing Environment data PCA"
+
+#PCA fviz package----
+#browseURL("https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/")
+
+#ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_grps <- read.csv("results/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-zoo_seco
+m_hab_part <- read.csv("results/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
 
-#PERÍODO CHUVOSO
-write.table(zoo_chuvoso, "zoo_chuvoso.csv",
+colnames(m_hab_part)
+
+###RELATIVIZAÇÕES E TRANSFORMAÇÕES----
+library(vegan)
+library(tidyverse)
+
+# Selecionando variáveis que começam com "w" ou "m"
+m_wm <- m_hab_part[, grep("^(w|m)", colnames(m_hab_part))]
+
+# Selecionando variáveis que começam com "s" ou "h"
+m_sh <- m_hab_part[, grep("^(s|h)", colnames(m_hab_part))]
+
+# Removendo os dois primeiros caracteres dos nomes das colunas
+colnames(m_wm) <- sub("^..", "", colnames(m_wm))
+colnames(m_sh) <- sub("^..", "", colnames(m_sh))
+
+# Transformações
+m_wm <- sqrt(m_wm)
+m_sh <- asin(sqrt(decostand(m_sh, method = "total", MARGIN = 2)))
+
+# Juntando tudo em uma única tabela
+hab_trns <- cbind(m_sh, m_wm)
+
+# Salvado m_hab_trns
+write.table(hab_trns, "results/m_hab_trns.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-zoo_chuvoso <- read.csv("zoo_chuvoso.csv",
-                     sep = ";", dec = ".",
-                     row.names = 1,
-                     header = TRUE,
-                     na.strings = NA)
-zoo_chuvoso
-
+m_hab_trns <- read.table("results/m_hab_trns.csv",
+                         sep = ";", dec = ".",
+                         row.names = 1,
+                         header = TRUE,
+                         na.strings = NA)
 ```
 
 <!--# ####UNIVARIADAS#### Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by *post hoc* multiple comparisons using Tukey’s HSD test (α=0.05) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen]. -->
