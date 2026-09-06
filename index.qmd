@@ -595,7 +595,30 @@ col_order <- c(
     order(as.numeric(gsub("Ponto", "", cols[cols != "Variable"])))
   ]
 )
-m_wide <- m_wide[, c(col_order)] #sequência das colunas (ou linhas)
+m_wide <- m_wide[, c(col_order)] #sequência das colunas
+row_order <- c(
+  "w.Cond.uS.cm",
+  "w.Turb.ntu",
+  "w.pH",
+  "m.Elev.m",
+  "m.Vel.m.s",
+  "m.Slope",
+  "m.Depth.avg.cm",
+  "m.Depth.mar.cm",
+  "s.Mud",
+  "s.Sand",
+  "s.Gravel.f",
+  "s.Rocks",
+  "h.Macrophytes",
+  "h.Algae",
+  "h.Subm.veg",
+  "h.Overh.veg",
+  "h.Grass",
+  "h.Leaf.l",
+  "h.Root.masses",
+  "h.Debris"
+)
+m_wide <- m_wide[match(row_order, m_wide$Variable), ]
 m_wide
 
 # Salvado m_wide
