@@ -540,6 +540,8 @@ No período chuvoso (@fig-pcachuvoso), a distribuição das unidades amostrais n
 
 De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
 
+<!--# **Environmental variables and nutrient concentration.** Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overal, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).-->
+
 ```{r gttable_hab_excel}
 #| eval: false
 #| message: false
@@ -696,6 +698,270 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
+<!--# Principal Component Analysis (PCA) described the overall environmental structure of the sampling sites and identified the main variables responsible for their spatial differentiation in terms of physicochemical characteristics, channel morphology, substrate composition, and marginal habitat structure (@fig-hab_PCA_fviz). The first two principal components explained 57% of the total variance, with the first axis accounting for 31% and the second axis for 26%. The first axis represented a gradient separating sites I and II from sites type IV. Sites type I and II were associated with higher dissolved oxygen concentrations, higher altitude, muddy substrates, and overhanging vegetation, while sites type IV were characterized by greater channel width, average depth, littoral grass, sandy substrate, and higher turbidity. The upper portion of the second axis of the PCA was associated with algae, macrophytes, and channel width, while the lower portion was related to submerged vegetation, root masses, water velocity, turbidity, and sandy substrates. The site type III occupied an intermediate position along the first axis but was clearly distinguished along the second axis by its association with submerged vegetation, root masses, and higher water velocity. Overall, PCA indicated a marked environmental gradient between the sampling sites, with sites IV differing from the upstream sites mainly due to channel morphology and substrate characteristics, while the local habitat structure and aquatic vegetation explained the separation of site type III from the other sites.-->
+
+```{r env-PCA_fviz}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: hide
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Environment data PCA - fviz"
+
+#PCA fviz package----
+#browseURL("https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/")
+
+#ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_hab_trns <- read.csv("res/m_hab_trns.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+
+#PCA----
+
+library("FactoMineR")
+library("factoextra")
+
+pca <- PCA(m_hab_trns, scale.unit = TRUE, ncp = 5, graph = TRUE)
+print(pca)
+
+eig.val <- get_eigenvalue(pca)
+eig.val
+
+#sink(file = "cor_matrix.txt", append = FALSE)
+pca$var$cor
+#sink()
+
+fviz_eig(pca, addlabels = TRUE, ylim = c(0,30))
+
+var <- get_pca_var(pca)
+var
+
+fviz_pca_var(pca, col.var = "black")
+
+library("corrplot")
+corrplot(var$cos2, is.corr=FALSE)
+
+fviz_cos2(pca, choice = "var", axes = 1:2)
+
+fviz_pca_var(pca, col.var = "cos2",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE # Avoid text overlapping
+)
+
+fviz_pca_var(pca, alpha.var = "cos2")
+
+corrplot(var$contrib, is.corr=FALSE)
+
+fviz_contrib(pca, choice = "var", axes = 1, top = 10)
+fviz_contrib(pca, choice = "var", axes = 2, top = 10)
+fviz_contrib(pca, choice = "var", axes = 1:2, top = 10)
+
+fviz_pca_var(pca, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")
+)
+fviz_pca_var(pca, alpha.var = "contrib")
+
+##GROUPING BY KMEANS----
+
+set.seed(123)
+res.km <- kmeans(var$coord, centers = 3, nstart = 25)
+grp <- as.factor(res.km$cluster)
+# Color variables by groups
+fviz_pca_var(pca, col.var = grp,
+             palette = c("#0073C2FF", "#EFC000FF", "#868686FF"),
+             legend.title = "Cluster")
+
+ind <- get_pca_ind(pca)
+ind
+ind$contrib
+
+##BIPLOTS----
+
+fviz_pca_ind(pca)
+
+fviz_pca_ind(pca, col.ind = "cos2",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE #avoid text overlapping (slow if many points)
+)
+
+fviz_pca_ind(pca, pointsize = "cos2",
+             pointshape = 21, fill = "#E7B800",
+             repel = TRUE #avoid text overlapping (slow if many points)
+)
+
+fviz_pca_ind(pca, col.ind = "cos2", pointsize = "cos2",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE #avoid text overlapping (slow if many points)
+)
+
+fviz_cos2(pca, choice = "ind")
+
+fviz_contrib(pca, choice = "ind", axes = 1:2)
+
+# Create a random continuous variable of length 23,
+# Same length as the number of active individuals in the PCA
+t_grps <- t_grps[rownames(pca$ind$coord), ]
+colnames(t_grps)
+set.seed(123)
+my.cont.var <- t_grps$Ref_site
+my.cont.var
+# Color individuals by the continuous variable
+fviz_pca_ind(
+  pca,
+  habillage = my.cont.var,
+  palette = c("blue", "yellow", "red", "pink"),
+  repel = FALSE
+)
+
+fviz_pca_ind(pca,
+             geom.ind = "point", #show points only (nbut not "text")
+             col.ind = as.factor(my.cont.var), #color by groups
+             palette = "grey",
+             addEllipses = TRUE, #concentration ellipses
+             legend.title = "Groups"
+)
+
+length(unique(my.cont.var))
+fviz_pca_ind(pca,
+             geom.ind = "point",
+             col.ind = t_grps$Ref_site,
+             palette = "grey",
+             addEllipses = TRUE, ellipse.type = "confidence",
+             mean.point = TRUE,
+             legend.title = "Groups")
+
+fviz_pca_biplot(pca, repel = TRUE,
+                col.var = "#2E9FDF", #variables color
+                col.ind = "#696969"  #individuals color
+)
+
+fviz_pca_biplot(pca,
+                col.ind = t_grps$Ref_site, palette = "jco",
+                addEllipses = TRUE, ellipse.type = "t", #t-distribution confidence ellipses",
+                ellipse.level = 0.95,
+                shape.ind = t_grps$Ref_site,
+                label = "var",
+                col.var = "black", repel = TRUE,
+                legend.title = "Species") +
+  scale_color_manual(values = c(
+    "#1B9E77",
+    "#D95F02",
+    "#7570B3",
+    "#E7298A"
+  )) +
+  scale_shape_manual(values = c(
+    16, # circle
+    17, # triangle
+    15, # square
+    18  # diamond
+  ))
+
+### FILTRANDO AS VARIÁVEIS### FILTRANDO AS VARIÁVEIS### FILTRANDO AS VARIÁVEIS
+var_coord <- pca$var$coord[,1:2]
+keep_vars <- apply(abs(var_coord) > 0.5,1,any)
+vars_to_keep <- rownames(var_coord)[keep_vars]
+pca_filt <- pca
+pca_filt$var$coord    <- pca$var$coord[vars_to_keep,,drop=FALSE]
+pca_filt$var$cos2     <- pca$var$cos2[vars_to_keep,,drop=FALSE]
+pca_filt$var$contrib  <- pca$var$contrib[vars_to_keep,,drop=FALSE]
+
+### AJUSTE MANUAL DAS COORDENADAS DOS VETORES
+var_coords <- as.data.frame(pca_filt$var$coord)
+var_coords$Dim.1 <- var_coords$Dim.1*4.2
+var_coords$Dim.2 <- var_coords$Dim.2*4.2
+
+## Caso queira editar manualmente
+#fix(var_coords) #nomes das colunas
+#write.table(var_coords,"coords_var.txt")
+
+var_coords <- read.table("coords_var.txt",
+                         header=TRUE,
+                         row.names=1)
+
+### AJUSTE MANUAL DOS INDIVÍDUOS
+ind_coords <- as.data.frame(pca_filt$ind$coord)
+
+## Caso queira editar manualmente
+#fix(ind_coords) #nomes das linhas
+#write.table(ind_coords,"coords_ind.txt")
+
+ind_coords <- read.table("coords_ind.txt",
+                         header=TRUE,
+                         row.names=1)
+
+# GRÁFICO FINAL
+
+library(factoextra)
+library(ggplot2)
+
+t_grps$Ref_site <- as.factor(t_grps$Ref_site)
+
+#png("fig-hab_PCA_fviz.png", width=11, height=9, units="in", res=400)
+
+library(ggplot2)
+
+ggplot() +
+  
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_vline(xintercept = 0, linetype = 2) +
+  
+  geom_point(
+    data = ind_coords,
+    aes(Dim.1, Dim.2, shape = t_grps$Ref_site),
+    size = 3,
+    colour = "black"
+  ) +
+  
+  geom_segment(
+    data = var_coords,
+    aes(x = 0, y = 0,
+        xend = Dim.1,
+        yend = Dim.2),
+    colour = "red",
+    arrow = arrow(length = unit(0.25,"cm"))
+  ) +
+  
+  geom_text(
+    data = transform(
+      var_coords,
+      nudge_y = ifelse(Dim.2 >= 0, 0.25, -0.25)
+    ),
+    aes(
+      x = Dim.1,
+      y = Dim.2 + nudge_y,
+      label = rownames(var_coords)
+    ),
+    colour = "red",
+    size = 4,
+    nudge_x = 0.19
+  ) +
+  
+  scale_shape_manual(values = c(15,16,0,1,2,17)) +
+  
+  labs(
+    x = paste0("Dim1 (", round(pca$eig[1,2],1), "%)"),
+    y = paste0("Dim2 (", round(pca$eig[2,2],1), "%)"),
+    shape = "Sites"
+  ) +
+  
+  coord_equal() +
+  theme_minimal()
+
+#dev.off()
+```
 
 ## Community structure
 
@@ -2501,7 +2767,8 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 ![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/mapa.png){#fig-mapa}
 
-![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período seco. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/pesquisa_cientifica.jpg){#fig-pcaseco}
+<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
 
 ![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/pesquisa_cientifica.jpg){#fig-pcachuvoso}
 
