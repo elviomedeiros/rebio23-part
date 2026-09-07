@@ -540,7 +540,7 @@ No período chuvoso, a distribuição das unidades amostrais no espaço da biplo
 
 De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
 
-<!--# **Environmental variables and nutrient concentration.** Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overal, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).-->
+<!--# **Environmental variables and nutrient concentration.** Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).-->
 
 ```{r gttable_hab_excel}
 #| eval: false
@@ -698,7 +698,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-<!--# Principal Component Analysis (PCA) described the overall environmental structure of the sampling sites and identified the main variables responsible for their spatial differentiation in terms of physicochemical characteristics, channel morphology, substrate composition, and marginal habitat structure (@fig-hab_PCA_fviz). The first two principal components explained 57% of the total variance, with the first axis accounting for 31% and the second axis for 26%. The first axis represented a gradient separating sites I and II from sites type IV. Sites type I and II were associated with higher dissolved oxygen concentrations, higher altitude, muddy substrates, and overhanging vegetation, while sites type IV were characterized by greater channel width, average depth, littoral grass, sandy substrate, and higher turbidity. The upper portion of the second axis of the PCA was associated with algae, macrophytes, and channel width, while the lower portion was related to submerged vegetation, root masses, water velocity, turbidity, and sandy substrates. The site type III occupied an intermediate position along the first axis but was clearly distinguished along the second axis by its association with submerged vegetation, root masses, and higher water velocity. Overall, PCA indicated a marked environmental gradient between the sampling sites, with sites IV differing from the upstream sites mainly due to channel morphology and substrate characteristics, while the local habitat structure and aquatic vegetation explained the separation of site type III from the other sites.-->
+<!--# Principal Component Analysis (PCA) described the overall environmental structure of the sampling sites and identified the main variables responsible for their spatial differentiation in terms of physicochemical characteristics, channel morphology, substrate composition, and marginal habitat structure (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 57% of the total variance, with the first axis accounting for 31% and the second axis for 26%. The first axis represented a gradient separating sites I and II from sites type IV. Sites type I and II were associated with higher dissolved oxygen concentrations, higher altitude, muddy substrates, and overhanging vegetation, while sites type IV were characterized by greater channel width, average depth, littoral grass, sandy substrate, and higher turbidity. The upper portion of the second axis of the PCA was associated with algae, macrophytes, and channel width, while the lower portion was related to submerged vegetation, root masses, water velocity, turbidity, and sandy substrates. The site type III occupied an intermediate position along the first axis but was clearly distinguished along the second axis by its association with submerged vegetation, root masses, and higher water velocity. Overall, PCA indicated a marked environmental gradient between the sampling sites, with sites IV differing from the upstream sites mainly due to channel morphology and substrate characteristics, while the local habitat structure and aquatic vegetation explained the separation of site type III from the other sites.-->
 
 ```{r env-PCA_fviz}
 #| eval: false
@@ -740,7 +740,7 @@ print(pca)
 eig.val <- get_eigenvalue(pca)
 eig.val
 
-#sink(file = "cor_matrix.txt", append = FALSE)
+#sink(file = "res/cor_matrix.txt", append = FALSE)
 pca$var$cor
 #sink()
 
@@ -816,7 +816,8 @@ fviz_contrib(pca, choice = "ind", axes = 1:2)
 t_grps <- t_grps[rownames(pca$ind$coord), ]
 colnames(t_grps)
 set.seed(123)
-my.cont.var <- t_grps$Ref_site
+# Escolhendo variável categorica
+my.cont.var <- t_grps$Rio
 my.cont.var
 # Color individuals by the continuous variable
 fviz_pca_ind(
@@ -837,7 +838,7 @@ fviz_pca_ind(pca,
 length(unique(my.cont.var))
 fviz_pca_ind(pca,
              geom.ind = "point",
-             col.ind = t_grps$Ref_site,
+             col.ind = my.cont.var,
              palette = "grey",
              addEllipses = TRUE, ellipse.type = "confidence",
              mean.point = TRUE,
@@ -849,10 +850,10 @@ fviz_pca_biplot(pca, repel = TRUE,
 )
 
 fviz_pca_biplot(pca,
-                col.ind = t_grps$Ref_site, palette = "jco",
+                col.ind = my.cont.var, palette = "jco",
                 addEllipses = TRUE, ellipse.type = "t", #t-distribution confidence ellipses",
                 ellipse.level = 0.95,
-                shape.ind = t_grps$Ref_site,
+                shape.ind = my.cont.var,
                 label = "var",
                 col.var = "black", repel = TRUE,
                 legend.title = "Species") +
@@ -869,7 +870,7 @@ fviz_pca_biplot(pca,
     18  # diamond
   ))
 
-### FILTRANDO AS VARIÁVEIS### FILTRANDO AS VARIÁVEIS### FILTRANDO AS VARIÁVEIS
+### FILTRANDO AS VARIÁVEIS
 var_coord <- pca$var$coord[,1:2]
 keep_vars <- apply(abs(var_coord) > 0.5,1,any)
 vars_to_keep <- rownames(var_coord)[keep_vars]
@@ -962,6 +963,113 @@ ggplot() +
 
 #dev.off()
 ```
+
+<!--# Averaged nutrient concentrations varied among sampling sites (@tbl-nutri_gttable). Ammonia concentrations ranged from 54.8 µg L⁻¹ at the reference site (Site 1) to 243.7 µg L⁻¹ at Site 6, the highest value recorded during the study. Elevated ammonia concentrations were also observed at Sites 4 (81.6 µg L⁻¹) and 5 (80.8 µg L⁻¹), whereas Sites 1–3 exhibited comparatively lower concentrations (54.8–72.0 µg L⁻¹). Nitrite concentrations were too low to be detectable for at all sampling sites. Nitrate concentrations ranged from 5.5 to 18.8 µg L⁻¹, with the highest values recorded at Sites 4 and 5. Orthophosphate was detected only at Site 3 (1.0 µg L⁻¹), whereas total phosphorus ranged from undetectable levels at Site 1 to 50.1 µg L⁻¹ at Site 3, with relatively high concentrations also recorded at Site 6 (38.7 µg L⁻¹).-->
+
+```{r gttable_nutri_excel}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Nutrient data table" 
+
+#TABELA DE NUTRIENTES----
+
+##ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_nutri <- read.csv("res/t_nutri.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+nutri <- t_nutri
+
+library(dplyr)
+library(tidyr)
+t_grps <- t_grps[seq_len(nrow(nutri)), , drop = FALSE]
+m_trab <- nutri %>%
+  rename_with(~ gsub("_", ".", .))
+m <- m_trab %>%
+  group_by(PontoN = t_grps$PontoN) %>%
+  summarise(across(where(is.numeric),
+                   list(mean = mean, min = min, max = max)),
+            .groups = 'drop') %>%
+  pivot_longer(
+    cols = -c(PontoN),
+    names_to = c("Variable", ".value"),
+    names_sep = "_"
+  )
+
+m <- as.data.frame(m)
+colnames(m_trab)
+m_wide <- m %>%
+  mutate(stat_string = ifelse(Variable == c("Ammonia.NH3.ug.L"),
+                              paste0(round(mean, 1), " (", round(min, 1), "-", round(max, 1), ")"),
+                              paste0(round(mean, 1), " (", round(min, 1), "-", round(max, 1), ")"))) %>%
+  unite("Location", PontoN, sep = "_") %>%
+  select(Variable, Location, stat_string) %>%
+  pivot_wider(names_from = Location, values_from = stat_string)
+
+m_wide
+m_wide <- as.data.frame(m_wide)
+cols <- colnames(m_wide)
+col_order <- c(
+  "Variable",
+  cols[cols != "Variable"][
+    order(as.numeric(gsub("Ponto", "", cols[cols != "Variable"])))
+  ]
+)
+m_wide <- m_wide[, c(col_order)] #sequência das colunas
+m_wide
+
+# Salvado m_wide
+write.table(m_wide, "res/m_wide_nutri.txt",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_wide_nutri <- read.table("res/m_wide_nutri.txt",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide, file = "res/tabela de nutrientes.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de nutrientes.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide_nutri)
+saveWorkbook(wb, "res/tabela de nutrientes.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+nutri_gttable <- read_excel(
+  path  = "res/tabela de nutrientes.xlsx",
+  sheet = "tabela_final",
+  range = "A1:P6") #ajustar para o tamanho da tabela final 
+nutri_gttable
+library(gt)
+nutri_gttable <- gt(nutri_gttable)
+nutri_gttable <- sub_missing(nutri_gttable,
+                      columns = everything(), missing_text = "")
+nutri_gttable
+gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
+saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
+```
+
 
 ## Community structure
 
@@ -2763,91 +2871,51 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 # Figures and Tables {.unnumbered}
 
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.
+<!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
+
+@fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
+<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by site type. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+
+@fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
+<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+
+@tbl-hab_gttable:
+<!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+
+@tbl-nutri_gttable:
+<!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+
 ## Figures {.unnumbered}
 
-![Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.](imagens/mapa.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
 
-<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
-![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
+![Análise de Componentes Principais (PCA) das variáveis ambientais, por tipo de site.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
 
-![Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período chuvoso. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat.](imagens/pesquisa_cientifica.jpg){#fig-pcachuvoso}
-
-![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período seco (S).](imagens/pesquisa_cientifica.jpg){#fig-venn-seco}
-
-![Diagrama de Venn indicando o número de espécies compartilhadas e exclusivas representadas a partir dos componentes de diversidade alfa (α) dos riachos Barro Branco (B) e Caiana (C) da REBIO Guaribas no período chuvoso (C).](imagens/pesquisa_cientifica.jpg){#fig-venn-chuvoso}
-
-![Diversidade observada e esperada do período seco, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/pesquisa_cientifica.jpg){#fig-diversidadeobs-riachos-seco}
-
-![Diversidade observada e esperada do período chuvoso, dividida em componentes alfa e três/dois betas, expressa em porcentagem da riqueza total em (A) ambos os riachos; (B) Barro Branco; e (C) Caiana. Alpha.1 = unidade de amostragem, beta.2 = variação entre habitats; beta.2 = variação entre pontos; beta.3 = variação entre riachos.](imagens/pesquisa_cientifica.jpg){#fig-diversidadeobs-riachos-chuvoso}
+![Análise de Componentes Principais (PCA) das variáveis ambientais, categorizados por riacho.](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
 
 ## Tables {.unnumbered}
 
 <details>
-
-<summary>Tab.: Tabela de ausência e presença de espécies durante o período seco</summary>
-
-```{r tbl-seco_gttable}
-#| eval: false
+<summary>Tab.: Environmental data table</summary>
+```{r tbl-hab_gttable}
 #| echo: false
-#| tbl-cap: "Tabela de ausência e presença de espécies durante o período seco."
-readRDS("gt-seco_gttable_xlsx.rds")
+#| tbl-cap: "Environment data GT table."
+readRDS("res/gt-hab_gttable_xlsx.rds")
 ```
-
 </details>
 
 <details>
-
-<summary>Tab.: Tabela de ausência e presença de espécies durante o período chuvoso</summary>
-
-```{r tbl-chuvoso_gttable}
-#| eval: false
+<summary>Tab.: Nutrient data table</summary>
+```{r tbl-nutri_gttable}
 #| echo: false
-#| tbl-cap: "Tabela de ausência e presença de espécies durante o período chuvoso."
-readRDS("gt-chuvoso_gttable_xlsx.rds")
+#| tbl-cap: "Nutrient concentrations at the sampling sites."
+readRDS("res/gt-nutri_gttable_xlsx.rds")
 ```
-
 </details>
 
-<details>
-
-<summary>Tab.: Tabela da partição aditiva entre os riachos durante o período seco</summary>
-
-```{r tbl-adip-riac-s_gttable}
-#| eval: false
-#| echo: false
-#| tbl-cap: "Tabela da partição aditiva entre os riachos durante o período seco."
-readRDS("gt_adip-riac_s_gttable_xlsx.rds")
-```
-
-</details>
-
-<details>
-
-<summary>Tab.: Tabela da partição aditiva do riacho Barro Branco durante o período seco</summary>
-
-```{r tbl-adip-bb-s_gttable}
-#| eval: false
-#| echo: false
-#| tbl-cap: "Tabela da partição aditiva do riacho Barro Branco durante o período seco."
-readRDS("gt_adip-bb_s_gttable_xlsx.rds")
-```
-
-</details>
-
-<details>
-
-<summary>Tab.: Tabela da partição aditiva do riacho Caiana durante o período seco</summary>
-
-```{r tbl-adip-ca-s_gttable}
-#| eval: false
-#| echo: false
-#| tbl-cap: "Tabela da partição aditiva do riacho Caiana durante o período seco."
-readRDS("gt_adip-ca_s_gttable_xlsx.rds")
-```
-
-</details>
 
 \pagebreak
 \newpage
