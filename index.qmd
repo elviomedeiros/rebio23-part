@@ -528,6 +528,7 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
 ## Variáveis ambientais
 
 <!--# Results -->
+
 <!--# Environmental variables-->
 
 É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa).
@@ -1069,7 +1070,6 @@ nutri_gttable
 gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
 saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
-
 
 ## Community structure
 
@@ -2841,6 +2841,8 @@ De modo geral, mesmo sob a influência das condições ambientais e de conserva�
 
 # Acknowledgements {.unnumbered}
 
+We are greatly indebted to the staff of the REBIO Guaribas for field work assistance. LCA is grateful to Programa de Pós-Graduação em Ecologia e Conservação (PPGEC-UEPB) and CAPES for scholarship granted. EGS, MMSM and MVBS are grateful to Programa de Iniciação Científica (PIBIC-UEPB) and CNPq for scholarship granted.
+
 # Authorship contribution statement {.unnumbered}
 
 Authorship of this paper is based on @credit2026.
@@ -2859,7 +2861,17 @@ Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analys
 
 # Ethical approval {.unnumbered}
 
+<!--# Activities inside the REBIO Guaribas were authorized by the Instituto Chico Mendes de Conservação da Biodiversidade (license no. SISBIO-89415-1, SISBIO-89429-2 and SISBIO-89415-2).-->
+
 O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
+
+# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito
+
+<!--# # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process-->
+
+Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI) para auxiliar na revisão do idioma inglês e no aprimoramento da clareza e da fluência da redação. Nenhuma ferramenta de IA foi utilizada para análise ou interpretação dos dados, nem para a elaboração de conclusões científicas. Os autores revisaram e avaliaram cuidadosamente todas as sugestões geradas por IA e assumem total responsabilidade pela precisão e pelo conteúdo da versão final do manuscrito [@cnpq2026].
+
+<!--# During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to assist with English language editing and improve the clarity and fluency of the writing. No AI was used for data analysis, interpretation, or generation of scientific conclusions. The authors carefully reviewed and revised all AI-generated suggestions and take full responsibility for the accuracy and content of the final manuscript [@cnpq2026].-->
 
 # References {.unnumbered}
 
@@ -2871,20 +2883,15 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 
 # Figures and Tables {.unnumbered}
 
-@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape.
-<!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. <!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
 
-@fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
-<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by site type. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+@fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by site type. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
-@fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
-<!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+@fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
-@tbl-hab_gttable:
-<!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+@tbl-hab_gttable: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
-@tbl-nutri_gttable:
-<!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+@tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
 ## Figures {.unnumbered}
 
@@ -2899,23 +2906,28 @@ O presente trabalho teve duração de um ano e foi desenvolvido no laboratório 
 ## Tables {.unnumbered}
 
 <details>
+
 <summary>Tab.: Environmental data table</summary>
+
 ```{r tbl-hab_gttable}
 #| echo: false
 #| tbl-cap: "Environment data GT table."
 readRDS("res/gt-hab_gttable_xlsx.rds")
 ```
+
 </details>
 
 <details>
+
 <summary>Tab.: Nutrient data table</summary>
+
 ```{r tbl-nutri_gttable}
 #| echo: false
 #| tbl-cap: "Nutrient concentrations at the sampling sites."
 readRDS("res/gt-nutri_gttable_xlsx.rds")
 ```
-</details>
 
+</details>
 
 \pagebreak
 \newpage
