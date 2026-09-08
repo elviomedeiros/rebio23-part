@@ -529,7 +529,7 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
 
 <!--# Results -->
 
-<!--# Environmental variables-->
+<!--# Environmental variables and nutrient concentration-->
 
 É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa).
 
@@ -965,7 +965,7 @@ ggplot() +
 #dev.off()
 ```
 
-<!--# Averaged nutrient concentrations varied among sampling sites (@tbl-nutri_gttable). Ammonia concentrations ranged from 54.8 µg L⁻¹ at the reference site (Site 1) to 243.7 µg L⁻¹ at Site 6, the highest value recorded during the study. Elevated ammonia concentrations were also observed at Sites 4 (81.6 µg L⁻¹) and 5 (80.8 µg L⁻¹), whereas Sites 1–3 exhibited comparatively lower concentrations (54.8–72.0 µg L⁻¹). Nitrite concentrations were too low to be detectable for at all sampling sites. Nitrate concentrations ranged from 5.5 to 18.8 µg L⁻¹, with the highest values recorded at Sites 4 and 5. Orthophosphate was detected only at Site 3 (1.0 µg L⁻¹), whereas total phosphorus ranged from undetectable levels at Site 1 to 50.1 µg L⁻¹ at Site 3, with relatively high concentrations also recorded at Site 6 (38.7 µg L⁻¹).-->
+<!--# Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, overall no clear trend can be observed  when comparing both streams. Nitrite and nitrate, on the other hand, show greater concentrations at the Caiana stream, the latter varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 13.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).-->
 
 ```{r gttable_nutri_excel}
 #| eval: false
