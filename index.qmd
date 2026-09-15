@@ -1051,7 +1051,7 @@ sink()
 ##TRABALHANDO COM UMA UNICA VARIAVEL----
 
 # Run MRPP for a single variable
-grp <- as.factor(t_grps$UA) #UA, mes, estacao, area, ambiente
+grp <- as.factor(t_grps$Ref_site) #UA, mes, estacao, area, ambiente
 set.seed(123)
 mrpp <- mrpp(dat = m_trab, grouping = grp, distance = "bray")
 mrpp
