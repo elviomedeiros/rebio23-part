@@ -1004,239 +1004,54 @@ m_hab_trns <- read.csv("res/m_hab_trns.csv",
                        header = TRUE,
                        na.strings = NA)
 
-#PCA----
+#MRPP---- 
 
-library("FactoMineR")
-library("factoextra")
-
-pca <- PCA(m_hab_trns, scale.unit = TRUE, ncp = 5, graph = TRUE)
-print(pca)
-
-eig.val <- get_eigenvalue(pca)
-eig.val
-
-#sink(file = "res/cor_matrix.txt", append = FALSE)
-pca$var$cor
-#sink()
-
-fviz_eig(pca, addlabels = TRUE, ylim = c(0,30))
-
-var <- get_pca_var(pca)
-var
-
-fviz_pca_var(pca, col.var = "black")
-
-library("corrplot")
-corrplot(var$cos2, is.corr=FALSE)
-
-fviz_cos2(pca, choice = "var", axes = 1:2)
-
-fviz_pca_var(pca, col.var = "cos2",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE # Avoid text overlapping
-)
-
-fviz_pca_var(pca, alpha.var = "cos2")
-
-corrplot(var$contrib, is.corr=FALSE)
-
-fviz_contrib(pca, choice = "var", axes = 1, top = 10)
-fviz_contrib(pca, choice = "var", axes = 2, top = 10)
-fviz_contrib(pca, choice = "var", axes = 1:2, top = 10)
-
-fviz_pca_var(pca, col.var = "contrib",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")
-)
-fviz_pca_var(pca, alpha.var = "contrib")
-
-##GROUPING BY KMEANS----
-
-set.seed(123)
-res.km <- kmeans(var$coord, centers = 3, nstart = 25)
-grp <- as.factor(res.km$cluster)
-# Color variables by groups
-fviz_pca_var(pca, col.var = grp,
-             palette = c("#0073C2FF", "#EFC000FF", "#868686FF"),
-             legend.title = "Cluster")
-
-ind <- get_pca_ind(pca)
-ind
-ind$contrib
-
-##BIPLOTS----
-
-fviz_pca_ind(pca)
-
-fviz_pca_ind(pca, col.ind = "cos2",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE #avoid text overlapping (slow if many points)
-)
-
-fviz_pca_ind(pca, pointsize = "cos2",
-             pointshape = 21, fill = "#E7B800",
-             repel = TRUE #avoid text overlapping (slow if many points)
-)
-
-fviz_pca_ind(pca, col.ind = "cos2", pointsize = "cos2",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE #avoid text overlapping (slow if many points)
-)
-
-fviz_cos2(pca, choice = "ind")
-
-fviz_contrib(pca, choice = "ind", axes = 1:2)
-
-# Create a random continuous variable of length 23,
-# Same length as the number of active individuals in the PCA
-t_grps <- t_grps[rownames(pca$ind$coord), ]
+library(vegan)
 colnames(t_grps)
-set.seed(123)
-# Escolhendo variável categorica
-my.cont.var <- t_grps$Rio
-my.cont.var
-# Color individuals by the continuous variable
-fviz_pca_ind(
-  pca,
-  habillage = my.cont.var,
-  palette = c("blue", "yellow", "red", "pink"),
-  repel = FALSE
+grp <- t_grps$Ref_site
+m_trab <- m_hab_trns
+set.seed(666)
+mrpp <- with(t_grps, mrpp(m_trab, grp, distance="bray"))
+mrpp
+#teste de hipótese
+str(mrpp)
+p_value <- mrpp$Pvalue
+print(sprintf("p-value: %.10f", p_value))
+# Conditional statement to check the p-value and print the appropriate message
+if (p_value < 0.05) {
+  print(sprintf("Existe diferença significativa porquê o valor de p é %.10f, sendo menor que o nível de significância de 0.05.", p_value))
+} else {
+  print(sprintf("Não existe diferença significativa porquê o valor de p é %.10f, sendo maior ou igual ao nível de significância de 0.05.", p_value))
+}
+
+# Gráfico da MRPP
+set.seed(666)
+def.par <- par(no.readonly = TRUE)
+layout(matrix(1:2,nr=1))
+plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
+with(t_grps, ordihull(ord, grp))
+with(mrpp, {
+  fig.dist <- hist(boot.deltas, xlim=range(c(delta,boot.deltas)), 
+                 main="Test of Differences Among Groups")
+  abline(v=delta); 
+  text(delta, 2*mean(fig.dist$counts), adj = -0.5,
+     expression(bold(delta)), cex=1.5 )  }
 )
+par(def.par)
 
-fviz_pca_ind(pca,
-             geom.ind = "point", #show points only (nbut not "text")
-             col.ind = as.factor(my.cont.var), #color by groups
-             palette = "grey",
-             addEllipses = TRUE, #concentration ellipses
-             legend.title = "Groups"
-)
+# Avaliando as distâncias médias meandist
+set.seed(666)
+md <- with(t_grps, meandist(vegdist(m_trab), grp))
+md
+summary(md)
+par(mfrow=c(1,2))
+plot(md)
+plot(md, kind="histogram")
+par(mfrow=c(1,1))
 
-length(unique(my.cont.var))
-fviz_pca_ind(pca,
-             geom.ind = "point",
-             col.ind = my.cont.var,
-             palette = "grey",
-             addEllipses = TRUE, ellipse.type = "confidence",
-             mean.point = TRUE,
-             legend.title = "Groups")
 
-fviz_pca_biplot(pca, repel = TRUE,
-                col.var = "#2E9FDF", #variables color
-                col.ind = "#696969"  #individuals color
-)
 
-fviz_pca_biplot(pca,
-                col.ind = my.cont.var, palette = "jco",
-                addEllipses = TRUE, ellipse.type = "t", #t-distribution confidence ellipses",
-                ellipse.level = 0.95,
-                shape.ind = my.cont.var,
-                label = "var",
-                col.var = "black", repel = TRUE,
-                legend.title = "Species") +
-  scale_color_manual(values = c(
-    "#1B9E77",
-    "#D95F02",
-    "#7570B3",
-    "#E7298A"
-  )) +
-  scale_shape_manual(values = c(
-    16, # circle
-    17, # triangle
-    15, # square
-    18  # diamond
-  ))
 
-### FILTRANDO AS VARIÁVEIS
-var_coord <- pca$var$coord[,1:2]
-keep_vars <- apply(abs(var_coord) > 0.5,1,any)
-vars_to_keep <- rownames(var_coord)[keep_vars]
-pca_filt <- pca
-pca_filt$var$coord    <- pca$var$coord[vars_to_keep,,drop=FALSE]
-pca_filt$var$cos2     <- pca$var$cos2[vars_to_keep,,drop=FALSE]
-pca_filt$var$contrib  <- pca$var$contrib[vars_to_keep,,drop=FALSE]
-
-### AJUSTE MANUAL DAS COORDENADAS DOS VETORES
-var_coords <- as.data.frame(pca_filt$var$coord)
-var_coords$Dim.1 <- var_coords$Dim.1*4.2
-var_coords$Dim.2 <- var_coords$Dim.2*4.2
-
-## Caso queira editar manualmente
-#fix(var_coords) #nomes das colunas
-#write.table(var_coords,"coords_var.txt")
-
-var_coords <- read.table("coords_var.txt",
-                         header=TRUE,
-                         row.names=1)
-
-### AJUSTE MANUAL DOS INDIVÍDUOS
-ind_coords <- as.data.frame(pca_filt$ind$coord)
-
-## Caso queira editar manualmente
-#fix(ind_coords) #nomes das linhas
-#write.table(ind_coords,"coords_ind.txt")
-
-ind_coords <- read.table("coords_ind.txt",
-                         header=TRUE,
-                         row.names=1)
-
-# GRÁFICO FINAL
-
-library(factoextra)
-library(ggplot2)
-
-t_grps$Ref_site <- as.factor(t_grps$Ref_site)
-
-#png("fig-hab_PCA_fviz.png", width=11, height=9, units="in", res=400)
-
-library(ggplot2)
-
-ggplot() +
-  
-  geom_hline(yintercept = 0, linetype = 2) +
-  geom_vline(xintercept = 0, linetype = 2) +
-  
-  geom_point(
-    data = ind_coords,
-    aes(Dim.1, Dim.2, shape = t_grps$Ref_site),
-    size = 3,
-    colour = "black"
-  ) +
-  
-  geom_segment(
-    data = var_coords,
-    aes(x = 0, y = 0,
-        xend = Dim.1,
-        yend = Dim.2),
-    colour = "red",
-    arrow = arrow(length = unit(0.25,"cm"))
-  ) +
-  
-  geom_text(
-    data = transform(
-      var_coords,
-      nudge_y = ifelse(Dim.2 >= 0, 0.25, -0.25)
-    ),
-    aes(
-      x = Dim.1,
-      y = Dim.2 + nudge_y,
-      label = rownames(var_coords)
-    ),
-    colour = "red",
-    size = 4,
-    nudge_x = 0.19
-  ) +
-  
-  scale_shape_manual(values = c(15,16,0,1,2,17)) +
-  
-  labs(
-    x = paste0("Dim1 (", round(pca$eig[1,2],1), "%)"),
-    y = paste0("Dim2 (", round(pca$eig[2,2],1), "%)"),
-    shape = "Sites"
-  ) +
-  
-  coord_equal() +
-  theme_minimal()
-
-#dev.off()
 ```
 
 <!--# Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, overall no clear trend can be observed  when comparing both streams. Nitrite and nitrate, on the other hand, show greater concentrations at the Caiana stream, the latter varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 13.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).-->
