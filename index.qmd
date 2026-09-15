@@ -984,10 +984,8 @@ ggplot() +
 #| results: hide
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Environment data PCA - fviz"
+#| code-summary: "Code: Environment data PCA - PERMANOVA"
 
-#PCA fviz package----
-#browseURL("https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/")
 
 #ORGANIZANDO DADOS----
 
