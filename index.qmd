@@ -1165,11 +1165,11 @@ library(ggtext)
 library(ggplot2)
 library(vegan)
 
-adonis2(m_trab ~ UA, data = t_grps, method = "bray")
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray")
 set.seed(123)
 perm <- 999
 
-all_test <- adonis2(m_trab ~ UA, data = t_grps, method = "bray", permutations = perm)
+all_test <- adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
 all_test
 
 adonis2(m_trab ~ area*ambiente, data = t_grps)
