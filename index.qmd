@@ -123,19 +123,19 @@ CITAR: [@ligeiro2010; @crist2003; @ávila2011; @shell2018; @baselga2012; @baselg
 
 Avaliar a partição aditiva da diversidade zooplanctônica em riachos de primeira ordem na REBIO Guaribas, considerando os períodos seco e chuvoso.
 
-##  Objetivos específicos
+## Objetivos específicos
 
-I.   Determinar a riqueza e densidade de espécies na comunidade zooplanctônica nos riachos Barro Branco e Caiana, nos períodos seco e chuvoso.
+I.  Determinar a riqueza e densidade de espécies na comunidade zooplanctônica nos riachos Barro Branco e Caiana, nos períodos seco e chuvoso.
 
-II.  Aplicar a partição aditiva da diversidade em diferentes escalas espaciais.
+II. Aplicar a partição aditiva da diversidade em diferentes escalas espaciais.
 
-III.  Comparar a diversidade observada e esperada entre os períodos seco e chuvoso.
+III. Comparar a diversidade observada e esperada entre os períodos seco e chuvoso.
 
-##  Hipóteses
+## Hipóteses
 
-I.   Espera-se maior contribuição da diversidade em escalas espaciais menores, com pouca ou nenhuma influência da sazonalidade sobre a partição da diversidade.
+I.  Espera-se maior contribuição da diversidade em escalas espaciais menores, com pouca ou nenhuma influência da sazonalidade sobre a partição da diversidade.
 
-II.  Diversidade alfa observada menor que a diversidade esperada, enquanto a diversidade beta observada maior que a esperada, indicando heterogeneidade espacial e substituição de espécies.
+II. Diversidade alfa observada menor que a diversidade esperada, enquanto a diversidade beta observada maior que a esperada, indicando heterogeneidade espacial e substituição de espécies.
 
 LER: [@melo2011; @carvalho2011]
 
@@ -2907,7 +2907,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 ## Figures {.unnumbered}
 
-![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/Mapa (pt-br).png){#fig-mapa}
 
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, por tipo de site.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
 
