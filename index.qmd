@@ -1004,16 +1004,60 @@ m_hab_trns <- read.csv("res/m_hab_trns.csv",
                        header = TRUE,
                        na.strings = NA)
 
-#MRPP---- 
-
-library(vegan)
 colnames(t_grps)
 grp <- t_grps$Ref_site
 m_trab <- m_hab_trns
-set.seed(666)
-mrpp <- with(t_grps, mrpp(m_trab, grp, distance="bray"))
+library(vegan)
+
+#MRPP---- 
+
+#TRABALHANDO COM MULTIPLAS VARIAVEIS----
+
+# Run MRPP for multiple variables
+fatores <- c("Periodo", "Rio", "Ref_site")
+set.seed(123)
+mrpp_results <- lapply(fatores, function(v) {
+  grp <- as.factor(t_grps[[v]])
+  mrpp(
+    dat = m_trab,
+    grouping = grp,
+    distance = "bray"
+  )
+})
+names(mrpp_results) <- fatores
+mrpp_results
+# Print one result
+mrpp_results$Rio
+# Loop through summaries
+sink(file = "mrpp.txt", split = TRUE)#, append = TRUE)
+for (v in names(mrpp_results)) {
+  cat("\n============================\n")
+  cat("MRPP for:", v, "\n")
+  print(mrpp_results[[v]])
+}
+sink()
+# Extract key statistics into a table
+mrpp_summary <- data.frame(
+  Variable = fatores,
+  Delta = sapply(mrpp_results, function(x) x$delta),
+  Expected_Delta = sapply(mrpp_results, function(x) x$E.delta),
+  A = sapply(mrpp_results, function(x) x$A),
+  P_value = sapply(mrpp_results, function(x) x$Pvalue)
+)
+sink("mrpp.txt", append = TRUE)
+mrpp_summary
+sink()
+
+##TRABALHANDO COM UMA UNICA VARIAVEL----
+
+# Run MRPP for a single variable
+grp <- as.factor(t_grps$UA) #UA, mes, estacao, area, ambiente
+set.seed(123)
+mrpp <- mrpp(dat = m_trab, grouping = grp, distance = "bray")
 mrpp
-#teste de hipótese
+summary(mrpp)
+
+# Teste de hipótese para uma unica variavel
 str(mrpp)
 p_value <- mrpp$Pvalue
 print(sprintf("p-value: %.10f", p_value))
@@ -1024,23 +1068,85 @@ if (p_value < 0.05) {
   print(sprintf("Não existe diferença significativa porquê o valor de p é %.10f, sendo maior ou igual ao nível de significância de 0.05.", p_value))
 }
 
-# Gráfico da MRPP
-set.seed(666)
+##TESTES PAREADOS----
+
+library(vegan)
+# Todos os pares de níveis do fator
+pairs <- combn(levels(as.factor(grp)), 2, simplify = FALSE)
+pairs
+# Aplicar mrpp para cada par
+res_list <- lapply(pairs, function(p) {
+  sel <- grp %in% p
+  mrpp(dat = m_trab[sel, ], grouping = droplevels(grp[sel]), distance = "bray")
+})
+# Dar nomes aos resultados
+names(res_list) <- sapply(pairs, function(p) paste(p, collapse = "_vs_"))
+# visualizar
+res_list
+# Resumo
+summary_tab <- data.frame(
+  Comparison = names(res_list),
+  A = sapply(res_list, function(x) x$A),
+  Delta = sapply(res_list, function(x) x$delta),
+  Pvalue = sapply(res_list, function(x) x$Pvalue)
+)
+summary_tab
+
+###MATRIX-STYLE TABLE----
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+# Extract unique group names from the comparisons
+groups1 <- sort(unique(unlist(strsplit(summary_tab$Comparison, "_vs_"))))
+# Initialize empty matrix
+pval_matrix <- matrix(NA, nrow = length(groups1), ncol = length(groups1),
+                      dimnames = list(groups1, groups1))
+# Fill matrix with Pvalues
+for (i in 1:nrow(summary_tab)) {
+  comp <- unlist(strsplit(summary_tab$Comparison[i], "_vs_"))
+  g1 <- comp[1]
+  g2 <- comp[2]
+  p <- summary_tab$Pvalue[i]
+
+  pval_matrix[g1, g2] <- p
+  pval_matrix[g2, g1] <- p  #make symmetric
+}
+
+# Format p-values: red if <0.05
+pval_colored <- ifelse(is.na(pval_matrix), "",
+                       ifelse(pval_matrix < 0.05,
+                              paste0("<span style='color:red;'>", sprintf("%.3f", pval_matrix), "</span>"),
+                              sprintf("%.3f", pval_matrix)))
+
+# Convert to data.frame for kable
+pval_df <- as.data.frame(pval_colored)
+pval_df <- tibble::rownames_to_column(pval_df, "Group")
+# Render HTML table
+matrixstyle <- pval_df %>%
+  kable("html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE)
+matrixstyle
+save_kable(matrixstyle, "kb-mrpp_matrixstyle.html")
+
+##GRÁFICO DA MRPP----
+
+png("fig-mrpp.png", width = 15, height = 10, units = "in", res = 300)
 def.par <- par(no.readonly = TRUE)
 layout(matrix(1:2,nr=1))
 plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
 with(t_grps, ordihull(ord, grp))
 with(mrpp, {
-  fig.dist <- hist(boot.deltas, xlim=range(c(delta,boot.deltas)), 
-                 main="Test of Differences Among Groups")
-  abline(v=delta); 
+  fig.dist <- hist(boot.deltas, xlim=range(c(delta,boot.deltas)),
+                   main="Test of Differences Among Groups")
+  abline(v=delta);
   text(delta, 2*mean(fig.dist$counts), adj = -0.5,
-     expression(bold(delta)), cex=1.5 )  }
+       expression(bold(delta)), cex=1.5 )  }
 )
 par(def.par)
+dev.off()
 
-# Avaliando as distâncias médias meandist
-set.seed(666)
+###AVALIANDO AS DISTÂNCIAS MÉDIAS----
 md <- with(t_grps, meandist(vegdist(m_trab), grp))
 md
 summary(md)
@@ -1048,6 +1154,153 @@ par(mfrow=c(1,2))
 plot(md)
 plot(md, kind="histogram")
 par(mfrow=c(1,1))
+
+#PerMANOVA----
+
+#browseURL("https://riffomonas.org/code_club/2021-03-18-vegan")
+#browseURL("https://riffomonas.org/code_club/2021-03-22-reproducibility")
+
+library(tidyverse)
+library(ggtext)
+library(ggplot2)
+library(vegan)
+
+adonis2(m_trab ~ UA, data = t_grps, method = "bray")
+set.seed(123)
+perm <- 999
+
+all_test <- adonis2(m_trab ~ UA, data = t_grps, method = "bray", permutations = perm)
+all_test
+
+adonis2(m_trab ~ area*ambiente, data = t_grps)
+adonis2(m_trab ~ area*ambiente, data = t_grps, by = "terms") #ou by=NULL remove as interações
+
+all_p <- all_test$`Pr(>F)`[1]
+all_p
+
+count(t_grps, UA)
+colnames(t_grps)
+
+# Pairwise comparisons
+#browseURL("https://doi.org/10.1007/s10641-018-0751-1")
+#Lanés, L.E.K., Reichard, M., de Moura, R.G. et al. 2018.
+#Environmental predictors for annual fish assemblages in subtropical
+#grasslands of South America: the role of landscape and habitat
+#characteristics. Environ Biol Fish 101, 963–977.
+
+library(dplyr)
+#library(combninat) # or base R combn()
+
+set.seed(123)
+
+# Get unique levels of UA
+groups <- unique(t_grps$UA)
+groups
+# All pairwise combinations
+pairs <- combn(groups, 2, simplify = FALSE)
+pairs
+# Store results
+pairwise_results <- lapply(pairs, function(g) {
+  # Subset data
+  sub_data <- t_grps %>% filter(UA %in% g)
+  sub_dist <- m_trab[rownames(sub_data), ]
+
+  # Run adonis2
+  test <- adonis2(sub_dist ~ UA, data = sub_data,
+                  method = "bray", permutations = perm)
+
+  tibble(
+    group1 = g[1],
+    group2 = g[2],
+    F_value = test$F[1],
+    R2 = test$R2[1],
+    p_value = test$`Pr(>F)`[1]
+  )
+})
+# Bind all results
+pairwise_results <- bind_rows(pairwise_results)
+pairwise_results
+pairwise_p <- numeric()
+pairwise_p <- pairwise_results$p_value
+pairwise_p
+adj_p_values <- p.adjust(pairwise_p, method="bonferroni") #c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
+adj_p_values
+pairwise_results$adj_p_values <- adj_p_values
+pairwise_results
+# Get unique group names
+groups2 <- sort(unique(c(pairwise_results$group1, pairwise_results$group2)))
+# Initialize empty matrix
+pval_matrix <- matrix(NA, nrow = length(groups2), ncol = length(groups2),
+                      dimnames = list(groups2, groups2))
+# Fill in p-values
+for (i in 1:nrow(pairwise_results)) {
+  g1 <- pairwise_results$group1[i]
+  g2 <- pairwise_results$group2[i]
+  p <- pairwise_results$p_value[i]
+
+  pval_matrix[g1, g2] <- p
+  pval_matrix[g2, g1] <- p  #make symmetric
+}
+pval_matrix
+
+library(knitr)
+library(kableExtra)
+
+# Make a copy of the matrix
+pval_colored <- pval_matrix
+# Replace numeric values with formatted HTML strings
+pval_colored[] <- ifelse(is.na(pval_matrix), "",
+                         ifelse(pval_matrix < 0.05,
+                                paste0("<span style='color:red;'>", sprintf("%.3f", pval_matrix), "</span>"),
+                                sprintf("%.3f", pval_matrix)))
+# Convert to data frame with rownames
+pval_df <- as.data.frame(pval_colored)
+pval_df <- tibble::rownames_to_column(pval_df, "Group")
+# Render table
+pval_df %>%
+  kable("html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE)
+save_kable(matrixstyle, "kb-perma_matrixstyle.html")
+
+## AVALIANDO INTERAÇÕES-----
+
+adonis2(m_trab ~ area, data = t_grps, method = "bray")
+adonis2(m_trab ~ area*ambiente, data = t_grps,
+        method = "bray") #+ no lugar de * tira os residuos
+adonis2(m_trab ~ area*ambiente, data = t_grps,
+        method = "bray", by = "terms", strata = NULL)
+
+load("m_dist.RData")
+
+bd <- betadisper(m_dist, t_grps$are)
+bd
+anova(bd)
+permutest(bd)
+
+bd <- betadisper(m_dist, t_grps$env)
+bd
+anova(bd)
+permutest(bd)
+
+bd <- betadisper(m_dist, t_grps$UA)
+bd
+anova(bd)
+permutest(bd, pairwise = TRUE)
+
+library(betapart)
+bd.HSD <- TukeyHSD(bd)
+plot(bd.HSD)
+plot(bd)
+bdist <- bd$distances
+bdist
+
+plot(bd, ellipse = TRUE, hull = FALSE) # 1 sd data ellipse
+plot(bd, ellipse = TRUE, hull = FALSE, conf = 0.90) # 90% data ellipse
+boxplot(bd)
+
+
+
+
 
 
 
