@@ -1507,8 +1507,6 @@ Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chy
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
 
-<!-- AQUI -->
-
 ```{r COMM-STR}
 #| eval: false
 #| warning: false
@@ -1926,7 +1924,6 @@ spp_gttable
 gtsave(spp_gttable, "gt-spp_gttable_xlsx.html")
 saveRDS(spp_gttable, "gt-spp_gttable_xlsx.rds")
 ```
-
 
 ## Partitioning of diversity
 
