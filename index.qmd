@@ -1507,6 +1507,7 @@ Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chy
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
 
+<!-- AQUI -->
 
 ```{r COMM-STR}
 #| eval: false
@@ -1517,7 +1518,7 @@ Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* s
 #| code-overflow: wrap
 #| code-summary: "Code: Community structure data table" 
 
-#ZOOREBIO_partBENTOS2006 - ESTR. DA COMUNIDADE----
+#ZOOREBIO_part - ESTR. DA COMUNIDADE----
 #####....----
 
 ##ORGANIZANDO DADOS----
@@ -1526,22 +1527,22 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-t_grps <- read.csv("t_grps.csv",
+t_grps <- read.csv("res/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_dens <- read.csv("m_dens.csv",
+m_dens <- read.csv("res/m_dens.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("m_hab_part.csv",
+m_hab_part <- read.csv("res/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
                   na.strings = NA)
-m_cont <- read.csv("m_cont.csv",
+m_cont <- read.csv("res/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -1658,9 +1659,9 @@ DescritoresFinal <- round (DescritoresFinal, 2)
 DescritoresFinal
 
 # Salvando DescritoresFinal
-write.table(data.frame("Spp"=rownames(DescritoresFinal),
+write.table(data.frame("SPP"=rownames(DescritoresFinal),
                        DescritoresFinal),
-            "DescritoresSPP.txt",
+            "res/DescritoresSPP.txt",
             row.names=FALSE,
             sep="\t")
 
@@ -1668,12 +1669,12 @@ write.table(data.frame("Spp"=rownames(DescritoresFinal),
 library(gt)
 df <- DescritoresFinal
 ncol(df); nrow(df) #no. de N colunas x M linhas
-df <- cbind(Spp = rownames(df), df)
-gt <- gt(df, rowname_col = "Espécie",
+df <- cbind(SPP = rownames(df), df)
+gt <- gt(df, rowname_col = "SPP",
    caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
 gt
-gtsave(gt, "DescritoresSPP.html")
-gtsave(gt, "DescritoresSPP.png")
+gtsave(gt, "res/DescritoresSPP.html")
+gtsave(gt, "res/DescritoresSPP.png")
 
 ###NORMALIDADE----
 library(moments)
@@ -1700,19 +1701,19 @@ NormalidadeFinal <- round(NormalidadeFinal, 2)
 NormalidadeFinal
 
 # Salvando NormalidadeFinal
-write.table(data.frame("Spp"=rownames(NormalidadeFinal),
+write.table(data.frame("SPP"=rownames(NormalidadeFinal),
                        NormalidadeFinal),
-            "NormalidadeSPP.txt",
+            "res/NormalidadeSPP.txt",
             row.names=FALSE,
             sep="\t")
 
 ###TABELA FINAL NORMALIDADE----
 nf <- NormalidadeFinal
 ncol(nf); nrow(nf) #no. de N colunas x M linhas
-nf <- cbind(Spp = rownames(nf), nf)
-gt <- gt(nf, rowname_col = "Site", caption = "Descritores da normalidade por espécie (coluna)")
+nf <- cbind(SPP = rownames(nf), nf)
+gt <- gt(nf, rowname_col = "SPP", caption = "Descritores da normalidade por SPP (COLUNA)")
 gt
-gtsave(gt, "NormalidadeSPP.html")
+gtsave(gt, "res/NormalidadeSPP.html")
 
 #DIVERSIDADE EM DENSIDADE MATRIZ NÃO-TRANSPOSTA----
 
