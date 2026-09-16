@@ -3421,13 +3421,37 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 ## Figures {.unnumbered}
 
+<details>
+
+<summary>Fig.: Localização das Unidades Amostrais</summary>
+
 ![Mapa da área de influência da REBIO Guaribas.](imagens/Mapa (pt-br).png){#fig-mapa}
+
+</details>
+
+<details>
+
+<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por site</summary>
 
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, por tipo de site.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
 
+</details>
+
+<details>
+
+<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por riacho</summary>
+
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, categorizados por riacho.](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
+</details>
+
+<details>
+
+<summary>Fig.: Etapas do desenvolvimento da pesquisa científica</summary>
+
 ![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
+
+</details>
 
 ## Tables {.unnumbered}
 
