@@ -1558,8 +1558,8 @@ m_dens
 str(m_dens)
 m_trab <- m_dens
 
-m_trab <- (m_trab) #SITES
-m_trab <- t(m_trab) #SPP
+m_trab <- (m_dens) #SITES
+m_trab <- t(m_dens) #SPP
 
 ##TAMANHO DA MATRIZ----
 
