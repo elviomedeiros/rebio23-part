@@ -1005,7 +1005,6 @@ m_hab_trns <- read.csv("res/m_hab_trns.csv",
                        na.strings = NA)
 
 colnames(t_grps)
-grp <- t_grps$Ref_site
 m_trab <- m_hab_trns
 library(vegan)
 
@@ -1027,9 +1026,9 @@ mrpp_results <- lapply(fatores, function(v) {
 names(mrpp_results) <- fatores
 mrpp_results
 # Print one result
-mrpp_results$Rio
+mrpp_results$Ref_site
 # Loop through summaries
-sink(file = "mrpp.txt", split = TRUE)#, append = TRUE)
+sink(file = "res/mrpp.txt", split = TRUE)#, append = TRUE)
 for (v in names(mrpp_results)) {
   cat("\n============================\n")
   cat("MRPP for:", v, "\n")
@@ -1044,7 +1043,7 @@ mrpp_summary <- data.frame(
   A = sapply(mrpp_results, function(x) x$A),
   P_value = sapply(mrpp_results, function(x) x$Pvalue)
 )
-sink("mrpp.txt", append = TRUE)
+sink("res/mrpp.txt", append = TRUE)
 mrpp_summary
 sink()
 
@@ -1070,7 +1069,6 @@ if (p_value < 0.05) {
 
 ##TESTES PAREADOS----
 
-library(vegan)
 # Todos os pares de níveis do fator
 pairs <- combn(levels(as.factor(grp)), 2, simplify = FALSE)
 pairs
@@ -1090,7 +1088,9 @@ summary_tab <- data.frame(
   Delta = sapply(res_list, function(x) x$delta),
   Pvalue = sapply(res_list, function(x) x$Pvalue)
 )
+sink("res/mrpp.txt", append = TRUE)
 summary_tab
+sink()
 
 ###MATRIX-STYLE TABLE----
 library(dplyr)
@@ -1127,11 +1127,11 @@ matrixstyle <- pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
 matrixstyle
-save_kable(matrixstyle, "kb-mrpp_matrixstyle.html")
+save_kable(matrixstyle, "res/kb-mrpp_matrixstyle.html")
 
 ##GRÁFICO DA MRPP----
 
-png("fig-mrpp.png", width = 15, height = 10, units = "in", res = 300)
+png("res/fig-mrpp.png", width = 15, height = 10, units = "in", res = 300)
 def.par <- par(no.readonly = TRUE)
 layout(matrix(1:2,nr=1))
 plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
@@ -1172,13 +1172,13 @@ perm <- 999
 all_test <- adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
 all_test
 
-adonis2(m_trab ~ area*ambiente, data = t_grps)
-adonis2(m_trab ~ area*ambiente, data = t_grps, by = "terms") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps)
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, by = "terms") #ou by=NULL remove as interações
 
 all_p <- all_test$`Pr(>F)`[1]
 all_p
 
-count(t_grps, UA)
+count(t_grps, Periodo)
 colnames(t_grps)
 
 # Pairwise comparisons
@@ -1194,7 +1194,7 @@ library(dplyr)
 set.seed(123)
 
 # Get unique levels of UA
-groups <- unique(t_grps$UA)
+groups <- unique(t_grps$Ref_site)
 groups
 # All pairwise combinations
 pairs <- combn(groups, 2, simplify = FALSE)
@@ -1202,11 +1202,11 @@ pairs
 # Store results
 pairwise_results <- lapply(pairs, function(g) {
   # Subset data
-  sub_data <- t_grps %>% filter(UA %in% g)
+  sub_data <- t_grps %>% filter(Ref_site %in% g)
   sub_dist <- m_trab[rownames(sub_data), ]
 
   # Run adonis2
-  test <- adonis2(sub_dist ~ UA, data = sub_data,
+  test <- adonis2(sub_dist ~ Ref_site, data = sub_data,
                   method = "bray", permutations = perm)
 
   tibble(
@@ -1260,50 +1260,15 @@ pval_df <- tibble::rownames_to_column(pval_df, "Group")
 pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
-save_kable(matrixstyle, "kb-perma_matrixstyle.html")
+save_kable(matrixstyle, "res/kb-perma_matrixstyle.html")
 
 ## AVALIANDO INTERAÇÕES-----
 
-adonis2(m_trab ~ area, data = t_grps, method = "bray")
-adonis2(m_trab ~ area*ambiente, data = t_grps,
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray")
+adonis2(m_trab ~ Periodo*Rio, data = t_grps,
         method = "bray") #+ no lugar de * tira os residuos
-adonis2(m_trab ~ area*ambiente, data = t_grps,
+adonis2(m_trab ~ Periodo*Rio, data = t_grps,
         method = "bray", by = "terms", strata = NULL)
-
-load("m_dist.RData")
-
-bd <- betadisper(m_dist, t_grps$are)
-bd
-anova(bd)
-permutest(bd)
-
-bd <- betadisper(m_dist, t_grps$env)
-bd
-anova(bd)
-permutest(bd)
-
-bd <- betadisper(m_dist, t_grps$UA)
-bd
-anova(bd)
-permutest(bd, pairwise = TRUE)
-
-library(betapart)
-bd.HSD <- TukeyHSD(bd)
-plot(bd.HSD)
-plot(bd)
-bdist <- bd$distances
-bdist
-
-plot(bd, ellipse = TRUE, hull = FALSE) # 1 sd data ellipse
-plot(bd, ellipse = TRUE, hull = FALSE, conf = 0.90) # 90% data ellipse
-boxplot(bd)
-
-
-
-
-
-
-
 
 ```
 

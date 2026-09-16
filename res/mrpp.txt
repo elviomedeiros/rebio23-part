@@ -1,0 +1,80 @@
+
+============================
+MRPP for: Periodo 
+
+Call:
+mrpp(dat = m_trab, grouping = grp, distance = "bray") 
+
+Dissimilarity index: bray 
+Weights for groups:  n 
+
+Class means and counts:
+
+      chuvoso seco  
+delta 0.1298  0.1227
+n     45      45    
+
+Chance corrected within-group agreement A: 0.02435 
+Based on observed delta 0.1262 and expected delta 0.1294 
+
+Significance of delta: 0.003 
+Permutation: free
+Number of permutations: 999
+
+
+============================
+MRPP for: Rio 
+
+Call:
+mrpp(dat = m_trab, grouping = grp, distance = "bray") 
+
+Dissimilarity index: bray 
+Weights for groups:  n 
+
+Class means and counts:
+
+      Barro Branco Caiana
+delta 0.1071       0.1339
+n     36           54    
+
+Chance corrected within-group agreement A: 0.04802 
+Based on observed delta 0.1232 and expected delta 0.1294 
+
+Significance of delta: 0.001 
+Permutation: free
+Number of permutations: 999
+
+
+============================
+MRPP for: Ref_site 
+
+Call:
+mrpp(dat = m_trab, grouping = grp, distance = "bray") 
+
+Dissimilarity index: bray 
+Weights for groups:  n 
+
+Class means and counts:
+
+      I       II      III    IV   
+delta 0.06787 0.07696 0.1125 0.127
+n     12      6       30     42   
+
+Chance corrected within-group agreement A: 0.1424 
+Based on observed delta 0.111 and expected delta 0.1294 
+
+Significance of delta: 0.001 
+Permutation: free
+Number of permutations: 999
+
+         Variable     Delta Expected_Delta          A P_value
+Periodo   Periodo 0.1262228      0.1293733 0.02435248   0.003
+Rio           Rio 0.1231606      0.1293733 0.04802155   0.001
+Ref_site Ref_site 0.1109535      0.1293733 0.14237758   0.001
+          Comparison          A      Delta Pvalue
+I_vs_II      I_vs_II 0.07531882 0.07089998  0.009
+I_vs_III    I_vs_III 0.13999639 0.09976416  0.001
+I_vs_IV      I_vs_IV 0.14162709 0.11385845  0.001
+II_vs_III  II_vs_III 0.05046057 0.10659601  0.004
+II_vs_IV    II_vs_IV 0.05959902 0.12074412  0.001
+III_vs_IV  III_vs_IV 0.06024604 0.12096685  0.001
