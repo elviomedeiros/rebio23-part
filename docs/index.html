@@ -5879,193 +5879,218 @@ window.Quarto = {
 <span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="co">#DIVERSIDADE EM DENSIDADE MATRIZ NÃO-TRANSPOSTA----</span></span>
 <span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Números de Hill</span></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>Hill <span class="ot">&lt;-</span> <span class="fu">renyi</span>(m_trab,</span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a>              <span class="at">scales =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>              <span class="at">hill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>Hill</span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>grafico1 <span class="ot">&lt;-</span> Hill <span class="sc">%&gt;%</span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">%&gt;%</span></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">factor</span>(name, name[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Hill)])) <span class="sc">%&gt;%</span></span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value, <span class="at">group =</span> rowname,</span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> rowname)) <span class="sc">+</span></span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Parâmetro de ordem de diversidade (q)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Diversidade&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;Locais&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)) <span class="co">#ajustar a fonte caso nao caiba no output html</span></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a>grafico1</span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(grafico1, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;fig-hill.png&quot;</span>)</span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de abunância</span></span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a>abund <span class="ot">&lt;-</span> <span class="fu">colSums</span>(m_trab)</span>
-<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="co">#abund &lt;- m_trab[1, ] #escolhe a primeira linha para a distribuição de abundância</span></span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sp =</span> <span class="fu">colnames</span>(m_trab),</span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>                 <span class="at">abun =</span> abund)</span>
-<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>grafico2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="fu">fct_reorder</span>(sp, <span class="sc">-</span>abun),</span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>                           abun, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Abundância&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">angle =</span> <span class="dv">45</span>,</span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>,</span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>grafico2</span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(grafico2, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;fig-abun.png&quot;</span>)</span>
-<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="co"># Curvas de rarefação</span></span>
-<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>m_trab_r <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="fu">as.data.frame</span>(m_trab), <span class="fu">across</span>(<span class="fu">everything</span>(), ceiling)) <span class="co">#arredonda a matriz original para números inteiros</span></span>
-<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">t</span>(m_trab_r))</span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">t</span>(m_trab_r))</span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="co">#rarefa &lt;- t(m_trab_r[c(&quot;S-R-CT2&quot;,&quot;S-R-CP2&quot;,&quot;S-A-TA2&quot;,&quot;B-A-MU2&quot;),]) #curva de rarefação para os sítios especificados</span></span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(m_trab)</span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="co"># Curva de rarefação para todos os sítios</span></span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a>rarefa <span class="ot">&lt;-</span> <span class="fu">t</span>(m_trab_r)</span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a><span class="do">## Curva de rarefação para as 8 UA&#39;s com maior soma</span></span>
-<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a><span class="co">#m_trab_r &lt;- as.data.frame(t(m_trab_r)) #transpõe a matriz</span></span>
-<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a><span class="co">#col_sums &lt;- colSums(m_trab_r)</span></span>
-<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="co">#largest_columns &lt;- names(sort(col_sums, decreasing = TRUE)[1:8])</span></span>
-<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="co">#rarefa &lt;- m_trab_r[largest_columns] #curva de rarefação para as 8 UA&#39;s com maior soma</span></span>
-<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iNEXT)</span>
-<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefa, <span class="at">q =</span> <span class="dv">0</span>,</span>
-<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a>             <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>,</span>
-<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="cn">NULL</span>,</span>
-<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a>             <span class="at">endpoint =</span> <span class="dv">2000</span>, <span class="co">#define o comprimento de eixo x</span></span>
-<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a>             <span class="at">knots =</span> <span class="dv">40</span>,</span>
-<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a>             <span class="at">se =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a>             <span class="at">conf =</span> <span class="fl">0.95</span>,</span>
-<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a>             <span class="at">nboot =</span> <span class="dv">50</span>)</span>
-<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggiNEXT</span>(out, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">facet.var=</span><span class="st">&quot;None&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Áreas&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Número de indivíduos&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>()) <span class="co">#ver como fica com facet.var=&quot;Assemblage&quot;</span></span>
-<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a><span class="co">#grafico3</span></span>
-<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(grafico3, dpi = 300, filename = &quot;fig-rare1.png&quot;)</span></span>
-<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="co"># Curvas de acumulação de espéces</span></span>
-<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a>acumula <span class="ot">&lt;-</span> <span class="fu">specaccum</span>(m_trab,</span>
-<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;random&quot;</span>)</span>
-<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>acumula</span>
-<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acumula)</span>
-<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;UAs&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>sites),</span>
-<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Riqueza&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness),</span>
-<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;lower&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">-</span> acumula<span class="sc">$</span>sd),</span>
-<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;upper&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">+</span> acumula<span class="sc">$</span>sd))</span>
-<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a>gLocais <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> UAs, <span class="at">y =</span> Riqueza)) <span class="sc">+</span></span>
-<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper),</span>
-<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza acumulada&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
-<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a>gLocais</span>
-<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(gLocais, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;fig-acum.png&quot;</span>)</span>
-<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;Individuos&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>individuals),</span>
-<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Riqueza&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness),</span>
-<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;lower&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">-</span> acumula<span class="sc">$</span>sd),</span>
-<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;upper&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">+</span> acumula<span class="sc">$</span>sd))</span>
-<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a>gInd <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Individuos, <span class="at">y =</span> Riqueza)) <span class="sc">+</span></span>
-<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper),</span>
-<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza acumulada&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
-<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a>gInd</span>
-<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="do">##TABELA DA COMUNIDADE----</span></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>m_trab <span class="ot">&lt;-</span> (m_dens) <span class="co">#HILL</span></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="co"># Números de Hill</span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>Hill <span class="ot">&lt;-</span> <span class="fu">renyi</span>(m_trab,</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>              <span class="at">scales =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a>              <span class="at">hill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>Hill</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>grafico1 <span class="ot">&lt;-</span> Hill <span class="sc">%&gt;%</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>rowname) <span class="sc">%&gt;%</span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">factor</span>(name, name[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Hill)])) <span class="sc">%&gt;%</span></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value, <span class="at">group =</span> rowname,</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> rowname)) <span class="sc">+</span></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Parâmetro de ordem de diversidade (q)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Diversidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;Locais&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)) <span class="co">#ajustar a fonte caso nao caiba no output html</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>grafico1</span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(grafico1, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;res/fig-hill.png&quot;</span>)</span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de abunância</span></span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>abund <span class="ot">&lt;-</span> <span class="fu">colSums</span>(m_trab)</span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="co">#abund &lt;- m_trab[1, ] #escolhe a primeira linha para a distribuição de abundância</span></span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sp =</span> <span class="fu">colnames</span>(m_trab),</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>                 <span class="at">abun =</span> abund)</span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>grafico2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="fu">fct_reorder</span>(sp, <span class="sc">-</span>abun),</span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>                           abun, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Abundância&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">angle =</span> <span class="dv">45</span>,</span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>,</span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a>grafico2</span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(grafico2, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;res/fig-abun.png&quot;</span>)</span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Curvas de rarefação</span></span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a>m_trab_r <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="fu">as.data.frame</span>(m_trab), <span class="fu">across</span>(<span class="fu">everything</span>(), ceiling)) <span class="co">#arredonda a matriz original para números inteiros</span></span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">t</span>(m_trab_r))</span>
+<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">t</span>(m_trab_r))</span>
+<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a><span class="co">#rarefa &lt;- t(m_trab_r[c(&quot;S-R-CT2&quot;,&quot;S-R-CP2&quot;,&quot;S-A-TA2&quot;,&quot;B-A-MU2&quot;),]) #curva de rarefação para os sítios especificados</span></span>
+<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(m_trab)</span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a><span class="co"># Curva de rarefação para todos os sítios</span></span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a>rarefa <span class="ot">&lt;-</span> <span class="fu">t</span>(m_trab_r)</span>
+<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a><span class="do">## Curva de rarefação para as 8 UA&#39;s com maior soma</span></span>
+<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="co">#m_trab_r &lt;- as.data.frame(t(m_trab_r)) #transpõe a matriz</span></span>
+<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="co">#col_sums &lt;- colSums(m_trab_r)</span></span>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="co">#largest_columns &lt;- names(sort(col_sums, decreasing = TRUE)[1:8])</span></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="co">#rarefa &lt;- m_trab_r[largest_columns] #curva de rarefação para as 8 UA&#39;s com maior soma</span></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iNEXT)</span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">iNEXT</span>(rarefa, <span class="at">q =</span> <span class="dv">0</span>,</span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a>             <span class="at">datatype =</span> <span class="st">&quot;abundance&quot;</span>,</span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a>             <span class="at">endpoint =</span> <span class="dv">2000</span>, <span class="co">#define o comprimento de eixo x</span></span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a>             <span class="at">knots =</span> <span class="dv">40</span>,</span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a>             <span class="at">se =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>             <span class="at">conf =</span> <span class="fl">0.95</span>,</span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a>             <span class="at">nboot =</span> <span class="dv">50</span>)</span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a>grafico3 <span class="ot">&lt;-</span> <span class="fu">ggiNEXT</span>(out, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">facet.var=</span><span class="st">&quot;None&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Áreas&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Número de indivíduos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza de espécies&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>()) <span class="co">#ver como fica com facet.var=&quot;Assemblage&quot;</span></span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a><span class="co">#grafico3</span></span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(grafico3, dpi = 300, filename = &quot;fig-rare1.png&quot;)</span></span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="co"># Curvas de acumulação de espéces</span></span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>acumula <span class="ot">&lt;-</span> <span class="fu">specaccum</span>(m_trab,</span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;random&quot;</span>)</span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>acumula</span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acumula)</span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;UAs&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>sites),</span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Riqueza&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness),</span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;lower&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">-</span> acumula<span class="sc">$</span>sd),</span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;upper&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">+</span> acumula<span class="sc">$</span>sd))</span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a>gLocais <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> UAs, <span class="at">y =</span> Riqueza)) <span class="sc">+</span></span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper),</span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza acumulada&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a>gLocais</span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(gLocais, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">filename =</span> <span class="st">&quot;fig-acum.png&quot;</span>)</span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;Individuos&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>individuals),</span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Riqueza&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness),</span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;lower&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">-</span> acumula<span class="sc">$</span>sd),</span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;upper&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, acumula<span class="sc">$</span>richness <span class="sc">+</span> acumula<span class="sc">$</span>sd))</span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a>gInd <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Individuos, <span class="at">y =</span> Riqueza)) <span class="sc">+</span></span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper),</span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Riqueza acumulada&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a>gInd</span>
 <span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>m_trab <span class="ot">&lt;-</span> m_dens <span class="sc">%&gt;%</span></span>
-<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">gsub</span>(<span class="st">&quot;_&quot;</span>, <span class="st">&quot;.&quot;</span>, .))</span>
-<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> m_trab <span class="sc">%&gt;%</span></span>
-<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Area =</span> t_grps<span class="sc">$</span>area,</span>
-<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a>           <span class="at">Habitat =</span> t_grps<span class="sc">$</span>ambiente,</span>
-<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>           <span class="at">Ponto =</span> t_grps<span class="sc">$</span>UA) <span class="sc">%&gt;%</span></span>
-<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
-<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)),</span>
-<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Area, Habitat, Ponto),</span>
-<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;.value&quot;</span>),</span>
-<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">&quot;_&quot;</span></span>
-<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a>m</span>
-<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(m)</span>
-<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a>m_wide <span class="ot">&lt;-</span> m <span class="sc">%&gt;%</span></span>
-<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stat_string =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a>    Variable <span class="sc">==</span> <span class="st">&quot;nome_da_variavel&quot;</span>,  <span class="co">#escolhe uma variável pra ter 3 casas decimais</span></span>
-<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(mean, <span class="dv">3</span>), <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(sd, <span class="dv">3</span>), <span class="st">&quot;)&quot;</span>),</span>
-<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(mean, <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(sd, <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</span>
-<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">&quot;Location&quot;</span>, Area, Habitat, Ponto, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Variable, Location, stat_string) <span class="sc">%&gt;%</span> <span class="co">#dplyr dá conflito com MASS</span></span>
-<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Location, <span class="at">values_from =</span> stat_string)</span>
-<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a>m_wide</span>
-<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a>m_wide <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(m_wide)</span>
-<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a>m_wide</span>
-<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvado m_wide</span></span>
-<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(m_wide, <span class="st">&quot;m_wide_spp.txt&quot;</span>,</span>
-<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="co">#&quot;\t&quot;,</span></span>
-<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a>            <span class="at">append =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a>m_wide_spp <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;m_wide_spp.txt&quot;</span>,</span>
-<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
-<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a>                  <span class="at">row.names =</span> <span class="dv">1</span>,</span>
-<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a>                  <span class="at">na.strings =</span> <span class="cn">NA</span>)</span>
-<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a><span class="co"># Exportando dados para Excel</span></span>
-<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a><span class="co">#write.xlsx(m_wide_spp, file = &quot;tabela da comunidade.xlsx&quot;, rowNames = FALSE)</span></span>
-<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">loadWorkbook</span>(<span class="st">&quot;tabela da comunidade.xlsx&quot;</span>)</span>
-<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">&quot;Sheet 1&quot;</span>, <span class="at">x =</span> m_wide_spp)</span>
-<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">&quot;tabela da comunidade.xlsx&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Exportando dados para Excel</span></span>
-<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a><span class="co">#write.xlsx(m_wide, file = &quot;res/tabela de nutrientes.xlsx&quot;, rowNames = FALSE)</span></span>
-<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">loadWorkbook</span>(<span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>)</span>
-<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">&quot;Sheet 1&quot;</span>, <span class="at">x =</span> m_wide_nutri)</span>
-<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabela final ajustada no Excel</span></span>
-<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a>  <span class="at">path  =</span> <span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>,</span>
-<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">&quot;tabela_final&quot;</span>,</span>
-<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">&quot;A1:P6&quot;</span>) <span class="co">#ajustar para o tamanho da tabela final </span></span>
-<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a>nutri_gttable</span>
-<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">gt</span>(nutri_gttable)</span>
-<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">sub_missing</span>(nutri_gttable,</span>
-<span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a>                      <span class="at">columns =</span> <span class="fu">everything</span>(), <span class="at">missing_text =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a>nutri_gttable</span>
-<span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(nutri_gttable, <span class="st">&quot;res/gt-nutri_gttable_xlsx.html&quot;</span>)</span>
-<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(nutri_gttable, <span class="st">&quot;res/gt-nutri_gttable_xlsx.rds&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="co">#RIQUEZA RAREFACIONADA----</span></span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Rarefação baseada na matriz de contagem</span></span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> m_cont <span class="co">#raremax precisa de numeros inteiros</span></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">specnumber</span>(data) <span class="co">#observed number of species</span></span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a>S</span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a><span class="co">#raremax &lt;- min(rowSums(data))</span></span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a>raremax <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">rowSums</span>(data)))</span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="co">#raremax &lt;- 1000</span></span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a>raremax</span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a>Srare <span class="ot">&lt;-</span> <span class="fu">rarefy</span>(data, raremax)</span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a>Srare</span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(S, Srare, <span class="at">xlab =</span> <span class="st">&quot;Observed No. of Species&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Rarefied No. of Species&quot;</span>)</span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a><span class="co">#png(&quot;res/fig-rarecurve.png&quot;)</span></span>
+<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(data, <span class="at">step =</span> <span class="dv">20</span>,</span>
+<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample =</span> raremax, <span class="co">#linhas de rarefação</span></span>
+<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">0.6</span>,</span>
+<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">&quot;Sample size&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Taxa&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>()) <span class="co">#c(0,5000)</span></span>
+<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="co">#dev.off()</span></span>
+<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a><span class="do">##TABELA DA COMUNIDADE----</span></span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a>m_trab <span class="ot">&lt;-</span> m_dens <span class="sc">%&gt;%</span></span>
+<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">gsub</span>(<span class="st">&quot;_&quot;</span>, <span class="st">&quot;.&quot;</span>, .))</span>
+<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> m_trab <span class="sc">%&gt;%</span></span>
+<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Area =</span> t_grps<span class="sc">$</span>area,</span>
+<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a>           <span class="at">Habitat =</span> t_grps<span class="sc">$</span>ambiente,</span>
+<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a>           <span class="at">Ponto =</span> t_grps<span class="sc">$</span>UA) <span class="sc">%&gt;%</span></span>
+<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
+<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)),</span>
+<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Area, Habitat, Ponto),</span>
+<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;.value&quot;</span>),</span>
+<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">&quot;_&quot;</span></span>
+<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a>m</span>
+<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(m)</span>
+<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a>m_wide <span class="ot">&lt;-</span> m <span class="sc">%&gt;%</span></span>
+<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stat_string =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a>    Variable <span class="sc">==</span> <span class="st">&quot;nome_da_variavel&quot;</span>,  <span class="co">#escolhe uma variável pra ter 3 casas decimais</span></span>
+<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(mean, <span class="dv">3</span>), <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(sd, <span class="dv">3</span>), <span class="st">&quot;)&quot;</span>),</span>
+<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(mean, <span class="dv">1</span>), <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(sd, <span class="dv">1</span>), <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">&quot;Location&quot;</span>, Area, Habitat, Ponto, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Variable, Location, stat_string) <span class="sc">%&gt;%</span> <span class="co">#dplyr dá conflito com MASS</span></span>
+<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Location, <span class="at">values_from =</span> stat_string)</span>
+<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>m_wide</span>
+<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a>m_wide <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(m_wide)</span>
+<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a>m_wide</span>
+<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvado m_wide</span></span>
+<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(m_wide, <span class="st">&quot;m_wide_spp.txt&quot;</span>,</span>
+<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="co">#&quot;\t&quot;,</span></span>
+<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a>            <span class="at">append =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a>m_wide_spp <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;m_wide_spp.txt&quot;</span>,</span>
+<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a>                  <span class="at">row.names =</span> <span class="dv">1</span>,</span>
+<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a>                  <span class="at">na.strings =</span> <span class="cn">NA</span>)</span>
+<span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a><span class="co"># Exportando dados para Excel</span></span>
+<span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="co">#write.xlsx(m_wide_spp, file = &quot;tabela da comunidade.xlsx&quot;, rowNames = FALSE)</span></span>
+<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">loadWorkbook</span>(<span class="st">&quot;tabela da comunidade.xlsx&quot;</span>)</span>
+<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">&quot;Sheet 1&quot;</span>, <span class="at">x =</span> m_wide_spp)</span>
+<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">&quot;tabela da comunidade.xlsx&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-390"><a href="#cb10-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a><span class="co"># Exportando dados para Excel</span></span>
+<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a><span class="co">#write.xlsx(m_wide, file = &quot;res/tabela de nutrientes.xlsx&quot;, rowNames = FALSE)</span></span>
+<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">loadWorkbook</span>(<span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>)</span>
+<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">&quot;Sheet 1&quot;</span>, <span class="at">x =</span> m_wide_nutri)</span>
+<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-397"><a href="#cb10-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-398"><a href="#cb10-398" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabela final ajustada no Excel</span></span>
+<span id="cb10-399"><a href="#cb10-399" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-400"><a href="#cb10-400" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb10-401"><a href="#cb10-401" aria-hidden="true" tabindex="-1"></a>  <span class="at">path  =</span> <span class="st">&quot;res/tabela de nutrientes.xlsx&quot;</span>,</span>
+<span id="cb10-402"><a href="#cb10-402" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">&quot;tabela_final&quot;</span>,</span>
+<span id="cb10-403"><a href="#cb10-403" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">&quot;A1:P6&quot;</span>) <span class="co">#ajustar para o tamanho da tabela final </span></span>
+<span id="cb10-404"><a href="#cb10-404" aria-hidden="true" tabindex="-1"></a>nutri_gttable</span>
+<span id="cb10-405"><a href="#cb10-405" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb10-406"><a href="#cb10-406" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">gt</span>(nutri_gttable)</span>
+<span id="cb10-407"><a href="#cb10-407" aria-hidden="true" tabindex="-1"></a>nutri_gttable <span class="ot">&lt;-</span> <span class="fu">sub_missing</span>(nutri_gttable,</span>
+<span id="cb10-408"><a href="#cb10-408" aria-hidden="true" tabindex="-1"></a>                      <span class="at">columns =</span> <span class="fu">everything</span>(), <span class="at">missing_text =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-409"><a href="#cb10-409" aria-hidden="true" tabindex="-1"></a>nutri_gttable</span>
+<span id="cb10-410"><a href="#cb10-410" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(nutri_gttable, <span class="st">&quot;res/gt-nutri_gttable_xlsx.html&quot;</span>)</span>
+<span id="cb10-411"><a href="#cb10-411" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(nutri_gttable, <span class="st">&quot;res/gt-nutri_gttable_xlsx.rds&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -7867,20 +7892,20 @@ Table 1: Environment data GT table.
 </figcaption>
 <div aria-describedby="tbl-hab_gttable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="xmdqohqpxj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xmdqohqpxj table {
+<div id="entjdnboof" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#entjdnboof table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#xmdqohqpxj thead, #xmdqohqpxj tbody, #xmdqohqpxj tfoot, #xmdqohqpxj tr, #xmdqohqpxj td, #xmdqohqpxj th {
+#entjdnboof thead, #entjdnboof tbody, #entjdnboof tfoot, #entjdnboof tr, #entjdnboof td, #entjdnboof th {
 border-style: none;
 }
-#xmdqohqpxj p {
+#entjdnboof p {
 margin: 0;
 padding: 0;
 }
-#xmdqohqpxj .gt_table {
+#entjdnboof .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -7905,11 +7930,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_caption {
+#entjdnboof .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#xmdqohqpxj .gt_title {
+#entjdnboof .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -7920,7 +7945,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#xmdqohqpxj .gt_subtitle {
+#entjdnboof .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -7931,7 +7956,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#xmdqohqpxj .gt_heading {
+#entjdnboof .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -7942,12 +7967,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_bottom_border {
+#entjdnboof .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_col_headings {
+#entjdnboof .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -7961,7 +7986,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_col_heading {
+#entjdnboof .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -7980,7 +8005,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#xmdqohqpxj .gt_column_spanner_outer {
+#entjdnboof .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -7991,13 +8016,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#xmdqohqpxj .gt_column_spanner_outer:first-child {
+#entjdnboof .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#xmdqohqpxj .gt_column_spanner_outer:last-child {
+#entjdnboof .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#xmdqohqpxj .gt_column_spanner {
+#entjdnboof .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -8008,10 +8033,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#xmdqohqpxj .gt_spanner_row {
+#entjdnboof .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#xmdqohqpxj .gt_group_heading {
+#entjdnboof .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8036,7 +8061,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#xmdqohqpxj .gt_empty_group_heading {
+#entjdnboof .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -8050,13 +8075,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#xmdqohqpxj .gt_from_md > :first-child {
+#entjdnboof .gt_from_md > :first-child {
 margin-top: 0;
 }
-#xmdqohqpxj .gt_from_md > :last-child {
+#entjdnboof .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#xmdqohqpxj .gt_row {
+#entjdnboof .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8074,7 +8099,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#xmdqohqpxj .gt_stub {
+#entjdnboof .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8086,7 +8111,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#xmdqohqpxj .gt_stub_row_group {
+#entjdnboof .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8099,13 +8124,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#xmdqohqpxj .gt_row_group_first td {
+#entjdnboof .gt_row_group_first td {
 border-top-width: 2px;
 }
-#xmdqohqpxj .gt_row_group_first th {
+#entjdnboof .gt_row_group_first th {
 border-top-width: 2px;
 }
-#xmdqohqpxj .gt_summary_row {
+#entjdnboof .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -8114,14 +8139,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#xmdqohqpxj .gt_first_summary_row {
+#entjdnboof .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_first_summary_row.thick {
+#entjdnboof .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#xmdqohqpxj .gt_last_summary_row {
+#entjdnboof .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8130,7 +8155,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_grand_summary_row {
+#entjdnboof .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -8139,7 +8164,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#xmdqohqpxj .gt_first_grand_summary_row {
+#entjdnboof .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8148,7 +8173,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_last_grand_summary_row_top {
+#entjdnboof .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8157,10 +8182,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_striped {
+#entjdnboof .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#xmdqohqpxj .gt_table_body {
+#entjdnboof .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -8168,7 +8193,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_footnotes {
+#entjdnboof .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -8181,7 +8206,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_footnote {
+#entjdnboof .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -8189,7 +8214,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#xmdqohqpxj .gt_sourcenotes {
+#entjdnboof .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -8202,64 +8227,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#xmdqohqpxj .gt_sourcenote {
+#entjdnboof .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#xmdqohqpxj .gt_left {
+#entjdnboof .gt_left {
 text-align: left;
 }
-#xmdqohqpxj .gt_center {
+#entjdnboof .gt_center {
 text-align: center;
 }
-#xmdqohqpxj .gt_right {
+#entjdnboof .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#xmdqohqpxj .gt_font_normal {
+#entjdnboof .gt_font_normal {
 font-weight: normal;
 }
-#xmdqohqpxj .gt_font_bold {
+#entjdnboof .gt_font_bold {
 font-weight: bold;
 }
-#xmdqohqpxj .gt_font_italic {
+#entjdnboof .gt_font_italic {
 font-style: italic;
 }
-#xmdqohqpxj .gt_super {
+#entjdnboof .gt_super {
 font-size: 65%;
 }
-#xmdqohqpxj .gt_footnote_marks {
+#entjdnboof .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#xmdqohqpxj .gt_asterisk {
+#entjdnboof .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#xmdqohqpxj .gt_indent_1 {
+#entjdnboof .gt_indent_1 {
 text-indent: 5px;
 }
-#xmdqohqpxj .gt_indent_2 {
+#entjdnboof .gt_indent_2 {
 text-indent: 10px;
 }
-#xmdqohqpxj .gt_indent_3 {
+#entjdnboof .gt_indent_3 {
 text-indent: 15px;
 }
-#xmdqohqpxj .gt_indent_4 {
+#entjdnboof .gt_indent_4 {
 text-indent: 20px;
 }
-#xmdqohqpxj .gt_indent_5 {
+#entjdnboof .gt_indent_5 {
 text-indent: 25px;
 }
-#xmdqohqpxj .katex-display {
+#entjdnboof .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#xmdqohqpxj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#entjdnboof div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -8668,20 +8693,20 @@ Table 2: Nutrient concentrations at the sampling sites.
 </figcaption>
 <div aria-describedby="tbl-nutri_gttable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zgtpeyzmtj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zgtpeyzmtj table {
+<div id="ndudotfhre" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ndudotfhre table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#zgtpeyzmtj thead, #zgtpeyzmtj tbody, #zgtpeyzmtj tfoot, #zgtpeyzmtj tr, #zgtpeyzmtj td, #zgtpeyzmtj th {
+#ndudotfhre thead, #ndudotfhre tbody, #ndudotfhre tfoot, #ndudotfhre tr, #ndudotfhre td, #ndudotfhre th {
 border-style: none;
 }
-#zgtpeyzmtj p {
+#ndudotfhre p {
 margin: 0;
 padding: 0;
 }
-#zgtpeyzmtj .gt_table {
+#ndudotfhre .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -8706,11 +8731,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_caption {
+#ndudotfhre .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#zgtpeyzmtj .gt_title {
+#ndudotfhre .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -8721,7 +8746,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#zgtpeyzmtj .gt_subtitle {
+#ndudotfhre .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -8732,7 +8757,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#zgtpeyzmtj .gt_heading {
+#ndudotfhre .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -8743,12 +8768,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_bottom_border {
+#ndudotfhre .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_col_headings {
+#ndudotfhre .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -8762,7 +8787,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_col_heading {
+#ndudotfhre .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8781,7 +8806,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#zgtpeyzmtj .gt_column_spanner_outer {
+#ndudotfhre .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8792,13 +8817,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#zgtpeyzmtj .gt_column_spanner_outer:first-child {
+#ndudotfhre .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#zgtpeyzmtj .gt_column_spanner_outer:last-child {
+#ndudotfhre .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#zgtpeyzmtj .gt_column_spanner {
+#ndudotfhre .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -8809,10 +8834,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#zgtpeyzmtj .gt_spanner_row {
+#ndudotfhre .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#zgtpeyzmtj .gt_group_heading {
+#ndudotfhre .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8837,7 +8862,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#zgtpeyzmtj .gt_empty_group_heading {
+#ndudotfhre .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -8851,13 +8876,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#zgtpeyzmtj .gt_from_md > :first-child {
+#ndudotfhre .gt_from_md > :first-child {
 margin-top: 0;
 }
-#zgtpeyzmtj .gt_from_md > :last-child {
+#ndudotfhre .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#zgtpeyzmtj .gt_row {
+#ndudotfhre .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8875,7 +8900,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#zgtpeyzmtj .gt_stub {
+#ndudotfhre .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8887,7 +8912,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zgtpeyzmtj .gt_stub_row_group {
+#ndudotfhre .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -8900,13 +8925,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#zgtpeyzmtj .gt_row_group_first td {
+#ndudotfhre .gt_row_group_first td {
 border-top-width: 2px;
 }
-#zgtpeyzmtj .gt_row_group_first th {
+#ndudotfhre .gt_row_group_first th {
 border-top-width: 2px;
 }
-#zgtpeyzmtj .gt_summary_row {
+#ndudotfhre .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -8915,14 +8940,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zgtpeyzmtj .gt_first_summary_row {
+#ndudotfhre .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_first_summary_row.thick {
+#ndudotfhre .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#zgtpeyzmtj .gt_last_summary_row {
+#ndudotfhre .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8931,7 +8956,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_grand_summary_row {
+#ndudotfhre .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -8940,7 +8965,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zgtpeyzmtj .gt_first_grand_summary_row {
+#ndudotfhre .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8949,7 +8974,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_last_grand_summary_row_top {
+#ndudotfhre .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -8958,10 +8983,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_striped {
+#ndudotfhre .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#zgtpeyzmtj .gt_table_body {
+#ndudotfhre .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -8969,7 +8994,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_footnotes {
+#ndudotfhre .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -8982,7 +9007,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_footnote {
+#ndudotfhre .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -8990,7 +9015,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zgtpeyzmtj .gt_sourcenotes {
+#ndudotfhre .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -9003,64 +9028,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zgtpeyzmtj .gt_sourcenote {
+#ndudotfhre .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zgtpeyzmtj .gt_left {
+#ndudotfhre .gt_left {
 text-align: left;
 }
-#zgtpeyzmtj .gt_center {
+#ndudotfhre .gt_center {
 text-align: center;
 }
-#zgtpeyzmtj .gt_right {
+#ndudotfhre .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#zgtpeyzmtj .gt_font_normal {
+#ndudotfhre .gt_font_normal {
 font-weight: normal;
 }
-#zgtpeyzmtj .gt_font_bold {
+#ndudotfhre .gt_font_bold {
 font-weight: bold;
 }
-#zgtpeyzmtj .gt_font_italic {
+#ndudotfhre .gt_font_italic {
 font-style: italic;
 }
-#zgtpeyzmtj .gt_super {
+#ndudotfhre .gt_super {
 font-size: 65%;
 }
-#zgtpeyzmtj .gt_footnote_marks {
+#ndudotfhre .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#zgtpeyzmtj .gt_asterisk {
+#ndudotfhre .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#zgtpeyzmtj .gt_indent_1 {
+#ndudotfhre .gt_indent_1 {
 text-indent: 5px;
 }
-#zgtpeyzmtj .gt_indent_2 {
+#ndudotfhre .gt_indent_2 {
 text-indent: 10px;
 }
-#zgtpeyzmtj .gt_indent_3 {
+#ndudotfhre .gt_indent_3 {
 text-indent: 15px;
 }
-#zgtpeyzmtj .gt_indent_4 {
+#ndudotfhre .gt_indent_4 {
 text-indent: 20px;
 }
-#zgtpeyzmtj .gt_indent_5 {
+#ndudotfhre .gt_indent_5 {
 text-indent: 25px;
 }
-#zgtpeyzmtj .katex-display {
+#ndudotfhre .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#zgtpeyzmtj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ndudotfhre div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
