@@ -1717,6 +1717,8 @@ gtsave(gt, "res/NormalidadeSPP.html")
 
 #DIVERSIDADE EM DENSIDADE MATRIZ NÃO-TRANSPOSTA----
 
+m_trab <- (m_dens) #HILL
+
 # Números de Hill
 Hill <- renyi(m_trab,
               scales = c(0:5),
@@ -1739,7 +1741,7 @@ grafico1 <- Hill %>%
   theme_bw() +
   theme(text = element_text(size = 10)) #ajustar a fonte caso nao caiba no output html
 grafico1
-ggsave(grafico1, dpi = 300, filename = "fig-hill.png")
+ggsave(grafico1, dpi = 300, filename = "res/fig-hill.png")
 
 # Gráfico de abunância
 abund <- colSums(m_trab)
@@ -1763,7 +1765,7 @@ grafico2 <- ggplot(df, aes(fct_reorder(sp, -abun),
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12))
 grafico2
-ggsave(grafico2, dpi = 300, filename = "fig-abun.png")
+ggsave(grafico2, dpi = 300, filename = "res/fig-abun.png")
 
 # Curvas de rarefação
 m_trab_r <- mutate(as.data.frame(m_trab), across(everything(), ceiling)) #arredonda a matriz original para números inteiros
@@ -1829,6 +1831,29 @@ gInd <- ggplot(plot_data, aes(x = Individuos, y = Riqueza)) +
   theme_classic() +
   theme(text = element_text(size = 16))
 gInd
+
+#RIQUEZA RAREFACIONADA----
+
+# Rarefação baseada na matriz de contagem
+library(vegan)
+data <- m_cont #raremax precisa de numeros inteiros
+S <- specnumber(data) #observed number of species
+S
+#raremax <- min(rowSums(data))
+raremax <- round(mean(rowSums(data)))
+#raremax <- 1000
+raremax
+Srare <- rarefy(data, raremax)
+Srare
+plot(S, Srare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species")
+abline(0, 1)
+
+#png("res/fig-rarecurve.png")
+rarecurve(data, step = 20,
+          sample = raremax, #linhas de rarefação
+          col = "blue", cex = 0.6,
+          xlab = "Sample size", ylab = "Taxa", xlim = c()) #c(0,5000)
+#dev.off()
 
 ##TABELA DA COMUNIDADE----
 
