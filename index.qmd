@@ -145,9 +145,9 @@ LER: [@melo2011; @carvalho2011]
 
 ## Área de estudo e delineamento amostral
 
-<!--# Material and methods -->
+<!--# # Material and methods -->
 
-<!--# Study area and sampling design -->
+<!--# ## Study area and sampling design -->
 
 A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 [@brasil1990; @leal2025; @mma2003]. São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C [@mma2003].
 
@@ -167,7 +167,7 @@ As coletas ocorreram entre novembro de 2023 a fevereiro de 2024 durante o perío
 
 ## Coleta de dados ambientais
 
-<!--# Environmental data collection -->
+<!--# ## Environmental data collection -->
 
 Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindooxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat,** por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
 
@@ -185,7 +185,7 @@ Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes 
 
 ## Amostragem do zooplâncton
 
-<!--# Zooplankton sampling -->
+<!--# ## Zooplankton sampling -->
 
 Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO~2~ (adição de água com gás). Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004].
 
@@ -199,7 +199,7 @@ Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e 
 
 ## Análises estatísticas
 
-<!--# Statistical analyses -->
+<!--# ## Statistical analyses -->
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
@@ -225,16 +225,17 @@ Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e
 
 <!--# ####AMBIENTAIS#### Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998]. -->
 
-```{r env-rebio23part_org}
+```{r ZOOREBIO23_PART-ORG}
 #| eval: false
 #| message: false
 #| warning: false
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Importing and organizing environment data"
+#| code-summary: "Code: Importing and organizing data"
 
-#REBIO23-part - ORGANIZANDO DADOS----
+#ZOOREBIO23_PART - ORGANIZANDO DADOS AMBIENTAIS----
+#####....----
 
 dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
@@ -328,9 +329,115 @@ m_hab <- read.csv("res/m_hab_part.csv",
                   row.names = 1,
                   header = TRUE,
                   na.strings = NA)
+
+#ZOOREBIO23_PART - ORGANIZANDO DADOS DA COMUNIDADE----
+#####....----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+library(openxlsx)
+
+##CARREGANDO MATRIZES BRUTAS----
+
+densidade <- read.xlsx("dados/rebio23-zoopl.xlsx",
+                   rowNames = T,
+                   colNames = T,
+                   sheet = "densidade_hab_indL")
+densidade[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
+
+##COLUNAS ZERADAS DE DENSIDADE----
+sum <- colSums(densidade)
+sum
+zero_sum <- names(which(colSums(densidade) == 0))
+zero_sum #nomes das espécies zeradas
+m_part_cols <- densidade[(colSums(densidade) != 0)] #em != a exclamação inverte o sentido
+zero_sum2 <- names(which(colSums(m_part_cols) == 0))
+zero_sum2 #nomes das espécies zeradas
+sum<-colSums(m_part_cols)
+sum
+
+###LINHAS ZERADAS DE DENSIDADE----
+m_part2 <- as.data.frame(t(m_part_cols))
+sum <- colSums(m_part2)
+sum
+zero_sum <- names(which(colSums(m_part2) == 0))
+zero_sum #nomes das espécies zeradas
+m_part_rows <- m_part2[(colSums(m_part2) != 0)] #em != a exclamação inverte o sentido
+zero_sum2 <- names(which(colSums(m_part_rows) == 0))
+zero_sum2 #nomes das espécies zeradas
+sum<-colSums(m_part_rows)
+sum
+m_dens <- as.data.frame((t(m_part_rows)))
+
+##SALVANDO MATRIZES FINAIS REMOVIDAS AS LINHAS/COLUNAS ZERADAS----
+
+write.table(m_dens, "res/m_dens.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_dens <- read.csv(res/"m_dens.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+#BENTOS2006 - MATRIZ DE CONTAGEM----
+#####....----
+
+library(openxlsx)
+contagem <- read.xlsx("dados/rebio23-zoopl.xlsx",
+                      rowNames = T,
+                      colNames = T,
+                      sheet = "rebio23_80ml",
+                      startRow = 2)
+contagem[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
+
+###COLUNAS ZERADAS DE CONTAGEM----
+sum <- colSums(contagem)
+sum
+zero_sum <- names(which(colSums(contagem) == 0))
+zero_sum #nomes das espécies zeradas
+m_part_cols <- contagem[(colSums(contagem) != 0)] #em != a exclamação inverte o sentido
+zero_sum2 <- names(which(colSums(m_part_cols) == 0))
+zero_sum2 #nomes das espécies zeradas
+sum<-colSums(m_part_cols)
+sum
+
+###LINHAS ZERADAS DE CONTAGEM----
+m_part2 <- as.data.frame(t(m_part_cols))
+sum <- colSums(m_part2)
+sum
+zero_sum <- names(which(colSums(m_part2) == 0))
+zero_sum #nomes das espécies zeradas
+m_part_rows <- m_part2[(colSums(m_part2) != 0)] #em != a exclamação inverte o sentido
+zero_sum2 <- names(which(colSums(m_part_rows) == 0))
+zero_sum2 #nomes das espécies zeradas
+sum<-colSums(m_part_rows)
+sum
+m_cont <- (t(m_part_rows))
+m_cont
+sum(m_cont)
+ncol(m_cont)
+
+##SALVANDO MATRIZ FINAL DE CONTAGEM----
+
+write.table(m_cont, "res/m_cont.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_cont <- read.csv("res/m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_cont
 ```
 
-```{r env-rebio23part_corr}
+```{r ENV-REBIO23_PART-CORR}
 #| eval: false
 #| message: false
 #| warning: false
@@ -415,7 +522,7 @@ m_hab_part <- read.csv("res/m_hab_part.csv",
 
 ```
 
-```{r env-rebio23part_corr_test}
+```{r ENV-REBIO23_PART-CORR_TEST}
 #| eval: false
 #| message: false
 #| warning: false
@@ -456,7 +563,7 @@ print(cor_star, na.print = "")
 
 <!--# These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons.-->
 
-```{r env-PCA_org}
+```{r ENV-PCA-ORG}
 #| eval: false
 #| message: false
 #| warning: false
@@ -535,9 +642,9 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
 
 ## Variáveis ambientais
 
-<!--# Results -->
+<!--# # Results -->
 
-<!--# Environmental variables and nutrient concentration-->
+<!--# ## Environmental variables and nutrient concentration-->
 
 É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa).
 
@@ -553,7 +660,7 @@ De modo geral, os resultados indicaram que ambos os períodos contribuíram de f
 
 <!--# **Environmental variables and nutrient concentration.** Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).-->
 
-```{r gttable_hab_excel}
+```{r GTTABLE_HAB_EXCL}
 #| eval: false
 #| message: false
 #| warning: false
@@ -670,7 +777,7 @@ gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
 saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
 ```
 
-```{r hab_var_summ}
+```{r ENV-VAR_summ}
 #| eval: false
 #| message: false
 #| warning: false
@@ -709,11 +816,9 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-<!--# TERMINAR PCA -->
+<!--# Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 37% of the total variance, with the first axis accounting for 21.1%. PCA confirmed the expected quality of sites, separating site types (@fig-hab_PCA_ref-site), where site types I and II where associated with higher elevation, the presence of algae and lieaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.-->
 
-<!--# ####FAZER UMA PERMANOVA?#### Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 37% of the total variance, with the first axis accounting for 21.1%. PCA confirmed the expected quality of sites, separating site types (@fig-hab_PCA_ref-site), where site types I and II where associated with higher elevation, the presence of algae and lieaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.-->
-
-```{r env-PCA_fviz}
+```{r ENV-PCA_fviz}
 #| eval: false
 #| warning: false
 #| message: false
@@ -977,7 +1082,7 @@ ggplot() +
 #dev.off()
 ```
 
-```{r env-PCA_PERMANOVA}
+```{r ENV-PCA_PERMANOVA}
 #| eval: false
 #| warning: false
 #| message: false
@@ -1274,7 +1379,7 @@ adonis2(m_trab ~ Periodo*Rio, data = t_grps,
 
 <!--# Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, overall no clear trend can be observed  when comparing both streams. Nitrite and nitrate, on the other hand, show greater concentrations at the Caiana stream, the latter varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 13.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).-->
 
-```{r gttable_nutri_excel}
+```{r GTTABLE_NUTRI_EXCLl}
 #| eval: false
 #| warning: false
 #| message: false
@@ -1378,7 +1483,9 @@ gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
 saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
 
-## Community structure
+## Estrutura da comunidade
+
+<!--# ## Community structure-->
 
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
 
@@ -1400,72 +1507,98 @@ Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chy
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
 
-```{r estrutura - seco}
+
+```{r COMM-STR}
 #| eval: false
-#| message: false
 #| warning: false
+#| message: false
 #| results: false
-#| echo: true
-#| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Estrutura - Seco"
+#| code-summary: "Code: Community structure data table" 
 
-#REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO SECO----
+#ZOOREBIO_partBENTOS2006 - ESTR. DA COMUNIDADE----
 #####....----
 
-#Transpondo a matriz zoo_seco
-zoo_seco
-zoo_seco <- t(zoo_seco)
-zoo_seco <- as.data.frame(zoo_seco)
-zoo_seco[] <- lapply(zoo_seco, function(x) as.numeric(as.character(x)))
-str(zoo_seco)
-#View(zoo_seco)
-zoo_seco
-print(zoo_seco[1:5,1:5])
-zoo_seco[1:5,1:5]
-str(zoo_seco)
-mode(zoo_seco)
-class(zoo_seco)
+##ORGANIZANDO DADOS----
 
-#Informações básicas
-range(zoo_seco) #menor e maior valores
-length(zoo_seco) #no. de colunas
-ncol(zoo_seco) #no. de N colunas
-nrow(zoo_seco) #no. de M linhas
-sum(lengths(zoo_seco)) #soma os nos. de colunas
-length(as.matrix(zoo_seco)) #tamanho da matriz m x n
-sum(zoo_seco == 0) #número de observações igual a zero
-sum(zoo_seco > 0) #número de observações maiores que zero
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+t_grps <- read.csv("t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens <- read.csv("m_dens.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_hab_part <- read.csv("m_hab_part.csv",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+m_cont <- read.csv("m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+library(tibble)
+library(tidyverse)
+library(forcats)
+library(openxlsx)
+library(Rcpp)
+
+m_dens
+str(m_dens)
+m_trab <- m_dens
+
+m_trab <- (m_trab) #SITES
+m_trab <- t(m_trab) #SPP
+
+##TAMANHO DA MATRIZ----
+
+range(m_trab) #menor e maior valores
+length(m_trab) #no. de colunas
+ncol(m_trab) #no. de N colunas
+nrow(m_trab) #no. de M linhas
+sum(lengths(m_trab)) #soma os nos. de colunas
+length(as.matrix(m_trab)) #tamanho da matriz m x n
+sum(m_trab == 0) #número de observações igual a zero
+sum(m_trab > 0) #número de observações maiores que zero
 #calculando a proporção de zeros na matriz
-zeros <- (sum(zoo_seco == 0)/length(as.matrix(zoo_seco)))*100
+zeros <- (sum(m_trab == 0)/length(as.matrix(m_trab)))*100
 zeros
 
-#Descritores da diversidade
-#?apply
-Sum <- rowSums(zoo_seco)
+##ESTRUTURA DA COMUNIDADE----
+
+Sum <- rowSums(m_trab)
 #ou
-Sum <- apply(zoo_seco,1,sum)
+Sum <- apply(m_trab,1,sum)
 Sum
-## Abundância relativa (%)
+# Abundância relativa (%)
 RA <- (Sum / sum(Sum)) * 100 # percentage
-## Media
-Mean <- rowMeans(zoo_seco)
+# Media
+Mean <- rowMeans(m_trab)
 Mean
-## Ou
-Mean <- apply(zoo_seco,1,mean)
+# Ou
+Mean <- apply(m_trab,1,mean)
 Mean
-## Desvio padrão
-DP <- apply(zoo_seco,1,sd)
+# Desvio padrão
+DP <- apply(m_trab,1,sd)
 DP
-## Máximo
-Max <- apply(zoo_seco,1,max)
-Max 
-## Mínimo
-Min <- apply(zoo_seco,1,min)
+# Máximo
+Max <- apply(m_trab,1,max)
+Max
+# Mínimo
+Min <- apply(m_trab,1,min)
 Min
-## Mínimo não-zero
-MinZ <- apply(zoo_seco, 1, function(row) {
+# Mínimo não-zero
+MinZ <- apply(m_trab, 1, function(row) {
   non_zero_values <- row[row > 0]  # Filter out zero values
   if (length(non_zero_values) == 0) {
     return(0)  # If all values are zero, return 0
@@ -1475,207 +1608,39 @@ MinZ <- apply(zoo_seco, 1, function(row) {
 })
 MinZ
 
-#Riqueza
-m_pa <- zoo_seco
+m_pa <- m_trab
 m_pa[m_pa != 0] <- 1
 rowSums(m_pa)
 library(vegan)
-bin <- decostand(zoo_seco,"pa")
+bin <- decostand(m_trab,"pa")
 bin[1:10, 1:10]
 S <- apply(bin,1,sum)
 S
 #OU
-Riqueza <- specnumber(zoo_seco)
+Riqueza <- specnumber(m_trab)
 Riqueza
-Riqueza_total <- specnumber(colSums(zoo_seco))
+Riqueza_total <- specnumber(colSums(m_trab))
 Riqueza_total
-#OU
-FO <- rowSums(zoo_seco > 0) / ncol(zoo_seco) * 100
+
+FO <- rowSums(m_trab > 0) / ncol(m_trab) * 100
 FO
 
-#Índices de Diversidade
-#Shannon
-H <- diversity(zoo_seco, index = "shannon")
+H <- diversity(m_trab, index = "shannon")
 H
-
-#Simpson
-D <- diversity(zoo_seco, "simpson")
+D <- diversity(m_trab, "simpson")
 D
 D[is.na(D)] <- 0 #substitui NA ou NaN por 0
 D
-
-#Equitabilidade de Pielou
-E <- H/log(specnumber(zoo_seco))
+E <- H/log(specnumber(m_trab))
 E
 E[is.na(E)] <- 0 #substitui NA ou NaN por 0
 E
 
-#Assimetria e curtose
-library(moments)
-Assimetria <- apply(zoo_seco,1,skewness)
-Assimetria
-Curtose <- apply(zoo_seco,1,kurtosis)
-Curtose
-
-#Tabela de Descritores
+###DESCRITORES----
 Descritores1 <- cbind(Sum, RA, Mean, DP, Max, Min, MinZ, FO, S, E, H, D)
 Descritores1 <- as.data.frame(Descritores1)
 Descritores1
-#Descritores1 <- Descritores1 %>% rownames_to_column(var="Espécies") #da nome a primeira coluna
-SomaTotalD <- apply(Descritores1,2,sum)
-SomaTotalD
-MediaTotalD <- apply(Descritores1,2,mean)
-MediaTotalD
-DPTotalD <- apply(Descritores1,2,sd)
-DPTotalD
-Descritores2 <- cbind(SomaTotalD, MediaTotalD, DPTotalD)
-Descritores2 <- as.data.frame(Descritores2)
-Descritores2 <- t(Descritores2)
-Descritores2
-DescritoresFinal <- rbind(Descritores1, Descritores2)
-DescritoresFinal
-DescritoresFinal <- round (DescritoresFinal, 2)
-DescritoresFinal
-#Fazendo uma tabela
-library(gt)
-df_seco <- DescritoresFinal
-ncol(df_seco); nrow(df_seco) #no. de N colunas x M linhas
-df_seco <- cbind("Espécies" = rownames(df_seco), df_seco)
-gt(df_seco, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
-
-#ARREDONDAR CASA DÉCIMAL
-ncol(df_seco)
-nrow(df_seco)
-# Adicionar a coluna 'Pontos' com os nomes das linhas
-#df <- cbind(SPP = rownames(df), df)
-# Arredondar os valores para duas casas decimais
-df_seco_arredondado <- df_seco %>%
-  mutate(across(where(is.numeric), ~ round(., 1)))
-# Exibir a tabela arredondada com gt
-gt(df_seco_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
-
-```
-
-```{r estrutura - chuvoso}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Estrutura - Chuvoso"
-
-#REBIO23 - ESTRUTURA DA COMUNIDADE - PERÍODO CHUVOSO----
-#####....----
-
-#Transpondo a matriz zoo_chuvoso
-zoo_chuvoso <- t(zoo_chuvoso)
-zoo_chuvoso <- as.data.frame(zoo_chuvoso)
-zoo_chuvoso[] <- lapply(zoo_chuvoso, function(x) as.numeric(as.character(x)))
-str(zoo_chuvoso)
-#View(zoo_chuvoso)
-zoo_chuvoso
-print(zoo_chuvoso[1:5,1:5])
-zoo_chuvoso[1:5,1:5]
-str(zoo_chuvoso)
-mode(zoo_chuvoso)
-class(zoo_chuvoso)
-
-#Informações básicas
-range(zoo_chuvoso) #menor e maior valores
-length(zoo_chuvoso) #no. de colunas
-ncol(zoo_chuvoso) #no. de N colunas
-nrow(zoo_chuvoso) #no. de M linhas
-sum(lengths(zoo_chuvoso)) #soma os nos. de colunas
-length(as.matrix(zoo_chuvoso)) #tamanho da matriz m x n
-sum(zoo_chuvoso == 0) #número de observações igual a zero
-sum(zoo_chuvoso > 0) #número de observações maiores que zero
-#calculando a proporção de zeros na matriz
-zeros <- (sum(zoo_chuvoso == 0)/length(as.matrix(zoo_chuvoso)))*100
-zeros
-
-####Descritores da diversidade
-#?apply
-Sum <- rowSums(zoo_chuvoso)
-#ou
-Sum <- apply(zoo_chuvoso,1,sum)
-Sum
-## Abundância relativa (%)
-RA <- (Sum / sum(Sum)) * 100 # percentage
-## Media
-Mean <- rowMeans(zoo_chuvoso)
-Mean
-## Ou
-Mean <- apply(zoo_chuvoso,1,mean)
-Mean
-## Desvio padrão
-DP <- apply(zoo_chuvoso,1,sd)
-DP
-## Máximo
-Max <- apply(zoo_chuvoso,1,max)
-Max 
-## Mínimo
-Min <- apply(zoo_chuvoso,1,min)
-Min
-## Mínimo não-zero
-MinZ <- apply(zoo_chuvoso, 1, function(row) {
-  non_zero_values <- row[row > 0]  # Filter out zero values
-  if (length(non_zero_values) == 0) {
-    return(0)  # If all values are zero, return 0
-  } else {
-    return(min(non_zero_values))  # Return the minimum of non-zero values
-  }
-})
-MinZ
-
-#Riqueza
-m_pa <- zoo_chuvoso
-m_pa[m_pa != 0] <- 1
-rowSums(m_pa)
-library(vegan)
-bin <- decostand(zoo_chuvoso,"pa")
-bin[1:10, 1:10]
-S <- apply(bin,1,sum)
-S
-#OU
-Riqueza <- specnumber(zoo_chuvoso)
-Riqueza
-Riqueza_total <- specnumber(colSums(zoo_chuvoso))
-Riqueza_total
-#OU
-FO <- rowSums(zoo_chuvoso > 0) / ncol(zoo_chuvoso) * 100
-FO
-
-#Índices de Diversidade
-#Shannon
-H <- diversity(zoo_chuvoso, index = "shannon")
-H
-
-#Simpson
-D <- diversity(zoo_chuvoso, "simpson")
-D
-D[is.na(D)] <- 0 #substitui NA ou NaN por 0
-D
-
-#Equitabilidade de Pielou
-E <- H/log(specnumber(zoo_chuvoso))
-E
-E[is.na(E)] <- 0 #substitui NA ou NaN por 0
-E
-
-#Assimetria e curtose
-library(moments)
-Assimetria <- apply(zoo_chuvoso,1,skewness)
-Assimetria
-Curtose <- apply(zoo_chuvoso,1,kurtosis)
-Curtose
-
-#Tabela de Descritores
-Descritores1 <- cbind(Sum, RA, Mean, DP, Max, Min, MinZ, FO, S, E, H, D)
-Descritores1 <- as.data.frame(Descritores1)
-Descritores1
+Descritores1 <- Descritores1[order(-Descritores1$Mean), ] #ordena do maio para o menor "-"
 #Descritores1 <- Descritores1 %>% rownames_to_column(var="Espécies") #da nome a primeira coluna
 SomaTotalD <- apply(Descritores1,2,sum)
 SomaTotalD
@@ -1692,26 +1657,254 @@ DescritoresFinal
 DescritoresFinal <- round (DescritoresFinal, 2)
 DescritoresFinal
 
-####Fazendo uma tabela
+# Salvando DescritoresFinal
+write.table(data.frame("Spp"=rownames(DescritoresFinal),
+                       DescritoresFinal),
+            "DescritoresSPP.txt",
+            row.names=FALSE,
+            sep="\t")
+
+###TABELA FINAL DESCRITORES----
 library(gt)
-df_chuvoso <- DescritoresFinal
-ncol(df_chuvoso); nrow(df_chuvoso) #no. de N colunas x M linhas
-df_chuvoso <- cbind("Espécies" = rownames(df_chuvoso), df_chuvoso)
-gt(df_chuvoso, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
+df <- DescritoresFinal
+ncol(df); nrow(df) #no. de N colunas x M linhas
+df <- cbind(Spp = rownames(df), df)
+gt <- gt(df, rowname_col = "Espécie",
+   caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
+gt
+gtsave(gt, "DescritoresSPP.html")
+gtsave(gt, "DescritoresSPP.png")
 
-#ARREDONDAR CASA DÉCIMAL
-ncol(df_chuvoso)
-nrow(df_chuvoso)
-#Adicionar a coluna 'Pontos' com os nomes das linhas
-#df <- cbind(SPP = rownames(df), df)
-#Arredondar os valores para duas casas decimais
-df_chuvoso_arredondado <- df_chuvoso %>%
-  mutate(across(where(is.numeric), ~ round(., 1)))
-#Exibir a tabela arredondada com gt
-gt(df_chuvoso_arredondado, rowname_col = "Espécies", caption = "Descritores da diversidade por espécie (colunas). Sum, soma; mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; S, riqueza (ou frequência de ocorrência na matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
+###NORMALIDADE----
+library(moments)
+Assimetria <- apply(m_trab,1,skewness)
+Assimetria
+Curtose <- apply(m_trab,1,kurtosis)
+Curtose
+Normalidade1 <- cbind(Assimetria, Curtose)
+Normalidade1 <- as.data.frame(Normalidade1)
+Normalidade1
+SomaTotalN <- apply(Normalidade1,2,sum)
+SomaTotalN
+MediaTotalN <- apply(Normalidade1,2,mean)
+MediaTotalN
+DPTotalN <- apply(Normalidade1,2,sd)
+DPTotalN
+Normalidade2<-cbind(SomaTotalN, MediaTotalN, DPTotalN)
+Normalidade2<-as.data.frame(Normalidade2)
+Normalidade2 <- t(Normalidade2) #"t" transpoe a matriz
+Normalidade2
+NormalidadeFinal <- rbind(Normalidade1, Normalidade2)
+NormalidadeFinal
+NormalidadeFinal <- round(NormalidadeFinal, 2)
+NormalidadeFinal
 
+# Salvando NormalidadeFinal
+write.table(data.frame("Spp"=rownames(NormalidadeFinal),
+                       NormalidadeFinal),
+            "NormalidadeSPP.txt",
+            row.names=FALSE,
+            sep="\t")
 
+###TABELA FINAL NORMALIDADE----
+nf <- NormalidadeFinal
+ncol(nf); nrow(nf) #no. de N colunas x M linhas
+nf <- cbind(Spp = rownames(nf), nf)
+gt <- gt(nf, rowname_col = "Site", caption = "Descritores da normalidade por espécie (coluna)")
+gt
+gtsave(gt, "NormalidadeSPP.html")
+
+#DIVERSIDADE EM DENSIDADE MATRIZ NÃO-TRANSPOSTA----
+
+# Números de Hill
+Hill <- renyi(m_trab,
+              scales = c(0:5),
+              hill = TRUE)
+Hill
+library(ggplot2)
+library(tidyr)
+library(tidyverse)
+grafico1 <- Hill %>%
+  rownames_to_column() %>%
+  pivot_longer(-rowname) %>%
+  mutate(name = factor(name, name[1:length(Hill)])) %>%
+  ggplot(aes(x = name, y = value, group = rowname,
+             col = rowname)) +
+  geom_point(size = 2) +
+  geom_line(size = 1) +
+  xlab("Parâmetro de ordem de diversidade (q)") +
+  ylab("Diversidade") +
+  labs(col = "Locais") +
+  theme_bw() +
+  theme(text = element_text(size = 10)) #ajustar a fonte caso nao caiba no output html
+grafico1
+ggsave(grafico1, dpi = 300, filename = "fig-hill.png")
+
+# Gráfico de abunância
+abund <- colSums(m_trab)
+#abund <- m_trab[1, ] #escolhe a primeira linha para a distribuição de abundância
+df <- data.frame(sp = colnames(m_trab),
+                 abun = abund)
+grafico2 <- ggplot(df, aes(fct_reorder(sp, -abun),
+                           abun, group = 1)) +
+  geom_col() +
+  geom_line(col = "red", linetype = "dashed") +
+  geom_point(col = "red") +
+  xlab("Espécies") +
+  ylab("Abundância") +
+  theme_bw() +
+  theme(axis.text.x = element_text(
+    angle = 45,
+    hjust = 1,
+    face = "italic",
+    size = 10),
+    axis.text.y = element_text(size = 10),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12))
+grafico2
+ggsave(grafico2, dpi = 300, filename = "fig-abun.png")
+
+# Curvas de rarefação
+m_trab_r <- mutate(as.data.frame(m_trab), across(everything(), ceiling)) #arredonda a matriz original para números inteiros
+colSums(t(m_trab_r))
+colnames(t(m_trab_r))
+#rarefa <- t(m_trab_r[c("S-R-CT2","S-R-CP2","S-A-TA2","B-A-MU2"),]) #curva de rarefação para os sítios especificados
+class(m_trab)
+
+# Curva de rarefação para todos os sítios
+rarefa <- t(m_trab_r)
+## Curva de rarefação para as 8 UA's com maior soma
+#m_trab_r <- as.data.frame(t(m_trab_r)) #transpõe a matriz
+#col_sums <- colSums(m_trab_r)
+#largest_columns <- names(sort(col_sums, decreasing = TRUE)[1:8])
+#rarefa <- m_trab_r[largest_columns] #curva de rarefação para as 8 UA's com maior soma
+library(iNEXT)
+out <- iNEXT(rarefa, q = 0,
+             datatype = "abundance",
+             size = NULL,
+             endpoint = 2000, #define o comprimento de eixo x
+             knots = 40,
+             se = TRUE,
+             conf = 0.95,
+             nboot = 50)
+grafico3 <- ggiNEXT(out, type = 1, facet.var="None") +
+  theme_bw() +
+  labs(fill = "Áreas") +
+  xlab("Número de indivíduos") +
+  ylab("Riqueza de espécies") +
+  theme(legend.title=element_blank()) #ver como fica com facet.var="Assemblage"
+#grafico3
+#ggsave(grafico3, dpi = 300, filename = "fig-rare1.png")
+
+# Curvas de acumulação de espéces
+acumula <- specaccum(m_trab,
+                     method = "random")
+acumula
+plot(acumula)
+plot_data <- data.frame("UAs" = c(0, acumula$sites),
+                        "Riqueza" = c(0, acumula$richness),
+                        "lower" = c(0, acumula$richness - acumula$sd),
+                        "upper" = c(0, acumula$richness + acumula$sd))
+gLocais <- ggplot(plot_data, aes(x = UAs, y = Riqueza)) +
+  geom_point(color = "blue", size = 4) +
+  geom_line(color = "blue", lwd = 2) +
+  geom_ribbon(aes(ymin = lower, ymax = upper),
+              linetype=2, alpha=0.3, fill = "yellow") +
+  ylab("Riqueza acumulada") +
+  theme_classic() +
+  theme(text = element_text(size = 16))
+gLocais
+ggsave(gLocais, dpi = 300, filename = "fig-acum.png")
+plot_data <- data.frame("Individuos" = c(0, acumula$individuals),
+                        "Riqueza" = c(0, acumula$richness),
+                        "lower" = c(0, acumula$richness - acumula$sd),
+                        "upper" = c(0, acumula$richness + acumula$sd))
+gInd <- ggplot(plot_data, aes(x = Individuos, y = Riqueza)) +
+  geom_point(color = "blue", size = 4) +
+  geom_line(color = "blue", lwd = 2) +
+  geom_ribbon(aes(ymin = lower, ymax = upper),
+              linetype=2, alpha=0.3, fill = "yellow") +
+  ylab("Riqueza acumulada") +
+  theme_classic() +
+  theme(text = element_text(size = 16))
+gInd
+
+##TABELA DA COMUNIDADE----
+
+library(dplyr)
+library(tidyr)
+m_trab <- m_dens %>%
+  rename_with(~ gsub("_", ".", .))
+m <- m_trab %>%
+  group_by(Area = t_grps$area,
+           Habitat = t_grps$ambiente,
+           Ponto = t_grps$UA) %>%
+  summarise(across(where(is.numeric),
+                   list(mean = mean, sd = sd)),
+            .groups = 'drop') %>%
+  pivot_longer(
+    cols = -c(Area, Habitat, Ponto),
+    names_to = c("Variable", ".value"),
+    names_sep = "_"
+  )
+m
+m <- as.data.frame(m)
+m_wide <- m %>%
+  mutate(stat_string = ifelse(
+    Variable == "nome_da_variavel",  #escolhe uma variável pra ter 3 casas decimais
+    paste0(round(mean, 3), " (", round(sd, 3), ")"),
+    paste0(round(mean, 1), " (", round(sd, 1), ")")
+  )) %>%
+  unite("Location", Area, Habitat, Ponto, sep = "_") %>%
+  dplyr::select(Variable, Location, stat_string) %>% #dplyr dá conflito com MASS
+  pivot_wider(names_from = Location, values_from = stat_string)
+
+m_wide
+m_wide <- as.data.frame(m_wide)
+m_wide
+
+# Salvado m_wide
+write.table(m_wide, "m_wide_spp.txt",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_wide_spp <- read.table("m_wide_spp.txt",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide_spp, file = "tabela da comunidade.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("tabela da comunidade.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide_spp)
+saveWorkbook(wb, "tabela da comunidade.xlsx", overwrite = TRUE)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide, file = "res/tabela de nutrientes.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de nutrientes.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide_nutri)
+saveWorkbook(wb, "res/tabela de nutrientes.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+nutri_gttable <- read_excel(
+  path  = "res/tabela de nutrientes.xlsx",
+  sheet = "tabela_final",
+  range = "A1:P6") #ajustar para o tamanho da tabela final 
+nutri_gttable
+library(gt)
+nutri_gttable <- gt(nutri_gttable)
+nutri_gttable <- sub_missing(nutri_gttable,
+                      columns = everything(), missing_text = "")
+nutri_gttable
+gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
+saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
+
 
 ## Partitioning of diversity
 
