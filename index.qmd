@@ -1817,7 +1817,8 @@ gLocais <- ggplot(plot_data, aes(x = UAs, y = Riqueza)) +
   theme_classic() +
   theme(text = element_text(size = 16))
 gLocais
-ggsave(gLocais, dpi = 300, filename = "fig-acum.png")
+ggsave(gLocais, dpi = 300, filename = "res/fig-acum.png")
+
 plot_data <- data.frame("Individuos" = c(0, acumula$individuals),
                         "Riqueza" = c(0, acumula$richness),
                         "lower" = c(0, acumula$richness - acumula$sd),
@@ -1862,14 +1863,14 @@ library(tidyr)
 m_trab <- m_dens %>%
   rename_with(~ gsub("_", ".", .))
 m <- m_trab %>%
-  group_by(Area = t_grps$area,
-           Habitat = t_grps$ambiente,
-           Ponto = t_grps$UA) %>%
+  group_by(Rio = t_grps$Rio,
+           Periodo = t_grps$Periodo,
+           Ponto = t_grps$PontoN) %>%
   summarise(across(where(is.numeric),
                    list(mean = mean, sd = sd)),
             .groups = 'drop') %>%
   pivot_longer(
-    cols = -c(Area, Habitat, Ponto),
+    cols = -c(Rio, Periodo, Ponto),
     names_to = c("Variable", ".value"),
     names_sep = "_"
   )
@@ -1881,7 +1882,7 @@ m_wide <- m %>%
     paste0(round(mean, 3), " (", round(sd, 3), ")"),
     paste0(round(mean, 1), " (", round(sd, 1), ")")
   )) %>%
-  unite("Location", Area, Habitat, Ponto, sep = "_") %>%
+  unite("Location", Rio, Periodo, Ponto, sep = "_") %>%
   dplyr::select(Variable, Location, stat_string) %>% #dplyr dá conflito com MASS
   pivot_wider(names_from = Location, values_from = stat_string)
 
@@ -1890,12 +1891,12 @@ m_wide <- as.data.frame(m_wide)
 m_wide
 
 # Salvado m_wide
-write.table(m_wide, "m_wide_spp.txt",
+write.table(m_wide, "res/m_wide_spp.txt",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_wide_spp <- read.table("m_wide_spp.txt",
+m_wide_spp <- read.table("res/m_wide_spp.txt",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -1903,32 +1904,27 @@ m_wide_spp <- read.table("m_wide_spp.txt",
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide_spp, file = "tabela da comunidade.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("tabela da comunidade.xlsx")
+#write.xlsx(m_wide_spp, file = "res/tabela da comunidade.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela da comunidade.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide_spp)
-saveWorkbook(wb, "tabela da comunidade.xlsx", overwrite = TRUE)
-
-# Exportando dados para Excel
-library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de nutrientes.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de nutrientes.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_wide_nutri)
-saveWorkbook(wb, "res/tabela de nutrientes.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res/tabela da comunidade.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
-nutri_gttable <- read_excel(
-  path  = "res/tabela de nutrientes.xlsx",
+spp_gttable <- read_excel(
+  path  = "res/tabela da comunidade.xlsx",
   sheet = "tabela_final",
-  range = "A1:P6") #ajustar para o tamanho da tabela final 
-nutri_gttable
+  range = "C1:J48") #ajustar para o tamanho da tabela final
+spp_gttable
 library(gt)
-nutri_gttable <- gt(nutri_gttable)
-nutri_gttable <- sub_missing(nutri_gttable,
+spp_gttable <- gt(spp_gttable)
+spp_gttable <- sub_missing(spp_gttable,
                       columns = everything(), missing_text = "")
-nutri_gttable
-gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
-saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
+spp_gttable <- fmt_number(spp_gttable,
+                          columns = "F.O.(%)", decimals = 1)
+spp_gttable
+gtsave(spp_gttable, "gt-spp_gttable_xlsx.html")
+saveRDS(spp_gttable, "gt-spp_gttable_xlsx.rds")
 ```
 
 
