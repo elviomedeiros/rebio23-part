@@ -1912,17 +1912,18 @@ library(readxl)
 spp_gttable <- read_excel(
   path  = "res/tabela da comunidade.xlsx",
   sheet = "tabela_final",
-  range = "C1:J48") #ajustar para o tamanho da tabela final
+  col_names = T,
+  range = "A1:AE61") #ajustar para o tamanho da tabela final
 spp_gttable
 library(gt)
 spp_gttable <- gt(spp_gttable)
 spp_gttable <- sub_missing(spp_gttable,
                       columns = everything(), missing_text = "")
-spp_gttable <- fmt_number(spp_gttable,
-                          columns = "F.O.(%)", decimals = 1)
+#spp_gttable <- fmt_number(spp_gttable,
+#                          columns = "F.O.(%)", decimals = 1)
 spp_gttable
-gtsave(spp_gttable, "gt-spp_gttable_xlsx.html")
-saveRDS(spp_gttable, "gt-spp_gttable_xlsx.rds")
+gtsave(spp_gttable, "res/gt-spp_gttable_xlsx.html")
+saveRDS(spp_gttable, "res/gt-spp_gttable_xlsx.rds")
 ```
 
 ## Partitioning of diversity
@@ -1934,271 +1935,6 @@ No período seco, foram registradas 27 espécies compartilhadas entre os riachos
 No período chuvoso, o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
 
 De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos.
-
-```{r venn - seco}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Venn - Seco"
-
-#REBIO23 - DIAGRAMA DE VENN, PERÍODO SECO ----
-#####....----
-
-m_bruta_seco <- m_trab
-
-#Inserindo coluna para agrupamentos
-ncol(m_bruta_seco); nrow(m_bruta_seco) #no. de N colunas x M linhas
-m_bruta_seco_g <- cbind(Grupos = rownames(m_bruta_seco), m_bruta_seco)
-# Mantém a tabela completa
-m_bruta_seco_g <- cbind(Grupos = rownames(m_bruta_seco), m_bruta_seco)
-m_bruta_seco_g <- as.data.frame(m_bruta_seco_g)
-
-# Vetor de agrupamento
-agrup1 <- substr(m_bruta_seco_g$Grupos, 1, 3)
-agrup1
-
-# Filtra apenas os grupos que começam com "S"
-m_bruta_seco_g_s <- m_bruta_seco_g[startsWith(agrup1, "S"), ]
-m_bruta_seco_g_s$Grupos <- agrup1[startsWith(agrup1, "S")]  # ajusta a coluna Grupos
-m_bruta_seco_g_s
-
-# Agora pode calcular médias
-library(dplyr)
-m_avg_s <- m_bruta_seco_g_s %>%
-  group_by(Grupos) %>%
-  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
-m_avg_s <- as.data.frame(m_avg_s)
-rownames(m_avg_s) <- m_avg_s$Grupos
-m_avg_s$Grupos <- NULL
-m_avg_s
-
-#Salvando a matriz
-write.table(m_avg_s,
-            "m_avgcsv.csv",
-            append = F,
-            quote = TRUE,
-            sep = ";", dec = ",",
-            row.names = T)
-m_avg1_csv <- read.csv("m_avgcsv.csv",
-                       sep = ";", dec = ",",
-                       header = T,
-                       row.names = 1,
-                       na.strings = NA)
-library("gt")
-m_venn <- as.data.frame(t(m_avg_s))
-m_venn
-gt(round(m_venn, 2), rownames_to_stub = TRUE)
-m_venn[m_venn !=0] <- 1 #matriz binária
-m_venn
-
-##Salvar como .xlsx
-library(openxlsx)
-write.xlsx(m_venn, "venn_seco.xlsx", rowNames = TRUE)
-
-##Salvar tabela como gt
-tabela_gt <- gt::gt(m_venn, rownames_to_stub = TRUE)
-gtsave(tabela_gt, "gt-auspre-s_gttable.html")
-gtsave(tabela_gt, "fig-auspre-s_gttable.png")
-saveRDS(tabela_gt, "gt-auspre-s_gttable.rds")
-
-## Tabela final ajustada no Excel
-library(readxl)
-library(gt)
-seco_df <- read_excel(
-  path  = "venn_seco.xlsx",
-  sheet = "Sheet 1",
-  range = "A1:C59"
-)
-seco_gttable <- gt(seco_df) |>
-  cols_label(`...1` = "Espécies") |>
-  sub_missing(columns = everything(), missing_text = "")
-seco_gttable
-gtsave(seco_gttable, "gt-seco_gttable_xlsx.html")
-saveRDS(seco_gttable, "gt-seco_gttable_xlsx.rds")
-
-library("eulerr")
-#set.seed() #this seed changes the orientation of the sets        
-plot(euler(m_venn), counts = TRUE, fontface = 1)
-# Load required libraries
-library(VennDiagram)
-library(ggvenn)
-SB <- rownames(m_venn)[which(m_venn$`S-B` == 1)]
-SC <- rownames(m_venn)[which(m_venn$`S-C` == 1)]
-
-overlap_SB_SC <- intersect(SB, SC)
-
-#######Visualizar número de espécies em cada grupo e sobreposição
-cat("Número de espécies S-B:", length(SB), "\n")
-cat("Número de espécies S-C:", length(SC), "\n")
-cat("Número de espécies em ambos (S-B ∩ S-C):", length(overlap_SB_SC), "\n")
-
-#########Plotar
-grid.newpage()
-draw.pairwise.venn(
-  area1 = length(SB),
-  area2 = length(SC),
-  cross.area = length(overlap_SB_SC),
-  category = c("S-B", "S-C"),
-  lty = rep("blank", 2),
-  fill = c("grey40", "grey70"),
-  alpha = rep(0.5, 2),
-  cat.pos = c(0, 0),
-  cat.dist = rep(0.025, 2)
-)
-
-##############Salvar em PNG
-venn.diagram(
-  x = list(SB, SC),
-  category.names = c("S-B", "S-C"),
-  filename = "fig-venn_SB_SC_seco.png",
-  height = 2000,
-  width = 2000,
-  resolution = 300,
-  lty = "blank",
-  fill = c("grey40", "grey70"),
-  alpha = 0.5
-)
-
-```
-
-```{r venn - chuvoso}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Venn - Chuvoso"
-
-#REBIO23 - DIAGRAMA DE VENN, PERÍODO CHUVOSO ----
-#####....----
-
-m_bruta_chuvoso <- m_trab
-
-#Inserindo coluna para agrupamentos
-ncol(m_bruta_chuvoso); nrow(m_bruta_chuvoso) #no. de N colunas x M linhas
-m_bruta_chuvoso_g <- cbind(Grupos = rownames(m_bruta_chuvoso), m_bruta_chuvoso)
-# Mantém a tabela completa
-m_bruta_chuvoso_g <- cbind(Grupos = rownames(m_bruta_chuvoso), m_bruta_chuvoso)
-m_bruta_chuvoso_g <- as.data.frame(m_bruta_chuvoso_g)
-
-#Vetor de agrupamento
-agrup1 <- substr(m_bruta_chuvoso_g$Grupos, 1, 3)
-agrup1
-
-#Filtra apenas os grupos que começam com "C"
-m_bruta_chuvoso_g_c <- m_bruta_chuvoso_g[startsWith(agrup1, "C"), ]
-m_bruta_chuvoso_g_c$Grupos <- agrup1[startsWith(agrup1, "C")]  # ajusta a coluna Grupos
-m_bruta_chuvoso_g_c
-
-#Médias
-library(dplyr)
-m_avg_c <- m_bruta_chuvoso_g_c %>%
-  group_by(Grupos) %>%
-  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
-
-m_avg_c <- as.data.frame(m_avg_c)
-rownames(m_avg_c) <- m_avg_c$Grupos
-m_avg_c$Grupos <- NULL
-m_avg_c
-
-##Salvando a matriz
-write.table(m_avg_c,
-            "m_avgcsv.csv",
-            append = F,
-            quote = TRUE,
-            sep = ";", dec = ",",
-            row.names = T)
-m_avg1_csv <- read.csv("m_avgcsv.csv",
-                       sep = ";", dec = ",",
-                       header = T,
-                       row.names = 1,
-                       na.strings = NA)
-library("gt")
-m_venn <- as.data.frame(t(m_avg_c))
-m_venn
-gt(round(m_venn, 2), rownames_to_stub = TRUE)
-m_venn[m_venn !=0] <- 1 #matriz binária
-m_venn
-
-##Salvar como .xlsx
-library(openxlsx)
-write.xlsx(m_venn, "venn_chuvoso.xlsx", rowNames = TRUE)
-
-##Salvar tabela como gt
-tabela_gt <- gt::gt(m_venn, rownames_to_stub = TRUE)
-gtsave(tabela_gt, "gt-auspre-c_gttable.html")
-gtsave(tabela_gt, "fig-auspre-c_gttable.png")
-saveRDS(tabela_gt, "gt-auspre-c_gttable.rds")
-
-##Tabela final ajustada no Excel
-library(readxl)
-library(gt)
-chuvoso_df <- read_excel(
-  path  = "venn_chuvoso.xlsx",
-  sheet = "Sheet 1",
-  range = "A1:C59"
-)
-chuvoso_gttable <- gt(chuvoso_df) |>
-  cols_label(
-    `...1` = "Espécies"
-  )
-chuvoso_gttable
-gtsave(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.html")
-saveRDS(chuvoso_gttable, "gt-chuvoso_gttable_xlsx.rds")
-
-
-library("eulerr")
-#set.seed() #this seed changes the orientation of the sets        
-plot(euler(m_venn), counts = TRUE, fontface = 1)
-# Load required libraries
-library(VennDiagram)
-library(ggvenn)
-CB <- rownames(m_venn)[which(m_venn$`C-B` == 1)]
-CC <- rownames(m_venn)[which(m_venn$`C-C` == 1)]
-
-overlap_CB_CC <- intersect(CB, CC)
-
-####Visualizar número de espécies em cada grupo e sobreposição
-cat("Número de espécies C-B:", length(CB), "\n")
-cat("Número de espécies C-C:", length(CC), "\n")
-cat("Número de espécies em ambos (C-B ∩ C-C):", length(overlap_CB_CC), "\n")
-
-#Plotar
-grid.newpage()
-draw.pairwise.venn(
-  area1 = length(CB),
-  area2 = length(CC),
-  cross.area = length(overlap_CB_CC),
-  category = c("C-B", "C-C"),
-  lty = rep("blank", 2),
-  fill = c("grey40", "grey70"),
-  alpha = rep(0.5, 2),
-  cat.pos = c(0, 0),
-  cat.dist = rep(0.025, 2)
-)
-
-#Salvar em PNG
-venn.diagram(
-  x = list(CB, CC),
-  category.names = c("C-B", "C-C"),
-  filename = "fig-venn_CB_CC_chuvoso.png",
-  height = 2000,
-  width = 2000,
-  resolution = 300,
-  lty = "blank",
-  fill = c("grey40", "grey70"),
-  alpha = 0.5
-)
-
-```
 
 ## Additive partition
 
@@ -3418,7 +3154,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <summary>Fig.: Localização das Unidades Amostrais</summary>
 
-![Mapa da área de influência da REBIO Guaribas.](imagens/Mapa (pt-br).png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
 
 </details>
 
@@ -3468,6 +3204,18 @@ readRDS("res/gt-hab_gttable_xlsx.rds")
 #| echo: false
 #| tbl-cap: "Nutrient concentrations at the sampling sites."
 readRDS("res/gt-nutri_gttable_xlsx.rds")
+```
+
+</details>
+
+<details>
+
+<summary>Tab.: Density of taxa GT table</summary>
+
+```{r, tbl-spp_gttable}
+#| echo: false
+#| tbl-cap: "Density (ind/m^2^) taxa GT table."
+readRDS("res/gt-spp_gttable_xlsx.rds")
 ```
 
 </details>
