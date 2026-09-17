@@ -1926,6 +1926,168 @@ gtsave(spp_gttable, "res/gt-spp_gttable_xlsx.html")
 saveRDS(spp_gttable, "res/gt-spp_gttable_xlsx.rds")
 ```
 
+```{r, COMM-VAR_summ}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Community structure variable summary"
+
+# Escolher sumário de uma variavel
+m
+var <- "h.roots"
+m[m$Variable == var, "mean"] #cada valor de var
+summary(m[m$Variable == var, "mean"]) #sumário dos valores de var
+
+# Escolher sumário de um grupo de variáveis do df m
+vars <- unique(grep("^h\\.", m$Variable, value = TRUE))
+summaries <- list() #criam uma lista vazia para guardar os sumários
+# Loop para cada variável do grupo e guarda em summaries
+for (var in vars) {
+  summaries[[var]] <- summary(m[m$Variable == var, "mean"])
+}
+#var is a temporary variable used in the for loop to iterate through
+#each variable name that starts with "h."
+
+summaries
+summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
+round(summary_table, 2)
+#sink(file = "summary_h.txt", split = TRUE)
+round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
+#sink()
+
+# Tabela limpa
+#summary_table <- cbind(Variable = rownames(summary_table), summary_table)
+#rownames(summary_table) <- NULL
+#colnames(summary_table) <- c("Variable", "Min", "Q1", "Median", "Mean", "Q3", "Max")
+#summary_table
+```
+
+```{r, COMM-UPGMA}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: Community data Classification UPGMA
+
+#ZOOREBIO_part - UPGMA----
+#####....----
+
+##ORGANIZANDO DADOS----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens <- read.csv("res/m_dens.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_hab_part <- read.csv("res/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+m_cont <- read.csv("res/m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+m_dens
+str(m_dens)
+m_trab <- m_dens
+
+#CLASSIFICAÇÃO: Matriz Comunitária----
+
+library(vegan)
+m_trns <- asin(sqrt(decostand(m_trab,
+                              method="total", MARGIN = 2)))
+#m_trns <- sqrt(m_trab)
+
+# Salvando a matriz transformada
+write.table(m_trns, "res/m_com_trns.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+
+m_dist <- vegdist(m_trns, method = "bray",
+                   diag = TRUE,
+                   upper = FALSE)
+save(m_dist, file = "res/m_dist.RData")
+load("res/m_dist.RData")
+
+cluster_uas <- hclust(m_dist, method = "average")
+png("res/fig-cluster.png", width = 9, height = 7, units = "in", res = 400)
+plot(cluster_uas, main = "Cluster Dendrogram - Bray-Curtis da Matriz Comunitária",
+      hang = 0.1) #testar com -.01
+#rect.hclust(cluster_uas, k = 3, h = NULL)
+#h = 0.8 fornece os grupos formados na altura h
+dev.off()
+as.matrix(m_dist)[1:6, 1:6]
+
+# Heatmap
+library("gplots")
+heatdist <- as.matrix(m_dist)
+col <- rev(heat.colors(999)) #rev() reverte as cores do heatmap
+png("res/fig-heatmap_uas.png", width = 9, height = 7, units = "in", res = 400)
+heatmap.2(x=(as.matrix(m_dist)), #objetos x objetos
+          Rowv = as.dendrogram(cluster_uas),
+          Colv = as.dendrogram(cluster_uas),
+          key = T, tracecol = NA, revC = T,
+          col = heat.colors,  #dissimilaridade = 1 - similaridade
+          density.info = "none",
+          xlab = "UA´s", ylab = "UA´s",
+          mar = c(6, 6) + 0.2)
+dev.off()
+cluster_spp <- hclust((m_dist(t(m_trns), method = "bray",
+                               diag = TRUE,
+                               upper = FALSE)), method = "average")
+png("fig-cluster_spp.png", width = 9, height = 7, units = "in", res = 400)
+plot (cluster_spp, main = "Dendrograma dos atributos")
+dev.off()
+png("fig-heatmap.png", width = 9, height = 9, units = "in", res = 400)
+heatmap.2(t(as.matrix(m_trns)), #objetos x atributos
+          Colv = as.dendrogram(cluster_uas),
+          Rowv = as.dendrogram(cluster_spp),
+          key = T, tracecol = NA, revC = T,
+          col = col,
+          density.info = "none",
+          xlab = "Unidades amostrais", ylab = "Espécies",
+          mar = c(6, 6) + 1.8)  # adjust margin size
+dev.off()
+
+# Histórico das fusões
+library(tidyverse)
+library(gt)
+merge <- as.data.frame(cluster_uas$merge)
+merge[nrow(merge)+1,] = c("0","0")
+height <- as.data.frame(round(cluster_uas$height, 2))
+height[nrow(height)+1,] = c("1.0")
+fusoes <- data.frame(Cluster_uas = merge, Height = height)
+colnames(fusoes) <- c("Cluster1", "Cluster2", "Height")
+UA <- rownames_to_column(as.data.frame(m_trns[, 0]))
+colnames(UA) <- c("UAs")
+No.UA <- 1:nrow(fusoes)
+fusoes <- cbind(No.UA, UA, fusoes)
+fusoes$Histórico <- 1:nrow(fusoes)
+#fusoes
+fusoes <- gt(fusoes)
+fusoes
+gtsave(fusoes, "Fusoes.html")
+```
+
 ## Partitioning of diversity
 
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
