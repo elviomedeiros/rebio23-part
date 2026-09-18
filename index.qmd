@@ -2006,86 +2006,65 @@ m_cont <- read.csv("res/m_cont.csv",
 
 m_dens
 str(m_dens)
-m_trab <- m_dens
 
-#CLASSIFICAÇÃO: Matriz Comunitária----
+#SEPARANDO OS PERÍODOS
 
 library(vegan)
-m_trns <- asin(sqrt(decostand(m_trab,
+# Fazendo a média por ponto
+ponto_id <- sub("-H[0-9]+$", "", rownames(m_dens))
+m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
+rownames(m_dens_media) <- m_dens_media$Ponto
+m_dens_media$Ponto <- NULL
+# Separar por período
+seco_med <- m_dens_media[startsWith(rownames(m_dens_media), "S-"), ]
+chuv_med <- m_dens_media[startsWith(rownames(m_dens_media), "C-"), ]
+# Filtrar COLUNAS zeradas (espécies ausentes no período)
+seco_med <- seco_med[, colSums(seco_med) > 0]
+chuv_med <- chuv_med[, colSums(chuv_med) > 0]
+# Filtrar LINHAS zeradas (pontos sem organismos)
+seco_med <- seco_med[rowSums(seco_med) > 0, ]
+chuv_med <- chuv_med[rowSums(chuv_med) > 0, ]
+# Transformação
+seco_trns <- asin(sqrt(decostand(seco_med,
                               method="total", MARGIN = 2)))
-#m_trns <- sqrt(m_trab)
+chuv_trns <- asin(sqrt(decostand(chuv_med,
+                              method="total", MARGIN = 2)))
+# Distâncias de Bray-Curtis e UPGMA
+dist_seco <- vegdist(seco_trns, method = "bray")
+dist_chuv <- vegdist(chuv_trns, method = "bray")
+upgma_seco <- hclust(dist_seco, method = "average")
+upgma_chuv <- hclust(dist_chuv, method = "average")
 
-# Salvando a matriz transformada
-write.table(m_trns, "res/m_com_trns.csv",
-            sep = ";", dec = ".", #"\t",
-            row.names = TRUE,
-            quote = TRUE,
-            append = FALSE)
+# Plot dos dendrogramas agrupados por ponto
+upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
+upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
+dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
+dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
 
-m_dist <- vegdist(m_trns, method = "bray",
-                   diag = TRUE,
-                   upper = FALSE)
-save(m_dist, file = "res/m_dist.RData")
-load("res/m_dist.RData")
+#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
+par(mfrow = c(1, 2), mar = c(5, 4, 4, 6))
+plot(as.dendrogram(upgma_seco), 
+     horiz = TRUE, 
+     main = "UPGMA - Seco", 
+     xlab = "Dissimilaridade (Bray-Curtis)",
+     xlim = c(max(attr(dend_seco, "height")), 0))
+plot(as.dendrogram(upgma_chuv), 
+     horiz = TRUE, 
+     main = "UPGMA - Chuvoso", 
+     xlab = "Dissimilaridade (Bray-Curtis)",
+     xlim = c(max(attr(dend_chuv, "height")), 0))
+par(mfrow = c(1, 1))
+#dev.off()
 
-cluster_uas <- hclust(m_dist, method = "average")
-png("res/fig-cluster.png", width = 9, height = 7, units = "in", res = 400)
-plot(cluster_uas, main = "Cluster Dendrogram - Bray-Curtis da Matriz Comunitária",
-      hang = 0.1) #testar com -.01
-#rect.hclust(cluster_uas, k = 3, h = NULL)
-#h = 0.8 fornece os grupos formados na altura h
-dev.off()
-as.matrix(m_dist)[1:6, 1:6]
-
-# Heatmap
-library("gplots")
-heatdist <- as.matrix(m_dist)
-col <- rev(heat.colors(999)) #rev() reverte as cores do heatmap
-png("res/fig-heatmap_uas.png", width = 9, height = 7, units = "in", res = 400)
-heatmap.2(x=(as.matrix(m_dist)), #objetos x objetos
-          Rowv = as.dendrogram(cluster_uas),
-          Colv = as.dendrogram(cluster_uas),
-          key = T, tracecol = NA, revC = T,
-          col = heat.colors,  #dissimilaridade = 1 - similaridade
-          density.info = "none",
-          xlab = "UA´s", ylab = "UA´s",
-          mar = c(6, 6) + 0.2)
-dev.off()
-cluster_spp <- hclust((m_dist(t(m_trns), method = "bray",
-                               diag = TRUE,
-                               upper = FALSE)), method = "average")
-png("fig-cluster_spp.png", width = 9, height = 7, units = "in", res = 400)
-plot (cluster_spp, main = "Dendrograma dos atributos")
-dev.off()
-png("fig-heatmap.png", width = 9, height = 9, units = "in", res = 400)
-heatmap.2(t(as.matrix(m_trns)), #objetos x atributos
-          Colv = as.dendrogram(cluster_uas),
-          Rowv = as.dendrogram(cluster_spp),
-          key = T, tracecol = NA, revC = T,
-          col = col,
-          density.info = "none",
-          xlab = "Unidades amostrais", ylab = "Espécies",
-          mar = c(6, 6) + 1.8)  # adjust margin size
-dev.off()
-
-# Histórico das fusões
-library(tidyverse)
-library(gt)
-merge <- as.data.frame(cluster_uas$merge)
-merge[nrow(merge)+1,] = c("0","0")
-height <- as.data.frame(round(cluster_uas$height, 2))
-height[nrow(height)+1,] = c("1.0")
-fusoes <- data.frame(Cluster_uas = merge, Height = height)
-colnames(fusoes) <- c("Cluster1", "Cluster2", "Height")
-UA <- rownames_to_column(as.data.frame(m_trns[, 0]))
-colnames(UA) <- c("UAs")
-No.UA <- 1:nrow(fusoes)
-fusoes <- cbind(No.UA, UA, fusoes)
-fusoes$Histórico <- 1:nrow(fusoes)
-#fusoes
-fusoes <- gt(fusoes)
-fusoes
-gtsave(fusoes, "Fusoes.html")
+# Gerar a matriz de distância cofenética a partir da árvore UPGMA
+cofe_seco <- cophenetic(upgma_seco)
+cofe_chuv <- cophenetic(upgma_chuv)
+# Calcular a correlação com a matriz de distância original (Bray-Curtis)
+cor_seco <- cor(dist_seco, cofe_seco)
+cor_chuv <- cor(dist_chuv, cofe_chuv)
+# Visualizar os resultados
+cat("Correlação Cofenética (Seco):", round(cor_seco, 3), "\n")
+cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 ```
 
 ## Partitioning of diversity
@@ -3306,6 +3285,8 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
+@fig-upgma: Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.
+
 @tbl-hab_gttable: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
 @tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
@@ -3330,17 +3311,17 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por riacho</summary>
+<summary>Fig.: Análise de Classificação</summary>
 
-![Análise de Componentes Principais (PCA) das variáveis ambientais, categorizados por riacho.](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
+![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
 
 </details>
 
 <details>
 
-<summary>Fig.: Etapas do desenvolvimento da pesquisa científica</summary>
+<summary>Fig.: Localização das Unidades Amostrais</summary>
 
-![Etapas do desenvolvimento da pesquisa científica.](imagens/pesquisa_cientifica.jpg){#fig-pesquisa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
 
 </details>
 
