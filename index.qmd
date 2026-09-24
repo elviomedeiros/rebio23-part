@@ -297,6 +297,10 @@ nutrientes <- habitat[, nutri, drop = FALSE]
 nutrientes <- nutrientes[, colSums(!is.na(nutrientes)) > 0, drop = FALSE]
 nutrientes <- na.omit(nutrientes)
 
+###ORGANIZANDO ESCALAS
+
+
+
 ##SALVANDO MATRIZES FINAIS----
 
 write.table(m_part_cols, "res/m_hab_part.csv",
@@ -2167,6 +2171,15 @@ m_cont <- read.csv("res/m_cont.csv",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
+
+escalas <- read_ods("D:/Elvio/OneDrive/_2022-Ecofisiologia/PIBIC-23/Resultados/rebio23-zoopl_5-20.ods",
+                    row_names = TRUE,
+                    col_names = TRUE,
+                    sheet = "escalas",
+                    as_tibble = FALSE,
+                    na = "n/a",  # porque existem celulas vazias (n/a)
+                    skip = 0)
+
 
 m_dens
 str(m_dens)
