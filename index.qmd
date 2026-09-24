@@ -2067,7 +2067,9 @@ cat("Correlação Cofenética (Seco):", round(cor_seco, 3), "\n")
 cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 ```
 
-## Partitioning of diversity
+## Partição da diversidade
+
+<!--# ## Diversity Partitioning-->
 
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
 
@@ -2093,504 +2095,6 @@ A α-diversidade observada no riacho Barro Branco foi significativamente menor e
 
 No Caiana, a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
 
-```{r inserindo tabela}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Inserindo Tabela"
-
-library(tibble); library(tidyverse); library(forcats); library(openxlsx); library(Rcpp); library(readxl); library(dplyr)
-
-m_part_seco <- zoo_seco
-
-#ler matriz escalas_seco
-
-escalas_seco <- zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
-                                 rowNames = T, colNames = T,
-                                 sheet = "escalas_seco")
-
-#rebio
-colnames(escalas_seco)
-escala.total_seco <- escalas_seco[, c("rebio.habitat","rebio.ponto", "rebio.rio", "rebio")]
-head(escala.total_seco)
-dim(escala.total_seco)
-
-#matriz - escala bb
-escala.bb_seco <- escalas_seco[, c("bb.habitat","bb.ponto","barrobranco")]
-head(escala.bb_seco)
-dim(escala.bb_seco)
-
-#matriz - escala ca
-escala.ca_seco <- escalas_seco[, c("ca.habitat","ca.ponto","caiana")]
-head(escala.ca_seco)
-dim(escala.ca_seco)
-
-#ler matriz fauna total
-fauna.zoo_seco <- m_part_seco
-fauna.zoo_seco[] <- lapply(fauna.zoo_seco, function(x) as.numeric(as.character(x)))
-fauna.zoo_seco <- t(fauna.zoo_seco)
-head(fauna.zoo_seco)
-ncol(fauna.zoo_seco)
-dim(fauna.zoo_seco)
-#view(fauna.zoo_seco)
-
-#Fauna - bb
-fauna.zoo.bb_seco <- fauna.zoo_seco[1:18,]
-head(fauna.zoo.bb_seco)
-ncol(fauna.zoo.bb_seco)
-dim(fauna.zoo.bb_seco)
-
-#Fauna - ca
-fauna.zoo.ca_seco <- fauna.zoo_seco[19:45,]
-head(fauna.zoo.ca_seco)
-ncol(fauna.zoo.ca_seco)
-dim(fauna.zoo.ca_seco)
-
-```
-
-```{r aditiva - seco}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Aditivo - Seco"
-
-#REBIO23 - PARTIÇÃO ADITIVA - PERÍODO SECO----
-#####....----
-
-#COMANDO
-#PARTIÇÃO GERAL
-
-#adipart(fauna,env, index="richness", relative=TRUE,
-#        weights="unif",nsimul=999)
-
-#Fauna total
-library(vegan)
-#part.geral_seco<-adipart(y=fauna.zoo_seco,x=escala.total_seco, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_seco
-#EM PORCENTAGEM
-part.geral_seco<-adipart(y=fauna.zoo_seco,x=escala.total_seco, index="richness", relative=TRUE,
-                         weights="unif",nsimul=999)
-part.geral_seco
-str(part.geral_seco)
-
-####################################################################
-# Extrair valores do objeto part.geral_seco
-statistic <- part.geral_seco$statistic
-SES <- part.geral_seco$oecosimu$z
-mean <- part.geral_seco$oecosimu$means
-lower_2.5 <- apply(part.geral_seco$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.geral_seco$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.geral_seco$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.geral_seco$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_seco <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_seco)
-str(part.geral_seco)
-gt(diversity_data_seco)
-
-##Salvar como .xlsx
-library(openxlsx)
-write.xlsx(diversity_data_seco, "diversity_data_seco.xlsx", rowNames = TRUE)
-
-##Salvar tabela como gt
-tabela_gt <- gt::gt(diversity_data_seco, rownames_to_stub = FALSE)
-tabela_gt
-gtsave(tabela_gt, "gt-adip-riac_s_gttable.html")
-gtsave(tabela_gt, "fig-adip-riac_s_gttable.png")
-saveRDS(tabela_gt, "gt-adip-riac_s_gttable.rds")
-
-# Tabela final ajustada no Excel
-library(readxl)
-adip_riac_s_gttable <- read_excel(
-  path  = "diversity_data_seco.xlsx",
-  sheet = "Sheet 1",
-  range = "A1:J8")
-# remover coluna ...1
-adip_riac_s_gttable <- adip_riac_s_gttable[, -1]
-adip_riac_s_gttable
-library(gt)
-adip_riac_s_gttable <- gt(adip_riac_s_gttable)
-adip_riac_s_gttable <- sub_missing(adip_riac_s_gttable,
-                      columns = everything(), missing_text = "")
-#adip_riac_s_gttable <- fmt_number(adip_riac_s_gttable, columns = "F.O.(%)", decimals = 1)
-adip_riac_s_gttable
-gtsave(adip_riac_s_gttable, "gt_adip-riac_s_gttable_xlsx.html")
-saveRDS(adip_riac_s_gttable, "gt_adip-riac_s_gttable_xlsx.rds")
-
-#########################################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.geral_seco$statistic
-observed_values
-expected_values <- part.geral_seco$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df$Type <- factor(df$Type, levels = c("Esperado", "Observado"))
-df
-df_filtered <- df[!df$Componente %in% c("alpha.2", "alpha.3", "gamma"), ]
-df_filtered$Componente <- factor(df_filtered$Componente, 
-                                 levels = c("beta.3", "beta.2", "beta.1", "alpha.1"))
-df_filtered
-
-diversity_data_seco <- df_filtered
-diversity_data_seco
-# Calcular porcentagens para cada componente
-diversity_data_seco <- diversity_data_seco %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_seco, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "A) Riachos - Período Seco",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray",
-                               "beta.3" = "lightgray")) +
-  
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo_seco,x=escala.total_seco, FUN=diversity)
-#hier
-
-####################################################################################
-#PARTIÇÃO BARRO BRANCO
-
-#Fauna total
-library(vegan)
-#part.geral_seco<-adipart(y=fauna.zoo_seco,x=escala.total_seco, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_seco
-#EM PORCENTAGEM
-part.bb_seco<-adipart(y=fauna.zoo.bb_seco,x=escala.bb_seco, index="richness", relative=TRUE,
-                      weights="unif",nsimul=999)
-part.bb_seco
-str(part.bb_seco)
-
-####################################################################
-# Extrair valores do objeto part.bb_seco
-statistic <- part.bb_seco$statistic
-SES <- part.bb_seco$oecosimu$z
-mean <- part.bb_seco$oecosimu$means
-lower_2.5 <- apply(part.bb_seco$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.bb_seco$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.bb_seco$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.bb_seco$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_seco.bb <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_seco.bb)
-str(part.bb_seco)
-gt(diversity_data_seco.bb)
-
-
-##Salvar como .xlsx
-library(openxlsx)
-write.xlsx(diversity_data_seco.bb, "diversity_data_seco.bb.xlsx", rowNames = TRUE)
-
-##Salvar tabela como gt
-tabela_gt <- gt::gt(diversity_data_seco.bb, rownames_to_stub = FALSE)
-tabela_gt
-gtsave(tabela_gt, "gt-adip-bb_s_gttable.html")
-gtsave(tabela_gt, "fig-adip-bb_s_gttable.png")
-saveRDS(tabela_gt, "gt-adip-bb_s_gttable.rds")
-
-# Tabela final ajustada no Excel
-library(readxl)
-adip_bb_s_gttable <- read_excel(
-  path  = "diversity_data_seco.bb.xlsx",
-  sheet = "Sheet 1",
-  range = "A1:J6")
-# remover coluna ...1
-adip_bb_s_gttable <- adip_bb_s_gttable[, -1]
-adip_bb_s_gttable
-library(gt)
-adip_bb_s_gttable <- gt(adip_bb_s_gttable)
-adip_bb_s_gttable <- sub_missing(adip_bb_s_gttable,
-                      columns = everything(), missing_text = "")
-#adip_bb_s_gttable <- fmt_number(adip_bb_s_gttable, columns = "F.O.(%)", decimals = 1)
-adip_bb_s_gttable
-gtsave(adip_bb_s_gttable, "gt_adip-bb_s_gttable_xlsx.html")
-saveRDS(adip_bb_s_gttable, "gt_adip-bb_s_gttable_xlsx.rds")
-
-#######################################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.bb_seco$statistic
-observed_values
-expected_values <- part.bb_seco$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df.bb <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df.bb$Type <- factor(df.bb$Type, levels = c("Esperado", "Observado"))
-df.bb
-
-df_filtered.bb <- df.bb[!df.bb$Componente %in% c("alpha.2", "alpha.3", "gamma", "beta.3"), ]
-df_filtered.bb$Componente <- factor(df_filtered.bb$Componente, 
-                                    levels = c("beta.2", "beta.1", "alpha.1"))
-df_filtered.bb
-
-diversity_data_seco.bb <- df_filtered.bb
-diversity_data_seco.bb
-# Calcular porcentagens para cada componente
-diversity_data_seco.bb <- diversity_data_seco.bb %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_seco.bb, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "B) Barro Branco - Período Seco",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray")) +
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo.bb_seco,x=escala.bb_seco, FUN=diversity)
-#hier
-
-###################################################################################
-#PARTIÇÃO CAIANA
-
-#adipart(fauna,env, index="richness", relative=TRUE,
-#        weights="unif",nsimul=999)
-
-#Fauna total
-library(vegan)
-#part.geral_seco<-adipart(y=fauna.zoo_seco,x=escala.total_seco, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_seco
-#EM PORCENTAGEM
-part.ca_seco<-adipart(y=fauna.zoo.ca_seco,x=escala.ca_seco, index="richness", relative=TRUE,
-                      weights="unif",nsimul=999)
-part.ca_seco
-str(part.ca_seco)
-
-####################################################################
-# Extrair valores do objeto part.ca_seco
-statistic <- part.ca_seco$statistic
-SES <- part.ca_seco$oecosimu$z
-mean <- part.ca_seco$oecosimu$means
-lower_2.5 <- apply(part.ca_seco$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.ca_seco$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.ca_seco$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.ca_seco$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_seco.ca <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_seco.ca)
-str(part.ca_seco)
-gt(diversity_data_seco.ca)
-
-##Salvar como .xlsx
-library(openxlsx)
-write.xlsx(diversity_data_seco.bb, "diversity_data_seco.ca.xlsx", rowNames = TRUE)
-
-##Salvar tabela como gt
-tabela_gt <- gt::gt(diversity_data_seco.ca, rownames_to_stub = FALSE)
-tabela_gt
-gtsave(tabela_gt, "gt-adip-ca_s_gttable.html")
-gtsave(tabela_gt, "fig-adip-ca_s_gttable.png")
-saveRDS(tabela_gt, "gt-adip-ca_s_gttable.rds")
-
-# Tabela final ajustada no Excel
-library(readxl)
-adip_ca_s_gttable <- read_excel(
-  path  = "diversity_data_seco.ca.xlsx",
-  sheet = "Sheet 1",
-  range = "A1:J6")
-# remover coluna ...1
-adip_ca_s_gttable <- adip_ca_s_gttable[, -1]
-adip_ca_s_gttable
-library(gt)
-adip_ca_s_gttable <- gt(adip_ca_s_gttable)
-adip_ca_s_gttable <- sub_missing(adip_ca_s_gttable,
-                      columns = everything(), missing_text = "")
-#adip_bb_s_gttable <- fmt_number(adip_ca_s_gttable, columns = "F.O.(%)", decimals = 1)
-adip_ca_s_gttable
-gtsave(adip_ca_s_gttable, "gt_adip-ca_s_gttable_xlsx.html")
-saveRDS(adip_ca_s_gttable, "gt_adip-ca_s_gttable_xlsx.rds")
-
-########################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.ca_seco$statistic
-observed_values
-expected_values <- part.ca_seco$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df.ca <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df.ca$Type <- factor(df.ca$Type, levels = c("Esperado", "Observado"))
-df.ca
-
-df_filtered.ca <- df.ca[!df.ca$Componente %in% c("alpha.2", "alpha.3", "gamma", "beta.3"), ]
-df_filtered.ca$Componente <- factor(df_filtered.ca$Componente, 
-                                    levels = c("beta.2", "beta.1", "alpha.1"))
-df_filtered.ca
-
-diversity_data_seco.ca <- df_filtered.ca
-diversity_data_seco.ca
-# Calcular porcentagens para cada componente
-diversity_data_seco.ca <- diversity_data_seco.ca %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_seco.ca, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "C) Caiana - Período Seco",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray")) +
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo.ca_seco,x=escala.ca_seco, FUN=diversity)
-#hier
-
-```
-
 **Período chuvoso**
 
 No período chuvoso, considerando ambos os riachos, a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999).
@@ -2602,415 +2106,6 @@ No Barro Branco, a α-diversidade observada foi de 0,24%, abaixo do esperado (0,
 O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
-
-```{r inserido tabela}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Inserindo Tabela"
-
-library(tibble); library(tidyverse); library(forcats); library(openxlsx); library(Rcpp); library(readxl); library(dplyr)
-
-m_part_chuvoso <- zoo_chuvoso
-
-#ler matriz escalas_chuvoso
-
-escalas_chuvoso <- zoo <- read.xlsx("C:/Users/ellen/Downloads/Manuscritos/rebio23-part/dados/rebio23-zoopl.xlsx",
-                                 rowNames = T, colNames = T,
-                                 sheet = "escalas_chuvoso")
-
-#rebio
-colnames(escalas_chuvoso)
-escala.total_chuvoso <- escalas_chuvoso[, c("rebio.habitat","rebio.ponto", "rebio.rio", "rebio")]
-head(escala.total_chuvoso)
-dim(escala.total_chuvoso)
-
-#matriz - escala bb
-escala.bb_chuvoso <- escalas_chuvoso[, c("bb.habitat","bb.ponto","barrobranco")]
-head(escala.bb_chuvoso)
-dim(escala.bb_chuvoso)
-
-#matriz - escala ca
-escala.ca_chuvoso <- escalas_chuvoso[, c("ca.habitat","ca.ponto","caiana")]
-head(escala.ca_chuvoso)
-dim(escala.ca_chuvoso)
-
-#ler matriz fauna total
-fauna.zoo_chuvoso <- m_part_chuvoso
-fauna.zoo_chuvoso[] <- lapply(fauna.zoo_chuvoso, function(x) as.numeric(as.character(x)))
-head(fauna.zoo_chuvoso)
-ncol(fauna.zoo_chuvoso)
-dim(fauna.zoo_chuvoso)
-#view(fauna.zoo_chuvoso)
-
-#Fauna - bb
-fauna.zoo.bb_chuvoso <- fauna.zoo_chuvoso[1:18,]
-head(fauna.zoo.bb_chuvoso)
-ncol(fauna.zoo.bb_chuvoso)
-dim(fauna.zoo.bb_chuvoso)
-
-#Fauna - ca
-fauna.zoo.ca_chuvoso <- fauna.zoo_chuvoso[19:45,]
-head(fauna.zoo.ca_chuvoso)
-ncol(fauna.zoo.ca_chuvoso)
-dim(fauna.zoo.ca_chuvoso)
-
-```
-
-```{r aditiva - chuvoso}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Aditiva - Chuvoso"
-
-##REBIO23 - PARTIÇÃO ADITIVA - PERÍODO CHUVOSO----
-#####....----
-
-#COMANDO
-#PARTIÇÃO GERAL
-
-#adipart(fauna,env, index="richness", relative=TRUE,
-#        weights="unif",nsimul=999)
-
-#Fauna total
-library(vegan)
-#part.geral_chuvoso<-adipart(y=fauna.zoo_chuvoso,x=escala.total_chuvoso, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_chuvoso
-#EM PORCENTAGEM
-part.geral_chuvoso<-adipart(y=fauna.zoo_chuvoso,x=escala.total_chuvoso, index="richness", relative=TRUE,
-                         weights="unif",nsimul=999)
-part.geral_chuvoso
-str(part.geral_chuvoso)
-
-####################################################################
-# Extrair valores do objeto part.geral_chuvoso
-statistic <- part.geral_chuvoso$statistic
-SES <- part.geral_chuvoso$oecosimu$z
-mean <- part.geral_chuvoso$oecosimu$means
-lower_2.5 <- apply(part.geral_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.geral_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.geral_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.geral_chuvoso$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_chuvoso <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_chuvoso)
-str(part.geral_chuvoso)
-gt(diversity_data_chuvoso)
-
-#########################################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.geral_chuvoso$statistic
-observed_values
-expected_values <- part.geral_chuvoso$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df$Type <- factor(df$Type, levels = c("Esperado", "Observado"))
-df
-df_filtered <- df[!df$Componente %in% c("alpha.2", "alpha.3", "gamma"), ]
-df_filtered$Componente <- factor(df_filtered$Componente, 
-                                 levels = c("beta.3", "beta.2", "beta.1", "alpha.1"))
-df_filtered
-
-diversity_data_chuvoso <- df_filtered
-diversity_data_chuvoso
-# Calcular porcentagens para cada componente
-diversity_data_chuvoso <- diversity_data_chuvoso %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_chuvoso, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "A) Riachos - Período Chuvoso",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray",
-                               "beta.3" = "lightgray")) +
-  
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo_chuvoso,x=escala.total_chuvoso, FUN=diversity)
-#hier
-
-####################################################################################
-#PARTIÇÃO BARRO BRANCO
-
-#Fauna total
-library(vegan)
-#part.geral_chuvoso<-adipart(y=fauna.zoo_chuvoso,x=escala.total_chuvoso, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_chuvoso
-#EM PORCENTAGEM
-part.bb_chuvoso<-adipart(y=fauna.zoo.bb_chuvoso,x=escala.bb_chuvoso, index="richness", relative=TRUE,
-                      weights="unif",nsimul=999)
-part.bb_chuvoso
-str(part.bb_chuvoso)
-
-####################################################################
-# Extrair valores do objeto part.bb_chuvoso
-statistic <- part.bb_chuvoso$statistic
-SES <- part.bb_chuvoso$oecosimu$z
-mean <- part.bb_chuvoso$oecosimu$means
-lower_2.5 <- apply(part.bb_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.bb_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.bb_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.bb_chuvoso$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_chuvoso.bb <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_chuvoso.bb)
-str(part.bb_chuvoso)
-gt(diversity_data_chuvoso.bb)
-
-#######################################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.bb_chuvoso$statistic
-observed_values
-expected_values <- part.bb_chuvoso$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df.bb <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df.bb$Type <- factor(df.bb$Type, levels = c("Esperado", "Observado"))
-df.bb
-
-df_filtered.bb <- df.bb[!df.bb$Componente %in% c("alpha.2", "alpha.3", "gamma", "beta.3"), ]
-df_filtered.bb$Componente <- factor(df_filtered.bb$Componente, 
-                                    levels = c("beta.2", "beta.1", "alpha.1"))
-df_filtered.bb
-
-diversity_data_chuvoso.bb <- df_filtered.bb
-diversity_data_chuvoso.bb
-# Calcular porcentagens para cada componente
-diversity_data_chuvoso.bb <- diversity_data_chuvoso.bb %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_chuvoso.bb, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "B) Barro Branco - Período chuvoso",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray")) +
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo.bb_chuvoso,x=escala.bb_chuvoso, FUN=diversity)
-#hier
-
-###################################################################################
-#PARTIÇÃO CAIANA
-
-#adipart(fauna,env, index="richness", relative=TRUE,
-#        weights="unif",nsimul=999)
-
-#Fauna total
-library(vegan)
-#part.geral_chuvoso<-adipart(y=fauna.zoo_chuvoso,x=escala.total_chuvoso, index="richness", relative=FALSE,
-#                    weights="unif",nsimul=999)
-#part.geral_chuvoso
-#EM PORCENTAGEM
-part.ca_chuvoso<-adipart(y=fauna.zoo.ca_chuvoso,x=escala.ca_chuvoso, index="richness", relative=TRUE,
-                      weights="unif",nsimul=999)
-part.ca_chuvoso
-str(part.ca_chuvoso)
-
-####################################################################
-# Extrair valores do objeto part.ca_chuvoso
-statistic <- part.ca_chuvoso$statistic
-SES <- part.ca_chuvoso$oecosimu$z
-mean <- part.ca_chuvoso$oecosimu$means
-lower_2.5 <- apply(part.ca_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.025)
-median_50 <- apply(part.ca_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.50)
-upper_97.5 <- apply(part.ca_chuvoso$oecosimu$simulated, 1, quantile, probs = 0.975)
-Pr_sim <- part.ca_chuvoso$oecosimu$pval
-
-# Definir função para adicionar significância
-get_significance <- function(p) {
-  if (p <= 0.001) {
-    return("***")
-  } else if (p <= 0.01) {
-    return("**")
-  } else if (p <= 0.05) {
-    return("*")
-  } else if (p <= 0.1) {
-    return(".")
-  } else {
-    return(" ")
-  }
-}
-significance <- sapply(Pr_sim, get_significance)
-
-# Criar dataframe com todas as informações
-diversity_data_chuvoso.ca <- data.frame(
-  Component = names(statistic),
-  Observed = round(statistic, 2),
-  SES = round(SES, 2),
-  Mean = round(mean, 2),
-  Lower_2.5 = round(lower_2.5, 2),
-  Median_50 = round(median_50, 2),
-  Upper_97.5 = round(upper_97.5, 2),
-  Pr_sim = Pr_sim,
-  Sign = significance
-)
-
-# Exibir a tabela
-library(gt)
-print(diversity_data_chuvoso.ca)
-str(part.ca_chuvoso)
-gt(diversity_data_chuvoso.ca)
-
-########################################################
-# Criar dataframe com valores observados e esperados
-observed_values <- part.ca_chuvoso$statistic
-observed_values
-expected_values <- part.ca_chuvoso$oecosimu$means
-expected_values
-# Combine observed and expected values into a dataframe
-df.ca <- data.frame(
-  Componente = names(observed_values),  # Use names from observed_values
-  Type = rep(c("Esperado", "Observado"), each = length(observed_values)),
-  Value = c(expected_values, observed_values)
-)
-df.ca$Type <- factor(df.ca$Type, levels = c("Esperado", "Observado"))
-df.ca
-
-df_filtered.ca <- df.ca[!df.ca$Componente %in% c("alpha.2", "alpha.3", "gamma", "beta.3"), ]
-df_filtered.ca$Componente <- factor(df_filtered.ca$Componente, 
-                                    levels = c("beta.2", "beta.1", "alpha.1"))
-df_filtered.ca
-
-diversity_data_chuvoso.ca <- df_filtered.ca
-diversity_data_chuvoso.ca
-# Calcular porcentagens para cada componente
-diversity_data_chuvoso.ca <- diversity_data_chuvoso.ca %>%
-  group_by(Type) %>%
-  mutate(Percentage = Value / sum(Value) * 100)
-
-# Carregar pacotes necessários
-library(ggplot2)
-library(dplyr)
-
-# Criar o gráfico
-ggplot(diversity_data_chuvoso.ca, aes(fill = Componente, y = Percentage, x = Type)) +
-  geom_bar(position = "stack", stat = "identity") +
-  labs(title = "C) Caiana - Período chuvoso",
-       y = "Total da diversidade (%)",
-       x = "") +
-  scale_fill_manual(values = c("alpha.1" = "black",
-                               "beta.1" = "darkgray",
-                               "beta.2" = "gray")) +
-  scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, by = 10)) + # Aqui você ajusta a escala do eixo y
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5),
-    panel.grid = element_blank()
-  )
-
-#hier <- hiersimu(y=fauna.zoo.ca_chuvoso,x=escala.ca_chuvoso, FUN=diversity)
-#hier
-
-```
 
 ## Multiplicative partition
 
@@ -3026,73 +2121,6 @@ Em relação ao riacho Barro Branco (Tabela 3), o alfa observado (2,75%) foi inf
 
 A α-diversidade observada no Caiana (Tabela 3) foi de 3,08%, quando o esperado era que fosse 4,89% (P\<0,999). Assim como no Barro Branco, as β-diversidades observadas foram maiores que o esperado (P=0,001), tendo em vista que β~1~ foi de 1,97% e β~2~ apresentou valores de 1,85%. O patrimônio regional de espécies atingiu o valor de 6,08%.
 
-```{r multiplicativa - seco}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| echo: true
-#| purl: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Multiplicativa - Seco"
-
-#REBIO23 - PARTIÇÃO MULTIPLICATIVA - PERÍODO SECO----
-#####....----
-
-#PARTIÇÃO GERAL
-#multipart.geral_seco <- multipart(y = fauna.zoo_seco, x = escala.total_seco, index = "renyi",
-#                             scales = 1, global = FALSE, relative = FALSE,
-#                             weights = "unif", nsimul = 999, method = "r2dtable")
-
-#multipart.geral_seco
-
-
-#EM PERCENTAGEM
-part.geral_seco <- multipart(y = fauna.zoo_seco, x = escala.total_seco, index = "renyi",
-                        scales = 1, global = TRUE, relative = FALSE,
-                        weights = "unif", nsimul = 999, method = "r2dtable")
-
-part.geral_seco
-
-################################################################################
-#PARTIÇÃO BARRO BRANCO
-
-#MULTIPART
-#multipart.bb_seco <- multipart(y = fauna.zoo.bb_seco, x = escala.bb_seco, index = "renyi",
-#                          scales = 1, global = FALSE, relative = FALSE,
-#                          weights = "unif", nsimul = 999, method = "r2dtable")
-
-#multipart.bb_seco
-
-
-#EM PERCENTAGEM
-part.bb_seco <- multipart(y = fauna.zoo.bb_seco, x = escala.bb_seco, index = "renyi",
-                     scales = 1, global = TRUE, relative = FALSE,
-                     weights = "unif", nsimul = 999, method = "r2dtable")
-
-part.bb_seco
-
-################################################################################
-#PARTIÇÃO CAIANA
-
-#MULTIPART
-#multipart.ca_seco <- multipart(y = fauna.zoo.ca_seco, x = escala.ca_seco, index = "renyi",
-#                          scales = 1, global = FALSE, relative = FALSE,
-#                          weights = "unif", nsimul = 999, method = "r2dtable")
-
-#multipart.ca_seco
-
-
-#EM PERCENTAGEM
-part.ca_seco <- multipart(y = fauna.zoo.ca_seco, x = escala.ca_seco, index = "renyi",
-                     scales = 1, global = TRUE, relative = FALSE,
-                     weights = "unif", nsimul = 999, method = "r2dtable")
-
-part.ca_seco
-
-```
-
 **Período chuvoso**
 
 A α-diversidade observada em ambos os riachos (Tabela 3) foi de 3,56%, sendo inferior significativamente ao esperado (9,29%; P\<0,999). Mesmo no período chuvoso, suas β-diversidades atingiram valores acima do esperado. β~1~ apresentou 2,96% do esperado (1,13%; P=0,001), β~2~ obteve um valor observado de 2,52%, acima do esperado (1,04%; P=0,001), já em β~3~, foi observada uma diversidade de 1,11% acima do esperado (1,00%; P=0,001). A γ-diversidade total foi de 10,55.
@@ -3101,72 +2129,96 @@ No Barro Branco (Tabela 3), a α-diversidade observada (2,64%) foi inferior ao e
 
 O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao esperado (10,25%; P\<0,999). A diversidade observada em β~1~ foi de 2,80%, valor superior ao esperado (1,13%; P=0,001). β~2~ apresentou 2,44% superior ao esperado (1,04%; P=0,001). A contribuição de γ-diversidade foi de 11,62%.
 
-```{r multiplicativa - chuvoso}
+```{r, ADDPART}
 #| eval: false
-#| message: false
 #| warning: false
+#| message: false
 #| results: false
-#| echo: true
-#| purl: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Multiplicativa - Chuvoso"
+#| code-summary: Diversity partition
 
-#REBIO23 - PARTIÇÃO MULTIPLICATIVA - PERÍODO CHUVOSO----
+#ZOOREBIO_part - ADDPART----
 #####....----
 
-#COMANDO
-#PARTIÇÃO GERAL
-#multipart.geral_chuvoso <- multipart(y = fauna.zoo_chuvoso, x = escala.total_chuvoso, index = "renyi",
-#                             scales = 1, global = FALSE, relative = FALSE,
-#                             weights = "unif", nsimul = 999, method = "r2dtable")
+##ORGANIZANDO DADOS----
 
-#multipart.geral_chuvoso
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
 
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens <- read.csv("res/m_dens.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_hab_part <- read.csv("res/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+m_cont <- read.csv("res/m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
 
-#EM PERCENTAGEM
-part.geral_chuvoso <- multipart(y = fauna.zoo_chuvoso, x = escala.total_chuvoso, index = "renyi",
-                             scales = 1, global = TRUE, relative = FALSE,
-                             weights = "unif", nsimul = 999, method = "r2dtable")
+m_dens
+str(m_dens)
 
-part.geral_chuvoso
+#SEPARANDO OS PERÍODOS
 
-################################################################################
-#PARTIÇÃO BARRO BRANCO
+library(vegan)
+# Fazendo a média por ponto
+ponto_id <- sub("-H[0-9]+$", "", rownames(m_dens))
+m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
+rownames(m_dens_media) <- m_dens_media$Ponto
+m_dens_media$Ponto <- NULL
+# Separar por período
+seco_med <- m_dens_media[startsWith(rownames(m_dens_media), "S-"), ]
+chuv_med <- m_dens_media[startsWith(rownames(m_dens_media), "C-"), ]
+# Filtrar COLUNAS zeradas (espécies ausentes no período)
+seco_med <- seco_med[, colSums(seco_med) > 0]
+chuv_med <- chuv_med[, colSums(chuv_med) > 0]
+# Filtrar LINHAS zeradas (pontos sem organismos)
+seco_med <- seco_med[rowSums(seco_med) > 0, ]
+chuv_med <- chuv_med[rowSums(chuv_med) > 0, ]
+# Transformação
+seco_trns <- asin(sqrt(decostand(seco_med,
+                              method="total", MARGIN = 2)))
+chuv_trns <- asin(sqrt(decostand(chuv_med,
+                              method="total", MARGIN = 2)))
+# Distâncias de Bray-Curtis e UPGMA
+dist_seco <- vegdist(seco_trns, method = "bray")
+dist_chuv <- vegdist(chuv_trns, method = "bray")
+upgma_seco <- hclust(dist_seco, method = "average")
+upgma_chuv <- hclust(dist_chuv, method = "average")
 
-#MULTIPART
-#multipart.bb_chuvoso <- multipart(y = fauna.zoo.bb_chuvoso, x = escala.bb_chuvoso, index = "renyi",
-#                          scales = 1, global = FALSE, relative = FALSE,
-#                          weights = "unif", nsimul = 999, method = "r2dtable")
+# Plot dos dendrogramas agrupados por ponto
+upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
+upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
+dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
+dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
 
-#multipart.bb_chuvoso
-
-
-#EM PERCENTAGEM
-part.bb_chuvoso <- multipart(y = fauna.zoo.bb_chuvoso, x = escala.bb_chuvoso, index = "renyi",
-                          scales = 1, global = TRUE, relative = FALSE,
-                          weights = "unif", nsimul = 999, method = "r2dtable")
-
-part.bb_chuvoso
-
-################################################################################
-#PARTIÇÃO CAIANA
-
-#MULTIPART
-#multipart.ca_chuvoso <- multipart(y = fauna.zoo.ca_chuvoso, x = escala.ca_chuvoso, index = "renyi",
-#                          scales = 1, global = FALSE, relative = FALSE,
-#                          weights = "unif", nsimul = 999, method = "r2dtable")
-
-#multipart.ca_chuvoso
-
-
-#EM PERCENTAGEM
-part.ca_chuvoso <- multipart(y = fauna.zoo.ca_chuvoso, x = escala.ca_chuvoso, index = "renyi",
-                          scales = 1, global = TRUE, relative = FALSE,
-                          weights = "unif", nsimul = 999, method = "r2dtable")
-
-part.ca_chuvoso
-
+#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
+par(mfrow = c(1, 2), mar = c(5, 4, 4, 6))
+plot(as.dendrogram(upgma_seco), 
+     horiz = TRUE, 
+     main = "UPGMA - Seco", 
+     xlab = "Dissimilaridade (Bray-Curtis)",
+     xlim = c(max(attr(dend_seco, "height")), 0))
+plot(as.dendrogram(upgma_chuv), 
+     horiz = TRUE, 
+     main = "UPGMA - Chuvoso", 
+     xlab = "Dissimilaridade (Bray-Curtis)",
+     xlim = c(max(attr(dend_chuv, "height")), 0))
+par(mfrow = c(1, 1))
+#dev.off()
 ```
 
 # Discussion
@@ -3261,9 +2313,9 @@ Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analys
 
 O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
-# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito
+# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito  {.unnumbered}
 
-<!--# # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process-->
+<!--# # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process  {.unnumbered}-->
 
 Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI) para auxiliar na revisão do idioma inglês e no aprimoramento da clareza e da fluência da redação. Nenhuma ferramenta de IA foi utilizada para análise ou interpretação dos dados, nem para a elaboração de conclusões científicas. Os autores revisaram e avaliaram cuidadosamente todas as sugestões geradas por IA e assumem total responsabilidade pela precisão e pelo conteúdo da versão final do manuscrito [@cnpq2026].
 
