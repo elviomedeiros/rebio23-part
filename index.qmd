@@ -297,10 +297,6 @@ nutrientes <- habitat[, nutri, drop = FALSE]
 nutrientes <- nutrientes[, colSums(!is.na(nutrientes)) > 0, drop = FALSE]
 nutrientes <- na.omit(nutrientes)
 
-###ORGANIZANDO ESCALAS
-
-
-
 ##SALVANDO MATRIZES FINAIS----
 
 write.table(m_part_cols, "res/m_hab_part.csv",
@@ -388,7 +384,7 @@ m_dens <- read.csv(res/"m_dens.csv",
                    header = TRUE,
                    na.strings = NA)
 
-#BENTOS2006 - MATRIZ DE CONTAGEM----
+#ZOOREBIO23_PART - MATRIZ DE CONTAGEM----
 #####....----
 
 library(openxlsx)
@@ -439,6 +435,40 @@ m_cont <- read.csv("res/m_cont.csv",
                    header = TRUE,
                    na.strings = NA)
 m_cont
+
+#ZOOREBIO23_PART - ORGANIZANDO ESCALAS DA COMUNIDADE----
+#####....----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+library(openxlsx)
+
+##CARREGANDO MATRIZES BRUTAS----
+
+escalas <- read.xlsx("dados/rebio23-zoopl.xlsx",
+                   rowNames = T,
+                   colNames = T,
+                   sheet = "escalas_final",
+                   startRow = 2)
+
+rownames(escalas)
+del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3", "S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3")
+del_rows
+escalas <- escalas[!(row.names(escalas) %in% c(del_rows)),]
+
+write.table(escalas, "res/m_esc.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_esc <- read.csv("res/m_esc.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_esc
 ```
 
 ```{r ENV-REBIO23_PART-CORR}
@@ -2151,7 +2181,7 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-t_grps <- read.csv("res/t_grps.csv",
+m_esc <- read.csv("res/m_esc.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2161,77 +2191,213 @@ m_dens <- read.csv("res/m_dens.csv",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("res/m_hab_part.csv",
-                       sep = ";", dec = ".",
-                       row.names = 1,
-                       header = TRUE,
-                       na.strings = NA)
 m_cont <- read.csv("res/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
 
-escalas <- read_ods("D:/Elvio/OneDrive/_2022-Ecofisiologia/PIBIC-23/Resultados/rebio23-zoopl_5-20.ods",
-                    row_names = TRUE,
-                    col_names = TRUE,
-                    sheet = "escalas",
-                    as_tibble = FALSE,
-                    na = "n/a",  # porque existem celulas vazias (n/a)
-                    skip = 0)
+#BUSCANDO AS ESCALAS
 
+# Partição total
+colnames(m_esc)
+pt.total <- m_esc[, c("pt.rio", "pt.periodo", "pt.rebio")]
+head(pt.total)
+dim(pt.total)
 
-m_dens
-str(m_dens)
+# Partição seco
+pt.seco <- m_esc[, c("s.habitat", "s.ponto", "s.rio", "s.rebio")]
+pt.seco <- pt.seco[grep("^S-", rownames(pt.seco)), ]
+head(pt.seco)
+dim(pt.seco)
+m_cont_s <- m_cont[grep("^S-", rownames(m_cont)), ]
 
-#SEPARANDO OS PERÍODOS
+# Partição chuvoso
+pt.chuva <- m_esc[, c("c.habitat", "c.ponto", "c.rio", "c.rebio")]
+pt.chuva <- pt.chuva[grep("^C-", rownames(pt.chuva)), ]
+head(pt.chuva)
+dim(pt.chuva)
+m_cont_c <- m_cont[grep("^C-", rownames(m_cont)), ]
+
+#PARTIÇÃO
+
+part1 <- pt.chuva
+cont <- m_cont_c
 
 library(vegan)
-# Fazendo a média por ponto
-ponto_id <- sub("-H[0-9]+$", "", rownames(m_dens))
-m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
-rownames(m_dens_media) <- m_dens_media$Ponto
-m_dens_media$Ponto <- NULL
-# Separar por período
-seco_med <- m_dens_media[startsWith(rownames(m_dens_media), "S-"), ]
-chuv_med <- m_dens_media[startsWith(rownames(m_dens_media), "C-"), ]
-# Filtrar COLUNAS zeradas (espécies ausentes no período)
-seco_med <- seco_med[, colSums(seco_med) > 0]
-chuv_med <- chuv_med[, colSums(chuv_med) > 0]
-# Filtrar LINHAS zeradas (pontos sem organismos)
-seco_med <- seco_med[rowSums(seco_med) > 0, ]
-chuv_med <- chuv_med[rowSums(chuv_med) > 0, ]
-# Transformação
-seco_trns <- asin(sqrt(decostand(seco_med,
-                              method="total", MARGIN = 2)))
-chuv_trns <- asin(sqrt(decostand(chuv_med,
-                              method="total", MARGIN = 2)))
-# Distâncias de Bray-Curtis e UPGMA
-dist_seco <- vegdist(seco_trns, method = "bray")
-dist_chuv <- vegdist(chuv_trns, method = "bray")
-upgma_seco <- hclust(dist_seco, method = "average")
-upgma_chuv <- hclust(dist_chuv, method = "average")
 
-# Plot dos dendrogramas agrupados por ponto
-upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
-upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
-dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
-dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
+#VALORES ABSOLUTOS
+part.a <- adipart(y = cont, x = part1, index = "richness", relative = FALSE,
+                    weights = "unif", nsimul = 999)
+part.a
 
-#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
-par(mfrow = c(1, 2), mar = c(5, 4, 4, 6))
-plot(as.dendrogram(upgma_seco), 
-     horiz = TRUE, 
-     main = "UPGMA - Seco", 
-     xlab = "Dissimilaridade (Bray-Curtis)",
-     xlim = c(max(attr(dend_seco, "height")), 0))
-plot(as.dendrogram(upgma_chuv), 
-     horiz = TRUE, 
-     main = "UPGMA - Chuvoso", 
-     xlab = "Dissimilaridade (Bray-Curtis)",
-     xlim = c(max(attr(dend_chuv, "height")), 0))
-par(mfrow = c(1, 1))
-#dev.off()
+#EM PORCENTAGEM
+part.p <- adipart(y = cont, x = part1, index = "richness", relative = TRUE,
+                    weights = "unif", nsimul = 999)
+part.p
+
+str(part.p)
+
+# Extrair valores do objeto part.p
+
+part2 <- part.p
+  
+statistic <- part2$statistic
+SES <- part2$oecosimu$z
+mean <- part2$oecosimu$means
+lower_2.5 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.025)
+median_50 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.50)
+upper_97.5 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.975)
+Pr_sim <- part2$oecosimu$pval
+
+# Definir função para adicionar significância
+get_significance <- function(p) {
+  if (p <= 0.001) {
+    return("***")
+  } else if (p <= 0.01) {
+    return("**")
+  } else if (p <= 0.05) {
+    return("*")
+  } else if (p <= 0.1) {
+    return(".")
+  } else {
+    return(" ")
+  }
+}
+significance <- sapply(Pr_sim, get_significance)
+
+# Criar dataframe com todas as informações
+
+diversity_data <- data.frame(
+  Component = names(statistic),
+  Observed = round(statistic, 2),
+  SES = round(SES, 2),
+  Mean = round(mean, 2),
+  Lower_2.5 = round(lower_2.5, 2),
+  Median_50 = round(median_50, 2),
+  Upper_97.5 = round(upper_97.5, 2),
+  Pr_sim = Pr_sim,
+  Sign = significance
+)
+
+# Exibir a tabela
+library(gt)
+print(diversity_data)
+str(part2)
+gt(diversity_data)
+
+# Criar dataframe com valores observados e esperados
+observed_values <- part2$statistic
+observed_values
+expected_values <- part2$oecosimu$means
+expected_values
+
+# Combine observed and expected values into a dataframe
+df <- data.frame(
+  Component = rep(names(observed_values), 2), # Use names from observed_values
+  Type = rep(c("Observed", "Expected"), each = length(observed_values)),
+  Value = c(observed_values, expected_values) # Observado primeiro, Esperado depois
+)
+
+df$Type <- factor(df$Type, levels = c("Observed", "Expected"))
+df
+df_filtered <- df[!df$Component %in% c("alpha.2", "alpha.3", "gamma"), ]
+df_filtered$Component <- factor(df_filtered$Component, levels = c("beta.3", "beta.2", "beta.1", "alpha.1"))
+df_filtered
+
+diversity_data <- df_filtered
+diversity_data
+
+# Calcular porcentagens para cada componente
+diversity_data <- diversity_data %>%
+  group_by(Type) %>%
+  mutate(Percentage = Value / sum(Value) * 100)
+
+hier <- hiersimu(y = cont, x = part1, FUN = diversity)
+hier
+
+#GRÁFICOS
+
+library(ggplot2)
+library(dplyr)
+
+# Partição total
+
+ggplot_pt.total <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Total",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_pt.total
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_total.png")
+
+# Partição seco
+
+ggplot_pt.seco <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Seco",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_pt.seco
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_seco.png")
+
+# Partição chuvoso
+
+ggplot_pt.chuva <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Chuvoso",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_pt.chuva
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_chuva.png")
+
+# PAINEL DE GRÁFICOS
+
+library(gridExtra)
+
+# 1. Organizar os gráficos em 2 linhas e 2 colunas
+
+painel_completo <- grid.arrange(
+  ggplot_pt.total, ggplot_pt.seco, 
+  ggplot_pt.chuva, ggplot_pt.total, 
+  ncol = 2, nrow = 2
+)
+
+# 2. Salvar o painel em alta resolução (300 DPI)
+ggsave(
+  filename = "res/fig-painel_partição.png",
+  plot = painel_completo,
+  width = 10,
+  height = 8,
+  dpi = 300
+)
 ```
 
 # Discussion
@@ -2352,6 +2518,8 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @fig-upgma: <!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
 
+@fig-particao: <!--# Observed and expected diversity, partitioned into one alpha and three beta components, expressed as percent of total species richness. Numbers indicate the proportion of randomized samples containing more species than the observed sample for each partition. α1: subsample species richness, β1: beta diversity among sub-samples; β2: beta diversity among pools or habitats within pool, and β3: beta diversity among river reaches.-->
+
 @tbl-hab_gttable: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
 @tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
@@ -2390,6 +2558,14 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 <summary>Fig.: Análise de Classificação</summary>
 
 ![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
+
+</details>
+
+<details>
+
+<summary>Fig.: Partição da diversidade</summary>
+
+![Partição da diversidade observada e esperada.](res/fig-painel_partição.png){#fig-particao}
 
 </details>
 
