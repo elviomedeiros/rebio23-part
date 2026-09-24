@@ -2251,11 +2251,16 @@ m_cont_ca.chuva <- m_cont[grep("C-C-", rownames(ca.chuva)), ]
 
 #PARTIÇÃO
 
+#pt.seco (m_cont_s), pt.chuva (m_cont_c)
+#bb.seco(A) (m_cont_bb.seco), bb.chuva(B) (m_cont_bb.chuva)
+#ca.seco(C) (m_cont_ca.seco), ca.chuva(D) (m_cont_ca.chuva)
+
 part1 <- ca.chuva
 cont <- m_cont_ca.chuva
 
 library(vegan)
 
+sink(file = "res/part-ca.chuva.txt")
 #VALORES ABSOLUTOS
 part.a <- adipart(y = cont, x = part1, index = "richness", relative = FALSE,
                     weights = "unif", nsimul = 999)
@@ -2266,7 +2271,7 @@ part.p <- adipart(y = cont, x = part1, index = "richness", relative = TRUE,
                     weights = "unif", nsimul = 999)
 part.p
 
-str(part.p)
+#str(part.p)
 
 # Extrair valores do objeto part.p
 
@@ -2313,7 +2318,7 @@ diversity_data <- data.frame(
 # Exibir a tabela
 library(gt)
 print(diversity_data)
-str(part2)
+#str(part2)
 gt(diversity_data)
 
 # Criar dataframe com valores observados e esperados
@@ -2345,6 +2350,7 @@ diversity_data <- diversity_data %>%
 
 hier <- hiersimu(y = cont, x = part1, FUN = diversity)
 hier
+sink()
 
 #GRÁFICOS
 
