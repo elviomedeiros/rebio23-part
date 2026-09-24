@@ -3285,11 +3285,13 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
-@fig-upgma: Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.
+@fig-upgma: <!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
 
 @tbl-hab_gttable: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
 @tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+
+@tbl-spp_gttable: <!--# Density (ind/m2) and frequency of occurence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
 
 ## Figures {.unnumbered}
 
@@ -3297,7 +3299,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <summary>Fig.: Localização das Unidades Amostrais</summary>
 
-![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/Uso de Solo Rebio_pt.png){#fig-mapa}
 
 </details>
 
@@ -3311,17 +3313,18 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Fig.: Análise de Classificação</summary>
+<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por rio</summary>
 
-![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
+![Análise de Componentes Principais (PCA) das variáveis ambientais, por rio.](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
 </details>
 
+
 <details>
 
-<summary>Fig.: Localização das Unidades Amostrais</summary>
+<summary>Fig.: Análise de Classificação</summary>
 
-![Mapa da área de influência da REBIO Guaribas.](imagens/mapa.png){#fig-mapa}
+![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
 
 </details>
 
