@@ -2163,6 +2163,8 @@ No Barro Branco (Tabela 3), a α-diversidade observada (2,64%) foi inferior ao e
 
 O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao esperado (10,25%; P\<0,999). A diversidade observada em β~1~ foi de 2,80%, valor superior ao esperado (1,13%; P=0,001). β~2~ apresentou 2,44% superior ao esperado (1,04%; P=0,001). A contribuição de γ-diversidade foi de 11,62%.
 
+<!--# CHUVOSO E SECO POR RIO, 4 GRÁFICOS-->
+
 ```{r, ADDPART}
 #| eval: false
 #| warning: false
@@ -2219,10 +2221,38 @@ head(pt.chuva)
 dim(pt.chuva)
 m_cont_c <- m_cont[grep("^C-", rownames(m_cont)), ]
 
+# Partição bb.seco (A)
+bb.seco <- m_esc[, c("bb.habitat", "bb.ponto", "bb.rio")]
+bb.seco <- bb.seco[grep("S-B-", rownames(bb.seco)), ]
+head(bb.seco)
+dim(bb.seco)
+m_cont_bb.seco <- m_cont[grep("S-B-", rownames(m_cont)), ]
+
+# Partição bb.chuva (B)
+bb.chuva <- m_esc[, c("bb.habitat", "bb.ponto", "bb.rio")]
+bb.chuva <- bb.chuva[grep("C-B-", rownames(bb.chuva)), ]
+head(bb.chuva)
+dim(bb.chuva)
+m_cont_bb.chuva <- m_cont[grep("C-B-", rownames(bb.chuva)), ]
+
+# Partição ca.seco (C)
+ca.seco <- m_esc[, c("ca.habitat", "ca.ponto", "ca.rio")]
+ca.seco <- ca.seco[grep("S-C-", rownames(ca.seco)), ]
+head(ca.seco)
+dim(ca.seco)
+m_cont_ca.seco <- m_cont[grep("S-C-", rownames(ca.seco)), ]
+
+# Partição ca.chuva (D)
+ca.chuva <- m_esc[, c("ca.habitat", "ca.ponto", "ca.rio")]
+ca.chuva <- ca.chuva[grep("C-C-", rownames(ca.chuva)), ]
+head(ca.chuva)
+dim(ca.chuva)
+m_cont_ca.chuva <- m_cont[grep("C-C-", rownames(ca.chuva)), ]
+
 #PARTIÇÃO
 
-part1 <- pt.chuva
-cont <- m_cont_c
+part1 <- ca.chuva
+cont <- m_cont_ca.chuva
 
 library(vegan)
 
@@ -2378,6 +2408,82 @@ ggplot_pt.chuva <- ggplot(diversity_data, aes(fill = Component, y = Percentage, 
 ggplot_pt.chuva
 ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_chuva.png")
 
+# bb.seco (A)
+
+ggplot_bb.seco <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "(A)",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_bb.seco
+ggsave(ggplot_bb.seco, dpi = 300, filename = "res/fig-bb.seco.png")
+
+# bb.chuva (B)
+
+ggplot_bb.chuva <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "(B)",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_bb.chuva
+ggsave(ggplot_bb.chuva, dpi = 300, filename = "res/fig-bb.chuva.png")
+
+# ca.seco (C)
+
+ggplot_ca.seco <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "(C)",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_ca.seco
+ggsave(ggplot_ca.seco, dpi = 300, filename = "res/fig-ca.seco.png")
+
+# ca.chuva (D)
+
+ggplot_ca.chuva <- ggplot(diversity_data, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "(D)",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_ca.chuva
+ggsave(ggplot_ca.chuva, dpi = 300, filename = "res/fig-ca.chuva.png")
+
 # PAINEL DE GRÁFICOS
 
 library(gridExtra)
@@ -2385,8 +2491,8 @@ library(gridExtra)
 # 1. Organizar os gráficos em 2 linhas e 2 colunas
 
 painel_completo <- grid.arrange(
-  ggplot_pt.total, ggplot_pt.seco, 
-  ggplot_pt.chuva, ggplot_pt.total, 
+  ggplot_bb.seco, ggplot_bb.chuva, 
+  ggplot_ca.seco, ggplot_ca.chuva, 
   ncol = 2, nrow = 2
 )
 
