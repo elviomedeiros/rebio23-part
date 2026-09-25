@@ -1541,6 +1541,74 @@ Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chy
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
 
+```{r COMM-ACCUMCURV}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Community structure data table" 
+
+#ZOOREBIO_part - CURVA DE ACUMULAÇÃO----
+#####....----
+
+##ORGANIZANDO DADOS----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+m_cont <- read.csv("res/m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_trab <- m_cont
+
+library(tidyverse)
+
+m_trab_r <- mutate(m_trab, across(everything(), ceiling)) #arredonda a matriz original para números inteiros
+
+colSums(t(m_trab_r))
+colnames(t(m_trab_r))
+
+ca_abund <- colSums(m_trab_r[grep("-C-", rownames(m_trab_r)), ])
+bb_abund  <- colSums(m_trab_r[grep("-B-", rownames(m_trab_r)), ])
+
+m_rios <- rbind("Caiana" = ca_abund, "Barro Branco" = bb_abund)
+m_rios
+
+rarefa <- t(m_rios)
+
+library(iNEXT)
+out <- iNEXT(rarefa, q = 0,
+             datatype = "abundance",
+             size = NULL,
+             endpoint = 15000, #define o comprimento de eixo x
+             knots = 40,
+             se = TRUE,
+             conf = 0.95,
+             nboot = 50)
+
+library(ggplot2)
+grafico3 <- ggiNEXT(out, type = 1, facet.var="None") + #ver como fica com facet.var="Assemblage"
+  theme_bw() +
+  labs(fill = "Áreas") +
+  xlab("Número de indivíduos") + 
+  ylab("Riqueza de espécies") +
+  scale_linetype_discrete(
+    labels = c("Interpolation", "Extrapolation")) +
+  theme(legend.title = element_blank(),
+        legend.position = "bottom",
+        legend.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12)
+) 
+grafico3
+ggsave(grafico3, width = 8, height = 6, dpi = 300, filename = "res/fig-rare1.png")
+```
+
 ```{r COMM-STR}
 #| eval: false
 #| warning: false
@@ -2758,6 +2826,8 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @fig-hab_PCA_periodo: : Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by season. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
+@fig-rare1: <!--# Individual-based extrapolation and rarefaction curves for the richness of resting stages of zooplanktonic taxa in each study stream. Shaded areas indicate 95% confidence intervals.-->
+
 @fig-upgma: <!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
 
 @fig-particao: <!--# Observed and expected diversity, partitioned into one alpha and three beta components, expressed as percent of total species richness. Numbers indicate the proportion of randomized samples containing more species than the observed sample for each partition. α1: subsample species richness, β1: beta diversity among sub-samples; β2: beta diversity among pools or habitats within pool, and β3: beta diversity among river reaches.-->
@@ -2801,6 +2871,15 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 <summary>@fig-hab_PCA_periodo: Análise de Componentes Principais das variáveis ambientais por periodo</summary>
 
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, por periodo.](res/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
+
+</details>
+
+<details>
+
+<summary>@fig-rare1: Rarefaction curves</summary>
+
+![Individual-based extrapolation and rarefaction curves](res/fig-rare1.png){#fig-rare1}
+
 </details>
 
 <details>
