@@ -2512,6 +2512,134 @@ ggsave(
 )
 ```
 
+```{r GTTABLE_ADDPART_EXCLl}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Additive partitioning data table" 
+
+#TABELA DE PARTIÇÃO----
+#Feita no Gemini, conferir 
+
+# ------------------------------------------------------------------------------
+# 1. FUNÇÃO DE EXTRAÇÃO
+# ------------------------------------------------------------------------------
+extrair_linha_particao <- function(part_obj, sistema, periodo) {
+  
+  mapa_componentes <- c(
+    "alpha.1" = "α1 (micro-habitat)",
+    "alpha.2" = "α2 (ponto)",
+    "alpha.3" = "α3 (riacho)",
+    "beta.1"  = "β1 (entre micro-habitats)",
+    "beta.2"  = "β2 (entre pontos)",
+    "beta.3"  = "β3 (entre riachos)",
+    "gamma"   = "γ (Riqueza total)"
+  )
+  
+  stat <- part_obj$statistic
+  comp_names <- names(stat)
+  
+  df <- data.frame(
+    Sistema    = sistema,
+    Periodo    = periodo,
+    Componente = ifelse(comp_names %in% names(mapa_componentes), 
+                        mapa_componentes[comp_names], comp_names),
+    Observado  = sprintf("%.2f%%", stat * 100),
+    Esperado   = sprintf("%.2f%%", part_obj$oecosimu$means * 100),
+    SES        = sprintf("%.2f", part_obj$oecosimu$z),
+    p_val      = part_obj$oecosimu$pval,
+    stringsAsFactors = FALSE
+  )
+  
+  df$p_valor <- ifelse(df$p_val <= 0.001, "< 0.001*", 
+                       ifelse(df$p_val <= 0.05, sprintf("%.3f*", df$p_val), 
+                              sprintf("%.3f", df$p_val)))
+  
+  return(df %>% select(-p_val))
+}
+
+# ------------------------------------------------------------------------------
+# 2. PROCESSAMENTO E RUNDOWN DOS OBJETOS ADIPART
+# ------------------------------------------------------------------------------
+# Rodando o adipart para cada cenário e gerando os objetos corretos
+
+p_ca_seco  <- adipart(y = m_cont_ca.seco,  x = ca.seco,  index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+p_ca_chuva <- adipart(y = m_cont_ca.chuva, x = ca.chuva, index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+
+p_bb_seco  <- adipart(y = m_cont_bb.seco,  x = bb.seco,  index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+p_bb_chuva <- adipart(y = m_cont_bb.chuva, x = bb.chuva, index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+
+p_pt_seco  <- adipart(y = m_cont_s,        x = pt.seco,  index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+p_pt_chuva <- adipart(y = m_cont_c,        x = pt.chuva, index = "richness", relative = TRUE, weights = "unif", nsimul = 999)
+
+# ------------------------------------------------------------------------------
+# 3. CONSOLIDAÇÃO DA TABELA 1
+# ------------------------------------------------------------------------------
+tabela_1_raw <- rbind(
+  extrair_linha_particao(p_ca_seco,  "Riacho Caiana (CA)",       "Seco"),
+  extrair_linha_particao(p_ca_chuva, "Riacho Caiana (CA)",       "Chuvoso"),
+  extrair_linha_particao(p_bb_seco,  "Riacho Barro Branco (BB)", "Seco"),
+  extrair_linha_particao(p_bb_chuva, "Riacho Barro Branco (BB)", "Chuvoso"),
+  extrair_linha_particao(p_pt_seco,  "Partição Total (PT)",    "Seco"),
+  extrair_linha_particao(p_pt_chuva, "Partição Total (PT)",    "Chuvoso")
+)
+
+# ------------------------------------------------------------------------------
+# 4. IMPRESSÃO DA TABELA GT
+# ------------------------------------------------------------------------------
+tabela_1_final <- tabela_1_raw %>%
+  gt(groupname_col = "Sistema") %>%
+  tab_header(
+    title = md("**Tabela 1.** Partição aditiva da riqueza de espécies zooplanctônicas nas diferentes escalas espaciais nos riachos Caiana (CA), Barro Branco (BB) e na Partição Total (PT) durante os períodos seco e chuvoso na Reserva Biológica Guaribas (PB).")
+  ) %>%
+  cols_label(
+    Periodo    = "Período",
+    Componente = "Componente Hierárquico",
+    Observado  = "Observado (%)",
+    Esperado   = "Esperado (%)",
+    SES        = "SES",
+    p_valor    = "p-valor"
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = c("Periodo", "Observado", "Esperado", "SES", "p_valor")
+  )
+tabela_1_final
+
+# Formatar nomes das colunas diretamente
+tabela_1_simples <- tabela_1_raw
+colnames(tabela_1_simples) <- c("Sistema", "Período", "Componente", "Obs (%)", "Esp (%)", "SES", "p-valor")
+
+# Imprimir no console
+print(tabela_1_simples, row.names = FALSE)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(tabela_1_simples, file = "res/tabela de partição.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de partição.xlsx")
+writeData(wb, sheet = "Sheet 1", x = tabela_1_simples)
+saveWorkbook(wb, "res/tabela de partição.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+part_gttable <- read_excel(
+  path  = "res/tabela de partição.xlsx",
+  sheet = "tabela_final",
+  range = "A1:G35") #ajustar para o tamanho da tabela final 
+part_gttable
+library(gt)
+part_gttable <- gt(part_gttable)
+part_gttable <- sub_missing(part_gttable,
+                      columns = everything(), missing_text = "")
+part_gttable
+gtsave(part_gttable, "res/gt-part_gttable_xlsx.html")
+saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
+
+```
+
 # Discussion
 
 Os habitats de ambientes de água doce estão entre os ecossistemas mais modificados do planeta, seja em função de atividades antrópicas, como o despejo inadequado de efluentes, a destruição e a degradação de habitat, ou pela introdução de espécies exóticas [@altindag2025; @marcelino2025; @pinto2006; @silva2020]. Neste contexto, torna-se essencial compreender e avaliar como a estrutura do habitat influencia a diversidade e composição da fauna de organismos aquáticos, como o zooplâncton, grupo conhecido como bioindicador de processos de poluição e eutrofização, uma vez que são essenciais para os serviços ecossistêmicos de ambientes de água doce [@marcelino2025; @santos2025].
@@ -2628,6 +2756,8 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
+@fig-hab_PCA_periodo: : Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by season. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+
 @fig-upgma: <!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
 
 @fig-particao: <!--# Observed and expected diversity, partitioned into one alpha and three beta components, expressed as percent of total species richness. Numbers indicate the proportion of randomized samples containing more species than the observed sample for each partition. α1: subsample species richness, β1: beta diversity among sub-samples; β2: beta diversity among pools or habitats within pool, and β3: beta diversity among river reaches.-->
@@ -2636,13 +2766,15 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
-@tbl-spp_gttable: <!--# Density (ind/m2) and frequency of occurence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
+@tbl-spp_gttable: <!--# Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
+
+@tbl-part_gttable: <!--# Contribution (expressed in percentage values 9 100) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition. -->
 
 ## Figures {.unnumbered}
 
 <details>
 
-<summary>Fig.: Localização das Unidades Amostrais</summary>
+<summary>@fig-mapa: Localização das Unidades Amostrais</summary>
 
 ![Mapa da área de influência da REBIO Guaribas.](imagens/Uso de Solo Rebio_pt.png){#fig-mapa}
 
@@ -2650,7 +2782,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por site</summary>
+<summary>@fig-hab_PCA_ref-site: Análise de Componentes Principais das variáveis ambientais por site</summary>
 
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, por tipo de site.](res/fig-hab_PCA_ref-site.png){#fig-hab_PCA_ref-site}
 
@@ -2658,16 +2790,22 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Fig.: Análise de Componentes Principais das variáveis ambientais por rio</summary>
+<summary>@fig-hab_PCA_rio: Análise de Componentes Principais das variáveis ambientais por rio</summary>
 
 ![Análise de Componentes Principais (PCA) das variáveis ambientais, por rio.](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
 </details>
 
+<details>
+
+<summary>@fig-hab_PCA_periodo: Análise de Componentes Principais das variáveis ambientais por periodo</summary>
+
+![Análise de Componentes Principais (PCA) das variáveis ambientais, por periodo.](res/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
+</details>
 
 <details>
 
-<summary>Fig.: Análise de Classificação</summary>
+<summary>@fig-upgma: Análise de Classificação</summary>
 
 ![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
 
@@ -2675,7 +2813,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Fig.: Partição da diversidade</summary>
+<summary>@fig-particao.: Partição da diversidade</summary>
 
 ![Partição da diversidade observada e esperada.](res/fig-painel_partição.png){#fig-particao}
 
@@ -2685,7 +2823,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <details>
 
-<summary>Tab.: Environmental data table</summary>
+<summary>@tbl-hab_gttable: Environmental data table</summary>
 
 ```{r tbl-hab_gttable}
 #| echo: false
@@ -2697,7 +2835,7 @@ readRDS("res/gt-hab_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Nutrient data table</summary>
+<summary>@tbl-nutri_gttable: Nutrient data table</summary>
 
 ```{r tbl-nutri_gttable}
 #| echo: false
@@ -2709,12 +2847,24 @@ readRDS("res/gt-nutri_gttable_xlsx.rds")
 
 <details>
 
-<summary>Tab.: Density of taxa GT table</summary>
+<summary>@tbl-spp_gttable: Density of taxa GT table</summary>
 
 ```{r, tbl-spp_gttable}
 #| echo: false
 #| tbl-cap: "Density (ind/m^2^) taxa GT table."
 readRDS("res/gt-spp_gttable_xlsx.rds")
+```
+
+</details>
+
+<details>
+
+<summary>@tbl-part_gttable: Diversity partition GT table</summary>
+
+```{r, tbl-part_gttable}
+#| echo: false
+#| tbl-cap: "Partition data GT table."
+readRDS("res/gt-part_gttable_xlsx.rds")
 ```
 
 </details>
