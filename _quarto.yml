@@ -3,17 +3,17 @@ project:
   output-dir: docs
 
 website:
-  title: "Trabalho REBIO23-Part"
+  title: "Projeto REBIO23-Part"
   navbar:
     left:
     - href: index.qmd
       text: TCC
     - href: ms_rebio23-part.qmd
-      text: Manuscript
+      text: Manuscrito
     - href: script.qmd
       text: Script
     - href: about.qmd
-      text: About this MS
+      text: Sobre esse MS
 #    - icon: file-pdf
 #      text: PDF
 #      href: index.pdf
