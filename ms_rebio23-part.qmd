@@ -2790,7 +2790,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-mapa</summary>
 
-![](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
+![](imagens/Uso%20de%20Solo%20Rebio_en.png){#fig-mapa}
 
 </details>
 
