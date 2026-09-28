@@ -205,13 +205,10 @@ Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo d
 
 $$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade} onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
 
-Além disso, as fórmulas de partição aditiva e multiplicativa também foram aplicadas:
+Além disso, a fórmula de partição aditiva também foi aplicada utilizando dados de riqueza de espécies:
 
-$$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{ (*)}$$ {#eq-aditiva}\
-
-$$\beta_i=\gamma/\alpha_i \text{ (**)}$$ {#eq-multiplicativa}
-
-Na **partição aditiva (\*)** [@oksanen2020], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação (@eq-aditiva). A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores mais elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ). A **partição multiplicativa (\*\*)** tem como função encontrar o valor da diversidade beta (β), tendo em vista que a diversidade de espécies muda ao longo de escalas espaciais [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
+$$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}\
+Na partição aditiva [@oksanen2020; @whittaker1972], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβᵢ. A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
 
 Os dados foram organizados em formatos de tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis através de técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022; @zar1999].
 
@@ -219,7 +216,7 @@ Para a realização das análises estatísticas, foram utilizados pacotes que pe
 
 Foram empregados pacotes sobre partição da diversidade para que fosse possível decompor ou particionar a diversidade em componentes alfa (α), beta (β) e gama (γ). A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou unidades amostrais únicas. Diversidade gama, ou diversidade regional, corresponde a escalas espaciais maiores, enquanto que a diversidade beta manifesta-se quando há variação na diversidade entre os ambientes ou escalas espaciais [@chao2012; @farias2020].
 
-Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. Funções como adipart e multipart também foram empregadas. A função adipart foi utilizada para a partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade) e multipart para partição multiplicativa da diversidade, que conterá os valores médios da α-diversidade em níveis mais baixos de uma hierarquia e comparados com a diversidade total gama.
+Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi empregada para a realização da partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade).
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
 
@@ -2209,28 +2206,6 @@ O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado 
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
 
-## Multiplicative partition
-
-Assim como na aplicação da partição aditiva, os valores obtidos representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada.
-
-A tabela 3 aborda duas escalas espaciais: uma maior, englobando ambos os riachos Caiana e Barro Branco, e uma menor, que se refere a apenas um dos riachos separadamente, seja Barro Branco ou Caiana.
-
-**Período seco**
-
-Considerando ambos os riachos (Tabela 3) a unidade de amostragem, apresentou valor observado (2,94%) inferior ao esperado (4,84%; P≤0,999). Em contraste, os componentes β-diversidade apresentaram valores observados superiores ao esperado (P=0,001). A diversidade entre habitats (β~1~) foi de 2,05%, quando o esperado era de 1,24%. Entre pontos (β~2~), a diversidade observada foi de 1,92%, quando o esperado era de 1,11%, entre riachos (β~3~), foi observado 1,18%, superior ao esperado (1,00%). A contribuição para a diversidade total (γ) foi de 6,04%
-
-Em relação ao riacho Barro Branco (Tabela 3), o alfa observado (2,75%) foi inferior ao que era esperado (3,56%; P\<0,999). Seus betas observados foram maiores que o esperado (P=0,001), em que o componente β~1~ obteve o valor de 1,50% e o componente β~2~ atingiu 1,39%. Sua diversidade gama foi de 4,13%.
-
-A α-diversidade observada no Caiana (Tabela 3) foi de 3,08%, quando o esperado era que fosse 4,89% (P\<0,999). Assim como no Barro Branco, as β-diversidades observadas foram maiores que o esperado (P=0,001), tendo em vista que β~1~ foi de 1,97% e β~2~ apresentou valores de 1,85%. O patrimônio regional de espécies atingiu o valor de 6,08%.
-
-**Período chuvoso**
-
-A α-diversidade observada em ambos os riachos (Tabela 3) foi de 3,56%, sendo inferior significativamente ao esperado (9,29%; P\<0,999). Mesmo no período chuvoso, suas β-diversidades atingiram valores acima do esperado. β~1~ apresentou 2,96% do esperado (1,13%; P=0,001), β~2~ obteve um valor observado de 2,52%, acima do esperado (1,04%; P=0,001), já em β~3~, foi observada uma diversidade de 1,11% acima do esperado (1,00%; P=0,001). A γ-diversidade total foi de 10,55.
-
-No Barro Branco (Tabela 3), a α-diversidade observada (2,64%) foi inferior ao esperado (6,65%; P\<0,999). β~1~ obteve diversidade observada de 2,68% (P=0,001). A diversidade observada em β~2~ foi de 2,18% (P=0,001). γ-diversidade obteve valor de 7,23%.
-
-O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao esperado (10,25%; P\<0,999). A diversidade observada em β~1~ foi de 2,80%, valor superior ao esperado (1,13%; P=0,001). β~2~ apresentou 2,44% superior ao esperado (1,04%; P=0,001). A contribuição de γ-diversidade foi de 11,62%.
-
 <!--# CHUVOSO E SECO POR RIO, 4 GRÁFICOS-->
 
 ```{r, ADDPART}
@@ -2800,7 +2775,7 @@ Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analys
 
 O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
-# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito  {.unnumbered}
+# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito {.unnumbered}
 
 <!--# # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process  {.unnumbered}-->
 
@@ -2818,7 +2793,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 # Figures and Tables {.unnumbered}
 
-@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. <!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: MapBiomas e TerraBrasilis. <!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
 
 @fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by site type. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
 
@@ -2846,7 +2821,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 <summary>@fig-mapa: Localização das Unidades Amostrais</summary>
 
-![Mapa da área de influência da REBIO Guaribas.](imagens/Uso de Solo Rebio_pt.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas.](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
 
 </details>
 
