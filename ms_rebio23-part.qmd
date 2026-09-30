@@ -95,8 +95,10 @@ editor_options:
 
 # Introduction
 
-``` {#INTRODUCTION .html}
-<!--#
+``` {r}
+#| eval: false
+#| include: false
+
 The Atlantic Forest, recognized for its exceptional species richness and high level of endemism [@branco2021; @fonseca1985; @tabarelli2012; @taboada2022], is one of the most threatened tropical forests worldwide due to intense anthropogenic pressure, making it a global priority region for biodiversity conservation in South America [@myers2000; @safar2020; @vancine2024]. Originally, its vegetation cover extended over 1.6 million km²; however, centuries of human occupation and resource exploitation have led to severe landscape reduction and fragmentation, compromising the ecological integrity of its remnants and the maintenance of biodiversity [@safar2020; @vancine2024]. Habitat loss driven by deforestation is directly linked to forest fragmentation, which promotes the isolation of remnants, reduces landscape connectivity, and restricts species dispersal [@souza2025; @tabarelli2010; @zaú1998]. These impacts are not confined to terrestrial environments; they extend to associated aquatic ecosystems, including headwater streams.
 
 In this context, forest fragmentation and land management can generate significant impacts on stream fauna within the Atlantic Forest, as aquatic organisms are highly sensitive to changes in natural water conditions [@gouveia2017]. According to @maltchik2006, landscape-level processes—such as disturbance, fragmentation, dispersal, and mosaic structure—exert a direct influence on local populations. Therefore, understanding the ecological processes structuring these communities is essential to evaluate the ecological health of water bodies and to comprehend how diversity is distributed across different spatial scales [@ávila2011]. In addition to landscape alterations, stream dynamics are strongly driven by seasonal factors. The Atlantic Forest features a predominantly tropical climate with rainfall distributed throughout the year [@barboza2024]. These hydrological fluctuations directly influence Neotropical freshwater environments by modifying physical and chemical conditions [@barboza2024]. The shift between dry and rainy seasons alters resource availability, microhabitat structure, and the establishment and persistence of organisms, thereby shaping community composition and dynamics [@esteves2011; @souza2025; @ward1998].
@@ -114,7 +116,7 @@ Diversity partitioning stands out in this context. This framework decomposes ove
 Among diversity partitioning framework variants, additive partitioning is widely applied in aquatic studies. However, @ligeiro2010 point out that its application in freshwater systems remains relatively scarce, highlighting a critical knowledge gap regarding alpha and beta diversity distribution. Under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
 
 Additive diversity partitioning provides a robust framework to evaluate how zooplankton communities respond to landscape fragmentation and seasonal dynamics. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales. Ultimately, this study generates key baseline data on the ecological condition of the studied streams and the ecological mechanisms structuring zooplankton communities, contributing to safer conservation strategies in Atlantic Forest remnants.
--->
+
 ```
 
 Essas abordagens são baseadas nos conceitos de turnover and nestedness. Species turnover and nestedness are two distinct components used to break down and understand beta diversity—which measures how much species composition changes between different communities or sites [@baselga2010], where, turnover is the replacement of some species by different species from one site to another, while nestedness is the loss or gain of species where poorer sites contain a strict subset of the species found at richer sites.
@@ -630,7 +632,7 @@ Em contraste, a UA P06 do Barro Branco, juntamente com as UAs P16, P17 e P20, do
 -->
 ```
 
-<!--# TERMINAR HABITAT -->
+<!--# COMEÇAR AQUI TERMINAR HABITAT -->
 
 Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).
 
@@ -2016,7 +2018,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Community data Classification UPGMA
+#| code-summary: Code: Community data Classification UPGMA
 
 #ZOOREBIO_part - UPGMA----
 #####....----
@@ -2184,7 +2186,7 @@ O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao espe
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Diversity partition
+#| code-summary: Code: Diversity partition
 
 #ZOOREBIO_part - ADDPART----
 #####....----
@@ -2782,7 +2784,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 @tbl-spp_gttable: Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.
 
-@tbl-part_gttable: Contribution (expressed in percentage values 9 100) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition.
+@tbl-part_gttable: Contribution (expressed in percentage values) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition.
 
 ## Figures {.unnumbered}
 
