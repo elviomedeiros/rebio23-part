@@ -109,7 +109,7 @@ Among the biological components of these communities, zooplankton—particularly
 
 According to @keppeler2004, the composition and structure of zooplankton communities result from complex interactions among physical, chemical, and biological factors, including seasonal variations. Therefore, shifts in species composition and community turnover often reflect underlying alterations in environmental conditions [@freiry2020; @melo2013].
 
-In recent decades, researchers have argued that biodiversity assessments should not be reduced to a single diversity index. @romanelli2022 emphasize that combining multiple statistical diversity approaches with multi-taxon evaluations provides a more comprehensive understanding of environmental ecological health and species' responses to anthropogenic stress. Nevertheless, few approaches allow for the assessment of diversity organization across explicit hierarchical spatial scales.
+In recent decades, researchers have argued that biodiversity assessments should not be reduced to a single diversity index. @romanelli2022 emphasize that combining multiple statistical diversity approaches with multi-taxon evaluations provides a more comprehensive understanding of environmental ecological health and species responses to anthropogenic stress. Nevertheless, few approaches allow for the assessment of diversity organization across explicit hierarchical spatial scales.
 
 Diversity partitioning stands out in this context. This framework decomposes overall diversity across multiple spatial levels, testing whether observed diversity is higher or lower than expected under null distribution models [@flach2009; @lopes2014], thereby offering valuable insights into community assembly and underlying ecological drivers.
 
@@ -2018,7 +2018,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Code: Community data Classification UPGMA
+#| code-summary: "Code: Community data Classification UPGMA"
 
 #ZOOREBIO_part - UPGMA----
 #####....----
@@ -2186,7 +2186,7 @@ O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao espe
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Code: Diversity partition
+#| code-summary: "Code: Diversity partition"
 
 #ZOOREBIO_part - ADDPART----
 #####....----
