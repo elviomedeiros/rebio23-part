@@ -95,7 +95,7 @@ editor_options:
 
 # Introduction
 
-``` {r}
+``` {r INTRODUÇÃO-pt}
 #| eval: false
 #| include: false
 
@@ -116,7 +116,6 @@ Diversity partitioning stands out in this context. This framework decomposes ove
 Among diversity partitioning framework variants, additive partitioning is widely applied in aquatic studies. However, @ligeiro2010 point out that its application in freshwater systems remains relatively scarce, highlighting a critical knowledge gap regarding alpha and beta diversity distribution. Under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
 
 Additive diversity partitioning provides a robust framework to evaluate how zooplankton communities respond to landscape fragmentation and seasonal dynamics. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales. Ultimately, this study generates key baseline data on the ecological condition of the studied streams and the ecological mechanisms structuring zooplankton communities, contributing to safer conservation strategies in Atlantic Forest remnants.
-
 ```
 
 Essas abordagens são baseadas nos conceitos de turnover and nestedness. Species turnover and nestedness are two distinct components used to break down and understand beta diversity—which measures how much species composition changes between different communities or sites [@baselga2010], where, turnover is the replacement of some species by different species from one site to another, while nestedness is the loss or gain of species where poorer sites contain a strict subset of the species found at richer sites.
@@ -139,8 +138,12 @@ The climate in the region is classified as As' [@peel2007], characterized by a m
 
 Sampling was conducted during the dry (January-February) and rainy (June-July) periods of 2024 in two Atlantic Forest streams. A total of 15 sampling sites were distributed longitudinally across the two streams to capture spatial variation in environmental conditions and habitat characteristics. The Barro Branco stream included sampling sites located within the protected area and sites located outside its boundaries, whereas all sampling sites in the Caiana stream were located outside the protected area. This sampling design allowed the assessment of zooplankton diversity across nested spatial scales and contrasting conditions of environmental protection and human influence (@fig-mapa).
 
-``` {#SITE TYPES .html}
-<!--# For comparative purposes, sampling sites were assigned a priori to one of four environmental categories based on their location relative to the protected area and their expected environmental conditions (@fig-refsites). Type I sites, considered reference sites for this study, were located within the protected area and were expected to represent the best-preserved conditions. These sites were characterized by well-preserved riparian vegetation and the absence of agricultural fields within a 1-km radius. They were also expected to meet the following environmental criteria: mean water temperature ≤ 28 °C, mean dissolved oxygen concentration ≥ 6 mg/L, mean water velocity ≥ 0.025 m/s, and mean turbidity ≤ 15 NTU. Type II sites were also located within the protected area but were expected to show some degree of environmental alteration. This category included sites located close to agricultural areas or sites that failed to meet one or more of the environmental or hydrological criteria established for Type I sites. Type III sites were located outside the protected area but were expected to maintain relatively favorable water-quality conditions, broadly comparable to those observed at reference sites. However, because these sites were situated outside the REBIO, they were not expected to satisfy the criteria related to intact riparian vegetation or a minimum distance of 1 km from agricultural fields. Finally, Type IV sites were located outside the protected area and were characterized by evidence of environmental disturbance. These sites did not meet at least one of the water-quality criteria established for reference sites and showed alterations in habitat characteristics relative to Type I sites. As with Type III sites, the criteria concerning riparian forest integrity and distance from agricultural fields were not met for this category because these sites were intentionally selected outside the REBIO. The classification was subsequently evaluated and confirmed using environmental measurements collected in situ. -->
+``` {r SITE TYPES-en}
+#| eval: false
+#| include: false
+
+<!--# For comparative purposes, sampling sites were assigned a priori to one of four environmental categories based on their location relative to the protected area and their expected environmental conditions (@fig-refsites). Type I sites, considered reference sites for this study, were located within the protected area and were expected to represent the best-preserved conditions. These sites were characterized by well-preserved riparian vegetation and the absence of agricultural fields within a 1-km radius. They were also expected to meet the following environmental criteria: mean water temperature ≤ 28 °C, mean dissolved oxygen concentration ≥ 6 mg/L, mean water velocity ≥ 0.025 m/s, and mean turbidity ≤ 15 NTU. Type II sites were also located within the protected area but were expected to show some degree of environmental alteration. This category included sites located close to agricultural areas or sites that failed to meet one or more of the environmental or hydrological criteria established for Type I sites. Type III sites were located outside the protected area but were expected to maintain relatively favorable water-quality conditions, broadly comparable to those observed at reference sites. However, because these sites were situated outside the REBIO, they were not expected to satisfy the criteria related to intact riparian vegetation or a minimum distance of 1 km from agricultural fields. Finally, Type IV sites were located outside the protected area and were characterized by evidence of environmental disturbance. These sites did not meet at least one of the water-quality criteria established for reference sites and showed alterations in habitat characteristics relative to Type I sites. As with Type III sites, the criteria concerning riparian forest integrity and distance from agricultural fields were not met for this category because these sites were intentionally selected outside the REBIO. The classification was subsequently evaluated and confirmed using environmental measurements collected in situ.
+-->
 ```
 
 ## Environmental data collection
@@ -624,12 +627,13 @@ Additive diversity partitioning was conducted in R using the *adipart* function 
 
 ## Environmental variables and nutrient concentration
 
-``` {#ENV-VAR .html}
-<!--#
+``` {r RES: ENV-VAR-en}
+#| eval: false
+#| include: false
+
 É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa). Os resultados da Análise de Componentes Principais (PCA) evidenciaram uma clara diferenciação das unidades amostrais com base nas características físicas e estruturais do habitat. Ao longo dos riachos e períodos amostrais analisados. No período seco, observou-se que as UAs P05, P07 e P08, pertencentes ao riacho Barro Branco, apresentaram maior associação a liteira, algas filamentosas e aderidas.
 
 Em contraste, a UA P06 do Barro Branco, juntamente com as UAs P16, P17 e P20, do Caiana, esteve associada principalmente às variáveis estruturais, como a presença de pedras, profundidade máxima, mínima e marginal, largura e vegetação submersa. Além disso, P10 do Barro Branco e P18 do Caiana apresentaram associação evidente ao pH, cujos valores variaram de ácido a levemente neutro. No período chuvoso, a distribuição das unidades amostrais no espaço da biplot indicou alterações nos padrões de associação observados no período seco. As UAs P05 e P06 do Barro Branco, assim como a UA P18 do Caiana, estiveram associadas principalmente à presença de lama, macrófitas, vegetação submersa, folhiço e detritos. Por outro lado, as P08, P10 e P16 apresentaram maior associação com algas filamentosas e aderidas, vegetação marginal e largura média do canal. De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
--->
 ```
 
 <!--# COMEÇAR AQUI TERMINAR HABITAT -->
@@ -1461,8 +1465,10 @@ saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 
 ## Community structure
 
-``` {#COMM-STR .html}
-<!--#
+``` {r RES-pt: COMM-STR}
+#| eval: false
+#| include: false
+
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
 
 A comunidade zooplanctônica esteve distribuída em 15 famílias, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas, seguida por Lepadellidae (4 espécies) e Brachionidae (3 espécies).
@@ -1482,7 +1488,7 @@ No período chuvoso, o riacho Caiana manteve o maior número de espécies exclus
 Entre os Cladocera, foram registradas 5 famílias e 12 espécies. A família Chydoridae apresentou ampla distribuição, com *Alonella dadayi* (Birge, 1910) ocorrendo em ambos os riachos e períodos. No período seco, foram registradas sete espécies exclusivas no riacho Caiana, enquanto no riacho Barro Branco foi registrada apenas *Chydorus* sp. No período chuvoso, o número de espécies exclusivas reduziu-se para uma em cada riacho, sendo *Leydigia* sp. no Caiana e *Macrothrix* sp. no Barro Branco.
 
 Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* sp., *Mesocyclops* sp. e *Paracyclops* sp., com exceção da ocorrência da primeira espécie no Caiana durante o período chuvoso) e Diaptomidae (*Notodiaptomus* sp., ocorrendo apenas no Caiana no período seco e chuvoso). Estágios juvenis de náuplios e copepoditos ocorreram em ambos os riachos durante os dois períodos.
--->
+
 ```
 
 ```{r COMM-ACCUMCURV}
@@ -2115,8 +2121,10 @@ cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 
 ## Diversity Partitioning
 
-``` {#PARTITION .html}
-<!--#
+``` {r RES-pt: PARTIÇÃO}
+#| eval: false
+#| include: false
+
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
 
 No período seco, foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
@@ -2174,7 +2182,6 @@ A α-diversidade observada em ambos os riachos (Tabela 3) foi de 3,56%, sendo in
 No Barro Branco (Tabela 3), a α-diversidade observada (2,64%) foi inferior ao esperado (6,65%; P\<0,999). β~1~ obteve diversidade observada de 2,68% (P=0,001). A diversidade observada em β~2~ foi de 2,18% (P=0,001). γ-diversidade obteve valor de 7,23%.
 
 O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao esperado (10,25%; P\<0,999). A diversidade observada em β~1~ foi de 2,80%, valor superior ao esperado (1,13%; P=0,001). β~2~ apresentou 2,44% superior ao esperado (1,04%; P=0,001). A contribuição de γ-diversidade foi de 11,62%.
--->
 ```
 
 <!--# CHUVOSO E SECO POR RIO, 4 GRÁFICOS-->
@@ -2656,8 +2663,10 @@ saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
 
 # Discussion
 
-``` {#DISCUSSION .html}
-<!--# 
+``` {r DISCUSSÃO-pt}
+#| eval: false
+#| include: false
+
 Os habitats de ambientes de água doce estão entre os ecossistemas mais modificados do planeta, seja em função de atividades antrópicas, como o despejo inadequado de efluentes, a destruição e a degradação de habitat, ou pela introdução de espécies exóticas [@altindag2025; @marcelino2025; @pinto2006; @silva2020]. Neste contexto, torna-se essencial compreender e avaliar como a estrutura do habitat influencia a diversidade e composição da fauna de organismos aquáticos, como o zooplâncton, grupo conhecido como bioindicador de processos de poluição e eutrofização, uma vez que são essenciais para os serviços ecossistêmicos de ambientes de água doce [@marcelino2025; @santos2025].
 
 Segundo @cottenie2005 e @gomes2020, fatores ambientais e espaciais desempenham um papel central na estruturação das comunidades biológicas, especialmente em ecossistemas aquáticos. Em sistemas hidrológicos abertos, como riachos, córregos e grandes rios, o fluxo contínuo de água, desde a nascente até a foz, provoca turbulência e movimentação de partículas em suspensão [@schäfer1985; @wetzel2000], influenciando na composição e distribuição das comunidades biológicas. Variáveis como temperatura da água, oxigênio dissolvido, pH, transparência, condutividade, profundidade e largura, além de outras características associadas à complexidade do habitat, são apontadas como de grande importância para a estrutura da comunidade zooplanctônica [@silva2009; @sousa2008; @vieira2009; @wetzel2001].
@@ -2680,7 +2689,7 @@ Neste estudo, a família de maior representatividade em relação ao número tot
 
 A ocorrência de Bdelloidea em todas as UAs é consistente com a literatura, que destaca a adaptabilidade desses organismos a diferentes condições ambientais, bem como ao seu hábito bentônico [@esteves1998; @ricci2001]. A ampla ocorrência da espécie Lecane bulla também está de acordo com os estudos de @davidson2012, que destacam sua capacidade de se adaptar a variações na qualidade da água e na estrutura do habitat.
 
-Em relação aos Cladocera, a família Chydoridae apresentou a maior riqueza de espécies, padrão observado em trabalhos realizados por @costa2018; @miranda2018 e @santos-wisniewski2002. Este táxon é composto por organismos associados à vegetação ciliar e a regiões mais profundas de corpos d'água. Sua alimentação ocorre por meio da raspagem ou filtração de partículas de alimentos [@fryer1968; @fryer1974; @santos-wisniewski2002; @smirnov1998]. Segundo @soares2011, sua presença está frequentemente associada a bancos de macrófitas.
+Em relação aos Cladocera, a família Chydoridae apresentou a maior riqueza de espécies, padrão observado em trabalhos realizados por @costa2018; @miranda2018 e @santos-wisniewski2002. Este táxon é composto por organismos associados à vegetação ciliar e a regiões mais profundas de corpos d água. Sua alimentação ocorre por meio da raspagem ou filtração de partículas de alimentos [@fryer1968; @fryer1974; @santos-wisniewski2002; @smirnov1998]. Segundo @soares2011, sua presença está frequentemente associada a bancos de macrófitas.
 
 Entre os Copepoda, a única espécie de Calanoida detectada neste estudo foi *Notodiaptomus* sp., presente exclusivamente no Caiana. Estudos realizados por @costa2018; @lima2022 e @melo2011 corroboram com este padrão, uma vez que encontraram apenas um exemplar da família Diaptomidae. Estágios juvenis de náuplios e copepoditos estiveram presentes em ambos os riachos. Segundo @czerniawski2013; @czerniawski2010 e @lair2005, estágios juvenis são frequentemente encontrados em rios e riachos.
 
@@ -2715,17 +2724,18 @@ De acordo com @shurin2000, a diversidade de zooplâncton é influenciada por pro
 Tendo em vista que α-diversidade (diversidade local ou dentro de um habitat) e β-diversidade (diversidade entre habitats ou comunidades) devem ser livres para variar independentemente, um valor alto do componente alfa não deve, por si só, tornar o valor do componente beta alto (ou baixo) e vice-versa. Sendo assim, uma alta diversidade beta pode ocorrer mesmo se cada habitat refletir uma baixa α-diversidade [@jost2007; @medeiros2021].
 
 De modo geral, os resultados indicam que a diversidade zooplanctônica dos riachos Barro Branco e Caiana é influenciada por processos espaciais que atuam em escalas intermediárias e regionais, tendo sido evidenciado pelos valores elevados de β-diversidade. Esses padrões reforçam a importância de um ambiente heterogêneo e a influência da sazonalidade como fatores determinantes para a manutenção da diversidade regional.
--->
 ```
 
 # Conclusions {.unnumbered}
 
-``` {#CONCLUSIONS .html}
-<!--# 
+``` {r CONCLUSÕES-pt}
+#| eval: false
+#| include: false
+
 O presente estudou revelou que a diversidade zooplanctônica nos riachos Barro Branco e Caiana é estruturada principalmente por processos locais e regionais, estes que variam de acordo com a escala espacial e sazonalidade climática. A aplicação conjunta dos métodos de partição aditiva e multiplicativa permitiu a compreensão da organização da diversidade, demonstrando que valores baixos de α-diversidade contribuem para as diversidades beta e gama.
 
 De modo geral, mesmo sob a influência das condições ambientais e de conservação, os riachos sustentam um patrimônio regional de espécies, evidenciando a importância da heterogeneidade ambiental para a conservação de processos biológicos essenciais para a biodiversidade zooplanctônica. Estes resultados contribuem para o entendimento dos padrões de diversidade em riachos tropicais, evidenciando o zooplâncton como organismo sensível às variações espaciais e temporais e, ainda, a necessidade de conservação de riachos de Floresta Atlântica para a manutenção da biodiversidade.
--->
+
 ```
 
 # Acknowledgements {.unnumbered}
