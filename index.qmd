@@ -93,7 +93,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Introduction
+# Introdução
 
 A Floresta Atlântica, reconhecida por sua elevada riqueza de espécies e alto grau de endemismo [@branco2021; @fonseca1985; @tabarelli2012; @taboada2022], é uma das florestas tropicais mais ameaçadas mundialmente devido à intensa pressão antrópica, tornando-a uma região prioritária para a conservação da biodiversidade na América do Sul [@myers2000; @safar2020; @vancine2024]. Originalmente, sua cobertura vegetal estendia-se por mais de 1,6 milhão de km²; no entanto, a ocupação e a exploração humana ao longo dos séculos resultaram na redução e fragmentação de suas paisagens, comprometendo a integridade de seus remanescentes e a manutenção da biodiversidade [@safar2020; @vancine2024].
 
@@ -119,7 +119,7 @@ A partição aditiva permite compreender como a diversidade zooplanctônica resp
 
 CITAR: [@ligeiro2010; @crist2003; @ávila2011; @shell2018; @baselga2012; @baselga2010]
 
-## Objectives
+## Objetivos
 
 Avaliar a partição aditiva da diversidade zooplanctônica em riachos de primeira ordem na REBIO Guaribas, considerando os períodos seco e chuvoso.
 
@@ -139,15 +139,9 @@ II. Diversidade alfa observada menor que a diversidade esperada, enquanto a dive
 
 LER: [@melo2011; @carvalho2011]
 
-<!--# This study describes the richness and density of zooplankton, comparatively between two small head water streams subject to different levels of environmental pressures. One originates withing a protected area - Biological Reserve, or REBIO, according to @brasil2000 - and its course extends beyond its administrative boundaries [@mma2003], and a second one that flows entirely outside of the protected area. Within this framework, we use hierarchical additive partitioning to evaluate the relative contribution of different spatial and temporal scales to the diversity of zooplankton assemblages. Given the importance of the Atlantic Forest to the biodiversity [@pereira2026] and its fragmented stated north of the São Francisco river basin [@silva2003], we aim with this study, (1) to infer environmental degradation from species turnover [@baselga2010] and (2) to associate beta-diversity to the ecological health of sites inside and surrounding a protected area of Atlantic Forest. Given the expected different levels of environmental pressures in the  area [@gouveia2017], we hypothesize that the diversity is not be homogeneously distributed among the different spatial scales but concentrated at the finer levels and seasonal variation will be limited to species composition, but no spacial variation is expected between dry and wet seasons. Some environmental features (reach morphology, habitat structure, and water quality) are also described to explore possible explaining factors for the observed patterns. -->
-
 # Metodologia
 
 ## Área de estudo e delineamento amostral
-
-<!--# # Material and methods -->
-
-<!--# ## Study area and sampling design -->
 
 A Reserva Biológica Guaribas (REBIO) está localizada na Mesorregião da Mata Paraibana e na Microrregião do Litoral Norte, sendo uma unidade de conservação desde 1990 [@brasil1990; @leal2025; @mma2003]. São incluídas três áreas descontínuas, sendo elas SEMA 01 e SEMA 02 localizadas no município de Mamanguape, PB, e SEMA 03 localizada no município de Rio Tinto, PB. De acordo com a classificação de Köppen, o clima é quente e úmido, com estação seca no verão e chuvosa no inverno e temperaturas que variam entre 24°C e 26°C [@mma2003].
 
@@ -157,17 +151,7 @@ A área selecionada para o presente estudo, SEMA 02, abriga os riachos Caiana e 
 
 As coletas ocorreram entre novembro de 2023 a fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (Figura 1), localizados dentro e no entorno da Reserva Biológica. Para cada unidade amostral, foram coletadas três subamostras, uma em cada habitat, a fim de realizar uma análise estatística mais rigorosa [@martinelli2004].
 
-<!--# **Study area and sampling design.** This study was conducted in the Guaribas Biological Reserve (REBIO Guaribas), a protected area of Atlantic Forest in northeastern Brazil. This protected area is located in a transitional zone between the Caatinga and Atlantic Forest ecoregions. The land use of the study area is based on the occupation of traditional human populations and an increasing use of land for large scale monocultures, mostly sugar cane [@heinrichs2017]. Other than these, small scale agricultural activities, fishing, and the modification of the natural vegetation for livestock are important anthropogenic pressures that affect the buffer zone of the REBIO [@arruda2013; @mma2026]. Other common uses of the soil in the area are, coconut plantations, orchards and subsistence agriculture. These land uses represent important sources of pollution, either through agrochemicals runoff or direct and indirect domestic effluents (such as septic tanks). These nonpoint source pollutants contaminate underground water and create a spatial gradient of environmental disturbance [@mehla2026]. Therefore, the mainly rural nature of the land use associated with the management of vegetation, will cause direct impact to aquatic systems, by the siltation of streams and contamination of groundwater. The hydrographic network of the study region is composed predominantly of small catchments containing first- and second-order streams (Strahler -@strahler1957 classification) (@fig-mapa). These watercourses are tributaries of the Camaratuba River and are sustained by numerous springs distributed throughout the region. The two main stream systems in the study area are the Barro Branco and Caiana catchemnts. The Barro Branco stream is approximately 8.8 km long and originates within the protected area. Its upper section remains within the boundaries of the REBIO, whereas its middle and lower sections extend into the surrounding landscape. Despite this transition, riparian vegetation is preserved along most of the stream. The Caiana stream is approximately 9.8 km long and also originates within the REBIO, although most of its course lies outside the protection area. -->
-
-<!--# The climate in the region is classified as As' [@peel2007], characterized by a mean annual temperature of approximately 25 °C, with maximum temperatures occurring mainly between February and March, during the dry period, as well as by low annual thermal amplitude. Annual precipitation ranges from 1,400 to 1,800 mm, concentrated between March and July, whereas the lowest rainfall levels occur between September and December. In the study area, rainfall is concentrated between March and July, beginning in autumn and extending into winter. This pattern is attributed to the influence of cold air masses from the South Atlantic ocean that affect the region. The hydrographic network is composed of small headwater streams fed by rain [@gouveia2017]. -->
-
-<!--# ###VOLTAR AQUI COM O DESENHO AMOSTRAL DA BETA-DIV E 3 HABITATS[@farias2020]### Sampling was conducted during the dry (January-February) and rainy (June-July) periods of 2024 in two Atlantic Forest streams. A total of 15 sampling sites were distributed longitudinally across the two streams to capture spatial variation in environmental conditions and habitat characteristics. The Barro Branco stream included sampling sites located within the protected area and sites located outside its boundaries, whereas all sampling sites in the Caiana stream were located outside the protected area. This sampling design allowed the assessment of zooplankton diversity across nested spatial scales and contrasting conditions of environmental protection and human influence (@fig-mapa).-->
-
-<!--# For comparative purposes, sampling sites were assigned *a priori* to one of four environmental categories based on their location relative to the protected area and their expected environmental conditions (@fig-refsites). Type I sites, considered reference sites for this study, were located within the protected area and were expected to represent the best-preserved conditions. These sites were characterized by well-preserved riparian vegetation and the absence of agricultural fields within a 1-km radius. They were also expected to meet the following environmental criteria: mean water temperature ≤ 28 °C, mean dissolved oxygen concentration ≥ 6 mg/L, mean water velocity ≥ 0.025 m/s, and mean turbidity ≤ 15 NTU. Type II sites were also located within the protected area but were expected to show some degree of environmental alteration. This category included sites located close to agricultural areas or sites that failed to meet one or more of the environmental or hydrological criteria established for Type I sites. Type III sites were located outside the protected area but were expected to maintain relatively favorable water-quality conditions, broadly comparable to those observed at reference sites. However, because these sites were situated outside the REBIO, they were not expected to satisfy the criteria related to intact riparian vegetation or a minimum distance of 1 km from agricultural fields. Finally, Type IV sites were located outside the protected area and were characterized by evidence of environmental disturbance. These sites did not meet at least one of the water-quality criteria established for reference sites and showed alterations in habitat characteristics relative to Type I sites. As with Type III sites, the criteria concerning riparian forest integrity and distance from agricultural fields were not met for this category because these sites were intentionally selected outside the REBIO. The classification was subsequently evaluated and confirmed using environmental measurements collected *in situ*.-->
-
 ## Coleta de dados ambientais
-
-<!--# ## Environmental data collection -->
 
 Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindooxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat,** por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
 
@@ -177,15 +161,7 @@ Para a avaliação morfométrica de cada habitat nas 15 unidades amostrais (UAs)
 
 Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes estudados quanto à disponibilidade de recursos, os seguintes aspectos foram quantificados em cada ambiente: presença de macrófitas, vegetação submersa, vegetação flutuante, algas, vegetação ripária, liteira, raízes e galhos de árvores próximas. Os ambientes também foram classificados quanto ao tipo de substrato, sendo estimadas as proporções de lama, areia, pedras, seixos, entre outros. De acordo com a metodologia proposta por @medeiros2008, estes dados, levantados por meio de análise visual, estimam a contribuição proporcional de cada componente. Considerando que a maioria desses elementos estão concentrados nas margens, as medições foram obtidas a partir de transectos paralelos à margem dos ambientes estudados. Estes dados representam a proporção média (%) de cobertura dos aspectos medidos para cada trecho [@medeiros2008].
 
-<!--# To evaluate whether the a priori classification of sampling sites into Types I–IV was supported by quantitative environmental information, environmental conditions were characterized using four groups of variables: site morphology, water quality, substrate composition, and marginal habitat structure. Morphological characteristics were assessed from three randomly selected transects at each site, where stream width (cm) and water depth (cm) were measured. Bank slope was classified into four categories according to its inclination: 1, ≤ 20°; 2, > 20–30°; 3, > 30–50°; and 4, > 50°. Broader-scale landscape characteristics, including elevation and stream length, were obtained from handheld GPS records and satellite imagery. Water quality was characterized using physical and chemical measurements obtained with portable instruments, including water temperature (°C) and dissolved oxygen concentration (mg/L). Turbidity was subsequently measured in the laboratory with a turbidimeter using water samples collected at each sampling site. Current velocity (m/s) was estimated using the float method, as described by @maitland1990. Substrate composition and the physical structure of marginal habitats were evaluated following procedures adapted by @medeiros2008 from the protocols proposed by @pusey2004 and @mugodo2006. Between 9 and 12 quadrats (1 m²) were distributed along the terrestrial–aquatic interface at each sampling site. Within each quadrat, the proportional cover of different substrate categories was visually estimated, including mud, sand, cobbles, small and large gravel and rocks. The same quadrats were used to characterize littoral and submerged habitat features. Recorded habitat components included macrophytes, marginal grasses, leaf litter, attached and filamentous algae, overhanging and submerged vegetation, small and large woody debris, and root masses. For subsequent analyses and presentation, environmental measurements were summarized as mean values for each sampling site.-->
-
-<!--# Three 250 mL replicate samples of water from each site were taken and refrigerated for concentration analysis (μg L⁻¹) of ammonia, nitrite, nitrate, orthophosphate (soluble reactive phosphorus) and total phosphorus. Nutrient concentrations were obtained based on Standard Methods for the Examination of Water [-@apha1998] and @mackereth1978.-->
-
-<!--# The ecophysiological evaluation of human impact on the forest, was mainly guided by the fish species inventory for the REBIO made by @gouveia2017. This study lists 18 species from five different orders: Characiformes (12 species), Perciformes (3 species), Synbranchiformes (1 species), Siluriformes (1 species) e Cyprinodontiformes (1 species). From those, two are exotic - *Oreochromis niloticus*, second most farmed fish species in the world and tolerant to osmotic variation, and *Poecilia reticulata*, largely used in mosquito control and resistant to stressful environments [@miranda2012]. The predominance of small fish inhabiting small basins is thought to lead to low dispersion and consequent isolation of populations [@gouveia2017], associated with the fact that most species in the study area are phylogenetic close (with the predominance of Characidae) and are widely distributed, offers an appropriate design to access the entire local ichthyofauna using a few species, namely the genuses *Hemigrammus* and *Astyanax*.-->
-
 ## Amostragem do zooplâncton
-
-<!--# ## Zooplankton sampling -->
 
 Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO~2~ (adição de água com gás). Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004].
 
@@ -193,13 +169,7 @@ Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), 
 
 Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e devidamente etiquetadas. Em seguida, realizou-se a confirmação de identificação das espécies por um especialista. Os dados de riqueza (R) e abundância total foram analisados com o objetivo de investigar os padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas.
 
-<!--# Zooplankton was sampled at habitats within each sampling site, hereafter referred to as habitat samples. Collections were performed in the main channel of the streams at the surface water. At each sampling habitat, a plankton net (30 cm mouth diameter, 70 cm length, and 60 μm mesh size) was used to filter 50 L of water. The net was rinsed between successive samples to prevent clogging and carryover of organisms. Each sample was concentrated to a final volume of 80 mL for laboratory analyses. Following collection, zooplankton samples were anesthetized with commercial sparkling water and subsequently preserved in 4% formalin. Sucrose was added to the preserved material to reduce the loss of eggs by female cladocerans and minimize deformation of zooplankton carapaces [@haney1973]. In the laboratory, samples had their zooplankton identified and counted using a Sedgewick–Rafter counting chamber. The analyses focused on representatives of Rotifera, Cladocera, and Copepoda. Taxonomic identification was based on specialized literature and confirmed by specialists. To evaluate whether the sampling effort adequately represented the zooplankton assemblage, species accumulation curves were calculated ####VOLTAR AQUI COM O MÉTODO DETALHADO####.-->
-
-<!--# Zooplankton was collected using a plankton net (opening diameter 30 cm, 70 cm long, pore size 60 µm and sample cup of 80 mL). At three different locations, at each site, one sample of fifty liters of water was filtered through the net. Commercial sparkling water was added to the sample to narcotize the zooplankters, which were the preserved in 4% formalin (EPA 2013). Sucrose was added to the preserved sample to prevent female cladocerans from losing eggs and to minimize carapace distortion (Haney e Hall 1973). In the laboratory, three subsample aliquots of 1 mL were taken from each sample and all individuals were identified and counted in a Sedgewick-Rafter counting cell (Koste 1978, Elmoor-Loureiro 1997, Elmoor-Loureiro e Sousa 2021, GBIF.org 2023, NIES 2023, Haney J. F. et al 2024). Only rotifers, cladocerans and copepods were considered in the present study. -->
-
 ## Análises estatísticas
-
-<!--# ## Statistical analyses -->
 
 Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
 
@@ -219,8 +189,6 @@ Foram empregados pacotes sobre partição da diversidade para que fosse possíve
 Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi empregada para a realização da partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade).
 
 Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
-
-<!--# ####AMBIENTAIS#### Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998]. -->
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -592,8 +560,6 @@ cor_star <- noquote(cor_star)
 print(cor_star, na.print = "")
 ```
 
-<!--# These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons.-->
-
 ```{r ENV-PCA-ORG}
 #| eval: false
 #| message: false
@@ -659,23 +625,9 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
                          na.strings = NA)
 ```
 
-<!--# ####UNIVARIADAS#### Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by *post hoc* multiple comparisons using Tukey’s HSD test (α=0.05) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen]. -->
-
-<!--# ####REGRESSÃO MÚLTIPLA#### Each observation was classified according to three factors: river reach (three levels), habitat (three levels), and hydrological season (wet and dry). The analysis initially considered the full factorial model. When significant interactions were detected, higher-order interactions were examined first, followed by the corresponding two-way interactions (reach × season, reach × habitat, and season × habitat) and, subsequently, the main effects. Response variables were transformed using log₁₀(x + 1) to improve compliance with assumptions of normality and homogeneity of variances [39]. Differences among factor levels were subsequently investigated using Tukey's HSD test at α = 0.05. -->
-
-<!--# ####CLASSIFICAÇÃO#### Differences in assemblage composition across the spatial hierarchy were explored using hierarchical agglomerative clustering. Bray–Curtis dissimilarities were calculated from the density matrix, and clusters were formed using the flexible beta linkage method (β = −0.25) [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset (@Rocha2012). The resulting dendrogram was interpreted visually, and the number of groups retained was determined using a cut-off corresponding to 25% or less of the remaining information [@quinn2023]. ####VOLTAR AQUI#### The statistical significance of compositional differences among groups and spatial levels was evaluated using the Multi-Response Permutation Procedure (MRPP) (@Biondini1985; @McCuneGrace2002). In addition to the probability associated with the test, the MRPP agreement statistic (*A*) was used to describe within-group homogeneity relative to that expected under random grouping. Both the hierarchical clustering and MRPP analyses were conducted in PC-ORD version 7.07 (@McCuneMefford2018).-->
-
-<!--# ####PARTIÇÃO#### Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity (α) represents diversity occurring within sampling units, whereas beta diversity (β) represents the contribution of differences among units at successive levels of the spatial hierarchy. The hierarchical structure included three spatial scales. The finest scale consisted of habitat samples within each site (n = 3), the intermediate scale corresponded to each site (n = 18, for the Barro Branco stream, and n = 27, for the Caiana stream), whereas the broadest scale represented differences among the upper and lower river sections (n = 36, for the Barro Branco stream, and n = 54, for the Caiana stream). Accordingly, total diversity (γ) was decomposed into within-habitat diversity (α₁) and the successive beta components associated with differences among habitats (β₁), among sites withing river reaches (β₂), and among river reaches (β₃). The contribution of each component was expressed as a percentage of total diversity. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed independently for the wet and dry seasons and for each stream. -->
-
-<!--# ####INTERPRETAÇÃO#### Additive diversity partitioning was conducted in R using the *adipart* function implemented in the `Vegan` package [@oksanen; @rcoreteam2017]. Significance was evaluated using individual-based randomizations under a Type I null model [@crist2003]. For each hierarchical level, 10,000 randomized communities were generated to produce null distributions for the corresponding α- and β-diversity components. The observed diversity components were then compared with their respective null distributions. The probabilities generated by the randomization procedure were interpreted as measures of departure from random expectations, Values below 0.05 indicated that the observed component was significantly greater than expected under the null model, whereas values above 0.95 indicated that the observed value was significantly lower than expected [@gering2003; @veech2003].-->
-
 # Resultados
 
 ## Variáveis ambientais
-
-<!--# # Results -->
-
-<!--# ## Environmental variables and nutrient concentration-->
 
 É importante destacar que as unidades amostrais (UAs) P05 a P10 correspondem ao riacho Barro Branco, sendo as UAs P5, P6 e P7 localizadas no interior da reserva, enquanto que os pontos P08, P09 e P10 estão situados fora da área de preservação. O riacho Caiana, por sua vez, é representado pelas UAs P12 a P20, todas localizadas fora da reserva (ver @fig-mapa).
 
@@ -686,10 +638,6 @@ No período seco, observou-se que as UAs P05, P07 e P08, pertencentes ao riacho 
 No período chuvoso, a distribuição das unidades amostrais no espaço da biplot indicou alterações nos padrões de associação observados no período seco. As UAs P05 e P06 do Barro Branco, assim como a UA P18 do Caiana, estiveram associadas principalmente à presença de lama, macrófitas, vegetação submersa, folhiço e detritos. Por outro lado, as P08, P10 e P16 apresentaram maior associação com algas filamentosas e aderidas, vegetação marginal e largura média do canal.
 
 De modo geral, os resultados indicaram que ambos os períodos contribuíram de formas distintas para a estruturação do habitat, evidenciando variações espaciais e sazonais nas características físicas e estruturais dos riachos estudados.
-
-<!--# TERMINAR HABITAT -->
-
-<!--# **Environmental variables and nutrient concentration.** Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).-->
 
 ```{r GTTABLE_HAB_EXCL}
 #| eval: false
@@ -846,8 +794,6 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #colnames(summary_table) <- c("Variable", "Min", "Q1", "Median", "Mean", "Q3", "Max")
 #summary_table
 ```
-
-<!--# Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 37% of the total variance, with the first axis accounting for 21.1%. PCA confirmed the expected quality of sites, separating site types (@fig-hab_PCA_ref-site), where site types I and II where associated with higher elevation, the presence of algae and lieaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.-->
 
 ```{r ENV-PCA_fviz}
 #| eval: false
@@ -1408,8 +1354,6 @@ adonis2(m_trab ~ Periodo*Rio, data = t_grps,
 
 ```
 
-<!--# Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, overall no clear trend can be observed  when comparing both streams. Nitrite and nitrate, on the other hand, show greater concentrations at the Caiana stream, the latter varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 13.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).-->
-
 ```{r GTTABLE_NUTRI_EXCLl}
 #| eval: false
 #| warning: false
@@ -1515,8 +1459,6 @@ saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
 
 ## Estrutura da comunidade
-
-<!--# ## Community structure-->
 
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
 
@@ -2168,8 +2110,6 @@ cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 
 ## Partição da diversidade
 
-<!--# ## Diversity Partitioning-->
-
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
 
 No período seco, foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
@@ -2205,8 +2145,6 @@ No Barro Branco, a α-diversidade observada foi de 0,24%, abaixo do esperado (0,
 O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
-
-<!--# CHUVOSO E SECO POR RIO, 4 GRÁFICOS-->
 
 ```{r, ADDPART}
 #| eval: false
@@ -2771,17 +2709,11 @@ Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analys
 
 # Ethical approval {.unnumbered}
 
-<!--# Activities inside the REBIO Guaribas were authorized by the Instituto Chico Mendes de Conservação da Biodiversidade (license no. SISBIO-89415-1, SISBIO-89429-2 and SISBIO-89415-2).-->
-
 O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente) e aprovação no 048/2023 da Comissão de Ética no Uso de Animais (CEUA) da UEPB (com data de emissão de 06/02/2023).
 
 # Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito {.unnumbered}
 
-<!--# # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process  {.unnumbered}-->
-
 Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI) para auxiliar na revisão do idioma inglês e no aprimoramento da clareza e da fluência da redação. Nenhuma ferramenta de IA foi utilizada para análise ou interpretação dos dados, nem para a elaboração de conclusões científicas. Os autores revisaram e avaliaram cuidadosamente todas as sugestões geradas por IA e assumem total responsabilidade pela precisão e pelo conteúdo da versão final do manuscrito [@cnpq2026].
-
-<!--# During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to assist with English language editing and improve the clarity and fluency of the writing. No AI was used for data analysis, interpretation, or generation of scientific conclusions. The authors carefully reviewed and revised all AI-generated suggestions and take full responsibility for the accuracy and content of the final manuscript [@cnpq2026].-->
 
 # References {.unnumbered}
 
@@ -2793,13 +2725,13 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 # Figures and Tables {.unnumbered}
 
-@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: MapBiomas e TerraBrasilis. <!--# Location of sampling sites along the Barro Branco Stream (Mamanguape, PB) (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).-->
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: MapBiomas e TerraBrasilis (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
 
-@fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by site type. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+@fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
-@fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by stream. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+@fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
-@fig-hab_PCA_periodo: : Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. <!--# Principal Component Analysis (PCA) biplot of the sampling units (SUs) and environmental variables in the Barro Branco and Caiana streams during the study period, categorized by season. Points represent the SUs, whereas vectors represent the environmental variables associated with habitat structure. Ellipses represent 95% confidence regions for the distribution of the groups of points, calculated based on the t-distribution.-->
+@fig-hab_PCA_periodo: : Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*. 
 
 @fig-rare1: <!--# Individual-based extrapolation and rarefaction curves for the richness of resting stages of zooplanktonic taxa in each study stream. Shaded areas indicate 95% confidence intervals.-->
 
