@@ -95,11 +95,11 @@ editor_options:
 
 # Introduction
 
-``` {r INTRODUÇÃO-pt}
+```{r INTRODUCTION-pt}
 #| eval: false
 #| include: false
 
-The Atlantic Forest, recognized for its exceptional species richness and high level of endemism [@branco2021; @fonseca1985; @tabarelli2012; @taboada2022], is one of the most threatened tropical forests worldwide due to intense anthropogenic pressure, making it a global priority region for biodiversity conservation in South America [@myers2000; @safar2020; @vancine2024]. Originally, its vegetation cover extended over 1.6 million km²; however, centuries of human occupation and resource exploitation have led to severe landscape reduction and fragmentation, compromising the ecological integrity of its remnants and the maintenance of biodiversity [@safar2020; @vancine2024]. Habitat loss driven by deforestation is directly linked to forest fragmentation, which promotes the isolation of remnants, reduces landscape connectivity, and restricts species dispersal [@souza2025; @tabarelli2010; @zaú1998]. These impacts are not confined to terrestrial environments; they extend to associated aquatic ecosystems, including headwater streams.
+The Atlantic Forest, recognized for its exceptional species richness and high level of endemism [@branco2021; @fonseca1985; @tabarelli2012; @taboada2022], is one of the most threatened tropical forests worldwide due to intense anthropogenic pressure, making it a global priority region for biodiversity conservation in South America [@myers2000; @safar2020; @vancine2024]. Originally, its vegetation cover extended over 1.6 million km²; however, centuries of human occupation and resource exploitation have led to severe landscape reduction and fragmentation, compromising the ecological integrity of its remnants and the maintenance of biodiversity [@safar2020; @vancine2024]. Habitat loss driven by deforestation is directly linked to forest fragmentation, which promotes the isolation of remnants, reduces landscape connectivity, and restricts species dispersal [@souza2025; @tabarelli2010; @zaú1998]. These impacts are not confined to terrestrial environments; they extend to associated aquatic ecosystems, including headwater streams .
 
 In this context, forest fragmentation and land management can generate significant impacts on stream fauna within the Atlantic Forest, as aquatic organisms are highly sensitive to changes in natural water conditions [@gouveia2017]. According to @maltchik2006, landscape-level processes—such as disturbance, fragmentation, dispersal, and mosaic structure—exert a direct influence on local populations. Therefore, understanding the ecological processes structuring these communities is essential to evaluate the ecological health of water bodies and to comprehend how diversity is distributed across different spatial scales [@ávila2011]. In addition to landscape alterations, stream dynamics are strongly driven by seasonal factors. The Atlantic Forest features a predominantly tropical climate with rainfall distributed throughout the year [@barboza2024]. These hydrological fluctuations directly influence Neotropical freshwater environments by modifying physical and chemical conditions [@barboza2024]. The shift between dry and rainy seasons alters resource availability, microhabitat structure, and the establishment and persistence of organisms, thereby shaping community composition and dynamics [@esteves2011; @souza2025; @ward1998].
 
@@ -138,7 +138,7 @@ The climate in the region is classified as As' [@peel2007], characterized by a m
 
 Sampling was conducted during the dry (January-February) and rainy (June-July) periods of 2024 in two Atlantic Forest streams. A total of 15 sampling sites were distributed longitudinally across the two streams to capture spatial variation in environmental conditions and habitat characteristics. The Barro Branco stream included sampling sites located within the protected area and sites located outside its boundaries, whereas all sampling sites in the Caiana stream were located outside the protected area. This sampling design allowed the assessment of zooplankton diversity across nested spatial scales and contrasting conditions of environmental protection and human influence (@fig-mapa).
 
-``` {r SITE TYPES-en}
+```{r RESULTS-SITE_TYPES-en}
 #| eval: false
 #| include: false
 
@@ -627,7 +627,7 @@ Additive diversity partitioning was conducted in R using the *adipart* function 
 
 ## Environmental variables and nutrient concentration
 
-``` {r RES: ENV-VAR-en}
+```{r RESULTS-ENV_VAR-en}
 #| eval: false
 #| include: false
 
@@ -796,7 +796,9 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-<!--# DEFINIR QUAIS PCAS USAR -->Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 37% of the total variance, with the first axis accounting for 21.1%. PCA confirmed the expected quality of sites, separating site types (@fig-hab_PCA_ref-site), where site types I and II where associated with higher elevation, the presence of algae and leaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.
+<!--# DEFINIR QUAIS PCAS USAR -->
+
+Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_ref-site and @fig-hab_PCA_rio). The first two principal components explained 37% of the total variance, with the first axis accounting for 21.1%. PCA confirmed the expected quality of sites, separating site types (@fig-hab_PCA_ref-site), where site types I and II where associated with higher elevation, the presence of algae and leaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.
 
 ```{r ENV-PCA_fviz}
 #| eval: false
@@ -1465,7 +1467,7 @@ saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 
 ## Community structure
 
-``` {r RES-pt: COMM-STR}
+```{r RESULTS-COMM_STR-pt}
 #| eval: false
 #| include: false
 
@@ -1978,7 +1980,7 @@ gtsave(spp_gttable, "res/gt-spp_gttable_xlsx.html")
 saveRDS(spp_gttable, "res/gt-spp_gttable_xlsx.rds")
 ```
 
-```{r, COMM-VAR_summ}
+```{r COMM-VAR_summ}
 #| eval: false
 #| warning: false
 #| message: false
@@ -2017,7 +2019,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-```{r, COMM-UPGMA}
+```{r COMM-UPGMA}
 #| eval: false
 #| warning: false
 #| message: false
@@ -2121,7 +2123,7 @@ cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 
 ## Diversity Partitioning
 
-``` {r RES-pt: PARTIÇÃO}
+```{r RESULTS-PARTITION-pt}
 #| eval: false
 #| include: false
 
@@ -2186,7 +2188,7 @@ O Caiana (Tabela 3) apresentou α-diversidade observada (4,14%) superior ao espe
 
 <!--# CHUVOSO E SECO POR RIO, 4 GRÁFICOS-->
 
-```{r, ADDPART}
+```{r ADDPART}
 #| eval: false
 #| warning: false
 #| message: false
@@ -2663,7 +2665,7 @@ saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
 
 # Discussion
 
-``` {r DISCUSSÃO-pt}
+```{r DISCUSSION-pt}
 #| eval: false
 #| include: false
 
@@ -2728,7 +2730,7 @@ De modo geral, os resultados indicam que a diversidade zooplanctônica dos riach
 
 # Conclusions {.unnumbered}
 
-``` {r CONCLUSÕES-pt}
+```{r CONCLUSIONS-pt}
 #| eval: false
 #| include: false
 
