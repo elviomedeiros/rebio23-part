@@ -120,7 +120,7 @@ Additive diversity partitioning provides a robust framework to evaluate how zoop
 
 Essas abordagens são baseadas nos conceitos de turnover and nestedness. Species turnover and nestedness are two distinct components used to break down and understand beta diversity—which measures how much species composition changes between different communities or sites [@baselga2010], where, turnover is the replacement of some species by different species from one site to another, while nestedness is the loss or gain of species where poorer sites contain a strict subset of the species found at richer sites.
 
-CITAR: [@ligeiro2010; @crist2003; @ávila2011; @shell2018; @baselga2012; @baselga2010]
+CITAR: [@ligeiro2010; @crist2003; @ávila2011; @shell2018; @baselga2012; @baselga2010; @gering2003; @veech2003]
 
 ## Objectives
 
@@ -134,7 +134,7 @@ This study was conducted in the Guaribas Biological Reserve (REBIO Guaribas), a 
 
 The climate in the region is classified as As' [@peel2007], characterized by a mean annual temperature of approximately 25 °C, with maximum temperatures occurring mainly between February and March, during the dry period, as well as by low annual thermal amplitude. Annual precipitation ranges from 1,400 to 1,800 mm, concentrated between March and July, whereas the lowest rainfall levels occur between September and December. In the study area, rainfall is concentrated between March and July, beginning in autumn and extending into winter. This pattern is attributed to the influence of cold air masses from the South Atlantic ocean that affect the region. The hydrographic network is composed of small headwater streams fed by rain [@gouveia2017].
 
-A total of 15 sampling sites distributed longitudinally across the two Atlantic Forest streams were selected to capture spatial variation in environmental conditions and habitat characteristics. The Barro Branco stream included sampling sites located within a protected area (REBIO Guaribas) and sites located outside its boundaries, whereas all sampling sites in the Caiana stream were located outside the protected area. This sampling design allowed the assessment of zooplankton diversity across nested spatial scales and contrasting conditions of environmental protection and human influence (@fig-mapa). Sampling included temporal (dry and wet seasons) and spatial scales. The spatial scales of zooplankton diversity were represented by the total gamma (γ) diversity, encompassing both study streams. At each stream, several sites were selected according to their position in the main channel of the catchment basin and, at each site, three habitas were sampled to represent different habitat types (pool, riffle, near underwater structures) [@frissell1986]. Sampling was conducted during the dry (January-February) and wet (June-July) seasons of 2024.
+A total of 15 sampling sites distributed longitudinally across the two Atlantic Forest streams were selected to capture spatial variation in environmental conditions and habitat characteristics. The Barro Branco stream included sampling sites located within a protected area (REBIO Guaribas) and sites located outside its boundaries, whereas all sampling sites in the Caiana stream were located outside the protected area. This sampling design allowed the assessment of zooplankton diversity across nested spatial scales and contrasting conditions of environmental protection and human influence (@fig-mapa). Sampling included temporal (dry and wet seasons) and spatial scales. The spatial scales of zooplankton diversity were represented by the total gamma (γ) diversity, encompassing both study streams. At each stream, several sites were selected according to their position in the main channel of the catchment basin and, at each site, three habitas were sampled to represent different habitat types (pool, riffle, near underwater structures) [@frissell1986]. We also considered a further spatial scale being the upper reaches (portion of the Barro Branco stream within the conservation unit and the Caiana stream before its confluence with the Pipina stream) and the lower reaches (portion of the Barro Branco stream outside the conservation unit and the Caiana stream after its confluence with the Pipina stream) (@fig-mapa). Sampling was conducted during the dry (January-February) and wet (June-July) seasons of 2024.
 
 ```{r RESULTS-SITE_TYPES-en}
 #| eval: false
@@ -146,11 +146,11 @@ A total of 15 sampling sites distributed longitudinally across the two Atlantic 
 
 ## Environmental data collection
 
-To evaluate whether the a priori classification of sampling sites into Types I–IV was supported by quantitative environmental information, environmental conditions were characterized using four groups of variables: site morphology, water quality, substrate composition, and marginal habitat structure. Morphological characteristics were assessed from three randomly selected transects at each site, where stream width (cm) and water depth (cm) were measured. Bank slope was classified into four categories according to its inclination: 1, ≤ 20°; 2, \> 20–30°; 3, \> 30–50°; and 4, \> 50°. Broader-scale landscape characteristics, including elevation and stream length, were obtained from handheld GPS records and satellite imagery. Water quality was characterized using physical and chemical measurements obtained with portable instruments, including water temperature (°C) and dissolved oxygen concentration (mg/L). Turbidity was subsequently measured in the laboratory with a turbidimeter using water samples collected at each sampling site. Current velocity (m/s) was estimated using the float method, as described by @maitland1990. Substrate composition and the physical structure of marginal habitats were evaluated following procedures adapted by @medeiros2008 from the protocols proposed by @pusey2004 and @mugodo2006. Between 9 and 12 quadrats (1 m²) were distributed along the terrestrial–aquatic interface at each sampling site. Within each quadrat, the proportional cover of different substrate categories was visually estimated, including mud, sand, cobbles, small and large gravel and rocks. The same quadrats were used to characterize littoral and submerged habitat features. Recorded habitat components included macrophytes, marginal grasses, leaf litter, attached and filamentous algae, overhanging and submerged vegetation, small and large woody debris, and root masses. For subsequent analyses and presentation, environmental measurements were summarized as mean values for each sampling site.
+<!--#  To evaluate whether the a priori classification of sampling sites into Types I–IV was supported by quantitative environmental information,-->
+
+Environmental conditions were characterized using four groups of variables, following procedures adapted by @medeiros2008 from the protocols proposed by @pusey2004 and @mugodo2006: site morphology, water quality, substrate composition, and marginal habitat structure. Morphological characteristics were assessed from three randomly selected transects at each site, where stream width (cm) and water depth (cm) were measured. Bank slope was classified into four categories according to its inclination: 1, ≤ 20°; 2, \> 20–30°; 3, \> 30–50°; and 4, \> 50°. Broader-scale landscape characteristics, including elevation and stream length, were obtained from handheld GPS records and satellite imagery. Water quality was characterized using physical and chemical measurements obtained with portable instruments, including water temperature (°C) and dissolved oxygen concentration (mg/L). Turbidity was subsequently measured in the laboratory with a turbidimeter using water samples collected at each sampling site. Current velocity (m/s) was estimated using the float method, as described by @maitland1990. Substrate composition and the physical structure of marginal habitats were evaluated from 9 to 12 quadrats (1 m²) distributed along the terrestrial-aquatic interface at each sampling site. Within each quadrat, the proportional cover of different substrate categories was visually estimated, including mud, sand, cobbles, small and large gravel and rocks. The same quadrats were used to characterize littoral and submerged habitat features. Recorded habitat components included macrophytes, marginal grasses, leaf litter, attached and filamentous algae, overhanging and submerged vegetation, small and large woody debris, and root masses [@medeiros2008]. For subsequent analyses and presentation, environmental measurements were summarized as mean values for each sampling site.
 
 Three 250 mL replicate samples of water from each site were taken and refrigerated for concentration analysis (μg L⁻¹) of ammonia, nitrite, nitrate, orthophosphate (soluble reactive phosphorus) and total phosphorus. Nutrient concentrations were obtained based on Standard Methods for the Examination of Water [-@apha1998] and @mackereth1978.
-
-The ecophysiological evaluation of human impact on the forest, was mainly guided by the fish species inventory for the REBIO made by @gouveia2017. This study lists 18 species from five different orders: Characiformes (12 species), Perciformes (3 species), Synbranchiformes (1 species), Siluriformes (1 species) e Cyprinodontiformes (1 species). From those, two are exotic - *Oreochromis niloticus*, second most farmed fish species in the world and tolerant to osmotic variation, and *Poecilia reticulata*, largely used in mosquito control and resistant to stressful environments [@miranda2012]. The predominance of small fish inhabiting small basins is thought to lead to low dispersion and consequent isolation of populations [@gouveia2017], associated with the fact that most species in the study area are phylogenetic close (with the predominance of Characidae) and are widely distributed, offers an appropriate design to access the entire local ichthyofauna using a few species, namely the genuses *Hemigrammus* and *Astyanax*.
 
 ## Zooplankton sampling
 
@@ -158,9 +158,7 @@ Zooplankton was sampled at habitats within each sampling site, hereafter referre
 
 ## Statistical analyses
 
-<!--# ####AMBIENTAIS#### -->
-
-Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998].
+<!--# ####AMBIENTAIS#### --> Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998].
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -532,94 +530,15 @@ cor_star <- noquote(cor_star)
 print(cor_star, na.print = "")
 ```
 
-These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons.
+These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons. A Permutational Multivariate Analysis of Variance (PERMANOVA, 999 permutations) was performed to test whether the overall set of environmental variables measured differed across the seasons and streams [@freiry2020; @anderson2013].
 
-```{r ENV-PCA-ORG}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Organizing Environment data PCA"
+<!--# ####UNIVARIADAS#### --> Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by *post hoc* multiple comparisons using Tukey’s HSD test (α=0.05) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen; @medeiros2024]. <!--# ####REGRESSÃO MÚLTIPLA#### -->Each observation was classified according to three factors: river reach (three levels), habitat (three levels), and hydrological season (wet and dry). The analysis initially considered the full factorial model. When significant interactions were detected, higher-order interactions were examined first, followed by the corresponding two-way interactions (reach × season, reach × habitat, and season × habitat) and, subsequently, the main effects. Response variables were transformed using log₁₀(x + 1) to improve compliance with assumptions of normality and homogeneity of variances \[39\]. Differences among factor levels were subsequently investigated using Tukey's HSD test at α = 0.05.
 
-#PCA fviz package----
-#browseURL("https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/")
+<!--# ####CLASSIFICAÇÃO#### --> Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @diniz-reis2022], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R. The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient [@farris1969; @silva2013; @sokal1962]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
 
-#ORGANIZANDO DADOS----
+<!--# ####PARTIÇÃO#### --> Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity (γ) was decomposed into within-habitat diversity (α₁) and the successive beta components associated with differences among habitats (𝛽₁), among sites withing upper and lower stream reaches (β₂), and among streams (β₃). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
 
-dev.off()
-rm(list=ls(all=TRUE))
-cat("\014")
-
-t_grps <- read.csv("res/t_grps.csv",
-                   sep = ";", dec = ".",
-                   row.names = 1,
-                   header = TRUE,
-                   na.strings = NA)
-m_hab_part <- read.csv("res/m_hab_part.csv",
-                       sep = ";", dec = ".",
-                       row.names = 1,
-                       header = TRUE,
-                       na.strings = NA)
-
-colnames(m_hab_part)
-
-###RELATIVIZAÇÕES E TRANSFORMAÇÕES----
-library(vegan)
-library(tidyverse)
-
-# Selecionando variáveis que começam com "w" ou "m"
-m_wm <- m_hab_part[, grep("^(w|m)", colnames(m_hab_part))]
-
-# Selecionando variáveis que começam com "s" ou "h"
-m_sh <- m_hab_part[, grep("^(s|h)", colnames(m_hab_part))]
-
-# Removendo os dois primeiros caracteres dos nomes das colunas
-colnames(m_wm) <- sub("^..", "", colnames(m_wm))
-colnames(m_sh) <- sub("^..", "", colnames(m_sh))
-
-# Transformações
-m_wm <- sqrt(m_wm)
-m_sh <- asin(sqrt(decostand(m_sh, method = "total", MARGIN = 2)))
-
-# Juntando tudo em uma única tabela
-hab_trns <- cbind(m_sh, m_wm)
-
-# Salvado m_hab_trns
-write.table(hab_trns, "res/m_hab_trns.csv",
-            sep = ";", dec = ".", #"\t",
-            row.names = TRUE,
-            quote = TRUE,
-            append = FALSE)
-m_hab_trns <- read.table("res/m_hab_trns.csv",
-                         sep = ";", dec = ".",
-                         row.names = 1,
-                         header = TRUE,
-                         na.strings = NA)
-```
-
-<!--# ####UNIVARIADAS#### -->
-
-Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by *post hoc* multiple comparisons using Tukey’s HSD test (α=0.05) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen].
-
-<!--# ####REGRESSÃO MÚLTIPLA#### -->
-
-Each observation was classified according to three factors: river reach (three levels), habitat (three levels), and hydrological season (wet and dry). The analysis initially considered the full factorial model. When significant interactions were detected, higher-order interactions were examined first, followed by the corresponding two-way interactions (reach × season, reach × habitat, and season × habitat) and, subsequently, the main effects. Response variables were transformed using log₁₀(x + 1) to improve compliance with assumptions of normality and homogeneity of variances \[39\]. Differences among factor levels were subsequently investigated using Tukey's HSD test at α = 0.05. --\>
-
-<!--# ####CLASSIFICAÇÃO#### -->
-
-Differences in assemblage composition across the spatial hierarchy were explored using hierarchical agglomerative clustering. Bray–Curtis dissimilarities were calculated from the density matrix, and clusters were formed using the flexible beta linkage method (β = −0.25) [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. The resulting dendrogram was interpreted visually, and the number of groups retained was determined using a cut-off corresponding to 25% or less of the remaining information [@quinn2023]. <!--# ####VOLTAR AQUI#### --> The statistical significance of compositional differences among groups and spatial levels was evaluated using the Multi-Response Permutation Procedure (MRPP) [@biondini1985; @mccune2002]. In addition to the probability associated with the test, the MRPP agreement statistic (*A*) was used to describe within-group homogeneity relative to that expected under random grouping. Both the hierarchical clustering and MRPP analyses were conducted in PC-ORD version 7.07. <!--# ####ARRUMAR ISSO#### -->
-
-<!--# ####PARTIÇÃO#### -->
-
-Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity (α) represents diversity occurring within sampling units, whereas beta diversity (β) represents the contribution of differences among units at successive levels of the spatial hierarchy. The hierarchical structure included three spatial scales. The finest scale consisted of habitat samples within each site (n = 3), the intermediate scale corresponded to each site (n = 18, for the Barro Branco stream, and n = 27, for the Caiana stream), whereas the broadest scale represented differences among the upper and lower river sections (n = 36, for the Barro Branco stream, and n = 54, for the Caiana stream). Accordingly, total diversity (γ) was decomposed into within-habitat diversity (α₁) and the successive beta components associated with differences among habitats (β₁), among sites withing river reaches (β₂), and among river reaches (β₃). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
-
-To evaluate temporal (dry/wet season) variation, the data was analyzed separately for each season. The additive partition analyses were performed using PARTITION 3.0 \[40\], with individual-based randomizations (type I null model) \[41\]. The randomization process was repeated 10000 times to obtain null distributions of the alpha and beta diversity estimates at each hierarchical level. The probabilities obtained from randomization tests were interpreted as P values in the sense that a low P value (P \< 0.05) indicates that the observed diversity is significantly higher than that expected under the null model and a high P value (P \> 0.95) indicates that the observed diversity is significantly lower than that expected \[42\]
-
-<!--# ####INTERPRETAÇÃO#### -->
-
-Additive diversity partitioning was conducted in R using the *adipart* function implemented in the `Vegan` package [@oksanen; @rcoreteam2017]. Significance was evaluated using individual-based randomizations under a Type I null model [@crist2003]. For each hierarchical level, 10,000 randomized communities were generated to produce null distributions for the corresponding α- and β-diversity components. The observed diversity components were then compared with their respective null distributions. The probabilities generated by the randomization procedure were interpreted as measures of departure from random expectations, Values below 0.05 indicated that the observed component was significantly greater than expected under the null model, whereas values above 0.95 indicated that the observed value was significantly lower than expected [@gering2003; @veech2003].
+<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the α and β diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003] . The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value (Prop~exp~ \> Prop~obs~ \< 0.05) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value (Prop~exp~ \> Prop~obs~ \> 0.95) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @vee]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen]. All analyses were conducted in the statistical environment R [@rcoreteam2017].
 
 # Results
 
@@ -2062,6 +1981,8 @@ str(m_dens)
 #SEPARANDO OS PERÍODOS
 
 library(vegan)
+library(cluster)
+
 # Fazendo a média por ponto
 ponto_id <- sub("-H[0-9]+$", "", rownames(m_dens))
 m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
@@ -2087,27 +2008,9 @@ dist_chuv <- vegdist(chuv_trns, method = "bray")
 upgma_seco <- hclust(dist_seco, method = "average")
 upgma_chuv <- hclust(dist_chuv, method = "average")
 
-# Plot dos dendrogramas agrupados por ponto
-upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
-upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
-dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
-dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
-
-#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
-par(mfrow = c(1, 2), mar = c(5, 4, 4, 6))
-plot(as.dendrogram(upgma_seco), 
-     horiz = TRUE, 
-     main = "UPGMA - Seco", 
-     xlab = "Dissimilaridade (Bray-Curtis)",
-     xlim = c(max(attr(dend_seco, "height")), 0))
-plot(as.dendrogram(upgma_chuv), 
-     horiz = TRUE, 
-     main = "UPGMA - Chuvoso", 
-     xlab = "Dissimilaridade (Bray-Curtis)",
-     xlim = c(max(attr(dend_chuv, "height")), 0))
-par(mfrow = c(1, 1))
-#dev.off()
-
+# Coeficientes de aglomeração
+agg_coef_seco <- coef.hclust(upgma_seco)
+agg_coef_chuv <- coef.hclust(upgma_chuv)
 # Gerar a matriz de distância cofenética a partir da árvore UPGMA
 cofe_seco <- cophenetic(upgma_seco)
 cofe_chuv <- cophenetic(upgma_chuv)
@@ -2117,7 +2020,79 @@ cor_chuv <- cor(dist_chuv, cofe_chuv)
 # Visualizar os resultados
 cat("Correlação Cofenética (Seco):", round(cor_seco, 3), "\n")
 cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
+
+# Plot dos dendrogramas agrupados por ponto
+upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
+upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
+dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
+dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
+
+#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
+par(mfrow = c(1, 2), mar = c(5, 4, 2, 6)) #B, L, T, R
+plot(as.dendrogram(upgma_seco), 
+     horiz = TRUE, 
+     xlab = "Bray-Curtis dissimilariry",
+     xlim = c(max(attr(dend_seco, "height")), 0),
+     cex.lab = 1)
+title(main = "Dry", line = 0, cex.main = 1.2)
+mtext(paste0("Agglomerative Coefficient = ", round(agg_coef_seco, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 1,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte
+mtext(paste0("Cophenetic Coefficient = ", round(cor_seco, 2)), 
+            side = 2,           # Lado esquerdo (eixo Y)
+            line = 2,           # Distância da margem
+            at = 7,             # Posição na base do eixo
+            las = 0,            # Orientação do texto
+            cex = 0.8)          # Tamanho da fonte      
+      
+plot(as.dendrogram(upgma_chuv), 
+     horiz = TRUE, 
+     xlab = "Bray-Curtis dissimilariry",
+     xlim = c(max(attr(dend_chuv, "height")), 0),
+     cex.lab = 1)
+title(main = "Wet", line = 0, cex.main = 1.2)
+mtext(paste0("Agglomerative Coefficient = ", round(agg_coef_chuv, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 1,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte
+mtext(paste0("Cophenetic Coefficient = ", round(cor_chuv, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 2,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte      
+par(mfrow = c(1, 1))
+#dev.off()
+
+#OUTRA FORMA
+#plot(as.dendrogram(upgma_chuv), 
+#     horiz = TRUE, 
+#     main = "Wet", 
+#     xlab = "Bray-Curtis dissimilarity",
+#     xlim = c(max(attr(dend_chuv, "height")), 0))
+# Adiciona o texto no canto inferior esquerdo
+#text(x = max(attr(dend_chuv, "height")) * 0.9, 
+#     y = 3, 
+#     labels = paste0("Agglomerative Coefficient = ", round(agg_coef_chuv, 2)), 
+#     adj = c(0, 0), 
+#     cex = 0.85, 
+#     srt = 90) # srt = 90 gira o texto para ficar vertical
+#OU
+#mtext(paste0("Cophenetic Coefficient = ", round(cor_seco, 2)), 
+#      side = 2,    # 1 = bottom margin
+#      line = 2.5,    # Line distance below axis (increase if it overlaps numbers)
+#      adj = 0.36,     # Posição horizontal
+#      cex = 0.85)  # Font size
 ```
+
+<!--# COEFICIENTES -->
+
+The UPGMA cluster analyses revealed low-to-moderate spatial clustering strength for the zooplankton communities across both periods, as indicated by the Agglomerative Coefficients ($AC_{dry} = 0.34$ and $AC_{wet} = 0.39$). While community composition exhibited continuous variation across sites, spatial structuring was slightly more pronounced during the wet season than during the dry season.
 
 ## Diversity Partitioning
 
