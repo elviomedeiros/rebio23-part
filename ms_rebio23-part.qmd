@@ -53,14 +53,14 @@ keywords:
   - Riachos tropicais
   - Partição da diversidade
   - Sazonalidade climática
-date: "`r format(Sys.time(), '%B %d, %Y - %H:%M')`"
+date: "`r format(Sys.time(), '%Y-%m-%dT%H:%M:%S')`"
 abstract: "Abstract"
 lang: "en-US"
 editor: source
 toc: true
 number-sections: true
 bibliography: refs/references.bib
-csl: refs/apa.csl
+csl: refs/ecology.csl
 highlight-style: pygments
 format:
   html:
@@ -184,9 +184,15 @@ habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
                     colNames = T,
                     sheet = "ambiente",
                     startRow = 2)
+
+# List columns with at least one NA
+colnames(habitat)[colSums(is.na(habitat)) > 0]
 # Identify columns containing only NA values
 all.na <- names(habitat)[colSums(!is.na(habitat)) == 0]
 all.na <- c(all.na, "w.Temp_C", "w.DO_mg.L")
+#all.na <- c(all.na, "n.Ammonia_NH3_ug.L", "n.Nitrite_NO2_ug.L",
+#            "n.Nitrate_NO3_ug.L", "n.Orthophosphate_SRP_ug.L",
+#            "n.Phosphorus_TP_ug.L")
 # Remove those columns by name
 m_hab_part <- habitat[, !names(habitat) %in% all.na, drop = FALSE]
 # Removendo linhas por nome
@@ -196,6 +202,9 @@ del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3",
 del_rows
 m_hab_part <- m_hab_part[!(row.names(m_hab_part) %in% c(del_rows)),]
 m_hab_part
+# List columns with at least one NA
+colnames(m_hab_part)[colSums(is.na(m_hab_part)) > 0]
+#rownames(m_hab_part)[is.na(m_hab_part$m.Width_m)]
 # Remove columns with at least one NA
 m_hab_part <- m_hab_part[, colSums(is.na(m_hab_part)) == 0, drop = FALSE]
 
@@ -438,7 +447,7 @@ m_hab <- read.csv("res/m_hab_part.csv",
 
 library(psych)
 colnames(m_hab)
-png("res/fig-h.hab_pairs.png")
+#png("res/fig-h.hab_pairs.png")
 pairs.panels(m_hab[,1:8],
              method = "pearson", # correlation method
              scale = FALSE, lm = FALSE,
@@ -446,19 +455,19 @@ pairs.panels(m_hab[,1:8],
              density = TRUE,  # show density plots
              ellipses = TRUE, # show correlation ellipses
              alpha = 0.5)
-dev.off()
+#dev.off()
 
 cor <- cor(m_hab)
 cor
 
 library(corrplot)
-png("res/fig-hab_corrplot.png")
+#png("res/fig-hab_corrplot.png")
 corrplot(cor, method = "circle")
-dev.off()
+#dev.off()
 
 ##DELETANDO COLINEARES OU INDESEJADAS----
 
-sink(file = "res/colineares.txt", append = F, split = T)
+#sink(file = "res/colineares.txt", append = F, split = T)
 colnames(m_hab)
 del_cols <- c("", "")
 #del_cols <- grep("^n\\.", colnames(m_hab), value = TRUE)
@@ -475,7 +484,7 @@ m_hab_part <- m_hab_part[, !(colnames(m_hab_part)
 
 colnames(m_hab_part)
 m_hab_part
-sink()
+#sink()
 
 write.table(m_hab_part, "res/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
@@ -487,8 +496,6 @@ m_hab_part <- read.csv("res/m_hab_part.csv",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-
-
 ```
 
 ```{r ENV-REBIO23_PART-CORR_TEST}
@@ -541,9 +548,9 @@ These data were then analyzed using Principal Component Analysis (PCA) to summar
 
 <!--# ####CLASSIFICAÇÃO#### --> Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @diniz-reis2022], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R. The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient [@farris1969; @silva2013; @sokal1962]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
 
-<!--# ####PARTIÇÃO#### --> Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity (γ) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013 ].
+<!--# ####PARTIÇÃO#### --> Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity ($\gamma$) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
 
-<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the α and β diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} < 0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} > 0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen]. All analyses were conducted in the statistical environment R [@rcoreteam2017].
+<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the $\alpha$ and $\beta$ diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} < 0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} > 0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen]. All analyses were conducted in the statistical environment R [@rcoreteam2017].
 
 # Results
 
@@ -560,7 +567,7 @@ Em contraste, a UA P06 do Barro Branco, juntamente com as UAs P16, P17 e P20, do
 
 <!--# COMEÇAR AQUI TERMINAR HABITAT -->
 
-Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded at site 5. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Waters were, on average, well oxygenated (from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).
+Water velocity ranged from 0 to 0.41 m/s, with the highest average recorded at site 14. Waters were, on average, well oxygenated (data for the from 5.4 to 8.1 mg/L), and cool, with average temperatures from 25.2 to 27.8 °C. Conductivity was high, between 129.0 and 163.3 μS/cm, and pH, neutral to slightly acidic (from 5.5 to 7.0). Turbidity was generally low, although higher values were observed at sites 5 and 6, reaching 17.5 and 29.6 NTU, respectively. Elevation ranged from 41.5 to 112.8 m a.s.l., while the slope reached 50° for some sites. Width varied from 1.2 to 7.2 m, while depth ranged from 13.7 to 44.2 cm. Mud and sand were the main substrate components across all sampled sites, with average cover ranging from 30 to 100% and from 0 to 70%, respectively. Habitat structure varied along the stream course. The reference site (site 1) was characterized by high contributions of overhanging vegetation (90%) and exclusively muddy substrates. Site 2 exhibited similar characteristics, whereas site 3 showed a more reduced habitat complexity. Sites 4–6 displayed greater variation in habitat composition. Overall, the habitat structures contributing most were overhanging vegetation, debris, and root masses, although these contributions varied among sites. Aquatic macrophytes and littoral grass were particularly abundant at site 4, contributing on average 35.8% and 39.2%, respectively, whereas root masses represented the dominant habitat structure at site 5 (76.7%). Sand cover increased downstream, reaching 70% at site 6, where overhanging vegetation was markedly reduced (@tbl-hab_gttable).
 
 ```{r GTTABLE_HAB_EXCL}
 #| eval: false
@@ -573,6 +580,15 @@ Water velocity ranged from 0.022 to 0.293 m/s, with the highest values recorded 
 
 #TABELA DE HABITAT----
 
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
+                     rowNames = T,
+                     colNames = T,
+                     sheet = "ambiente",
+                     startRow = 2)
 m_hab_part <- read.csv("res/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
@@ -584,6 +600,9 @@ t_grps <- read.csv("res/t_grps.csv",
                    header = TRUE,
                    na.strings = NA)
 
+m_hab_part$w.Temp_C <- habitat[rownames(m_hab_part), "w.Temp_C"]
+m_hab_part$w.DO_mg.L <- habitat[rownames(m_hab_part), "w.DO_mg.L"]
+
 library(dplyr)
 library(tidyr)
 m_trab <- m_hab_part %>%
@@ -591,7 +610,9 @@ m_trab <- m_hab_part %>%
 m <- m_trab %>%
   group_by(PontoN = t_grps$PontoN) %>%
   summarise(across(where(is.numeric),
-                   list(mean = mean, min = min, max = max)),
+                   list(mean = ~ mean(.x, na.rm = TRUE), #ajustes celulas vazias
+                        min = ~ min(.x, na.rm = TRUE),
+                        max = ~ max(.x, na.rm = TRUE))),
             .groups = 'drop') %>%
   pivot_longer(
     cols = -c(PontoN),
@@ -619,6 +640,167 @@ col_order <- c(
 )
 m_wide <- m_wide[, c(col_order)] #sequência das colunas
 row_order <- c(
+  "w.Temp.C",
+  "w.DO.mg.L",
+  "w.Vel.m.s",
+  "w.Cond.uS.cm",
+  "w.Turb.ntu",
+  "w.pH",
+  "m.Elev.m",
+  "m.Slope",
+  "m.Depth.avg.cm",
+  "m.Depth.mar.cm",
+  "m.Depth.max.cm",
+  "m.Width.m",
+  "s.Mud",
+  "s.Sand",
+  "s.Gravel.f",
+  "s.Rocks",
+  "h.Macrophytes",
+  "h.Algae",
+  "h.Subm.veg",
+  "h.Overh.veg",
+  "h.Grass",
+  "h.Leaf.l",
+  "h.Root.masses",
+  "h.Debris"
+)
+m_wide <- m_wide[match(row_order, m_wide$Variable), ]
+m_wide
+
+# Salvado m_wide
+write.table(m_wide, "res/m_wide_hab_to.txt",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_wide_hab_to <- read.table("res/m_wide_hab_to.txt",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide, file = "res/tabela de habitat.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de habitat.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide)
+saveWorkbook(wb, "res/tabela de habitat.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+hab_gttable <- read_excel(
+  path  = "res/tabela de habitat.xlsx",
+  sheet = "tabela_final")
+#range = "A1:P29"#ajustar para o tamanho da tabela final 
+hab_gttable
+library(gt)
+hab_gttable <- gt(hab_gttable)
+hab_gttable <- sub_missing(hab_gttable,
+                      columns = everything(), missing_text = "")
+#hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
+hab_gttable
+gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
+saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
+```
+
+```{r ENV-VAR_summ}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Environment data variable summary"
+
+#TABELA DE HABITAT----
+##SEGUE DO SCRIPT ANTERIOR
+
+# Escolher sumário de uma variavel
+m
+var <- "w.Vel.m.s"
+m[m$Variable == var, "mean"] #cada valor de var
+summary(m[m$Variable == var, "mean"]) #sumário dos valores de var
+
+# Escolher sumário de um grupo de variáveis do df m
+vars <- unique(grep("^h\\.", m$Variable, value = TRUE))
+summaries <- list() #criam uma lista vazia para guardar os sumários
+# Loop para cada variável do grupo e guarda em summaries
+for (var in vars) {
+  summaries[[var]] <- summary(m[m$Variable == var, "mean"])
+}
+#var is a temporary variable used in the for loop to iterate through
+#each variable name that starts with "h."
+
+summaries
+summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
+colnames(summary_table) <- c("Min", "Q1", "Median", "Mean", "Q3", "Max")
+#sink(file = "res/summary_h.txt", split = TRUE)
+round(summary_table, 2)
+#round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
+#sink()
+
+#Summario para as médias
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+m_hab_part <- read.csv("res/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+library(dplyr)
+library(tidyr)
+
+m_trab <- m_hab_part %>%
+  rename_with(~ gsub("_", ".", .))
+
+# Compute averages per group
+m_s <- m_trab %>%
+  group_by(PontoN = t_grps$PontoN) %>%
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)),
+            .groups = 'drop') %>%
+  pivot_longer(
+    cols = -PontoN,
+    names_to = "Variable",
+    values_to = "mean"
+  )
+
+# Format rounding and reshape to wide format
+m_wide_s <- m_s %>%
+  mutate(
+    stat_string = ifelse(
+      Variable == "m.Vel.m.s",
+      as.character(round(mean, 3)),
+      as.character(round(mean, 1))
+    )
+  ) %>%
+  unite("Location", PontoN, sep = "_") %>%
+  select(Variable, Location, stat_string) %>%
+  pivot_wider(names_from = Location, values_from = stat_string)
+
+m_wide_s <- as.data.frame(m_wide_s)
+
+# Order columns numerically by Ponto number
+cols <- colnames(m_wide_s)
+col_order <- c(
+  "Variable",
+  cols[cols != "Variable"][
+    order(as.numeric(gsub("Ponto", "", cols[cols != "Variable"])))
+  ]
+)
+m_wide_s <- m_wide_s[, col_order]
+
+# Order rows according to pre-defined variable list
+row_order <- c(
   "w.Cond.uS.cm",
   "w.Turb.ntu",
   "w.pH",
@@ -640,82 +822,11 @@ row_order <- c(
   "h.Root.masses",
   "h.Debris"
 )
-m_wide <- m_wide[match(row_order, m_wide$Variable), ]
-m_wide
 
-# Salvado m_wide
-write.table(m_wide, "res/m_wide_hab.txt",
-            sep = ";", dec = ".", #"\t",
-            row.names = TRUE,
-            quote = TRUE,
-            append = FALSE)
-m_wide_hab <- read.table("res/m_wide_hab.txt",
-                  sep = ";", dec = ".",
-                  row.names = 1,
-                  header = TRUE,
-                  na.strings = NA)
+m_wide_s <- m_wide_s[match(row_order, m_wide_s$Variable), ]
 
-# Exportando dados para Excel
-library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de habitat.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de habitat.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "res/tabela de habitat.xlsx", overwrite = TRUE)
-
-# Tabela final ajustada no Excel
-library(readxl)
-hab_gttable <- read_excel(
-  path  = "res/tabela de habitat.xlsx",
-  sheet = "tabela_final",
-  range = "A1:P21") #ajustar para o tamanho da tabela final 
-hab_gttable
-library(gt)
-hab_gttable <- gt(hab_gttable)
-hab_gttable <- sub_missing(hab_gttable,
-                      columns = everything(), missing_text = "")
-#hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
-hab_gttable
-gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
-saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
-```
-
-```{r ENV-VAR_summ}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Environment data variable summary"
-
-# Escolher sumário de uma variavel
-m
-var <- "w.Temp.C"
-m[m$Variable == var, "mean"] #cada valor de var
-summary(m[m$Variable == var, "mean"]) #sumário dos valores de var
-
-# Escolher sumário de um grupo de variáveis do df m
-vars <- unique(grep("^h\\.", m$Variable, value = TRUE))
-summaries <- list() #criam uma lista vazia para guardar os sumários
-# Loop para cada variável do grupo e guarda em summaries
-for (var in vars) {
-  summaries[[var]] <- summary(m[m$Variable == var, "mean"])
-}
-#var is a temporary variable used in the for loop to iterate through
-#each variable name that starts with "h."
-
-summaries
-summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
-round(summary_table, 2)
-#sink(file = "summary_h.txt", split = TRUE)
-round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
-#sink()
-
-# Tabela limpa
-#summary_table <- cbind(Variable = rownames(summary_table), summary_table)
-#rownames(summary_table) <- NULL
-#colnames(summary_table) <- c("Variable", "Min", "Q1", "Median", "Mean", "Q3", "Max")
-#summary_table
+# View final table
+m_wide_s
 ```
 
 <!--# DEFINIR QUAIS PCAS USAR -->
