@@ -892,12 +892,7 @@ m_wide_s <- m_wide_s[match(row_order, m_wide_s$Variable), ]
 m_wide_s
 ```
 
-<!--# COMEÇAR AQUI TERMINAR HABITAT -->
-<!--# DEFINIR QUAIS PCAS USAR -->
-
-Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to their differences (@fig-hab_PCA_rio and @fig-hab_PCA_periodo). The first two principal components explained 38.6% of the total variance, with the first axis accounting for 23.2%. 
-
-PCA confirmed the expected quality of sites, separating site types, where site types I and II where associated with higher elevation, the presence of algae and leaf litter, and where dominated by muddy substrate. Sites type III, tended to have higher water velocity and the presence of gravel and sand as substrate. The presence of root masses and greater inclination on the margins were also important features of these sites. Sites type IV showed a wide range of environmental characteristics, certainly due to their greater number. Nonetheless, these sites may be associated with greater depths, the presence of rocks in the substrate, and higher pH and turbidity. Comparison of the two study streams showed that, the Barro Branco stream tended to have a greater presence of algae, macrophytes, leaf litter and submerged vegetation as major habitat structures, a muddy substrate and an overall higher elevation. The Caiana stream was characterized by sandy substrate, with occasionally gravel and rocks, higher depths, and higher pH, turbidity, and water velocity. Dry and rainy seasons did not show clear segregation in the PCA.
+Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to the differences between streams (@fig-hab_PCA_rio) and seasons (@fig-hab_PCA_periodo). The first two principal components explained 38.6% of the total variance, with the first axis accounting for 23.2%. In relation to the environmental variables of water quality, the Barro Branco stream was more associated with higher elevations, the predominance of muddy substrate and a narrower array of underwater structures, mostly algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables affecting it's waters, being associated with higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream. PERMANOVA showed significant differences in the environmental variables between the two study streams (PERMANOVA, F = 7.8, d.f. = 1,88, p = 0.001). Dry and wet seasons did not show clear segregation in the PCA, even though PERMANOVA indicated significance of differences between seasons (PERMANOVA, F = 3.8, d.f. = 1,88, p = 0.008).
 
 ```{r ENV-PCA_fviz}
 #| eval: false
@@ -1017,7 +1012,8 @@ colnames(t_grps)
 set.seed(123)
 # Escolhendo variável categorica
 my.cont.var <- t_grps$Periodo
-my.cont.var
+my.cont.var[my.cont.var == "seco"] <- "dry"
+my.cont.var[my.cont.var == "chuvoso"] <- "wet"
 # Color individuals by the continuous variable
 fviz_pca_ind(
   pca,
@@ -1088,16 +1084,15 @@ label_coords <- as.data.frame(pca_filt$var$coord)
 label_coords <- label_coords * 2.0
 label_coords <- label_coords * 2.0
 # Se quiser ajustar pontos específicos manualmente
-fix(label_coords) #nomes das colunas
-write.table(label_coords,"res/coords_lab.txt")
+#fix(label_coords) #nomes das colunas
+#write.table(label_coords,"res/coords_lab.txt")
 label_coords <- read.table("res/coords_lab.txt",
                          header=TRUE,
                          row.names=1)
 
 # GRÁFICO FINAL
 
-png("res/fig-hab_PCA_periodo.png", width = 9, height = 7.5, units = "in", res = 300)
-#png("res/fig-hab_PCA_rio.png", width = 800, height = 650, units = "px", res = 100)
+#png("res/fig-hab_PCA_periodo.png", width = 9, height = 7.5, units = "in", res = 300)
 fviz_pca_biplot(pca_filt,
   col.ind = my.cont.var, palette = "jco",
   addEllipses = TRUE, ellipse.type = "t",
@@ -1105,7 +1100,7 @@ fviz_pca_biplot(pca_filt,
   shape.ind = my.cont.var,
   label = "none",
   col.var = "black",
-  legend.title = "Stream"
+  legend.title = "Season"
 ) +
   # Adiciona os rótulos nas posições customizadas da tabela label_coords
   geom_text(
@@ -1128,7 +1123,7 @@ fviz_pca_biplot(pca_filt,
   legend.title = element_text(size = 40),
   legend.text = element_text(size = 40)
 )
-dev.off()
+#dev.off()
 ```
 
 ```{r ENV-PCA_PERMANOVA}
@@ -1326,8 +1321,24 @@ perm <- 999
 all_test <- adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
 all_test
 
+## TESTES PARA VARIAVEIS COM DOIS FATORES
+
+sink(file = "res/perma.txt", split = TRUE)#, append = TRUE)
+set.seed(123)
+perm <- 999
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
+adonis2(m_trab ~ Rio, data = t_grps, method = "bray", permutations = perm)
 adonis2(m_trab ~ Periodo*Rio, data = t_grps)
 adonis2(m_trab ~ Periodo*Rio, data = t_grps, by = "terms") #ou by=NULL remove as interações
+
+## AVALIANDO INTERAÇÕES-----
+
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray")
+adonis2(m_trab ~ Periodo*Rio, data = t_grps,
+        method = "bray") #+ no lugar de * tira os residuos
+adonis2(m_trab ~ Periodo*Rio, data = t_grps,
+        method = "bray", by = "terms", strata = NULL)
+sink()
 
 all_p <- all_test$`Pr(>F)`[1]
 all_p
@@ -1426,7 +1437,7 @@ adonis2(m_trab ~ Periodo*Rio, data = t_grps,
 
 ```
 
-Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, overall no clear trend can be observed when comparing both streams. Nitrite and nitrate, on the other hand, show greater concentrations at the Caiana stream, the latter varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 13.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).
+Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, but overall no clear trend can be observed when comparing both streams. Nitrite and nitrate, on the other hand, show clearly a greater concentrations at the Caiana stream, nitrate varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 32.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).
 
 ```{r GTTABLE_NUTRI_EXCLl}
 #| eval: false
@@ -1521,7 +1532,7 @@ library(readxl)
 nutri_gttable <- read_excel(
   path  = "res/tabela de nutrientes.xlsx",
   sheet = "tabela_final",
-  range = "A1:P6") #ajustar para o tamanho da tabela final 
+  range = "A1:P7") #ajustar para o tamanho da tabela final 
 nutri_gttable
 library(gt)
 nutri_gttable <- gt(nutri_gttable)
