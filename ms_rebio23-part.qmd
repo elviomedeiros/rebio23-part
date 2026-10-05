@@ -158,8 +158,7 @@ Zooplankton was sampled at habitats within each sampling site, hereafter referre
 
 ## Statistical analyses
 
-<!--# ####AMBIENTAIS#### -->
-Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998].
+<!--# ####AMBIENTAIS#### -->Environmental variables were screened for multicollinearity and to identify redundant descriptors. Variables representing similar environmental information were also combined when appropriate, thereby reducing redundancy in the dataset [@legendre1998].
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -605,7 +604,7 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
 
 These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons. A Permutational Multivariate Analysis of Variance (PERMANOVA, 999 permutations) was performed to test whether the overall set of environmental variables measured differed across the seasons and streams [@freiry2020; @anderson2013].
 
-To compare the diversity of zooplanktonic taxa between streams, the Chao1 estimated richness (±SE) and the curves of rarefied and extrapolated richness were generated (95% upper and lower confidence intervals) using individual-based rarefaction curves [@gotelli2001; @freiry2020].
+To compare the diversity of zooplanktonic taxa between streams, the Chao1 estimated richness (± SE) and the curves of rarefied and extrapolated richness were generated (95% upper and lower confidence intervals) using individual-based rarefaction curves [@gotelli2001; @freiry2020].
 
 ```{r METHODS-UNIVAR-en}
 #| eval: false
@@ -614,14 +613,11 @@ To compare the diversity of zooplanktonic taxa between streams, the Chao1 estima
 <!--# ####UNIVARIADAS#### -->Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by post hoc multiple comparisons using Tukey’s HSD test ($\alpha = 0.05$) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen; @medeiros2024]. <!--# ####REGRESSÃO MÚLTIPLA#### -->Each observation was classified according to three factors: river reach (three levels), habitat (three levels), and hydrological season (wet and dry). The analysis initially considered the full factorial model. When significant interactions were detected, higher-order interactions were examined first, followed by the corresponding two-way interactions (reach × season, reach × habitat, and season × habitat) and, subsequently, the main effects. Response variables were transformed using log10(x+1) to improve compliance with assumptions of normality and homogeneity of variances [@sokal1995]. Differences among factor levels were subsequently investigated using Tukey's HSD test at $\alpha = 0.05$.
 ```
 
-<!--# ####CLASSIFICAÇÃO#### -->
-Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @diniz-reis2022], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R. The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient [@farris1969; @silva2013; @sokal1962]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
+<!--# ####CLASSIFICAÇÃO#### -->Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @ávila2011], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R [@oksanen2020] . The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient \[@farris1969; @silva2013; @sokal1962\]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
 
-<!--# ####PARTIÇÃO#### -->
-Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity ($\gamma$) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
+<!--# ####PARTIÇÃO#### -->Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity ($\gamma$) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
 
-<!--# ####INTERPRETAÇÃO#### -->
-The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the $\alpha$ and $\beta$ diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} < 0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} > 0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen]. All analyses were conducted in the statistical environment R [@rcoreteam2017].
+<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the $\alpha$ and $\beta$ diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} < 0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} > 0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen]. All analyses were conducted in the statistical environment R [@rcoreteam2017].
 
 # Results
 
@@ -1568,7 +1564,7 @@ Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* s
 
 ```
 
-A total of 56 taxa distributed among Rotifera (14 families), Cladocera (5 families) and Copepoda (2 families) were identified during the study period. Rotifera was the most species-rich group, represented by 39 species (plus Bdelloidea), followed by Cladocera (12 species) and Copepoda (4 species, in addition to the juvenile stages nauplii and copepodite). Across sampling periods, Lecanidae exhibited the highest richness among all recorded families of Rotifera with 15 species, followed by Lepadellidae, Synchaetidae (both with 4 species), Brachionidae and Mytilinidae (both with 3 species). Bdelloidea was the most abundant taxa (6194 individuals) followed by *Lecane curvicornis* with 626 individuals. Among the cladocerans, Chydoridae was the richest family with 5 species, followed by Macrothricidae (3 species). *Alonella dadayi* was the most abundant among the cladocerans with 1051 individuals. Juvenile stages (nauplii and copepodite) were also abundant with 2433 and 4061 individuals, respectively. Copepods were represented by he orders Cyclopoida and Calanoida, *Paracyclops* sp. *Mesocyclops* sp. being the most abundant (141 and 231 individuals, respectively).
+A total of 56 taxa distributed among Rotifera (14 families), Cladocera (5 families) and Copepoda (2 families) were identified during the study period. Rotifera was the most species-rich group, represented by 39 species (plus Bdelloidea), followed by Cladocera (12 species) and Copepoda (4 species, in addition to the juvenile stages nauplii and copepodite). Across sampling periods, Lecanidae exhibited the highest richness among all recorded families of Rotifera with 15 species, followed by Lepadellidae, Synchaetidae (both with 4 species), Brachionidae and Mytilinidae (both with 3 species). Bdelloidea was the most abundant taxa (6194 individuals) followed by *Lecane curvicornis* with 626 individuals. Among the cladocerans, Chydoridae was the richest family with 5 species, followed by Macrothricidae (3 species). *Alonella dadayi* was the most abundant among the cladocerans with 1051 individuals. Juvenile stages (nauplii and copepodite) were also abundant with 2433 and 4061 individuals, respectively. Copepods were represented by he orders Cyclopoida and Calanoida, *Paracyclops* sp. *Mesocyclops* sp. being the most abundant (141 and 231 individuals, respectively) (@tbl-checklist_gttable).
 
 ```{r COMM-STR}
 #| eval: false
@@ -1987,6 +1983,33 @@ spp_gttable <- sub_missing(spp_gttable,
 spp_gttable
 gtsave(spp_gttable, "res/gt-spp_gttable_xlsx.html")
 saveRDS(spp_gttable, "res/gt-spp_gttable_xlsx.rds")
+
+#LISTA DE ESPÉCIES
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide_spp, file = "res/tabela da comunidade.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela da comunidade.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide_spp)
+saveWorkbook(wb, "res/tabela da comunidade.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+spp_gttable <- read_excel(
+  path  = "dados/rebio23-zoopl.xlsx",
+  sheet = "Espécies",
+  col_names = T,
+  range = "L1:S90") #ajustar para o tamanho da tabela final
+spp_gttable
+library(gt)
+spp_gttable <- gt(spp_gttable)
+spp_gttable <- sub_missing(spp_gttable,
+                      columns = everything(), missing_text = "")
+#spp_gttable <- fmt_number(spp_gttable,
+#                          columns = "F.O.(%)", decimals = 1)
+spp_gttable
+gtsave(spp_gttable, "res/gt-checklist_gttable_xlsx.html")
+saveRDS(spp_gttable, "res/gt-checklist_gttable_xlsx.rds")
 ```
 
 ```{r COMM-VAR_summ}
@@ -2028,7 +2051,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-Rarefaction analysis showed that the Caiana stream had a taxa richness slightly higher than that of the Barro Branco stream (@fig-rare1). Nevertheless, the Chao index estimated an extrapolated richness of 58 (±8.9) species for the Barro Branco stream, compared with 54.2 (± 4.3) species for the Caiana stream. 
+Rarefaction analysis showed that the Caiana stream had a taxa richness slightly higher than that of the Barro Branco stream (@fig-rare1). Nevertheless, the Chao index estimated an extrapolated richness of 58 (±8.9) species for the Barro Branco stream, compared with 54.2 (± 4.3) species for the Caiana stream.
 
 ```{r COMM-ACCUMCURV}
 #| eval: false
@@ -2084,8 +2107,8 @@ library(ggplot2)
 grafico3 <- ggiNEXT(out, type = 1, facet.var="None") + #ver como fica com facet.var="Assemblage"
   theme_bw() +
   labs(fill = "Áreas") +
-  xlab("Número de indivíduos") + 
-  ylab("Riqueza de espécies") +
+  xlab("Number of individuals") + 
+  ylab("Taxa richness") +
   scale_linetype_discrete(
     labels = c("Interpolation", "Extrapolation")) +
   theme(legend.title = element_blank(),
@@ -2165,11 +2188,11 @@ resultado_chao
 sink()
 ```
 
+<!--# VOLTAR DAQUI -->
+
 The NMDS ordination diagrams showed that the composition of zooplankton resting stages differed among most of the ponds from the forest (Fig. 4A) and grassland biomes (Fig. 4B). In addition, the PERMANOVA indicated a significant difference in the composition of zooplanktonic taxa between biomes (pseudo-F1, 53 = 1.85, R2 = 0.035; P = 0.03). The outputs of the db-RDAs showed that the water chemistry subset significantly influenced the dissimilarity in the resting stage composition (F = 1.25; R2 = 0.134; P = 0.02), while the subset of habitat structure did not (F = 0.88; R2  0.01; P = 0.88, Fig. 5).
 
-<!--# COEFICIENTES -->
-
-The UPGMA cluster analyses revealed low-to-moderate spatial clustering strength for the zooplankton communities across both periods, as indicated by the Agglomerative Coefficients ($AC_{dry} = 0.34$ and $AC_{wet} = 0.39$). While community composition exhibited continuous variation across sites, spatial structuring was slightly more pronounced during the wet season than during the dry season.
+<!--# COEFICIENTES -->The UPGMA cluster analyses revealed low-to-moderate spatial clustering strength for the zooplankton communities across both periods, as indicated by the Agglomerative Coefficients ($AC_{dry} = 0.34$ and $AC_{wet} = 0.39$). While community composition exhibited continuous variation across sites, spatial structuring was slightly more pronounced during the wet season than during the dry season.
 
 ```{r COMM-UPGMA}
 #| eval: false
@@ -2325,12 +2348,7 @@ par(mfrow = c(1, 1))
 #      cex = 0.85)  # Font size
 ```
 
-
-<!--#
-We collected 5,767 specimens from 72 taxa and 18 families, including one subclass (Bdelloidea, Rotifera). Cladocera was the most representative group (37 taxa from five families). Chydoridae was the richest family (25 taxa), followed by Daphniidae (5 taxa). The most abundant cladoceran species were  Fig. 2 Schematic representation of the sampling design and spatial scales assessed in this study. Labels: a sampling unit (core), b1 variation among cores within a pond, b2 variation among ponds, b3 variation between biomes, c total diversity (richness) Ovalona glabra (Sars, 1901) (Chydoridae) and Macrothrix squamosa (Sars, 1901) (Macrothricidae), with 516 and 485 specimens, respectively. Among the rotifers, we collected 35 taxa from 12 families. Notommatidae was the richest family (nine taxa), followed by Lecanidae (six taxa). Adineta sp. (Adinetidae) and Lecane bulla (Gosse, 1851) (Lecanidae) were the most abundant rotiferan taxa, with (980 and 842 specimens, respectively) (Table S2 of Supplementary Material). The rarefaction analysis showed that the estimated taxa richness was higher in the ponds of the grassland compared to the forest biome (Fig. 3). The Chao index estimated an extrapolated richness of 50.99 (± 7.48) for the forest biome and of 108.1 (± 31.34) for the grassland biome. The NMDS ordination diagrams showed that the composition of zooplankton resting stages differed among most of the ponds from the forest (Fig. 4A) and grassland biomes (Fig. 4B). In addition, the PERMANOVA indicated a significant difference in the composition of zooplanktonic taxa between biomes (pseudo-F1, 53 = 1.85, R2 = 0.035; P = 0.03). The outputs of the db-RDAs showed that the water chemistry subset significantly influenced the dissimilarity in the resting stage composition (F = 1.25; R2 = 0.134; P = 0.02), while the subset of habitat structure did not (F = 0.88; R2 \ 0.01; P = 0.88, Fig. 5).
--->
-
-
+<!--# We collected 5,767 specimens from 72 taxa and 18 families, including one subclass (Bdelloidea, Rotifera). Cladocera was the most representative group (37 taxa from five families). Chydoridae was the richest family (25 taxa), followed by Daphniidae (5 taxa). The most abundant cladoceran species were  Fig. 2 Schematic representation of the sampling design and spatial scales assessed in this study. Labels: a sampling unit (core), b1 variation among cores within a pond, b2 variation among ponds, b3 variation between biomes, c total diversity (richness) Ovalona glabra (Sars, 1901) (Chydoridae) and Macrothrix squamosa (Sars, 1901) (Macrothricidae), with 516 and 485 specimens, respectively. Among the rotifers, we collected 35 taxa from 12 families. Notommatidae was the richest family (nine taxa), followed by Lecanidae (six taxa). Adineta sp. (Adinetidae) and Lecane bulla (Gosse, 1851) (Lecanidae) were the most abundant rotiferan taxa, with (980 and 842 specimens, respectively) (Table S2 of Supplementary Material). The rarefaction analysis showed that the estimated taxa richness was higher in the ponds of the grassland compared to the forest biome (Fig. 3). The Chao index estimated an extrapolated richness of 50.99 (± 7.48) for the forest biome and of 108.1 (± 31.34) for the grassland biome. The NMDS ordination diagrams showed that the composition of zooplankton resting stages differed among most of the ponds from the forest (Fig. 4A) and grassland biomes (Fig. 4B). In addition, the PERMANOVA indicated a significant difference in the composition of zooplanktonic taxa between biomes (pseudo-F1, 53 = 1.85, R2 = 0.035; P = 0.03). The outputs of the db-RDAs showed that the water chemistry subset significantly influenced the dissimilarity in the resting stage composition (F = 1.25; R2 = 0.134; P = 0.02), while the subset of habitat structure did not (F = 0.88; R2 \ 0.01; P = 0.88, Fig. 5). -->
 
 ## Diversity Partitioning
 
@@ -3005,7 +3023,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 @tbl-nutri_gttable: Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).
 
-@tbl-spp_gttable: Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.
+@tbl-checklist_gttable: List of species and counts of zooplankton collected during the 2024 hydrological cycle.
 
 @tbl-part_gttable: Contribution (expressed in percentage values) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition.
 
@@ -3087,6 +3105,19 @@ readRDS("res/gt-nutri_gttable_xlsx.rds")
 
 <details>
 
+<summary>@tbl-checklist_gttable</summary>
+
+```{r, tbl-checklist_gttable}
+#| echo: false
+#| tbl-cap: "Checklist of taxa GT table."
+readRDS("res/gt-checklist_gttable_xlsx.rds")
+```
+
+</details>
+
+<!--#
+<details>
+
 <summary>@tbl-spp_gttable</summary>
 
 ```{r, tbl-spp_gttable}
@@ -3096,6 +3127,7 @@ readRDS("res/gt-spp_gttable_xlsx.rds")
 ```
 
 </details>
+-->
 
 <details>
 
