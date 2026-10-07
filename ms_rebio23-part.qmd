@@ -602,9 +602,9 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
                          na.strings = NA)
 ```
 
-These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons. A Permutational Multivariate Analysis of Variance (PERMANOVA, 999 permutations) was performed to test whether the overall set of environmental variables measured differed across the seasons and streams [@freiry2020; @anderson2013].
+These data were then analyzed using Principal Component Analysis (PCA) to summarize multivariate patterns of environmental variation among sampling sites. Prior to PCA, site morphology and water-quality variables were square-root transformed [@sokal1995]. Variables describing sediment composition and marginal habitat structure, expressed as percentages, were relativized by their column totals and subsequently subjected to the arcsine square-root transformation [@mccune2002]. PCA was conducted in R using the `FactoMineR` package [@lê2008], with all variables centered and standardized to unit variance before analysis. The water quality parameters temperature and dissolved oxygen, and all nutrients were used to characterize differences between streams but were not used in the PCA because they were not measured for both seasons.A Permutational Multivariate Analysis of Variance (PERMANOVA, 999 permutations) was performed to test whether the overall set of environmental variables measured differed across the seasons and streams .
 
-To compare the diversity of zooplanktonic taxa between streams, the Chao1 estimated richness (± SE) and the curves of rarefied and extrapolated richness were generated (95% upper and lower confidence intervals) using individual-based rarefaction curves [@gotelli2001; @freiry2020].
+To compare the diversity of zooplankton taxa between streams, the Chao1 estimated richness (± SE) and the curves of rarefied and extrapolated richness were generated (95% upper and lower confidence intervals) using individual-based rarefaction curves [@gotelli2001; @freiry2020]. Community composition and environmental variables were compared among hydrological periods and streams using Permutational Multivariate Analysis of Variance (PERMANOVA), based on a Bray–Curtis dissimilarity matrix [@freiry2020; @anderson2013]. The model included the fixed factors Season, Stream and their interaction. The significance of the terms was assessed using 999 random permutations and the *pseudo*-F statistic (Anderson, 2001). Homogeneity of multivariate dispersion among groups was assessed based on the distance of each sampling unit from the centroid of its respective group in multivariate space, using the *betadisper* function from the `vegan` package (Anderson et al., 2006). 
 
 ```{r METHODS-UNIVAR-en}
 #| eval: false
@@ -613,7 +613,7 @@ To compare the diversity of zooplanktonic taxa between streams, the Chao1 estima
 <!--# ####UNIVARIADAS#### -->Zooplankton diversity was characterized using species richness (R) and Shannon's density (D) [@magurran2013]. Species richness was calculated as the number of species recorded in each sample, whereas density was expressed as the number of individuals per liter (ind./L) [@bowen2017; @silva2017]. Variation in richness and density was evaluated using factorial analysis of variance (ANOVA) followed by post hoc multiple comparisons using Tukey’s HSD test ($\alpha = 0.05$) [@zar2010]. Density was square root transformed to enhance normality and homogeneity of variances [@sokal1995] and species richness was corrected based on rarefied analyses for the average number of individuals from all sites [@chao2014; @oksanen; @medeiros2024]. <!--# ####REGRESSÃO MÚLTIPLA#### -->Each observation was classified according to three factors: river reach (three levels), habitat (three levels), and hydrological season (wet and dry). The analysis initially considered the full factorial model. When significant interactions were detected, higher-order interactions were examined first, followed by the corresponding two-way interactions (reach × season, reach × habitat, and season × habitat) and, subsequently, the main effects. Response variables were transformed using log10(x+1) to improve compliance with assumptions of normality and homogeneity of variances [@sokal1995]. Differences among factor levels were subsequently investigated using Tukey's HSD test at $\alpha = 0.05$.
 ```
 
-<!--# ####CLASSIFICAÇÃO#### -->Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @ávila2011], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R [@oksanen2020] . The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient \[@farris1969; @silva2013; @sokal1962\]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
+<!--# ####CLASSIFICAÇÃO#### -->Differences in assemblage composition across the spatial hierarchy and seasons were explored using the Unweighted Pair Group Method with Averages (UPGMA) [@belbin1993; @ávila2011], based on Bray-Curtis dissimilarities calculated from the zooplankton density matrix [@ávila2011]. Prior to the analyses, density data were relativized and square-root transformed to reduce the influence of highly abundant taxa and improve the distributional properties of the dataset [@rocha2012]. To focus on spatial variation across sampling sites, habitat density data were pooled for this analysis. <!--# ####COEFICIENTES#### --> To assess how well the UPGMA dendrograms represented the original Bray-Curtis dissimilarities among sampling sites, the Cophenetic Correlation Coefficient (CC) was calculated [@sneath1973; @sokal1962; @saraçli2013], where a cophenetic matrix was constructed from each seasonal dendrogram using the *cophenetic* function in the `vegan` package in R [@oksanen2020] . The cophenetic distance matrix was then correlated with the corresponding original Bray-Curtis dissimilarity matrix using Pearson's product-moment correlation coefficient [@farris1969; @silva2013; @sokal1962]. To evaluate the strength of the hierarchical clustering structure obtained from the UPGMA dendrograms, the Agglomerative Coefficient (AC) was calculated for each season using the *coef.hclust* function from the `cluster` package in R [@maechler2026; @kaufman1990]. The AC ranges from 0 to 1, where values closer to 1 indicate a strong, well-defined clustering structure and values near 0 reflect weak or indistinct grouping.
 
 <!--# ####PARTIÇÃO#### -->Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity ($\gamma$) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
 
@@ -885,7 +885,7 @@ m_wide_s <- m_wide_s[match(row_order, m_wide_s$Variable), ]
 m_wide_s
 ```
 
-Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to the differences between streams (@fig-hab_PCA_rio) and seasons (@fig-hab_PCA_periodo). The first two principal components explained 38.6% of the total variance, with the first axis accounting for 23.2%. In relation to the environmental variables of water quality, the Barro Branco stream was more associated with higher elevations, the predominance of muddy substrate and a narrower array of underwater structures, mostly algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables affecting it's waters, being associated with higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream. PERMANOVA showed significant differences in the environmental variables between the two study streams ($\text{F}_{1,88} = 7.8, R^2 = 0.08, p = 0.001$). Dry and wet seasons did not show clear segregation in the PCA, even though PERMANOVA indicated significance of differences between seasons ($\text{F}_{1,88} = 3.8, R^2 = 0.04, p = 0.008$).
+Principal Component Analysis (PCA) was used to summarize environmental variation among sampling sites and to identify variables contributing to the differences between streams (@fig-hab_PCA_rio) and seasons (@fig-hab_PCA_periodo). The first two principal components explained 38.6% of the total variance, with the first axis accounting for 23.2%. In relation to the environmental variables of water quality, the Barro Branco stream was more associated with higher elevations, the predominance of muddy substrate and a narrower array of underwater structures, mostly algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables affecting it's waters, being associated with higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream. PERMANOVA showed significant differences in the environmental variables between the two study streams ($\textit{pseudo}\text{-F}_{1,86} = 8.3, R^2 = 0.082, p = 0.001$). Even though dry and wet seasons did not show clear segregation in the PCA plot, PERMANOVA indicated significance of differences ($\textit{pseudo}\text{-F}_{1,86} = 4.2, R^2 = 0.042, p = 0.006$). A significant Season × Stream interaction was also detected ($\textit{pseudo}\text{-F}_{1,86} = 2.8, R^2 = 0.028, p = 0.032$), indicating that the effect of hydrological period on the environmental variables differed between Barro Branco and Caiana. The complete model explained 15.1% of the variation, whereas 84.9% remained unexplained by the factors included in the model.
 
 ```{r ENV-PCA_fviz}
 #| eval: false
@@ -1128,7 +1128,6 @@ fviz_pca_biplot(pca_filt,
 #| code-overflow: wrap
 #| code-summary: "Code: Environment data PCA - PERMANOVA"
 
-
 #ORGANIZANDO DADOS----
 
 dev.off()
@@ -1170,7 +1169,7 @@ mrpp_results
 # Print one result
 mrpp_results$Ref_site
 # Loop through summaries
-sink(file = "res/mrpp.txt", split = TRUE)#, append = TRUE)
+sink(file = "res/mrpp-env.txt", split = TRUE)#, append = TRUE)
 for (v in names(mrpp_results)) {
   cat("\n============================\n")
   cat("MRPP for:", v, "\n")
@@ -1185,7 +1184,7 @@ mrpp_summary <- data.frame(
   A = sapply(mrpp_results, function(x) x$A),
   P_value = sapply(mrpp_results, function(x) x$Pvalue)
 )
-sink("res/mrpp.txt", append = TRUE)
+sink("res/mrpp-env.txt", append = TRUE)
 mrpp_summary
 sink()
 
@@ -1230,7 +1229,7 @@ summary_tab <- data.frame(
   Delta = sapply(res_list, function(x) x$delta),
   Pvalue = sapply(res_list, function(x) x$Pvalue)
 )
-sink("res/mrpp.txt", append = TRUE)
+sink("res/mrpp-env.txt", append = TRUE)
 summary_tab
 sink()
 
@@ -1269,11 +1268,11 @@ matrixstyle <- pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
 matrixstyle
-save_kable(matrixstyle, "res/kb-mrpp_matrixstyle.html")
+save_kable(matrixstyle, "res/kb-mrpp-env_matrixstyle.html")
 
 ##GRÁFICO DA MRPP----
 
-png("res/fig-mrpp.png", width = 15, height = 10, units = "in", res = 300)
+png("res/fig-mrpp-env.png", width = 15, height = 10, units = "in", res = 300)
 def.par <- par(no.readonly = TRUE)
 layout(matrix(1:2,nr=1))
 plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
@@ -1307,31 +1306,52 @@ library(ggtext)
 library(ggplot2)
 library(vegan)
 
-adonis2(m_trab ~ Periodo, data = t_grps, method = "bray")
+## TESTES PARA VARIAVEIS COM MAIS DE DOIS FATORES
+
+adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray")
 set.seed(123)
 perm <- 999
-
-all_test <- adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
+all_test <- adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray", permutations = perm)
 all_test
 
 ## TESTES PARA VARIAVEIS COM DOIS FATORES
 
-sink(file = "res/perma.txt", split = TRUE)#, append = TRUE)
+sink(file = "res/perma-env.txt", split = TRUE)#, append = TRUE)
 set.seed(123)
 perm <- 999
 adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
 adonis2(m_trab ~ Rio, data = t_grps, method = "bray", permutations = perm)
-adonis2(m_trab ~ Periodo*Rio, data = t_grps)
-adonis2(m_trab ~ Periodo*Rio, data = t_grps, by = "terms") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo + Rio, data = t_grps, #+ no lugar de * tira os residuos
+        method = "bray", permutations = perm) 
 
 ## AVALIANDO INTERAÇÕES-----
 
-adonis2(m_trab ~ Periodo, data = t_grps, method = "bray")
-adonis2(m_trab ~ Periodo*Rio, data = t_grps,
-        method = "bray") #+ no lugar de * tira os residuos
-adonis2(m_trab ~ Periodo*Rio, data = t_grps,
-        method = "bray", by = "terms", strata = NULL)
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "terms") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "margin") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = NULL) #ou by=NULL remove as interações
 sink()
+
+#BETADISPER
+
+dist_bray <- vegdist(m_trab, method = "bray")
+t_grps$Periodo_Rio <- interaction(
+  t_grps$Periodo,
+  t_grps$Rio,
+  sep = "_")
+bd <- betadisper(dist_bray, t_grps$Periodo_Rio)
+permutest(bd, permutations = 999)
+
+# PARA CADA FATOR
+
+bd_periodo <- betadisper(dist_bray, t_grps$Periodo)
+bd_rio <- betadisper(dist_bray, t_grps$Rio)
+permutest(bd_periodo, permutations = 999)
+permutest(bd_rio, permutations = 999)
+
+######### ARRUMAR ISSO ############################
 
 all_p <- all_test$`Pr(>F)`[1]
 all_p
@@ -1430,7 +1450,7 @@ adonis2(m_trab ~ Periodo*Rio, data = t_grps,
 
 ```
 
-Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg L⁻¹. The Caiana stream tended to have greater values, but overall no clear trend can be observed when comparing both streams. Nitrite and nitrate, on the other hand, show clearly a greater concentrations at the Caiana stream, nitrate varying from 166.4 to 2003.0 µg L⁻¹, compared with the maximum of 18.8 µg L⁻¹ at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 32.0 µg L⁻¹ at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg L⁻¹ at Site 3, but with highly variable values (from non detectable to 38.7 µg L⁻¹, as the second highest value).
+Among the averaged nutrient concentrations (@tbl-nutri_gttable), ammonia ranged from 49.2 to 243.7 µg/L. The Caiana stream tended to have greater values, but overall no clear trend can be observed when comparing both streams. Nitrite and nitrate, on the other hand, show clearly a greater concentrations at the Caiana stream, nitrate varying from 166.4 to 2003.0 µg/L, compared with the maximum of 18.8 µg/L at the Barro Branco stream. Nitrite was too low to be detectable at the Barro Branco stream. The same pattern was observed for orthophosphate concentrations, being barely detectable at Barro Branco stream, and varying from 4.0 to 32.0 µg/L at the Caiana stream. Total phosphorus, however, tended to have higher concentrations at Barro Branco stream, reaching 50.1 µg/L at Site 3, but with highly variable values (from non detectable to 38.7 µg/L, as the second highest value).
 
 ```{r GTTABLE_NUTRI_EXCLl}
 #| eval: false
@@ -1564,7 +1584,7 @@ Os Copepoda estiveram representados pelas famílias Cyclopidae (*Macrocyclops* s
 
 ```
 
-A total of 56 taxa distributed among Rotifera (14 families), Cladocera (5 families) and Copepoda (2 families) were identified during the study period. Rotifera was the most species-rich group, represented by 39 species (plus Bdelloidea), followed by Cladocera (12 species) and Copepoda (4 species, in addition to the juvenile stages nauplii and copepodite). Across sampling periods, Lecanidae exhibited the highest richness among all recorded families of Rotifera with 15 species, followed by Lepadellidae, Synchaetidae (both with 4 species), Brachionidae and Mytilinidae (both with 3 species). Bdelloidea was the most abundant taxa (6194 individuals) followed by *Lecane curvicornis* with 626 individuals. Among the cladocerans, Chydoridae was the richest family with 5 species, followed by Macrothricidae (3 species). *Alonella dadayi* was the most abundant among the cladocerans with 1051 individuals. Juvenile stages (nauplii and copepodite) were also abundant with 2433 and 4061 individuals, respectively. Copepods were represented by he orders Cyclopoida and Calanoida, *Paracyclops* sp. *Mesocyclops* sp. being the most abundant (141 and 231 individuals, respectively) (@tbl-checklist_gttable).
+<!--# #### CHECKLIST #### -->A total of 56 taxa distributed among Rotifera (14 families), Cladocera (5 families) and Copepoda (2 families) were identified during the study period. Rotifera was the most species-rich group, represented by 39 species (plus Bdelloidea), followed by Cladocera (12 species) and Copepoda (4 species, in addition to the juvenile stages nauplii and copepodite). Across sampling periods, Lecanidae exhibited the highest richness among all recorded families of Rotifera with 15 species, followed by Lepadellidae, Synchaetidae (both with 4 species), Brachionidae and Mytilinidae (both with 3 species). Bdelloidea was the most abundant taxa (6194 individuals) followed by *Lecane curvicornis* with 626 individuals. Among the cladocerans, Chydoridae was the richest family with 5 species, followed by Macrothricidae (3 species). *Alonella dadayi* was the most abundant among the cladocerans with 1051 individuals. Juvenile stages (nauplii and copepodite) were also abundant with 2433 and 4061 individuals, respectively. Copepods were represented by he orders Cyclopoida and Calanoida, *Paracyclops* sp. *Mesocyclops* sp. being the most abundant (141 and 231 individuals, respectively) (@tbl-checklist_gttable).
 
 ```{r COMM-STR}
 #| eval: false
@@ -2051,7 +2071,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
-Rarefaction analysis showed that the Caiana stream had a taxa richness slightly higher than that of the Barro Branco stream (@fig-rare1). Nevertheless, the Chao index estimated an extrapolated richness of 58 (±8.9) species for the Barro Branco stream, compared with 54.2 (± 4.3) species for the Caiana stream.
+<!--# #### RAREFAÇÃO #### -->Rarefaction analysis showed that the Caiana stream had a taxa richness slightly higher than that of the Barro Branco stream (@fig-rare1). Nevertheless, given a similar sample size, th Barro Branco stream would have a greater diversity, as shown by the Chao index that estimated an extrapolated richness of 58 (±8.9) species for the Barro Branco stream, compared with 54.2 (± 4.3) species for the Caiana stream.
 
 ```{r COMM-ACCUMCURV}
 #| eval: false
@@ -2125,6 +2145,7 @@ ggsave(grafico3, width = 8, height = 6, dpi = 300, filename = "res/fig-rare1.png
 #https://rpubs.com/Juan-Mt/diversity-estimations
 #https://analises-ecologicas.com/cap11
 
+library(vegan)
 m_cont <- as.matrix(m_cont)
 storage.mode(m_cont) <- "numeric"
 
@@ -2135,20 +2156,16 @@ nrow(BB)
 nrow(CA)
 
 # Calculando a riqueza observada
-
 BB_total <- colSums(BB)
 CA_total <- colSums(CA)
-
 S_BB <- sum(BB_total > 0)
 S_CA <- sum(CA_total > 0)
-
 S_BB
 S_CA
 
 # Chao1
 chao_BB <- estimateR(BB_total)
 chao_CA <- estimateR(CA_total)
-
 chao_BB
 chao_CA
 
@@ -2188,11 +2205,7 @@ resultado_chao
 sink()
 ```
 
-<!--# VOLTAR DAQUI -->
-
-The NMDS ordination diagrams showed that the composition of zooplankton resting stages differed among most of the ponds from the forest (Fig. 4A) and grassland biomes (Fig. 4B). In addition, the PERMANOVA indicated a significant difference in the composition of zooplanktonic taxa between biomes (pseudo-F1, 53 = 1.85, R2 = 0.035; P = 0.03). The outputs of the db-RDAs showed that the water chemistry subset significantly influenced the dissimilarity in the resting stage composition (F = 1.25; R2 = 0.134; P = 0.02), while the subset of habitat structure did not (F = 0.88; R2  0.01; P = 0.88, Fig. 5).
-
-<!--# COEFICIENTES -->The UPGMA cluster analyses revealed low-to-moderate spatial clustering strength for the zooplankton communities across both periods, as indicated by the Agglomerative Coefficients ($AC_{dry} = 0.34$ and $AC_{wet} = 0.39$). While community composition exhibited continuous variation across sites, spatial structuring was slightly more pronounced during the wet season than during the dry season.
+<!--# #### UPGMA #### -->Regarding the community composition as shown by the UPGMA (@fig-upgma), sites did not aggregate to represent the different streams or their hierarchy across seasons. <!--# COEFICIENTES -->Even though the Cophenetic coefficients showed that the UPGMA dendrograms were a good represenation of the original Bray-Curtis dissimilarities among sampling sites  ($CC_{dry} = 0.84$ and $CC_{wet} = 0.87$), the UPGMA cluster analyses revealed low-to-moderate spatial clustering strength for the zooplankton communities across both periods, as indicated by the Agglomerative coefficients ($AC_{dry} = 0.34$ and $AC_{wet} = 0.39$). The PERMANOVA based on Bray–Curtis dissimilarities showed a significant effect of both hydrological period ($\text{F}_{1,86} = 5.3, R^2 = 0.056, p = 0.001$) and stream ($\text{F}_{1,86} = 1.8, R^2 = 0.019, p = 0.042$) on community composition. The full model including the Season × Stream interaction was also significant ($\text{F}_{1,86} = 2.1, R^2 = 0.022, p = 0.031$), explaining 9.73% of the total variation, with 90.27% of the variation unexplained by the factors included in the model.
 
 ```{r COMM-UPGMA}
 #| eval: false
@@ -2233,19 +2246,51 @@ m_cont <- read.csv("res/m_cont.csv",
                    header = TRUE,
                    na.strings = NA)
 
-m_dens
-str(m_dens)
-
-#SEPARANDO OS PERÍODOS
+#TRANSFORMANDO A MATRIZ DE DENSIDADE
 
 library(vegan)
-library(cluster)
+m_dens_trns <- asin(sqrt(decostand(m_dens,
+                               method="total", MARGIN = 2)))
+
+write.table(m_dens_trns, "res/m_dens_trns.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_dens_trns <- read.csv("res/m_dens_trns.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+vegdist <- vegdist(m_dens_trns, method = "bray",
+                   diag = TRUE,
+                   upper = FALSE)
+cluster <- hclust(vegdist, method = "average")
+plot (cluster, main = "Cluster Dendrogram - Bray-Curtis")
+rect.hclust(cluster, k = 3, h = NULL) 
+#h = 0.8 fornece os grupos formados na altura h
+as.matrix(vegdist)[1:6, 1:6]
+
+#SEPARANDO OS PERÍODOS E REFAZENDO A TRANSFORMAÇÃO 
 
 # Fazendo a média por ponto
 ponto_id <- sub("-H[0-9]+$", "", rownames(m_dens))
 m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
 rownames(m_dens_media) <- m_dens_media$Ponto
 m_dens_media$Ponto <- NULL
+
+write.table(m_dens_media, "res/m_dens_media.csv",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_dens_media <- read.csv("res/m_dens_media.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens_media <- m_dens_trns
 # Separar por período
 seco_med <- m_dens_media[startsWith(rownames(m_dens_media), "S-"), ]
 chuv_med <- m_dens_media[startsWith(rownames(m_dens_media), "C-"), ]
@@ -2348,7 +2393,236 @@ par(mfrow = c(1, 1))
 #      cex = 0.85)  # Font size
 ```
 
-<!--# We collected 5,767 specimens from 72 taxa and 18 families, including one subclass (Bdelloidea, Rotifera). Cladocera was the most representative group (37 taxa from five families). Chydoridae was the richest family (25 taxa), followed by Daphniidae (5 taxa). The most abundant cladoceran species were  Fig. 2 Schematic representation of the sampling design and spatial scales assessed in this study. Labels: a sampling unit (core), b1 variation among cores within a pond, b2 variation among ponds, b3 variation between biomes, c total diversity (richness) Ovalona glabra (Sars, 1901) (Chydoridae) and Macrothrix squamosa (Sars, 1901) (Macrothricidae), with 516 and 485 specimens, respectively. Among the rotifers, we collected 35 taxa from 12 families. Notommatidae was the richest family (nine taxa), followed by Lecanidae (six taxa). Adineta sp. (Adinetidae) and Lecane bulla (Gosse, 1851) (Lecanidae) were the most abundant rotiferan taxa, with (980 and 842 specimens, respectively) (Table S2 of Supplementary Material). The rarefaction analysis showed that the estimated taxa richness was higher in the ponds of the grassland compared to the forest biome (Fig. 3). The Chao index estimated an extrapolated richness of 50.99 (± 7.48) for the forest biome and of 108.1 (± 31.34) for the grassland biome. The NMDS ordination diagrams showed that the composition of zooplankton resting stages differed among most of the ponds from the forest (Fig. 4A) and grassland biomes (Fig. 4B). In addition, the PERMANOVA indicated a significant difference in the composition of zooplanktonic taxa between biomes (pseudo-F1, 53 = 1.85, R2 = 0.035; P = 0.03). The outputs of the db-RDAs showed that the water chemistry subset significantly influenced the dissimilarity in the resting stage composition (F = 1.25; R2 = 0.134; P = 0.02), while the subset of habitat structure did not (F = 0.88; R2 \ 0.01; P = 0.88, Fig. 5). -->
+```{r COMM-UPGMA_PERMANOVA}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: hide
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Environment data PCA - PERMANOVA"
+
+
+#ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens_trns <- read.csv("res/m_dens_trns.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+
+colnames(t_grps)
+m_trab <- m_dens_trns
+library(vegan)
+
+#MRPP---- 
+
+#TRABALHANDO COM MULTIPLAS VARIAVEIS----
+
+# Run MRPP for multiple variables
+fatores <- c("Periodo", "Rio", "Ref_site")
+set.seed(123)
+mrpp_results <- lapply(fatores, function(v) {
+  grp <- as.factor(t_grps[[v]])
+  mrpp(
+    dat = m_trab,
+    grouping = grp,
+    distance = "bray"
+  )
+})
+names(mrpp_results) <- fatores
+mrpp_results
+# Print one result
+mrpp_results$Ref_site
+# Loop through summaries
+sink(file = "res/mrpp-dens.txt", split = TRUE)#, append = TRUE)
+for (v in names(mrpp_results)) {
+  cat("\n============================\n")
+  cat("MRPP for:", v, "\n")
+  print(mrpp_results[[v]])
+}
+sink()
+# Extract key statistics into a table
+mrpp_summary <- data.frame(
+  Variable = fatores,
+  Delta = sapply(mrpp_results, function(x) x$delta),
+  Expected_Delta = sapply(mrpp_results, function(x) x$E.delta),
+  A = sapply(mrpp_results, function(x) x$A),
+  P_value = sapply(mrpp_results, function(x) x$Pvalue)
+)
+sink("res/mrpp-dens.txt", append = TRUE)
+mrpp_summary
+sink()
+
+##TRABALHANDO COM UMA UNICA VARIAVEL----
+
+# Run MRPP for a single variable
+grp <- as.factor(t_grps$Ref_site) #UA, mes, estacao, area, ambiente
+set.seed(123)
+mrpp <- mrpp(dat = m_trab, grouping = grp, distance = "bray")
+mrpp
+summary(mrpp)
+
+# Teste de hipótese para uma unica variavel
+str(mrpp)
+p_value <- mrpp$Pvalue
+print(sprintf("p-value: %.10f", p_value))
+# Conditional statement to check the p-value and print the appropriate message
+if (p_value < 0.05) {
+  print(sprintf("Existe diferença significativa porquê o valor de p é %.10f, sendo menor que o nível de significância de 0.05.", p_value))
+} else {
+  print(sprintf("Não existe diferença significativa porquê o valor de p é %.10f, sendo maior ou igual ao nível de significância de 0.05.", p_value))
+}
+
+##TESTES PAREADOS----
+
+# Todos os pares de níveis do fator
+pairs <- combn(levels(as.factor(grp)), 2, simplify = FALSE)
+pairs
+# Aplicar mrpp para cada par
+res_list <- lapply(pairs, function(p) {
+  sel <- grp %in% p
+  mrpp(dat = m_trab[sel, ], grouping = droplevels(grp[sel]), distance = "bray")
+})
+# Dar nomes aos resultados
+names(res_list) <- sapply(pairs, function(p) paste(p, collapse = "_vs_"))
+# visualizar
+res_list
+# Resumo
+summary_tab <- data.frame(
+  Comparison = names(res_list),
+  A = sapply(res_list, function(x) x$A),
+  Delta = sapply(res_list, function(x) x$delta),
+  Pvalue = sapply(res_list, function(x) x$Pvalue)
+)
+sink("res/mrpp-dens.txt", append = TRUE)
+summary_tab
+sink()
+
+###MATRIX-STYLE TABLE----
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+# Extract unique group names from the comparisons
+groups1 <- sort(unique(unlist(strsplit(summary_tab$Comparison, "_vs_"))))
+# Initialize empty matrix
+pval_matrix <- matrix(NA, nrow = length(groups1), ncol = length(groups1),
+                      dimnames = list(groups1, groups1))
+# Fill matrix with Pvalues
+for (i in 1:nrow(summary_tab)) {
+  comp <- unlist(strsplit(summary_tab$Comparison[i], "_vs_"))
+  g1 <- comp[1]
+  g2 <- comp[2]
+  p <- summary_tab$Pvalue[i]
+
+  pval_matrix[g1, g2] <- p
+  pval_matrix[g2, g1] <- p  #make symmetric
+}
+
+# Format p-values: red if <0.05
+pval_colored <- ifelse(is.na(pval_matrix), "",
+                       ifelse(pval_matrix < 0.05,
+                              paste0("<span style='color:red;'>", sprintf("%.3f", pval_matrix), "</span>"),
+                              sprintf("%.3f", pval_matrix)))
+
+# Convert to data.frame for kable
+pval_df <- as.data.frame(pval_colored)
+pval_df <- tibble::rownames_to_column(pval_df, "Group")
+# Render HTML table
+matrixstyle <- pval_df %>%
+  kable("html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE)
+matrixstyle
+save_kable(matrixstyle, "res/kb-mrpp-dens_matrixstyle.html")
+
+##GRÁFICO DA MRPP----
+
+png("res/fig-mrpp-dens.png", width = 15, height = 10, units = "in", res = 300)
+def.par <- par(no.readonly = TRUE)
+layout(matrix(1:2,nr=1))
+plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
+with(t_grps, ordihull(ord, grp))
+with(mrpp, {
+  fig.dist <- hist(boot.deltas, xlim=range(c(delta,boot.deltas)),
+                   main="Test of Differences Among Groups")
+  abline(v=delta);
+  text(delta, 2*mean(fig.dist$counts), adj = -0.5,
+       expression(bold(delta)), cex=1.5 )  }
+)
+par(def.par)
+dev.off()
+
+###AVALIANDO AS DISTÂNCIAS MÉDIAS----
+md <- with(t_grps, meandist(vegdist(m_trab), grp))
+md
+summary(md)
+par(mfrow=c(1,2))
+plot(md)
+plot(md, kind="histogram")
+par(mfrow=c(1,1))
+
+#PerMANOVA SIMPLIFICADA----
+
+#browseURL("https://riffomonas.org/code_club/2021-03-18-vegan")
+#browseURL("https://riffomonas.org/code_club/2021-03-22-reproducibility")
+
+library(vegan)
+
+## TESTES PARA VARIAVEIS COM MAIS DE DOIS FATORES
+
+adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray")
+set.seed(123)
+perm <- 999
+all_test <- adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray", permutations = perm)
+all_test
+
+## TESTES PARA VARIAVEIS COM DOIS FATORES
+
+sink(file = "res/perma-dens.txt", split = TRUE)#, append = TRUE)
+set.seed(123)
+perm <- 999
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
+adonis2(m_trab ~ Rio, data = t_grps, method = "bray", permutations = perm)
+adonis2(m_trab ~ Periodo + Rio, data = t_grps, #+ no lugar de * tira os residuos
+        method = "bray", permutations = perm) 
+
+## AVALIANDO INTERAÇÕES-----
+
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "terms") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "margin") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = NULL) #ou by=NULL remove as interações
+sink()
+
+#BETADISPER
+
+dist_bray <- vegdist(m_trab, method = "bray")
+t_grps$Periodo_Rio <- interaction(
+  t_grps$Periodo,
+  t_grps$Rio,
+  sep = "_")
+bd <- betadisper(dist_bray, t_grps$Periodo_Rio)
+permutest(bd, permutations = 999)
+
+# PARA CADA FATOR
+
+bd_periodo <- betadisper(dist_bray, t_grps$Periodo)
+bd_rio <- betadisper(dist_bray, t_grps$Rio)
+permutest(bd_periodo, permutations = 999)
+permutest(bd_rio, permutations = 999)
+```
 
 ## Diversity Partitioning
 
@@ -3117,15 +3391,12 @@ readRDS("res/gt-checklist_gttable_xlsx.rds")
 
 <!--#
 <details>
-
 <summary>@tbl-spp_gttable</summary>
-
 ```{r, tbl-spp_gttable}
 #| echo: false
 #| tbl-cap: "Density (ind/m^2^) taxa GT table."
 readRDS("res/gt-spp_gttable_xlsx.rds")
 ```
-
 </details>
 -->
 

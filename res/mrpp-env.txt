@@ -71,13 +71,10 @@ Number of permutations: 999
 Periodo   Periodo 0.1437846      0.1466344 0.01943519   0.007
 Rio           Rio 0.1390288      0.1466344 0.05186785   0.001
 Ref_site Ref_site 0.1236327      0.1466344 0.15686464   0.001
-          Comparison          A      Delta Pvalue
-I_vs_II      I_vs_II 0.08006014 0.07985546  0.007
-I_vs_III    I_vs_III 0.12448503 0.10868895  0.001
-I_vs_IV      I_vs_IV 0.13908072 0.13004999  0.001
-II_vs_III  II_vs_III 0.03898316 0.11400668  0.007
-II_vs_IV    II_vs_IV 0.06868863 0.13670842  0.001
-III_vs_IV  III_vs_IV 0.08850853 0.13457697  0.001
+         Variable     Delta Expected_Delta          A P_value
+Periodo   Periodo 0.1437846      0.1466344 0.01943519   0.007
+Rio           Rio 0.1390288      0.1466344 0.05186785   0.001
+Ref_site Ref_site 0.1236327      0.1466344 0.15686464   0.001
           Comparison          A      Delta Pvalue
 I_vs_II      I_vs_II 0.08006014 0.07985546  0.007
 I_vs_III    I_vs_III 0.12448503 0.10868895  0.001
