@@ -1,0 +1,80 @@
+adipart object
+
+Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = FALSE, nsimul = 999)
+
+nullmodel method ‘r2dtable’ with 999 simulations
+options:  index richness, weights unif
+alternative hypothesis: statistic is less or greater than simulated values
+
+        statistic      SES    mean    2.5%     50%   97.5% Pr(sim.)    
+alpha.1    8.0000 -20.4056 14.5123 13.8889 14.5000 15.1111    0.001 ***
+alpha.2   12.3333 -13.3713 20.3263 19.1667 20.3333 21.5000    0.001 ***
+gamma     33.0000   0.0000 33.0000 33.0000 33.0000 33.0000    1.000    
+beta.1     4.3333  -3.1342  5.8140  4.8889  5.8333  6.7222    0.001 ***
+beta.2    20.6667  13.3713 12.6737 11.5000 12.6667 13.8333    0.001 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+adipart object
+
+Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = TRUE, nsimul = 999)
+
+nullmodel method ‘r2dtable’ with 999 simulations
+options:  index richness, weights unif
+alternative hypothesis: statistic is less or greater than simulated values
+
+        statistic      SES    mean    2.5%     50%  97.5% Pr(sim.)    
+alpha.1   0.24242 -20.4056 0.43977 0.42088 0.43939 0.4579    0.001 ***
+alpha.2   0.37374 -13.3713 0.61595 0.58081 0.61616 0.6515    0.001 ***
+gamma     1.00000   0.0000 1.00000 1.00000 1.00000 1.0000    1.000    
+beta.1    0.13131  -3.1342 0.17618 0.14815 0.17677 0.2037    0.001 ***
+beta.2    0.62626  13.3713 0.38405 0.34848 0.38384 0.4192    0.001 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+        Component Observed    SES Mean Lower_2.5 Median_50 Upper_97.5 Pr_sim Sign
+alpha.1   alpha.1     0.24 -20.41 0.44      0.42      0.44       0.46  0.001  ***
+alpha.2   alpha.2     0.37 -13.37 0.62      0.58      0.62       0.65  0.001  ***
+gamma       gamma     1.00   0.00 1.00      1.00      1.00       1.00  1.000     
+beta.1     beta.1     0.13  -3.13 0.18      0.15      0.18       0.20  0.001  ***
+beta.2     beta.2     0.63  13.37 0.38      0.35      0.38       0.42  0.001  ***
+  alpha.1   alpha.2     gamma    beta.1    beta.2 
+0.2424242 0.3737374 1.0000000 0.1313131 0.6262626 
+[1] 0.4397664 0.6159493 1.0000000 0.1761829 0.3840507
+   Component     Type     Value
+1    alpha.1 Observed 0.2424242
+2    alpha.2 Observed 0.3737374
+3      gamma Observed 1.0000000
+4     beta.1 Observed 0.1313131
+5     beta.2 Observed 0.6262626
+6    alpha.1 Expected 0.4397664
+7    alpha.2 Expected 0.6159493
+8      gamma Expected 1.0000000
+9     beta.1 Expected 0.1761829
+10    beta.2 Expected 0.3840507
+   Component     Type     Value
+1    alpha.1 Observed 0.2424242
+4     beta.1 Observed 0.1313131
+5     beta.2 Observed 0.6262626
+6    alpha.1 Expected 0.4397664
+9     beta.1 Expected 0.1761829
+10    beta.2 Expected 0.3840507
+   Component     Type     Value
+1    alpha.1 Observed 0.2424242
+4     beta.1 Observed 0.1313131
+5     beta.2 Observed 0.6262626
+6    alpha.1 Expected 0.4397664
+9     beta.1 Expected 0.1761829
+10    beta.2 Expected 0.3840507
+hiersimu object
+
+Call: hiersimu(y = cont, x = part1, FUN = diversity)
+
+nullmodel method ‘r2dtable’ with 99 simulations
+
+alternative hypothesis: statistic is less or greater than simulated values
+
+           statistic     SES   mean   2.5%    50%  97.5% Pr(sim.)   
+bb.habitat   0.80157 -55.183 1.8899 1.8496 1.8911 1.9267     0.01 **
+bb.ponto     0.98190 -50.269 1.9461 1.9082 1.9466 1.9797     0.01 **
+bb.rio       1.97840   0.000 1.9784 1.9784 1.9784 1.9784     1.00   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
