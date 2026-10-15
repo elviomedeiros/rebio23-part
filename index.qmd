@@ -1,49 +1,11 @@
 ---
 title: "Partição aditiva da diversidade zooplanctônica como indicador biológico em riachos de Floresta Atlântica"
 subtitle: |
-  Contrasting conservation conditions shape the spatial partitioning of zooplankton diversity in Atlantic Forest streams<br>
-  ON<br>
-  Acta Limnologica Brasiliensia
 author:
   - name: Ellen Gomes da Silva
     orcid: 0009-0008-6580-8162
-    corresponding: false
-    email: ellensilva958@gmail.com
-    roles: []
-    affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
-  - name: Mayara Mirelly da Silva Monteiro
-    orcid: 0009-0001-3332-1340
-    corresponding: false
-    email: mayaramirelly68@gmail.com
-    roles: []
-    affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
-  - name: Marcela Vitória Bernardo da Silva
-    orcid: 0009-0002-7483-5978
-    corresponding: false
-    email: marcelavb122@gmail.com
-    roles: []
-    affiliations:
-      - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
-  - name: Ludmilla Cavalcanti Antunes Lucena
-    orcid: 0009-0006-4510-2600
-    corresponding: false
-    email: ludmillacantunes@gmail.com
-    roles: []
-    affiliations:
-      - Programa de Pós-Graduação em Ecologia e Conservação – PPGEC, Rua Baraúnas, 351 - Complexo Três Marias, Prédio de Biologia, Térreo - Salas 08 e 09 - Campina Grande, PB, Brazil.
-  - name: Thais Xavier de Melo
-    orcid: 0000-0003-4346-6997
-    corresponding: false
-    email: thais.melo@ufmt.br
-    roles: []
-    affiliations:
-      - FAET/DESA, Universidade Federal de Mato Grosso - UFMT, Av. Fernando Corrêa da Costa, 2367, Bairro Boa Esperança, CEP 78060-900, Cuiabá, MT, Brazil.
-  - name: Elvio Sergio Figueredo Medeiros
-    orcid: 0000-0002-7472-8147
     corresponding: true
-    email: elviomedeiros@servidor.uepb.edu.br
+    email: ellensilva958@gmail.com
     roles: []
     affiliations:
       - Grupo de Ecologia de Rios do Semiárido, Laboratório de Ecologia, Departamento de Ciências Biológicas, Universidade Estadual da Paraíba – UEPB, Campus V, Rua Horácio Trajano de Oliveira, S/N, Cristo, CEP 58071-470, João Pessoa, PB, Brazil.
@@ -60,7 +22,7 @@ editor: source
 toc: true
 number-sections: true
 bibliography: refs/references.bib
-csl: refs/apa.csl
+csl: refs/abnt.csl
 highlight-style: pygments
 format:
   html:
@@ -103,7 +65,7 @@ Além das alterações na paisagem, a dinâmica dos riachos é influenciada por 
 
 No período seco, a menor precipitação e a redução da vazão modificam as condições hidrológicas dos riachos, características que podem favorecer a permanência de populações locais. Em contraste, o período chuvoso é caracterizado pelo aumento da precipitação e da vazão, intensificando processos de distúrbio, dispersão e substituição de espécies [@allan2021; @souza2025]. Logo, a sazonalidade atua como um fator importante na organização das comunidades aquáticas, tornando-as úteis como ferramentas para avaliar o estado ecológico dos corpos hídricos.
 
-Entre os seres vivos que compõe essas comunidades, destaca-se o zooplâncton, especialmente os grupos Rotifera, Cladocera e Copepoda. São organismos de tamanhos e formas variáveis, com ciclos de vida e papéis funcionais distintos, e excelentes bioindicadores ecológicos devido à sua sensibilidade às variações ambientais [@bonecker2012; @cardoso2009; @esteves2011]. Além disso, são uma importante fonte de alimento para peixes, aves aquáticas e mamíferos, atuando como elo entre produtores e consumidores a partir da disponibilidade de energia para níveis tróficos superiores [@altindag2025; @balkic2022; @cardoso2009; @majeed2023; @marcelino2025; @souza2025].
+Entre os seres vivos que compõem essas comunidades, destaca-se o zooplâncton, especialmente os grupos Rotifera, Cladocera e Copepoda. São organismos de tamanhos e formas variáveis, com ciclos de vida e papéis funcionais distintos, e excelentes bioindicadores ecológicos devido à sua sensibilidade às variações ambientais [@bonecker2012; @cardoso2009; @esteves2011]. Além disso, são uma importante fonte de alimento para peixes, aves aquáticas e mamíferos, atuando como elo entre produtores e consumidores a partir da disponibilidade de energia para níveis tróficos superiores [@altindag2025; @balkic2022; @cardoso2009; @majeed2023; @marcelino2025; @souza2025].
 
 Segundo @keppeler2004, a composição e a organização das comunidades zooplanctônicas resultam da interação entre os parâmetros físicos, químicos e biológicos, incluindo as variações sazonais. Portanto, alterações na composição de espécies e a substituição de táxons podem ser reflexo devido às mudanças nas características físicas e químicas do ambiente [@freiry2020; @melo2013].
 
@@ -147,11 +109,11 @@ A Reserva Biológica Guaribas (REBIO Guaribas) está localizada na Mesorregião 
 
 Por se tratar de uma unidade de conservação e compor um dos últimos remanescentes de Floresta Atlântica do Estado da Paraíba, a reserva tornou-se essencial para a conservação de espécies raras, endêmicas e ameaçadas de extinção, além de proteger nascentes de importantes riachos [@mma2003]. Entretanto, ainda é possível observar o uso de solo para atividades antrópicas, como pesca, cultura de cana-de-açúcar, plantio de frutas e hortaliças e formação de áreas de pastagens [@mma2003; @medeiros2008; @gouveia2017]. Estas atividades contribuem para a crescente pressão antrópica que afeta a região, especialmente devido ao escoamento de agroquímicos, seja pelo lançamento direto ou indireto de efluentes domésticos, que contaminam águas subterrâneas e criam um gradiente espacial de perturbação ambiental [@mehla2026; @pereira2022].
 
-Os corpos d’águas presentes na área de estudo é composta por riachos de primeira e segunda ordem [@strahler1957; @strahler1964]. A SEMA 02, abriga as nascentes dos riachos Caiana e Barro Branco que drenam no sentido sul-norte e cujos cursos não se estendem por mais de 10 km antes de desaguarem no Rio Camaratuba, o qual, por sua vez, deságua no oceano Atlântico. Ambos os riachos nascem dentro da reserva, entretanto, o Caiana flui sobre uma área de floresta modificada para pastoreio e plantios, enquanto o Barro Branco flui parcialmente por uma área de Floresta Atlântica no interior da unidade (@fig-mapa).
+Os corpos d’águas presentes na área de estudo são compostos por riachos de primeira e segunda ordem [@strahler1957; @strahler1964]. A SEMA 02, abriga as nascentes dos riachos Caiana e Barro Branco que drenam no sentido sul-norte e cujos cursos não se estendem por mais de 10 km antes de desaguarem no Rio Camaratuba, o qual, por sua vez, deságua no oceano Atlântico. Ambos os riachos nascem dentro da reserva, entretanto, o Caiana flui sobre uma área de floresta modificada para pastoreio e plantios, enquanto o Barro Branco flui parcialmente por uma área de Floresta Atlântica no interior da unidade (@fig-mapa).
 
 De acordo com a classificação de Köppen, o clima é do tipo A’, com temperaturas médias anuais que variam entre 24°C e 26°C [@mma2003; @peel2007] e estação seca no verão (fevereiro e março). O período chuvoso ocorre no inverno, com precipitação anual entre 1.400 a 1.800 mm nos meses março e julho e menor precipitação entre setembro e dezembro [@gouveia2017].
 
-As coletas ocorreram entre novembro de 2023 a fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (@fig-mapa) entre os dois riachos. Para cada unidade amostral, foram coletadas três subamostras, uma em cada habitat, a fim de realizar uma análise estatística mais rigorosa [@martinelli2004].
+As coletas ocorreram entre novembro de 2023 e fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (@fig-mapa) entre os dois riachos. Para cada unidade amostral, foram coletadas três subamostras, uma em cada habitat, a fim de realizar uma análise estatística mais rigorosa [@martinelli2004].
 
 ## Coleta de dados ambientais
 
@@ -165,32 +127,28 @@ Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes 
 
 ## Amostragem do zooplâncton
 
-Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO~2~ (adição de água com gás) [@epa2020]. Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004].
+Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO2 (adição de água com gás) [@epa2020]. Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004; @haney1973].
 
-Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), localizado no Centro de Ciências Biológicas e Sociais Aplicadas, Campus V – João Pessoa, da Universidade Estadual da Paraíba, para a realização da análise até o menor nível taxonômico possível, utilizando câmara de Sedgewick-Rafter com capacidade para 1 mL, microscópio (OLYMPUS CX31) e chaves de identificação como @koste1987; @joko2011; @shiel1995 e @elmoor-loureiro1997. Além disso, todos os espécimes passaram por confirmação das espécies por uma especialista.
-
-Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e devidamente etiquetadas. Em seguida, realizou-se a confirmação de identificação das espécies por um especialista. Os dados de riqueza (R) e abundância total foram analisados com o objetivo de investigar os padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas.
+Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), localizado no Centro de Ciências Biológicas e Sociais Aplicadas, Campus V – João Pessoa, da Universidade Estadual da Paraíba, para a realização da análise até o menor nível taxonômico possível, utilizando câmara de Sedgewick-Rafter com capacidade para 1 mL, microscópio (OLYMPUS CX31) e chaves de identificação como @elmoor-loureiro1997; @joko2011; @koste1987 e @shiel1995. Todos os espécimes passaram por confirmação das espécies por uma especialista.
 
 ## Análises estatísticas
 
-Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
+Todos os dados foram organizados em tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis com técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022].
 
-$$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade} onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
+A Análise de Componentes Principais (PCA) foi executada com o objetivo de avaliar possíveis correlações das variáveis ambientais com os riachos amostrados e as estações seca e chuvosa [@husson2026].
 
-Além disso, a fórmula de partição aditiva também foi aplicada utilizando dados de riqueza de espécies:
+Os dados de riqueza foram analisados para investigar padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas. As análises de densidade, foram realizadas considerando o número de indivíduos de espécie por m³, através da fórmula:
+
+$$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade}
+
+em que Dsp corresponde a densidade de indivíduos de uma espécie para um determinado habitat, Nsp representa o número de indivíduos da espécie, dividido pelo volume total filtrado (Vf) [@bowen2017].
+
+Também foram utilizados pacotes estatísticos para realizar a partição da diversidade, para que fosse possível decompor a diversidade em componentes alfa, beta e gama. A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou únicas. A diversidade gama, ou diversidade regional, se refere as escalas espaciais maiores e a diversidade beta manifesta-se quando a diversidade é comparada em diferentes escalas (Chao; Chiu; Hsieh, 2012; Farias *et al.*, 2020). Neste contexto, a fórmula de partição aditiva foi aplicada utilizando a riqueza de espécies:
 
 $$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}\
 Na partição aditiva [@oksanen2020; @whittaker1972], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβᵢ. A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
 
-Os dados foram organizados em formatos de tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis através de técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022; @zar1999].
-
-Para a realização das análises estatísticas, foram utilizados pacotes que permitem avaliar a estrutura da comunidade com base na riqueza. A Análise de Componentes Principais (PCA) foi executada para avaliar as variáveis ambientais.
-
-Foram empregados pacotes sobre partição da diversidade para que fosse possível decompor ou particionar a diversidade em componentes alfa (α), beta (β) e gama (γ). A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou unidades amostrais únicas. Diversidade gama, ou diversidade regional, corresponde a escalas espaciais maiores, enquanto que a diversidade beta manifesta-se quando há variação na diversidade entre os ambientes ou escalas espaciais [@chao2012; @farias2020].
-
-Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi empregada para a realização da partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade).
-
-Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
+Os gráficos e figuras referentes a partição foram realizados no RStudio utilizando os pacotes: *eulerr*, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi utilizada para a partição aditiva da diversidade, em que nele conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade). Esses pacotes permitem uma análise mais detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -2661,7 +2619,7 @@ Os padrões espaciais e temporais influenciam a diversidade de espécies e têm 
 
 A redução na α-diversidade e γ-diversidade no período chuvoso pode estar atrelada às alterações na sazonalidade climática, como o aumento da vazão, maior instabilidade no habitat e transporte de organismo ao longo dos riachos.
 
-De acordo com @lande1996, a partição aditiva da diversidade propõe uma medida natural de similaridade entre várias comunidades, ou seja, a proporção da diversidade total encontrada dentro das comunidades. Em uma escala espacial mais ampla, considerando os riachos como um conjunto, a diversidade alfa (α) observada variou significativamente, sendo visivelmente inferior à diversidade esperada nos períodos seco e chuvoso. Embora o Caiana tenha apresentado maior riqueza local de espécies quando se comparado ao Barro Branco, a partição aditiva revelou que a proporção local foi menor do que o esperado. Logo, valores reduzidos de α indicam menor contribuição para a diversidade regional do que seria o esperado. Segundo @heino2011, em ambientes de água doce, a diversidade local é frequentemente limitada por fatores regionais, como dispersão e conectividade entre habitats, que podem reduzir o peso do componente α.
+De acordo com @lande1996, a partição aditiva da diversidade propõe uma medida natural de similaridade entre várias comunidades, ou seja, a proporção da diversidade total encontrada dentro das comunidades. Em uma escala espacial mais ampla, considerando os riachos como um conjunto, a diversidade alfa (α) observada variou significativamente, sendo visivelmente inferior à diversidade esperada nos períodos seco e chuvoso. Embora o Caiana tenha apresentado maior riqueza local de espécies quando comparado ao Barro Branco, a partição aditiva revelou que a proporção local foi menor do que o esperado. Logo, valores reduzidos de α indicam menor contribuição para a diversidade regional do que seria o esperado. Segundo @heino2011, em ambientes de água doce, a diversidade local é frequentemente limitada por fatores regionais, como dispersão e conectividade entre habitats, que podem reduzir o peso do componente α.
 
 A diversidade beta entre habitats (β~1~) também apresentou valores observados inferiores aos esperados em ambos os períodos, indicando que os habitats compartilham uma parte significativa da sua composição zooplanctônica. Isto pode estar ligado à homogeneidade estrutural dos habitats ou à capacidade de dispersão do zooplâncton [@grönroos2013].
 
@@ -2671,7 +2629,7 @@ Já a diversidade entre os riachos (β~3~) apresentou valores observados signifi
 
 Quando os riachos foram analisados separadamente, tanto o Barro Branco quanto o Caiana obtiveram baixa α-diversidade observada. Entretanto, a diversidade entre pontos (β~2~) no Barro Branco foi superior à esperada. Este padrão pode estar associado à heterogeneidade ambiental ao longo do riacho, dispersão, escala espacial e características que os organismos apresentam ao ambiente em que estão inseridos, fatores reconhecidos como determinantes da β-diversidade em ambientes lóticos [@heino2015; @heino2013]. O Caiana apresentou alta contribuição de β~2~ nos dois períodos, contudo, β~3~ no período chuvoso também apresentou alto valor observado, sugerindo que a γ-diversidade é sustentada, em especial, pela substituição de espécies. Logo, mesmo em riachos que tenham alta riqueza, sua diversidade pode estar associada a processos espaciais e variação ambiental local [@súarez2009].
 
-A utilização da partição aditiva permitiu diferenciar a influência causada pelos períodos seco e chuvoso sobre a comunidade zooplanctônica. Sendo assim, é possível afirmar que o período chuvoso intensifica a heterogeneidade ambiental espacial e promove diferenciação entre os pontos amostrais e riachos devido ao aumento do nível da água, levando à velocidade da corrente, alterando as características físicas e químicas da água e facilitando o transporte de organismos ao longo dos corpos d’água [@boyero2009; @heino2011].
+A utilização da partição aditiva permitiu diferenciar a influência causada pelos períodos seco e chuvoso sobre a comunidade zooplanctônica. Sendo assim, é possível afirmar que o período chuvoso intensifica a heterogeneidade ambiental espacial e promove diferenciação entre os pontos amostrais e riachos devido ao aumento do nível da água, elevando a velocidade da corrente, alterando as características físicas e químicas da água e facilitando o transporte de organismos ao longo dos corpos d’água [@boyero2009; @heino2011].
 
 Em riachos tropicais, a variabilidade hidrológica é reconhecida como um dos fatores capazes de atuar sobre a estrutura das comunidades aquáticas, pois ela influencia a disponibilidade de recursos e os processos ecológicos [@boyero2009; @golec-fialek2021; @picapedra2021].
 
