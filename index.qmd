@@ -127,32 +127,28 @@ Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes 
 
 ## Amostragem do zooplâncton
 
-Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO~2~ (adição de água com gás) [@epa2020]. Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004].
+Para a coleta de zooplâncton, foram filtrados 50 litros de água utilizando rede de plâncton com diâmetro de abertura de 30 cm e comprimento de 70 cm, com malha de 68 μm. Os espécimes foram armazenados em frascos plásticos de 80 mL, denominados como Volume de Trabalho (Vt), fixados em solução de formaldeído a 4% e narcotizados por saturação de CO2 (adição de água com gás) [@epa2020]. Posteriormente foi adicionada uma pequena quantidade de sacarose para evitar o desprendimento de ovos, a contração dos indivíduos ou que possam expelir seu conteúdo intestinal, já que após a coleta, é normal que ocorra a rápida degradação estrutural e metabólica [@bicudo2004; @haney1973].
 
-Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), localizado no Centro de Ciências Biológicas e Sociais Aplicadas, Campus V – João Pessoa, da Universidade Estadual da Paraíba, para a realização da análise até o menor nível taxonômico possível, utilizando câmara de Sedgewick-Rafter com capacidade para 1 mL, microscópio (OLYMPUS CX31) e chaves de identificação como @koste1987; @joko2011; @shiel1995 e @elmoor-loureiro1997. Além disso, todos os espécimes passaram por confirmação das espécies por uma especialista.
-
-Após a coleta e o registro dos dados, as amostras foram organizadas em lotes e devidamente etiquetadas. Em seguida, realizou-se a confirmação de identificação das espécies por um especialista. Os dados de riqueza (R) e abundância total foram analisados com o objetivo de investigar os padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas.
+Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), localizado no Centro de Ciências Biológicas e Sociais Aplicadas, Campus V – João Pessoa, da Universidade Estadual da Paraíba, para a realização da análise até o menor nível taxonômico possível, utilizando câmara de Sedgewick-Rafter com capacidade para 1 mL, microscópio (OLYMPUS CX31) e chaves de identificação como @elmoor-loureiro1997; @joko2011; @koste1987 e @shiel1995. Todos os espécimes passaram por confirmação das espécies por uma especialista.
 
 ## Análises estatísticas
 
-Para que as análises estatísticas fossem realizadas, foi efetuado o cálculo de densidade, considerando o número de indivíduos de espécie por m³, através da fórmula:
+Todos os dados foram organizados em tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis com técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022].
 
-$$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade} onde a densidade em número de indivíduos por m³ de uma espécie (*Dsp*) para um determinado habitat será o número de indivíduos da espécie (*Nsp*), dividido pelo volume total filtrado (*Vf*) [@bowen2017].
+A Análise de Componentes Principais (PCA) foi executada com o objetivo de avaliar possíveis correlações das variáveis ambientais com os riachos amostrados e as estações seca e chuvosa [@husson2026].
 
-Além disso, a fórmula de partição aditiva também foi aplicada utilizando dados de riqueza de espécies:
+Os dados de riqueza foram analisados para investigar padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas. As análises de densidade, foram realizadas considerando o número de indivíduos de espécie por m³, através da fórmula:
+
+$$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade}
+
+em que Dsp corresponde a densidade de indivíduos de uma espécie para um determinado habitat, Nsp representa o número de indivíduos da espécie, dividido pelo volume total filtrado (Vf) [@bowen2017].
+
+Também foram utilizados pacotes estatísticos para realizar a partição da diversidade, para que fosse possível decompor a diversidade em componentes alfa, beta e gama. A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou únicas. A diversidade gama, ou diversidade regional, se refere as escalas espaciais maiores e a diversidade beta manifesta-se quando a diversidade é comparada em diferentes escalas (Chao; Chiu; Hsieh, 2012; Farias *et al.*, 2020). Neste contexto, a fórmula de partição aditiva foi aplicada utilizando a riqueza de espécies:
 
 $$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}\
 Na partição aditiva [@oksanen2020; @whittaker1972], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβᵢ. A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
 
-Os dados foram organizados em formatos de tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis através de técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022; @zar1999].
-
-Para a realização das análises estatísticas, foram utilizados pacotes que permitem avaliar a estrutura da comunidade com base na riqueza. A Análise de Componentes Principais (PCA) foi executada para avaliar as variáveis ambientais.
-
-Foram empregados pacotes sobre partição da diversidade para que fosse possível decompor ou particionar a diversidade em componentes alfa (α), beta (β) e gama (γ). A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou unidades amostrais únicas. Diversidade gama, ou diversidade regional, corresponde a escalas espaciais maiores, enquanto que a diversidade beta manifesta-se quando há variação na diversidade entre os ambientes ou escalas espaciais [@chao2012; @farias2020].
-
-Os gráficos e figuras sobre as partições foram realizados no programa estatístico RStudio utilizando os pacotes: eulerr, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi empregada para a realização da partição aditiva da diversidade, em que conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade).
-
-Esses pacotes permitiram uma análise detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
+Os gráficos e figuras referentes a partição foram realizados no RStudio utilizando os pacotes: *eulerr*, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi utilizada para a partição aditiva da diversidade, em que nele conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade). Esses pacotes permitem uma análise mais detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
