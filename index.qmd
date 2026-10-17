@@ -65,7 +65,7 @@ Além das alterações na paisagem, a dinâmica dos riachos é influenciada por 
 
 No período seco, a menor precipitação e a redução da vazão modificam as condições hidrológicas dos riachos, características que podem favorecer a permanência de populações locais. Em contraste, o período chuvoso é caracterizado pelo aumento da precipitação e da vazão, intensificando processos de distúrbio, dispersão e substituição de espécies [@allan2021; @souza2025]. Logo, a sazonalidade atua como um fator importante na organização das comunidades aquáticas, tornando-as úteis como ferramentas para avaliar o estado ecológico dos corpos hídricos.
 
-Entre os seres vivos que compõem essas comunidades, destaca-se o zooplâncton, especialmente os grupos Rotifera, Cladocera e Copepoda. São organismos de tamanhos e formas variáveis, com ciclos de vida e papéis funcionais distintos, e excelentes bioindicadores ecológicos devido à sua sensibilidade às variações ambientais [@bonecker2012; @cardoso2009; @esteves2011]. Além disso, são uma importante fonte de alimento para peixes, aves aquáticas e mamíferos, atuando como elo entre produtores e consumidores a partir da disponibilidade de energia para níveis tróficos superiores [@altindag2025; @balkic2022; @cardoso2009; @majeed2023; @marcelino2025; @souza2025].
+Entre os seres vivos que compõem essas comunidades, destaca-se o zooplâncton, especialmente os grupos Rotifera, Cladocera e Copepoda. São organismos de tamanhos e formas variáveis, com ciclos de vida e papéis funcionais distintos, e excelentes bioindicadores ecológicos devido à sua sensibilidade às variações ambientais [@bonecker2012; @cardoso2009; @esteves2011]. Além disso, são uma importante fonte de alimento para peixes, atuando como um importante elo entre produtores e consumidores a partir da disponibilidade de energia para níveis tróficos superiores [@altindag2025; @balkic2022; @cardoso2009; @marcelino2025; @souza2025].
 
 Segundo @keppeler2004, a composição e a organização das comunidades zooplanctônicas resultam da interação entre os parâmetros físicos, químicos e biológicos, incluindo as variações sazonais. Portanto, alterações na composição de espécies e a substituição de táxons podem ser reflexo devido às mudanças nas características físicas e químicas do ambiente [@freiry2020; @melo2013].
 
@@ -113,7 +113,11 @@ Os corpos d’águas presentes na área de estudo são compostos por riachos de 
 
 De acordo com a classificação de Köppen, o clima é do tipo A’, com temperaturas médias anuais que variam entre 24°C e 26°C [@mma2003; @peel2007] e estação seca no verão (fevereiro e março). O período chuvoso ocorre no inverno, com precipitação anual entre 1.400 a 1.800 mm nos meses março e julho e menor precipitação entre setembro e dezembro [@gouveia2017].
 
-As coletas ocorreram entre novembro de 2023 e fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (@fig-mapa) entre os dois riachos. Para cada unidade amostral, foram coletadas três subamostras, uma em cada habitat, a fim de realizar uma análise estatística mais rigorosa [@martinelli2004].
+As coletas ocorreram entre novembro de 2023 e fevereiro de 2024 durante o período seco e de junho a agosto de 2024 no período chuvoso. Foram selecionados 15 pontos de coleta (denominados Unidades Amostrais ou UAs) (@fig-mapa) entre os dois riachos.
+
+O delineamento amostral possibilitou a avaliação da diversidade do zooplâncton em escalas espaciais e temporais (estação seca e chuvosa). A escala espacial regional, representada pela diversidade gama (γ), engloba ambos os riachos de estudo (@fig-modelo_escalas_espaciais). Em cada riacho, foram selecionadas unidades amostrais cujas subamostras, denominadas habitats, corresponderam à diversidade alfa (α). As variações observadas entre habitats, UAs e riachos representaram os componentes da diversidade beta (β) (@fig-modelo_escalas_espaciais).
+
+![Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. **Fonte:** Adaptado de @frissell1986.](imagens/Modelo_Escalas_Espaciais.png){#fig-modelo_escalas_espaciais}
 
 ## Coleta de dados ambientais
 
@@ -133,22 +137,23 @@ Todas as amostras foram transportadas até o Laboratório de Ecologia (LABECO), 
 
 ## Análises estatísticas
 
-Todos os dados foram organizados em tabelas, gráficos e figuras e analisados por meio de testes estatísticos compatíveis com técnicas multivariadas utilizando o ambiente de programação R/RStudio [@hair2021; @rcoreteam2017; @rstudioteam2022].
+Os dados obtidos foram submetidos a técnicas multivariadas no ambiente de programação R/RStudio[@hair2021; @rcoreteam2017; @rstudioteam2022].
 
-A Análise de Componentes Principais (PCA) foi executada com o objetivo de avaliar possíveis correlações das variáveis ambientais com os riachos amostrados e as estações seca e chuvosa [@husson2026].
+A investigação dos padrões de variação das variáveis ambientais entre os riachos e entre os períodos seco e chuvoso foi realizada por meio da Análise de Componentes Principais (PCA) [@husson2026]. Antes de sua aplicação, variáveis referentes à composição do substrato e à estrutura marginal do habitat foram relativizadas e submetidas à transformação pelo arco seno da raiz quadrada, conforme @mccune2002. Para testar a variação da estrutura ambiental entre os períodos seco e chuvoso e os riachos, realizou-se a Análise Multivariada Permutacional da Variância (PERMANOVA), com base na matriz de dissimilaridade de Bray-Curtis, utilizando 9999 permutações [@freiry2020; @gotelli2001]. Estas análises foram realizadas utilizados os pacotes *FactoMineR* e *vegan* [@husson2026; @oksanen2020].
 
-Os dados de riqueza foram analisados para investigar padrões de variação na estrutura das comunidades zooplanctônicas das áreas estudadas. As análises de densidade, foram realizadas considerando o número de indivíduos de espécie por m³, através da fórmula:
+A riqueza de espécies foi utilizada para avaliar a estrutura das comunidades zooplanctônicas das áreas estudadas. A densidade dos organismos foi calculada considerando o número de indivíduos de espécie por m³, de acordo com a metodologia de @bowen2017.
 
 $$Dsp = \frac{Nsp}{Vf}$$ {#eq-densidade}
 
-em que Dsp corresponde a densidade de indivíduos de uma espécie para um determinado habitat, Nsp representa o número de indivíduos da espécie, dividido pelo volume total filtrado (Vf) [@bowen2017].
+em que Dsp corresponde à densidade de indivíduos de uma espécie para um determinado habitat, Nsp representa o número de indivíduos da espécie, dividido pelo volume total filtrado (Vf).
 
-Também foram utilizados pacotes estatísticos para realizar a partição da diversidade, para que fosse possível decompor a diversidade em componentes alfa, beta e gama. A diversidade alfa se refere à diversidade de espécies em uma escala local, ou seja, dentro de manchas homogêneas locais ou únicas. A diversidade gama, ou diversidade regional, se refere as escalas espaciais maiores e a diversidade beta manifesta-se quando a diversidade é comparada em diferentes escalas (Chao; Chiu; Hsieh, 2012; Farias *et al.*, 2020). Neste contexto, a fórmula de partição aditiva foi aplicada utilizando a riqueza de espécies:
+Para avaliar diferenças na composição da comunidade zooplanctônica entre as estações seca e chuvosa, aplicou-se o Método do Grupo de Pares Não Ponderado com Médias Aritméticas (UPGMA). Para isto, foi utilizada a matriz de dissimilaridade de Bray-Curtis, calculada a partir da matriz de densidade previamente relativizada e transformada pelo arco seno da raiz quadrada. Estes procedimentos foram adotados visando reduzir a influência de táxons abundantes e melhorar a distribuição dos dados [@ávila2011; @belbin1993; @rocha2012]. A consistência dos agrupamentos foi avaliada pelo Coeficiente de Correlação Cofenética (CC), que verifica se as distâncias foram distorcidas, e pelo Coeficiente Aglomerativo (AC), que mede a robustez da estrutura de agrupamento [@saraçli2013; @sokal1962]. Valores de AC próximos a 1 indicam agrupamento forte e bem definido, enquanto valores próximos a 0 indicam agrupamento fraco ou indistinto. Para estas análises, foram utilizados os pacotes *vegan* e *cluster* e as funções *cophenetic* e *coef*.*hclust*, respectivamente [@kaufman1990; @maechler2026; @oksanen2020].
 
-$$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}\
-Na partição aditiva [@oksanen2020; @whittaker1972], γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβᵢ. A diversidade (βᵢ) foi calculada a partir da razão entre a diversidade total (γ) e a diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Em resumo, a diversidade total (γ) é resultado da diversidade média local (α₁) e da soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972].
+A decomposição da diversidade de espécies em escalas locais e regionais foi realizada por meio da partição da diversidade em componentes alfa (α), beta (β) e gama (γ). A diversidade alfa corresponde à diversidade de espécies em uma escala local, ou seja, dentro de uma única unidade amostral homogênea. A diversidade gama, ou diversidade regional, se refere às escalas espaciais maiores e a diversidade beta manifesta-se quando a diversidade é diferente entre as escalas [@chao2012; @farias2020]. Neste contexto, a partição aditiva foi aplicada utilizando a riqueza de espécies:
 
-Os gráficos e figuras referentes a partição foram realizados no RStudio utilizando os pacotes: *eulerr*, vegan e VennDiagram que forneceram informações acerca da distribuição da riqueza de espécies com base na diversidade alfa e diversidade gama [@chen2011; @oksanen2020]. A função adipart foi utilizada para a partição aditiva da diversidade, em que nele conterá os valores médios da diversidade alfa que serão comparados com a diversidade total em todo o conjunto de dados (γ-diversidade). Esses pacotes permitem uma análise mais detalhada e abrangente da distribuição e diversidade de espécies nos riachos estudados.
+$$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}
+
+em que γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβ [@oksanen2020; @whittaker1972]. A diversidade (βᵢ) foi calculada a partir da diversidade total (γ) e diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Portanto, a diversidade total (γ) é composta pela diversidade média local (α₁) e pela soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972]. Para a confecção dos gráficos e figuras referentes a partição foram utilizados os pacotes *eulerr*, *vegan* e *VennDiagram* e a função *adipart* para a partição aditiva.
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -584,6 +589,14 @@ m_hab_trns <- read.table("res/m_hab_trns.csv",
                          header = TRUE,
                          na.strings = NA)
 ```
+
+# Autorização de coletas {.unnumbered}
+
+O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente).
+
+# Uso de Inteligência Artificial Generativa (IAGen) {.unnumbered}
+
+Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a finalidade de auxiliar na revisão gramatical e no aprimoramento da clareza e da fluência da redação. Ressalta-se que todo o conteúdo gerado foi revisado, editado e validado pelos autores, garantindo a integridade e a autoria intelectual dos dados apresentados [@cnpq2026; @garrido2026].
 
 # Resultados
 
@@ -1418,7 +1431,7 @@ gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
 saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
 
-## Estrutura da comunidade
+## Descrição da comunidade
 
 Foram registrados táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 1). No total, foram contabilizadas 15 espécies de Rotifera, 12 de Cladocera e 6 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
 
@@ -2078,8 +2091,6 @@ No período chuvoso, o número de espécies compartilhadas permaneceu inalterado
 
 De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos.
 
-## Additive partition
-
 Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
 
 A tabela e figuras (Figuras 5A,5B e 5C e Figuras 6A, 6B e 6C) abordam duas escalas espaciais: uma maior, englobando ambos os riachos Caiana e Barro Branco, e uma menor, que se refere a apenas um dos riachos, seja Barro Branco ou Caiana separadamente.
@@ -2581,7 +2592,7 @@ saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
 
 ```
 
-# Discussion
+# Discussão
 
 Os habitats de ambientes de água doce estão entre os ecossistemas mais modificados do planeta, seja em função de atividades antrópicas, como o despejo inadequado de efluentes, a destruição e a degradação de habitat, ou pela introdução de espécies exóticas [@altindag2025; @marcelino2025; @pinto2006; @silva2020]. Neste contexto, torna-se essencial compreender e avaliar como a estrutura do habitat influencia a diversidade e composição da fauna de organismos aquáticos, como o zooplâncton, grupo conhecido como bioindicador de processos de poluição e eutrofização, uma vez que são essenciais para os serviços ecossistêmicos de ambientes de água doce [@marcelino2025; @santos2025].
 
@@ -2599,7 +2610,7 @@ A influência da vegetação ripária foi evidente no Barro Branco, especialment
 
 As estruturas submersas e marginais desempenham papel fundamental na captura de alimento e no fornecimento de refúgio, auxiliando na permanência dos organismos em áreas específicas da coluna d’água [@esteves2011]. Dessa forma, é visto que as variações hidrológicas influenciaram a estrutura do habitat e disponibilidade de recursos.
 
-O grupo de maior representatividade taxonômica em todas as unidades amostrais foi Rotifera, o que está de acordo com estudos realizados em ambientes de água doce, nos quais este grupo se destaca por sua abundância e diversidade [@almeida2009; @barbosa2018; @cabral2020; @larson2007; @majeed2023]. Os Rotifera são frequentemente associados à alta fecundidade, reprodução partenogênica e rápidas taxas de crescimento, aspectos que contribuem para seu caráter cosmopolitas [@pourriot1997]. A alimentação desses organismos é baseada em pequenas partículas, como detritos orgânicos, algas e bactérias. Estas características os tornam organismos r-estrategistas (oportunistas), com capacidade de sobreviverem a ambientes instáveis [@allan1976; @araújo2017; @dantas-silva2013; @fernández2024].
+O grupo de maior representatividade taxonômica em todas as unidades amostrais foi Rotifera, o que está de acordo com estudos realizados em ambientes de água doce, nos quais este grupo se destaca por sua abundância e diversidade [@almeida2009; @barbosa2018; @cabral2020; @larson2007]. Os Rotifera são frequentemente associados à alta fecundidade, reprodução partenogênica e rápidas taxas de crescimento, aspectos que contribuem para seu caráter cosmopolitas [@pourriot1997]. A alimentação desses organismos é baseada em pequenas partículas, como detritos orgânicos, algas e bactérias. Estas características os tornam organismos r-estrategistas (oportunistas), com capacidade de sobreviverem a ambientes instáveis [@allan1976; @araújo2017; @dantas-silva2013; @fernández2024].
 
 Neste estudo, a família de maior representatividade em relação ao número total de espécies foi Lecanidae, corroborando com diversos estudos sobre a composição da comunidade zooplanctônica em ambientes de água doce [@fernández2024; @joko2008]. Além disso, diversas pesquisas apontam essa família como a mais representativa em ambientes lóticos e lênticos [@aggio2015; @melo2011; @oliveira2009; @vieira2009]. De acordo com @almeida2006, os representantes dessa família estão associados principalmente ao bento e perifíton, especialmente em locais ricos em vegetação, ocorrendo no plâncton apenas como migrantes ocasionais.
 
@@ -2641,41 +2652,17 @@ Tendo em vista que α-diversidade (diversidade local ou dentro de um habitat) e 
 
 De modo geral, os resultados indicam que a diversidade zooplanctônica dos riachos Barro Branco e Caiana é influenciada por processos espaciais que atuam em escalas intermediárias e regionais, tendo sido evidenciado pelos valores elevados de β-diversidade. Esses padrões reforçam a importância de um ambiente heterogêneo e a influência da sazonalidade como fatores determinantes para a manutenção da diversidade regional.
 
-# Conclusions {.unnumbered}
+# Conclusão {.unnumbered}
 
 O presente estudou revelou que a diversidade zooplanctônica nos riachos Barro Branco e Caiana é estruturada principalmente por processos locais e regionais, estes que variam de acordo com a escala espacial e sazonalidade climática. A aplicação conjunta dos métodos de partição aditiva e multiplicativa permitiu a compreensão da organização da diversidade, demonstrando que valores baixos de α-diversidade contribuem para as diversidades beta e gama.
 
 De modo geral, mesmo sob a influência das condições ambientais e de conservação, os riachos sustentam um patrimônio regional de espécies, evidenciando a importância da heterogeneidade ambiental para a conservação de processos biológicos essenciais para a biodiversidade zooplanctônica. Estes resultados contribuem para o entendimento dos padrões de diversidade em riachos tropicais, evidenciando o zooplâncton como organismo sensível às variações espaciais e temporais e, ainda, a necessidade de conservação de riachos de Floresta Atlântica para a manutenção da biodiversidade.
 
-# Acknowledgements {.unnumbered}
+# Agradecimentos {.unnumbered}
 
-We are greatly indebted to the staff of the REBIO Guaribas for field work assistance. LCA is grateful to Programa de Pós-Graduação em Ecologia e Conservação (PPGEC-UEPB) and CAPES for scholarship granted. EGS, MMSM and MVBS are grateful to Programa de Iniciação Científica (PIBIC-UEPB) and CNPq for scholarship granted.
+Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho de campo. EGS agradece ao Programa de Iniciação Científica (PIBIC-UEPB) e ao CNPq pela bolsa concedida.
 
-# Authorship contribution statement {.unnumbered}
-
-Authorship of this paper is based on @credit2026.
-
-Ellen Gomes da Silva: Data curation, Formal analysis, Investigation, Software, Visualization, Writing – original draft, Writing – review & editing.
-
-Mayara Mirelly da Silva Monteiro: Data curation, Formal analysis, Software.
-
-Marcela Vitória Bernardo da Silva: Writing – original draft, Writing – review & editing.
-
-Ludmilla Cavalcanti Antunes Lucena: Writing – review & editing.
-
-Thais Xavier de Melo: Supervision.
-
-Elvio Sergio Figueredo Medeiros: Conceptualization, Data curation, Formal analysis, Funding Acquisition, Methodology, Project Administration, Resources, Supervision, Validation.
-
-# Ethical approval {.unnumbered}
-
-O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente).
-
-# Declaração sobre o uso de inteligência artificial generativa e tecnologias assistidas por IA no processo de preparação do manuscrito {.unnumbered}
-
-Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI) para auxiliar na revisão do idioma inglês e no aprimoramento da clareza e da fluência da redação. Nenhuma ferramenta de IA foi utilizada para análise ou interpretação dos dados, nem para a elaboração de conclusões científicas. Os autores revisaram e avaliaram cuidadosamente todas as sugestões geradas por IA e assumem total responsabilidade pela precisão e pelo conteúdo da versão final do manuscrito [@cnpq2026].
-
-# References {.unnumbered}
+# Referencias {.unnumbered}
 
 ::: {#refs}
 :::
@@ -2683,7 +2670,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 \pagebreak
 \newpage
 
-# Figures and Tables {.unnumbered}
+# Figuras e Tabelas {.unnumbered}
 
 @fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: MapBiomas e TerraBrasilis (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
 
@@ -2707,7 +2694,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 @tbl-part_gttable: <!--# Contribution (expressed in percentage values 9 100) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition. -->
 
-## Figures {.unnumbered}
+## Figuras {.unnumbered}
 
 <details>
 
@@ -2765,7 +2752,7 @@ Durante a preparação deste manuscrito, os autores utilizaram o ChatGPT (OpenAI
 
 </details>
 
-## Tables {.unnumbered}
+## Tabelas {.unnumbered}
 
 <details>
 
