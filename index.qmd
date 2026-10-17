@@ -117,8 +117,6 @@ As coletas ocorreram entre novembro de 2023 e fevereiro de 2024 durante o perío
 
 O delineamento amostral possibilitou a avaliação da diversidade do zooplâncton em escalas espaciais e temporais (estação seca e chuvosa). A escala espacial regional, representada pela diversidade gama (γ), engloba ambos os riachos de estudo (@fig-modelo_escalas_espaciais). Em cada riacho, foram selecionadas unidades amostrais cujas subamostras, denominadas habitats, corresponderam à diversidade alfa (α). As variações observadas entre habitats, UAs e riachos representaram os componentes da diversidade beta (β) (@fig-modelo_escalas_espaciais).
 
-![Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. **Fonte:** Adaptado de @frissell1986.](imagens/Modelo_Escalas_Espaciais.png){#fig-modelo_escalas_espaciais}
-
 ## Coleta de dados ambientais
 
 Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindooxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat,** por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
@@ -2703,6 +2701,14 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 ![Mapa da área de influência da REBIO Guaribas. Fonte: INPE, 2022; MapBiomas, 2026.](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
 
 </details>
+
+<details>
+
+<summary>@fig-modelo_escalas_espaciais: Representação das escalas espaciais</summary>
+
+![Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. Fonte: Adaptado de @frissell1986.](imagens/Modelo_Escalas_Espaciais.png){#fig-modelo_escalas_espaciais}
+
+<details>
 
 <details>
 
