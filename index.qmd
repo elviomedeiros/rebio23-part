@@ -604,7 +604,7 @@ Os riachos apresentaram pH neutro a levemente ácido (5,1 a 6,9). A temperatura 
 
 O substrato no riacho Barro Branco foi composto majoritariamente por lama, variando de 36,7% (P05) a 100% (P01 e P02). Em contraste, areia foi o substrato predominante no Caiana, com valores entre 0,8% (P12) e 98,3% (P14). A presença de cascalho e rochas foi restrita a poucas unidades amostrais. A estrutura do habitat mostrou-se diversa entre os riachos, sobretudo no Barro Branco, onde foram observadas maiores proporções de macrófitas (0 a 17,9%), algas (0 a 19,2%) e vegetação submersa (5 a 10,8%). Neste riacho, a cobertura marginal variou entre 5 e 76,7%. Além disso, grama (0% em P05 e 27,1% em P04), liteira (3,5 a 18,3% em P06 e P04, respectivamente), massa de raiz (3,3 a 42,5% em P06 e P05, respectivamente) e galhos (8,3% em P01 e 30,8% em P06) apresentaram altas proporções. No Caiana, somente P07 apresentou cobertura vegetal elevada (83,3%), enquanto as proporções de grama (0% em P07, P08, P09, P14 e P15 a 39,2% em P11), liteira (2,5 a 8,3%, P11 e P15, respectivamente), massa de raiz (0,8 em P11 a 11,7% em P09 e P15) e galhos (4,2% em P11 e P14 e 25,8% em P08 e P12) foram baixas em todas as unidades amostrais.
 
-A Análise de Componentes Principais (PCA) aplicada aos dados espaciais (Figura 3) e temporais explicaram 38,6% da variação total dos dados, sendo 23,2% no primeiro eixo (Dim1) e 15,4% no segundo eixo (Dim2). A distribuição das UAs no espaço da ordenação indicou clara diferenciação entre os riachos. Quando analisada a escala espacial (Figura 3), no Barro Branco, as unidades amostrais apresentaram forte associação a elevação, lama e, principalmente, as estruturas como algas, macrófitas, liteira, galhos, grama e cobertura vegetal. O Caiana, por sua vez, mostrou-se associada a variáveis que podem afetar suas características, como maior associação ao pH, a areia, a maior velocidade da água e a profundidade. Apesar desta diferenciação, verificou-se a sobreposição entre as elipses dos grupos, indicando que os riachos compartilham parte das variáveis ambientais. Por outro lado, ao avaliar a variação temporal (Figura 4), as elipses estão sobrepostas, indicando ausência de uma separação visual nítida entre as amostras quando analisadas por períodos.
+A Análise de Componentes Principais (PCA) aplicada aos dados espaciais (Figura 3) e temporais explicaram 38,6% da variação total dos dados, sendo 23,2% no primeiro eixo (Dim1) e 15,4% no segundo eixo (Dim2). A distribuição das UAs no espaço da ordenação indicou clara diferenciação entre os riachos. Quando analisada a escala espacial (Figura 3), no Barro Branco, as unidades amostrais apresentaram forte associação a elevação, lama e, principalmente, as estruturas como algas, macrófitas, liteira, galhos, grama e cobertura vegetal. O Caiana, por sua vez, mostrou-se associada a variáveis que podem afetar suas características, como maior associação ao pH, a areia, a maior velocidade da água e a profundidade. Apesar desta diferenciação, verificou-se a sobreposição entre as elipses dos grupos, indicando que os riachos compartilham parte das variáveis ambientais. Por outro lado, ao avaliar a variação temporal (Figura 4), as elipses estão sobrepostas, indicando ausência de uma separação visual nítida entre as amostras quando analisadas por períodos. A PERMANOVA indicou diferenças significativas nas características ambientais entre os riachos Caiana e Barro Branco (pseudo-F~1,86~ = 8,4; R² = 0,082; p = 0,001). Em relação à variação temporal, embora a PCA não tenha evidenciado uma clara separação visual entre as UAs nos períodos seco e chuvoso, a PERMANOVA detectou diferenças significativas entre os períodos (pseudo-F~1,86~ = 4,2; R² = 0,041; p = 0,006). Também foi identificada interação entre os períodos de amostragem e os riachos (pseudo-F~1,86~ = 2,76; R² = 0,027; p = 0,036), indicando que o período sobre as variáveis ambientais diferiram. O modelo completo explicou aproximadamente 15,19% da variação total dos dados, enquanto 84,80% corresponderam à variação residual.
 
 ```{r GTTABLE_HAB_EXCL}
 #| eval: false
@@ -2656,7 +2656,7 @@ De modo geral, mesmo sob a influência das condições ambientais e de conserva�
 
 Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho de campo. EGS agradece ao Programa de Iniciação Científica (PIBIC-UEPB) e ao CNPq pela bolsa concedida.
 
-# Referencias {.unnumbered}
+# Referências {.unnumbered}
 
 ::: {#refs}
 :::
@@ -2666,7 +2666,9 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 # Figuras e Tabelas {.unnumbered}
 
-@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: MapBiomas e TerraBrasilis (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: @mapbiomas2026 e @inpe2022 (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
+
+@fig-modelo_escalas_espaciais: Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. Fonte: Adaptado de @frissell1986.
 
 @fig-hab_PCA_ref-site: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por tipo de site. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
@@ -2694,7 +2696,7 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 <summary>@fig-mapa: Localização das Unidades Amostrais</summary>
 
-![Mapa da área de influência da REBIO Guaribas. Fonte: INPE, 2022; MapBiomas, 2026.](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas. Fonte: @mapbiomas2026 e @inpe2022.](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
 
 </details>
 
