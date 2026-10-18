@@ -22,7 +22,7 @@ editor: source
 toc: true
 number-sections: true
 bibliography: refs/references.bib
-csl: refs/abnt.csl
+csl: refs/abnt(2026).csl
 highlight-style: pygments
 format:
   html:
@@ -117,13 +117,13 @@ O delineamento amostral possibilitou a avaliação da diversidade do zooplâncto
 
 ## Coleta de dados ambientais
 
-Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindooxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat**, por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
+Dados físicos, químicos e ambientais foram coletados com a finalidade de caracterizar as condições do habitat em que as espécies foram encontradas. Neste contexto, foram avaliados os seguintes dados: **(1) morfometria**, como profundidade (m), largura (l) e velocidade da corrente de água (m/s); **(2) qualidade da água**, incluindo oxigênio dissolvido (mg/L) e temperatura (°C); e **(3) estrutura do habitat**, por meio da avaliação dos tipos de substrato e estruturas subaquáticas e marginais [@medeiros2008].
 
 Dentre as variáveis ambientais, realizou-se a medição das variáveis físicas e químicas, morfometria, qualidade da água e estrutura do habitat com o intuito de fornecer informações acerca do habitat em que as espécies foram encontradas. As variáveis químicas foram estimadas por meio de medidores de pH (TECNOPON MPA-210), condutividade (μS/cm) (TECNOPON MCS-150) e turbidez da água (NTU), utilizando equipamentos de bancada no Laboratório de Ecologia (LABECO) – Campus V. As variáveis temperatura (°C) e oxigênio dissolvido (mg/L) (Lutron DO-5510) e velocidade da água (m/s) foram medidas em campo, sendo está última medida utilizando o método da bóia de @maitland1990.
 
 Para a avaliação morfométrica de cada habitat nas 15 unidades amostrais, foram estabelecidos transectos nos quais foram medidos a largura e o comprimento com o auxílio de uma trena métrica. A profundidade e largura foram medidas em três seções equidistantes ao longo de cada transecto, também utilizando a trena métrica. A altitude, a forma e a distância entre as unidades amostrais foram determinadas através de dados obtidos por GPS. Esses dados foram empregados para calcular a área superficial, o volume e a distância entre os pontos de coleta.
 
-Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes estudados quanto à disponibilidade de recursos, os seguintes aspectos foram quantificados em cada ambiente: presença de macrófitas, vegetação submersa, vegetação flutuante, algas, vegetação ripária, liteira, raízes e galhos de árvores próximas. Os ambientes também foram classificados quanto ao tipo de substrato, sendo estimadas as proporções de lama, areia, pedras, seixos, entre outros. De acordo com a metodologia proposta por @medeiros2008, estes dados, levantados por meio de análise visual, estimam a contribuição proporcional de cada componente. Considerando que a maioria desses elementos estão concentrados nas margens, as medições foram obtidas a partir de transectos paralelos à margem dos ambientes estudados. Estes dados representam a proporção média (%) de cobertura dos aspectos medidos para cada trecho [@medeiros2008].
+Com o objetivo de quantificar a estrutura do habitat e classificar os ambientes estudados quanto à disponibilidade de recursos, os seguintes aspectos foram quantificados em cada ambiente: presença de macrófitas, vegetação submersa, vegetação flutuante, algas, vegetação ripária, liteira, raízes e detritos. Os ambientes também foram classificados quanto ao tipo de substrato, sendo estimadas as proporções de lama, areia, pedras, seixos, entre outros. De acordo com a metodologia proposta por @medeiros2008, estes dados, levantados por meio de análise visual, estimam a contribuição proporcional de cada componente. Considerando que a maioria desses elementos estão concentrados nas margens, as medições foram obtidas a partir de transectos paralelos à margem dos ambientes estudados. Estes dados representam a proporção média (%) de cobertura dos aspectos medidos para cada trecho [@medeiros2008].
 
 ## Amostragem do zooplâncton
 
@@ -171,13 +171,19 @@ cat("\014") #limpa o console
 
 library(openxlsx)
 habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
-                    rowNames = T,
-                    colNames = T,
-                    sheet = "ambiente",
-                    startRow = 2)
+                     rowNames = T,
+                     colNames = T,
+                     sheet = "ambiente",
+                     startRow = 2)
+
+# List columns with at least one NA
+colnames(habitat)[colSums(is.na(habitat)) > 0]
 # Identify columns containing only NA values
 all.na <- names(habitat)[colSums(!is.na(habitat)) == 0]
 all.na <- c(all.na, "w.Temp_C", "w.DO_mg.L")
+#all.na <- c(all.na, "n.Ammonia_NH3_ug.L", "n.Nitrite_NO2_ug.L",
+#            "n.Nitrate_NO3_ug.L", "n.Orthophosphate_SRP_ug.L",
+#            "n.Phosphorus_TP_ug.L")
 # Remove those columns by name
 m_hab_part <- habitat[, !names(habitat) %in% all.na, drop = FALSE]
 # Removendo linhas por nome
@@ -187,6 +193,9 @@ del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3",
 del_rows
 m_hab_part <- m_hab_part[!(row.names(m_hab_part) %in% c(del_rows)),]
 m_hab_part
+# List columns with at least one NA
+colnames(m_hab_part)[colSums(is.na(m_hab_part)) > 0]
+#rownames(m_hab_part)[is.na(m_hab_part$m.Width_m)]
 # Remove columns with at least one NA
 m_hab_part <- m_hab_part[, colSums(is.na(m_hab_part)) == 0, drop = FALSE]
 
@@ -203,10 +212,10 @@ sum<-colSums(m_part_cols)
 sum
 
 t_grps <- read.xlsx("dados/rebio23-habitat.xlsx",
-                   rowNames = T,
-                   colNames = T,
-                   sheet = "grupos",
-                   startRow = 2)
+                    rowNames = T,
+                    colNames = T,
+                    sheet = "grupos",
+                    startRow = 2)
 
 ###REMOVENDO LINHAS ZERADAS DE GRUPOS----
 
@@ -246,10 +255,10 @@ t_grps <- read.csv("res/t_grps.csv",
                    header = TRUE,
                    na.strings = NA)
 t_nutri <- read.csv("res/t_nutri.csv",
-                  sep = ";", dec = ".",
-                  row.names = 1,
-                  header = TRUE,
-                  na.strings = NA)
+                    sep = ";", dec = ".",
+                    row.names = 1,
+                    header = TRUE,
+                    na.strings = NA)
 m_hab <- read.csv("res/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
@@ -268,9 +277,9 @@ library(openxlsx)
 ##CARREGANDO MATRIZES BRUTAS----
 
 densidade <- read.xlsx("dados/rebio23-zoopl.xlsx",
-                   rowNames = T,
-                   colNames = T,
-                   sheet = "densidade_hab_indL")
+                       rowNames = T,
+                       colNames = T,
+                       sheet = "densidade_hab_indL")
 densidade[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
 
 ##COLUNAS ZERADAS DE DENSIDADE----
@@ -318,7 +327,7 @@ contagem <- read.xlsx("dados/rebio23-zoopl.xlsx",
                       rowNames = T,
                       colNames = T,
                       sheet = "rebio23_80ml",
-                      startRow = 2)
+                      startRow = 4)
 contagem[1:5,1:5] #[1:5,1:5] mostra apenas as linhas e colunas de 1 a 5.
 
 ###COLUNAS ZERADAS DE CONTAGEM----
@@ -374,10 +383,10 @@ library(openxlsx)
 ##CARREGANDO MATRIZES BRUTAS----
 
 escalas <- read.xlsx("dados/rebio23-zoopl.xlsx",
-                   rowNames = T,
-                   colNames = T,
-                   sheet = "escalas_final",
-                   startRow = 2)
+                     rowNames = T,
+                     colNames = T,
+                     sheet = "escalas_final",
+                     startRow = 2)
 
 rownames(escalas)
 del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3", "S-C-P11-H1", "S-C-P11-H2", "S-C-P11-H3")
@@ -390,11 +399,12 @@ write.table(escalas, "res/m_esc.csv",
             quote = TRUE,
             append = FALSE)
 m_esc <- read.csv("res/m_esc.csv",
-                   sep = ";", dec = ".",
-                   row.names = 1,
-                   header = TRUE,
-                   na.strings = NA)
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
 m_esc
+
 ```
 
 ```{r ENV-REBIO23_PART-CORR}
@@ -429,7 +439,7 @@ m_hab <- read.csv("res/m_hab_part.csv",
 
 library(psych)
 colnames(m_hab)
-png("res/fig-h.hab_pairs.png")
+#png("res/fig-h.hab_pairs.png")
 pairs.panels(m_hab[,1:8],
              method = "pearson", # correlation method
              scale = FALSE, lm = FALSE,
@@ -437,19 +447,19 @@ pairs.panels(m_hab[,1:8],
              density = TRUE,  # show density plots
              ellipses = TRUE, # show correlation ellipses
              alpha = 0.5)
-dev.off()
+#dev.off()
 
 cor <- cor(m_hab)
 cor
 
 library(corrplot)
-png("res/fig-hab_corrplot.png")
+#png("res/fig-hab_corrplot.png")
 corrplot(cor, method = "circle")
-dev.off()
+#dev.off()
 
 ##DELETANDO COLINEARES OU INDESEJADAS----
 
-sink(file = "res/colineares.txt", append = F, split = T)
+#sink(file = "res/colineares.txt", append = F, split = T)
 colnames(m_hab)
 del_cols <- c("", "")
 #del_cols <- grep("^n\\.", colnames(m_hab), value = TRUE)
@@ -459,14 +469,14 @@ m_hab_part <- m_hab[, !(colnames(m_hab) %in% del_cols)]
 
 m_hab_part$h.Algae <- m_hab_part$h.Algae_f + m_hab_part$h.Algae_a
 m_hab_part <- m_hab_part[, !(colnames(m_hab_part)
-                           %in% c("h.Algae_f", "h.Algae_a"))]
+                             %in% c("h.Algae_f", "h.Algae_a"))]
 m_hab_part$h.Debris <- m_hab_part$h.Debris_l + m_hab_part$h.Debris_s
 m_hab_part <- m_hab_part[, !(colnames(m_hab_part)
-                         %in% c("h.Debris_l", "h.Debris_s"))]
+                             %in% c("h.Debris_l", "h.Debris_s"))]
 
 colnames(m_hab_part)
 m_hab_part
-sink()
+#sink()
 
 write.table(m_hab_part, "res/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
@@ -478,7 +488,6 @@ m_hab_part <- read.csv("res/m_hab_part.csv",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-
 
 ```
 
@@ -503,8 +512,8 @@ cor_mat <- res$r
 p_mat   <- res$P
 
 stars <- ifelse(p_mat < 0.001, "***",
-         ifelse(p_mat < 0.01,  "**",
-         ifelse(p_mat < 0.05,  "*", "")))
+                ifelse(p_mat < 0.01,  "**",
+                       ifelse(p_mat < 0.05,  "*", "")))
 
 cor_star <- ifelse(p_mat < 0.05,
                    paste0(round(cor_mat, 2), stars),
@@ -519,6 +528,7 @@ cor_star <- matrix(
 cor_star[upper.tri(cor_star, diag = TRUE)] <- NA
 cor_star <- noquote(cor_star)
 print(cor_star, na.print = "")
+
 ```
 
 ```{r ENV-PCA-ORG}
@@ -574,37 +584,25 @@ m_sh <- asin(sqrt(decostand(m_sh, method = "total", MARGIN = 2)))
 hab_trns <- cbind(m_sh, m_wm)
 
 # Salvado m_hab_trns
-write.table(hab_trns, "res/m_hab_trns.csv",
+write.table(hab_trns, "res/m_hab_trns_pt.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_hab_trns <- read.table("res/m_hab_trns.csv",
+m_hab_trns <- read.table("res/m_hab_trns_pt.csv",
                          sep = ";", dec = ".",
                          row.names = 1,
                          header = TRUE,
                          na.strings = NA)
 ```
 
-# Autorização de coletas {.unnumbered}
-
-O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente).
-
-# Uso de Inteligência Artificial Generativa (IAGen) {.unnumbered}
-
-Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a finalidade de auxiliar na revisão gramatical e no aprimoramento da clareza e da fluência da redação. Ressalta-se que todo o conteúdo gerado foi revisado, editado e validado pelos autores, garantindo a integridade e a autoria intelectual dos dados apresentados [@cnpq2026; @garrido2026].
-
 # Resultados
 
 ## Variáveis ambientais
 
-A Tabela 1 reúne os dados ambientais referentes a qualidade da água, morfometria e estrutura do habitat das unidades amostrais dos riachos Caiana e Barro Branco.
+Os dados ambientais referentes à qualidade da água, morfometria e estrutura do habitat mostraram variações nas unidades amostrais dos riachos Caiana e Barro Branco (@tbl-hab_gttable_pt). Os riachos apresentaram pH neutro a levemente ácido (5,1 a 6,9). A temperatura média variou entre 25,2 e 32,5 °C, com maior amplitude térmica registrada em P11, no Caiana. Em todas as UAs, as concentrações de oxigênio dissolvido foram superiores a 5,3 mg/L, com valor máximo registrado em P01 (8,1 mg/L). A condutividade apresentou maior variação no riacho Caiana, com valores entre 98,8 µS/cm (P08) e 223,0 µS/cm (P10) e turbidez entre 10,2 (P14) e 79,2 NTU (P07). No Barro Branco, a condutividade variou de 137,5 (P01 e P03) a 154,2 µS/cm (P04), enquanto a turbidez oscilou entre 4,9 (P02 e P03) a 21,5 NTU (P06). As velocidades médias da água foram baixas e semelhantes entre os riachos Caiana (0 a 0,41 m/s) e Barro Branco (0,04 a 0,26 m/s). Em relação à morfometria, a elevação das UAs variou entre 41,5 e 112,8 m, enquanto o declive oscilou entre 1,0 e 3,5%. A largura média dos pontos variou entre 1,1 e 19,5 m. O riacho Caiana registrou maiores profundidades, com máxima de 155,0 cm no P11. No Barro Branco, a profundidade máxima foi de 50,8 cm em P04.
 
-Os riachos apresentaram pH neutro a levemente ácido (5,1 a 6,9). A temperatura média variou entre 25,2 e 32,5 °C, com maior amplitude térmica registrada em P11, no Caiana. Em todas as UAs, as concentrações de oxigênio dissolvido foram superiores a 5,3 mg/L, com valor máximo registrado em P01 (8,1 mg/L). A condutividade apresentou maior variação no riacho Caiana, com valores entre 98,8 µS/cm (P08) e 223,0 µS/cm (P10) e turbidez entre 10,2 (P14) e 79,2 NTU (P07). No Barro Branco, a condutividade variou de 137,5 (P01 e P03) a 154,2 µS/cm (P04), enquanto a turbidez entre 4,9 (P02 e P03) a 21,5 NTU (P06). As velocidades médias da água foram baixas e semelhantes entre os riachos Caiana (0 a 0,41 m/s) e Barro Branco (0,04 a 0,26 m/s). Em relação à morfometria, a elevação das UAs variaram entre 41,5 e 112,8 m, enquanto o declive oscilou entre 1,0 a 3,5%. A largura média dos pontos variaram entre 1,1 e 19,5 m. O riacho Caiana registrou maiores profundidades, com máxima de 155,0 cm no P11. No Barro Branco, a profundidade máxima foi de 50,8 cm em P04.
-
-O substrato no riacho Barro Branco foi composto majoritariamente por lama, variando de 36,7% (P05) a 100% (P01 e P02). Em contraste, areia foi o substrato predominante no Caiana, com valores entre 0,8% (P12) e 98,3% (P14). A presença de cascalho e rochas foi restrita a poucas unidades amostrais. A estrutura do habitat mostrou-se diversa entre os riachos, sobretudo no Barro Branco, onde foram observadas maiores proporções de macrófitas (0 a 17,9%), algas (0 a 19,2%) e vegetação submersa (5 a 10,8%). Neste riacho, a cobertura marginal variou entre 5 e 76,7%. Além disso, grama (0% em P05 e 27,1% em P04), liteira (3,5 a 18,3% em P06 e P04, respectivamente), massa de raiz (3,3 a 42,5% em P06 e P05, respectivamente) e galhos (8,3% em P01 e 30,8% em P06) apresentaram altas proporções. No Caiana, somente P07 apresentou cobertura vegetal elevada (83,3%), enquanto as proporções de grama (0% em P07, P08, P09, P14 e P15 a 39,2% em P11), liteira (2,5 a 8,3%, P11 e P15, respectivamente), massa de raiz (0,8 em P11 a 11,7% em P09 e P15) e galhos (4,2% em P11 e P14 e 25,8% em P08 e P12) foram baixas em todas as unidades amostrais.
-
-A Análise de Componentes Principais (PCA) aplicada aos dados espaciais (Figura 3) e temporais explicaram 38,6% da variação total dos dados, sendo 23,2% no primeiro eixo (Dim1) e 15,4% no segundo eixo (Dim2). A distribuição das UAs no espaço da ordenação indicou clara diferenciação entre os riachos. Quando analisada a escala espacial (Figura 3), no Barro Branco, as unidades amostrais apresentaram forte associação a elevação, lama e, principalmente, as estruturas como algas, macrófitas, liteira, galhos, grama e cobertura vegetal. O Caiana, por sua vez, mostrou-se associada a variáveis que podem afetar suas características, como maior associação ao pH, a areia, a maior velocidade da água e a profundidade. Apesar desta diferenciação, verificou-se a sobreposição entre as elipses dos grupos, indicando que os riachos compartilham parte das variáveis ambientais. Por outro lado, ao avaliar a variação temporal (Figura 4), as elipses estão sobrepostas, indicando ausência de uma separação visual nítida entre as amostras quando analisadas por períodos. A PERMANOVA indicou diferenças significativas nas características ambientais entre os riachos Caiana e Barro Branco (pseudo-F~1,86~ = 8,4; R² = 0,082; p = 0,001). Em relação à variação temporal, embora a PCA não tenha evidenciado uma clara separação visual entre as UAs nos períodos seco e chuvoso, a PERMANOVA detectou diferenças significativas entre os períodos (pseudo-F~1,86~ = 4,2; R² = 0,041; p = 0,006). Também foi identificada interação entre os períodos de amostragem e os riachos (pseudo-F~1,86~ = 2,76; R² = 0,027; p = 0,036), indicando que o período sobre as variáveis ambientais diferiram. O modelo completo explicou aproximadamente 15,19% da variação total dos dados, enquanto 84,80% corresponderam à variação residual.
+O substrato no riacho Barro Branco foi composto majoritariamente por lama, variando de 36,7% (P05) a 100% (P01 e P02). Em contraste, areia foi o substrato predominante no Caiana, com valores entre 0,8% (P12) e 98,3% (P14). A presença de cascalho e rochas foi restrita a poucas unidades amostrais. A estrutura do habitat mostrou-se diversa entre os riachos, sobretudo no Barro Branco, onde foram observadas maiores proporções de macrófitas (0 a 17,9%), algas (0 a 19,2%) e vegetação submersa (5 a 10,8%). Neste riacho, a cobertura marginal variou entre 5 e 76,7%. Além disso, grama (0% em P05 e 27,1% em P04), liteira (3,5 a 18,3% em P06 e P04, respectivamente), massa de raiz (3,3 a 42,5% em P06 e P05, respectivamente) e detritos (8,3% em P01 e 30,8% em P06) apresentaram altas proporções. No Caiana, somente P07 apresentou cobertura vegetal elevada (83,3%), enquanto as proporções de grama (0% em P07, P08, P09, P14 e P15 a 39,2% em P11), liteira (2,5 a 8,3%, P11 e P15, respectivamente), massa de raiz (0,8 em P11 a 11,7% em P09 e P15) e detritos (4,2% em P11 e P14 e 25,8% em P08 e P12) foram baixas em todas as unidades amostrais.
 
 ```{r GTTABLE_HAB_EXCL}
 #| eval: false
@@ -613,10 +611,19 @@ A Análise de Componentes Principais (PCA) aplicada aos dados espaciais (Figura 
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code: Environment data table" 
+#| code-summary: "Code: Environment data table"
 
 #TABELA DE HABITAT----
 
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
+                     rowNames = T,
+                     colNames = T,
+                     sheet = "ambiente",
+                     startRow = 2)
 m_hab_part <- read.csv("res/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
@@ -628,6 +635,9 @@ t_grps <- read.csv("res/t_grps.csv",
                    header = TRUE,
                    na.strings = NA)
 
+m_hab_part$w.Temp_C <- habitat[rownames(m_hab_part), "w.Temp_C"]
+m_hab_part$w.DO_mg.L <- habitat[rownames(m_hab_part), "w.DO_mg.L"]
+
 library(dplyr)
 library(tidyr)
 m_trab <- m_hab_part %>%
@@ -635,7 +645,9 @@ m_trab <- m_hab_part %>%
 m <- m_trab %>%
   group_by(PontoN = t_grps$PontoN) %>%
   summarise(across(where(is.numeric),
-                   list(mean = mean, min = min, max = max)),
+                   list(mean = ~ mean(.x, na.rm = TRUE), #ajustes celulas vazias
+                        min = ~ min(.x, na.rm = TRUE),
+                        max = ~ max(.x, na.rm = TRUE))),
             .groups = 'drop') %>%
   pivot_longer(
     cols = -c(PontoN),
@@ -663,6 +675,168 @@ col_order <- c(
 )
 m_wide <- m_wide[, c(col_order)] #sequência das colunas
 row_order <- c(
+  "w.Temp.C",
+  "w.DO.mg.L",
+  "w.Vel.m.s",
+  "w.Cond.uS.cm",
+  "w.Turb.ntu",
+  "w.pH",
+  "m.Elev.m",
+  "m.Slope",
+  "m.Depth.avg.cm",
+  "m.Depth.mar.cm",
+  "m.Depth.max.cm",
+  "m.Width.m",
+  "s.Mud",
+  "s.Sand",
+  "s.Gravel.f",
+  "s.Rocks",
+  "h.Macrophytes",
+  "h.Algae",
+  "h.Subm.veg",
+  "h.Overh.veg",
+  "h.Grass",
+  "h.Leaf.l",
+  "h.Root.masses",
+  "h.Debris"
+)
+m_wide <- m_wide[match(row_order, m_wide$Variable), ]
+m_wide
+
+# Salvado m_wide
+write.table(m_wide, "res/m_wide_hab_to_pt.txt",
+            sep = ";", dec = ".", #"\t",
+            row.names = TRUE,
+            quote = TRUE,
+            append = FALSE)
+m_wide_hab_to <- read.table("res/m_wide_hab_to_pt.txt",
+                            sep = ";", dec = ".",
+                            row.names = 1,
+                            header = TRUE,
+                            na.strings = NA)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide, file = "res/tabela de habitat_pt.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de habitat_pt.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide)
+saveWorkbook(wb, "res/tabela de habitat_pt.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+hab_gttable <- read_excel(
+  path  = "res/tabela de habitat_pt.xlsx",
+  sheet = "tabela_final")
+#range = "A1:P30"#ajustar para o tamanho da tabela final 
+hab_gttable
+library(gt)
+hab_gttable <- gt(hab_gttable)
+hab_gttable <- sub_missing(hab_gttable,
+                           columns = everything(), missing_text = "")
+#hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
+hab_gttable
+gtsave(hab_gttable, "res/gt-hab_gttable_pt_xlsx.html")
+saveRDS(hab_gttable, "res/gt-hab_gttable_pt_xlsx.rds")
+
+```
+
+```{r ENV-VAR_summ}
+#| eval: false
+#| message: false
+#| warning: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code: Environment data variable summary"
+
+#TABELA DE HABITAT----
+##SEGUE DO SCRIPT ANTERIOR
+
+# Escolher sumário de uma variavel
+m
+var <- "w.Vel.m.s"
+m[m$Variable == var, "mean"] #cada valor de var
+summary(m[m$Variable == var, "mean"]) #sumário dos valores de var
+
+# Escolher sumário de um grupo de variáveis do df m
+vars <- unique(grep("^h\\.", m$Variable, value = TRUE))
+summaries <- list() #criam uma lista vazia para guardar os sumários
+# Loop para cada variável do grupo e guarda em summaries
+for (var in vars) {
+  summaries[[var]] <- summary(m[m$Variable == var, "mean"])
+}
+#var is a temporary variable used in the for loop to iterate through
+#each variable name that starts with "h."
+
+summaries
+summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
+colnames(summary_table) <- c("Min", "Q1", "Median", "Mean", "Q3", "Max")
+#sink(file = "res/summary_w.txt", split = TRUE)
+round(summary_table, 2)
+#round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
+#sink()
+
+#Summario para as médias
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+m_hab_part <- read.csv("res/m_hab_part.csv",
+                       sep = ";", dec = ".",
+                       row.names = 1,
+                       header = TRUE,
+                       na.strings = NA)
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+library(dplyr)
+library(tidyr)
+
+m_trab <- m_hab_part %>%
+  rename_with(~ gsub("_", ".", .))
+
+# Compute averages per group
+m_s <- m_trab %>%
+  group_by(PontoN = t_grps$PontoN) %>%
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)),
+            .groups = 'drop') %>%
+  pivot_longer(
+    cols = -PontoN,
+    names_to = "Variable",
+    values_to = "mean"
+  )
+
+# Format rounding and reshape to wide format
+m_wide_s <- m_s %>%
+  mutate(
+    stat_string = ifelse(
+      Variable == "m.Vel.m.s",
+      as.character(round(mean, 3)),
+      as.character(round(mean, 1))
+    )
+  ) %>%
+  unite("Location", PontoN, sep = "_") %>%
+  select(Variable, Location, stat_string) %>%
+  pivot_wider(names_from = Location, values_from = stat_string)
+
+m_wide_s <- as.data.frame(m_wide_s)
+
+# Order columns numerically by Ponto number
+cols <- colnames(m_wide_s)
+col_order <- c(
+  "Variable",
+  cols[cols != "Variable"][
+    order(as.numeric(gsub("Ponto", "", cols[cols != "Variable"])))
+  ]
+)
+m_wide_s <- m_wide_s[, col_order]
+
+# Order rows according to pre-defined variable list
+row_order <- c(
   "w.Cond.uS.cm",
   "w.Turb.ntu",
   "w.pH",
@@ -684,83 +858,14 @@ row_order <- c(
   "h.Root.masses",
   "h.Debris"
 )
-m_wide <- m_wide[match(row_order, m_wide$Variable), ]
-m_wide
 
-# Salvado m_wide
-write.table(m_wide, "res/m_wide_hab.txt",
-            sep = ";", dec = ".", #"\t",
-            row.names = TRUE,
-            quote = TRUE,
-            append = FALSE)
-m_wide_hab <- read.table("res/m_wide_hab.txt",
-                  sep = ";", dec = ".",
-                  row.names = 1,
-                  header = TRUE,
-                  na.strings = NA)
+m_wide_s <- m_wide_s[match(row_order, m_wide_s$Variable), ]
 
-# Exportando dados para Excel
-library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de habitat.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de habitat.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "res/tabela de habitat.xlsx", overwrite = TRUE)
-
-# Tabela final ajustada no Excel
-library(readxl)
-hab_gttable <- read_excel(
-  path  = "res/tabela de habitat.xlsx",
-  sheet = "tabela_final",
-  range = "A1:P21") #ajustar para o tamanho da tabela final 
-hab_gttable
-library(gt)
-hab_gttable <- gt(hab_gttable)
-hab_gttable <- sub_missing(hab_gttable,
-                      columns = everything(), missing_text = "")
-#hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
-hab_gttable
-gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
-saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
+# View final table
+m_wide_s
 ```
 
-```{r ENV-VAR_summ}
-#| eval: false
-#| message: false
-#| warning: false
-#| results: false
-#| code-fold: true
-#| code-overflow: wrap
-#| code-summary: "Code: Environment data variable summary"
-
-# Escolher sumário de uma variavel
-m
-var <- "w.Temp.C"
-m[m$Variable == var, "mean"] #cada valor de var
-summary(m[m$Variable == var, "mean"]) #sumário dos valores de var
-
-# Escolher sumário de um grupo de variáveis do df m
-vars <- unique(grep("^h\\.", m$Variable, value = TRUE))
-summaries <- list() #criam uma lista vazia para guardar os sumários
-# Loop para cada variável do grupo e guarda em summaries
-for (var in vars) {
-  summaries[[var]] <- summary(m[m$Variable == var, "mean"])
-}
-#var is a temporary variable used in the for loop to iterate through
-#each variable name that starts with "h."
-
-summaries
-summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
-round(summary_table, 2)
-#sink(file = "summary_h.txt", split = TRUE)
-round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
-#sink()
-
-# Tabela limpa
-#summary_table <- cbind(Variable = rownames(summary_table), summary_table)
-#rownames(summary_table) <- NULL
-#colnames(summary_table) <- c("Variable", "Min", "Q1", "Median", "Mean", "Q3", "Max")
-#summary_table
-```
+A Análise de Componentes Principais (PCA) aplicada aos dados espaciais (Figura 3) e temporais explicaram 38,6% da variação total dos dados, sendo 23,2% no primeiro eixo (Dim1) e 15,4% no segundo eixo (Dim2). A distribuição das UAs no espaço da ordenação indicou clara diferenciação entre os riachos. Quando analisada a escala espacial (Figura 3), no Barro Branco, as unidades amostrais apresentaram forte associação a elevação, lama e, principalmente, as estruturas como algas, macrófitas, liteira, detritos, grama e cobertura vegetal. O Caiana, por sua vez, mostrou-se associada a variáveis que podem afetar suas características, como maior associação ao pH, a areia, a maior velocidade da água e a profundidade. Apesar desta diferenciação, verificou-se a sobreposição entre as elipses dos grupos, indicando que os riachos compartilham parte das variáveis ambientais. Por outro lado, ao avaliar a variação temporal (Figura 4), as elipses estão sobrepostas, indicando ausência de uma separação visual nítida entre as amostras quando analisadas por períodos. A PERMANOVA indicou diferenças significativas nas características ambientais entre os riachos Caiana e Barro Branco (pseudo-F~1,86~ = 8,4; R² = 0,082; *p* = 0,001). Em relação à variação temporal, embora a PCA não tenha evidenciado uma clara separação visual entre as UAs nos períodos seco e chuvoso, a PERMANOVA detectou diferenças significativas entre os períodos (pseudo-F~1,86~ = 4,2; R² = 0,041; *p* = 0,006). Também foi identificada interação entre os períodos de amostragem e os riachos (pseudo-F~1,86~ = 2,76; R² = 0,027; *p* = 0,036), indicando que o período sobre as variáveis ambientais diferiram. O modelo completo explicou aproximadamente 15,19% da variação total dos dados, enquanto 84,80% corresponderam à variação residual.
 
 ```{r ENV-PCA_fviz}
 #| eval: false
@@ -1427,9 +1532,7 @@ saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 
 ## Descrição da comunidade zooplanctônica
 
-O presente estudo registrou 56 táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 2). No total, foram contabilizadas 39 espécies de Rotifera, 12 de Cladocera e 4 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
-
-Foram identificadas 14 famílias de Rotifera, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas. Lepadellidae e Synchaetidae apresentaram 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6,194 indivíduos, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *B. patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), Lecane crepida Harring, 1914, Lecane leontina (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
+O presente estudo registrou 56 táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 2). No total, foram contabilizadas 39 espécies de Rotifera, 12 de Cladocera e 4 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos. Foram identificadas 14 famílias de Rotifera, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas. Lepadellidae e Synchaetidae apresentaram 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6,194 indivíduos, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *B. patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), Lecane crepida Harring, 1914, Lecane leontina (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
 
 Dentre os Cladocera, Chydoridae foi a a família com maior riqueza encontrada, totalizando 5 espécies, seguida por Macrothricidae, com 3 espécies e Sididae, com 2 espécies. *Alonella dadayi* Birge, 1910 foi a espécie mais representativa, com 1,051 indivíduos e 100% de frequência de ocorrência. Já *Chydorus sp*. apresentou 836 indivíduos, embora tenha ocorrido em apenas 75,0% das UAs. As espécies *Macrothrix mira* Smirnov 1982 *Ilyocryptus spinifer* Herrick, 1882 também apresentaram frequência de ocorrência de 100%.
 
@@ -1961,6 +2064,8 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #summary_table
 ```
 
+Conforme a UPGMA da composição da comunidade zooplanctônica (Figura X), algumas unidades amostrais formaram agrupamentos distintos, embora grande parte não tenha se agregado de forma que houvesse separação entre os riachos ao longo dos períodos. A confiabilidade destes resultados foi confirmada pelos coeficientes cofenéticos (CC~seco~ = 0,84 e CC~chuvoso~ = 0,87), indicando que os resultados refletem bem as dissimilaridades originais de Bray-Curtis entre as UAs. No entanto, foi revelado que a força do agrupamento espacial foi baixa a moderada para as comunidades em ambos os períodos, conforme os coeficientes aglomerativos (AC~seco~ = 0,34 e AC~chuvoso~ = 0,39). A PERMANOVA, baseada na distância de Bray-Curtis, mostrou que houve diferenças significativas quando avaliados os períodos (F~1,86~ = 5,3; R² = 0,056; *p* = 0,001), os rios (F~1,86~ = 1,8; R² = 0,019; *p* = 0,036) e a interação entre ambos (F~1,86~ = 2,0; R² = 0,21; *p* = 0,019).
+
 ```{r, COMM-UPGMA}
 #| eval: false
 #| warning: false
@@ -1968,7 +2073,7 @@ round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Community data Classification UPGMA
+#| code-summary: Classificação de dados da comunidades por UPGMA
 
 #ZOOREBIO_part - UPGMA----
 #####....----
@@ -2022,14 +2127,27 @@ seco_med <- seco_med[rowSums(seco_med) > 0, ]
 chuv_med <- chuv_med[rowSums(chuv_med) > 0, ]
 # Transformação
 seco_trns <- asin(sqrt(decostand(seco_med,
-                              method="total", MARGIN = 2)))
+                                 method="total", MARGIN = 2)))
 chuv_trns <- asin(sqrt(decostand(chuv_med,
-                              method="total", MARGIN = 2)))
+                                 method="total", MARGIN = 2)))
 # Distâncias de Bray-Curtis e UPGMA
 dist_seco <- vegdist(seco_trns, method = "bray")
 dist_chuv <- vegdist(chuv_trns, method = "bray")
 upgma_seco <- hclust(dist_seco, method = "average")
 upgma_chuv <- hclust(dist_chuv, method = "average")
+
+# Coeficientes de aglomeração
+agg_coef_seco <- coef.hclust(upgma_seco)
+agg_coef_chuv <- coef.hclust(upgma_chuv)
+# Gerar a matriz de distância cofenética a partir da árvore UPGMA
+cofe_seco <- cophenetic(upgma_seco)
+cofe_chuv <- cophenetic(upgma_chuv)
+# Calcular a correlação com a matriz de distância original (Bray-Curtis)
+cor_seco <- cor(dist_seco, cofe_seco)
+cor_chuv <- cor(dist_chuv, cofe_chuv)
+# Visualizar os resultados
+cat("Correlação Cofenética (Seco):", round(cor_seco, 3), "\n")
+cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
 
 # Plot dos dendrogramas agrupados por ponto
 upgma_seco$labels <- sub("^[A-Z]-", "", upgma_seco$labels)
@@ -2040,15 +2158,42 @@ dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
 #png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
 par(mfrow = c(1, 2), mar = c(5, 4, 4, 6))
 plot(as.dendrogram(upgma_seco), 
-     horiz = TRUE, 
-     main = "UPGMA - Seco", 
+     horiz = TRUE,
      xlab = "Dissimilaridade (Bray-Curtis)",
      xlim = c(max(attr(dend_seco, "height")), 0))
+title(main = "Seco", line = 0, cex.main = 1.2)
+mtext(paste0("Coeficiente Aglomerativo = ", round(agg_coef_seco, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 1,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte
+mtext(paste0("Coeficiente de Correlação Cofenética = ", round(cor_seco, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 2,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte      
+
+
 plot(as.dendrogram(upgma_chuv), 
      horiz = TRUE, 
-     main = "UPGMA - Chuvoso", 
      xlab = "Dissimilaridade (Bray-Curtis)",
-     xlim = c(max(attr(dend_chuv, "height")), 0))
+     xlim = c(max(attr(dend_chuv, "height")), 0),
+     cex.lab = 1)
+title(main = "Chuvoso", line = 0, cex.main = 1.2)
+mtext(paste0("Coeficiente Aglomerativo = ", round(agg_coef_chuv, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 1,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte
+mtext(paste0("Coeficiente de Correlação Cofenética = ", round(cor_chuv, 2)), 
+      side = 2,           # Lado esquerdo (eixo Y)
+      line = 2,           # Distância da margem
+      at = 7,             # Posição na base do eixo
+      las = 0,            # Orientação do texto
+      cex = 0.8)          # Tamanho da fonte      
 par(mfrow = c(1, 1))
 #dev.off()
 
@@ -2061,9 +2206,247 @@ cor_chuv <- cor(dist_chuv, cofe_chuv)
 # Visualizar os resultados
 cat("Correlação Cofenética (Seco):", round(cor_seco, 3), "\n")
 cat("Correlação Cofenética (Chuvoso):", round(cor_chuv, 3), "\n")
+
+```
+
+```{r, COMM-PERMANOVA}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: Permanova dos dados da comunidade
+
+#ORGANIZANDO DADOS----
+
+dev.off()
+rm(list=ls(all=TRUE))
+cat("\014")
+
+t_grps <- read.csv("res/t_grps.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_dens_trns <- read.csv("res/m_dens_trns.csv",
+                        sep = ";", dec = ".",
+                        row.names = 1,
+                        header = TRUE,
+                        na.strings = NA)
+
+colnames(t_grps)
+m_trab <- m_dens_trns
+library(vegan)
+
+#MRPP---- 
+
+#TRABALHANDO COM MULTIPLAS VARIAVEIS----
+
+# Run MRPP for multiple variables
+fatores <- c("Periodo", "Rio", "Ref_site")
+set.seed(123)
+mrpp_results <- lapply(fatores, function(v) {
+  grp <- as.factor(t_grps[[v]])
+  mrpp(
+    dat = m_trab,
+    grouping = grp,
+    distance = "bray"
+  )
+})
+names(mrpp_results) <- fatores
+mrpp_results
+# Print one result
+mrpp_results$Ref_site
+# Loop through summaries
+sink(file = "res/mrpp-dens.txt", split = TRUE)#, append = TRUE)
+for (v in names(mrpp_results)) {
+  cat("\n============================\n")
+  cat("MRPP for:", v, "\n")
+  print(mrpp_results[[v]])
+}
+sink()
+# Extract key statistics into a table
+mrpp_summary <- data.frame(
+  Variable = fatores,
+  Delta = sapply(mrpp_results, function(x) x$delta),
+  Expected_Delta = sapply(mrpp_results, function(x) x$E.delta),
+  A = sapply(mrpp_results, function(x) x$A),
+  P_value = sapply(mrpp_results, function(x) x$Pvalue)
+)
+sink("res/mrpp-dens.txt", append = TRUE)
+mrpp_summary
+sink()
+
+##TRABALHANDO COM UMA UNICA VARIAVEL----
+
+# Run MRPP for a single variable
+grp <- as.factor(t_grps$Ref_site) #UA, mes, estacao, area, ambiente
+set.seed(123)
+mrpp <- mrpp(dat = m_trab, grouping = grp, distance = "bray")
+mrpp
+summary(mrpp)
+
+# Teste de hipótese para uma unica variavel
+str(mrpp)
+p_value <- mrpp$Pvalue
+print(sprintf("p-value: %.10f", p_value))
+# Conditional statement to check the p-value and print the appropriate message
+if (p_value < 0.05) {
+  print(sprintf("Existe diferença significativa porquê o valor de p é %.10f, sendo menor que o nível de significância de 0.05.", p_value))
+} else {
+  print(sprintf("Não existe diferença significativa porquê o valor de p é %.10f, sendo maior ou igual ao nível de significância de 0.05.", p_value))
+}
+
+##TESTES PAREADOS----
+
+# Todos os pares de níveis do fator
+pairs <- combn(levels(as.factor(grp)), 2, simplify = FALSE)
+pairs
+# Aplicar mrpp para cada par
+res_list <- lapply(pairs, function(p) {
+  sel <- grp %in% p
+  mrpp(dat = m_trab[sel, ], grouping = droplevels(grp[sel]), distance = "bray")
+})
+# Dar nomes aos resultados
+names(res_list) <- sapply(pairs, function(p) paste(p, collapse = "_vs_"))
+# visualizar
+res_list
+# Resumo
+summary_tab <- data.frame(
+  Comparison = names(res_list),
+  A = sapply(res_list, function(x) x$A),
+  Delta = sapply(res_list, function(x) x$delta),
+  Pvalue = sapply(res_list, function(x) x$Pvalue)
+)
+sink("res/mrpp-dens.txt", append = TRUE)
+summary_tab
+sink()
+
+###MATRIX-STYLE TABLE----
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+# Extract unique group names from the comparisons
+groups1 <- sort(unique(unlist(strsplit(summary_tab$Comparison, "_vs_"))))
+# Initialize empty matrix
+pval_matrix <- matrix(NA, nrow = length(groups1), ncol = length(groups1),
+                      dimnames = list(groups1, groups1))
+# Fill matrix with Pvalues
+for (i in 1:nrow(summary_tab)) {
+  comp <- unlist(strsplit(summary_tab$Comparison[i], "_vs_"))
+  g1 <- comp[1]
+  g2 <- comp[2]
+  p <- summary_tab$Pvalue[i]
+  
+  pval_matrix[g1, g2] <- p
+  pval_matrix[g2, g1] <- p  #make symmetric
+}
+
+# Format p-values: red if <0.05
+pval_colored <- ifelse(is.na(pval_matrix), "",
+                       ifelse(pval_matrix < 0.05,
+                              paste0("<span style='color:red;'>", sprintf("%.3f", pval_matrix), "</span>"),
+                              sprintf("%.3f", pval_matrix)))
+
+# Convert to data.frame for kable
+pval_df <- as.data.frame(pval_colored)
+pval_df <- tibble::rownames_to_column(pval_df, "Group")
+# Render HTML table
+matrixstyle <- pval_df %>%
+  kable("html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE)
+matrixstyle
+save_kable(matrixstyle, "res/kb-mrpp-dens_matrixstyle.html")
+
+##GRÁFICO DA MRPP----
+
+png("res/fig-mrpp-dens.png", width = 15, height = 10, units = "in", res = 300)
+def.par <- par(no.readonly = TRUE)
+layout(matrix(1:2,nr=1))
+plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
+with(t_grps, ordihull(ord, grp))
+with(mrpp, {
+  fig.dist <- hist(boot.deltas, xlim=range(c(delta,boot.deltas)),
+                   main="Test of Differences Among Groups")
+  abline(v=delta);
+  text(delta, 2*mean(fig.dist$counts), adj = -0.5,
+       expression(bold(delta)), cex=1.5 )  }
+)
+par(def.par)
+dev.off()
+
+###AVALIANDO AS DISTÂNCIAS MÉDIAS----
+md <- with(t_grps, meandist(vegdist(m_trab), grp))
+md
+summary(md)
+par(mfrow=c(1,2))
+plot(md)
+plot(md, kind="histogram")
+par(mfrow=c(1,1))
+
+#PerMANOVA SIMPLIFICADA----
+
+#browseURL("https://riffomonas.org/code_club/2021-03-18-vegan")
+#browseURL("https://riffomonas.org/code_club/2021-03-22-reproducibility")
+
+library(vegan)
+
+## TESTES PARA VARIAVEIS COM MAIS DE DOIS FATORES
+
+adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray")
+set.seed(123)
+perm <- 999
+all_test <- adonis2(m_trab ~ Ref_site, data = t_grps, method = "bray", permutations = perm)
+all_test
+
+## TESTES PARA VARIAVEIS COM DOIS FATORES
+
+sink(file = "res/perma-dens.txt", split = TRUE)#, append = TRUE)
+set.seed(123)
+perm <- 999
+adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
+adonis2(m_trab ~ Rio, data = t_grps, method = "bray", permutations = perm)
+adonis2(m_trab ~ Periodo + Rio, data = t_grps, #+ no lugar de * tira os residuos
+        method = "bray", permutations = perm) 
+
+## AVALIANDO INTERAÇÕES-----
+
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "terms") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = "margin") #ou by=NULL remove as interações
+adonis2(m_trab ~ Periodo*Rio, data = t_grps, method = "bray", permutations = perm,
+        by = NULL) #ou by=NULL remove as interações
+sink()
+
+#BETADISPER
+
+dist_bray <- vegdist(m_trab, method = "bray")
+t_grps$Periodo_Rio <- interaction(
+  t_grps$Periodo,
+  t_grps$Rio,
+  sep = "_")
+bd <- betadisper(dist_bray, t_grps$Periodo_Rio)
+permutest(bd, permutations = 999)
+
+# PARA CADA FATOR
+
+bd_periodo <- betadisper(dist_bray, t_grps$Periodo)
+bd_rio <- betadisper(dist_bray, t_grps$Rio)
+permutest(bd_periodo, permutations = 999)
+permutest(bd_rio, permutations = 999)
+
 ```
 
 ## Partição da diversidade
+
+Na Partição Total (PT), observou-se que a diversidade local (α~1~) no período seco apresentou valor observado (12,45%) significativamente abaixo do esperado (19,43%; *p* \<0,001). No período chuvoso, este padrão se manteve (23,72% observado e 51,71% esperado; *p* \<0,001). A diferenciação entre habitats (β~1~) também foi significativamente menor que o esperado (Seco: 9,73% observado e 15,03% esperado; Chuvoso: 11,78% observado e 17,68% esperado; *p*\<0,001). Já a diversidade entre riachos (β~3~) apresentou valores superiores ao esperado em ambas as estações (Seco: *SES* = 5,57; Chuvoso: *SES* = 9,48; *p* \< 0,001). Por outro lado, a diversidade observada entre as UAs (β~2~) foi maior que o esperado em ambos os períodos (Seco: *SES* = 0,64; Chuvoso: *SES* = 13,41), embora o período seco não tenha apresentado diferenças significativas (*p* = 0,519).
+
+A diversidade alfa (α~1~) observada no riacho Barro Branco foi significativamente menor que a esperada, tanto no período seco (*SES* = -11,17; *p* \< 0,001) quanto no chuvoso (*SES* = -20,41; *p* \< 0,001). O mesmo acontece para a diversidade entre os habitats (β~1~) (Seco: *SES* = -4,53; Chuvoso: *SES* = -3,13; *p* \< 0,001). Entretanto, a diferenciação entre os pontos (β~2~) foi significativamente maior que o esperado com um nível de significância *p* \< 0,001 (Seco: *SES* = 8,94; Chuvoso: *SES* = 13,37).
+
+No Caiana, a diversidade estimada para α~1~ também foi menor que a esperada, com nível de significância *p* \< 0,001 para seco (*SES* = -15,49) e chuvoso (*SES* = -34,59). Assim como os resultados anteriores, β~1~ observada no período seco foi de 12,08% (*p* = 0,003) e 14,60% no período chuvoso (*p* = 0,007). Já em relação a diversidade observada entre as UAs (β~2~), os valores observados foram superiores aos esperados, com 73,19% no período seco (*p* \< 0,001) e 54,58% no período chuvoso (*p* \< 0,001).
 
 A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
 
@@ -2098,6 +2481,611 @@ No Barro Branco, a α-diversidade observada foi de 0,24%, abaixo do esperado (0,
 O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
 
 Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
+
+```{r, PARTDIV}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: Partição da diversidade
+
+#ZOOREBIO_part - ADDPART----
+#####....----
+
+##ORGANIZANDO DADOS----
+
+dev.off() #apaga os graficos, se houver algum
+rm(list=ls(all=TRUE)) #limpa a memória
+cat("\014") #limpa o console
+
+m_esc <- read.csv("res/m_esc.csv",
+                  sep = ";", dec = ".",
+                  row.names = 1,
+                  header = TRUE,
+                  na.strings = NA)
+m_dens <- read.csv("res/m_dens.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+m_cont <- read.csv("res/m_cont.csv",
+                   sep = ";", dec = ".",
+                   row.names = 1,
+                   header = TRUE,
+                   na.strings = NA)
+
+#BUSCANDO AS ESCALAS
+
+# Partição total
+colnames(m_esc)
+pt.total <- m_esc[, c("pt.rio", "pt.periodo", "pt.rebio")]
+head(pt.total)
+dim(pt.total)
+
+# Partição seco
+pt.seco <- m_esc[, c("s.habitat", "s.ponto", "s.rio", "s.rebio")]
+pt.seco <- pt.seco[grep("^S-", rownames(pt.seco)), ]
+head(pt.seco)
+dim(pt.seco)
+m_cont_s <- m_cont[grep("^S-", rownames(m_cont)), ]
+
+# Partição chuvoso
+pt.chuva <- m_esc[, c("c.habitat", "c.ponto", "c.rio", "c.rebio")]
+pt.chuva <- pt.chuva[grep("^C-", rownames(pt.chuva)), ]
+head(pt.chuva)
+dim(pt.chuva)
+m_cont_c <- m_cont[grep("^C-", rownames(m_cont)), ]
+
+# Partição bb.seco (A)
+bb.seco <- m_esc[, c("bb.habitat", "bb.ponto", "bb.rio")]
+bb.seco <- bb.seco[grep("S-B-", rownames(bb.seco)), ]
+head(bb.seco)
+dim(bb.seco)
+m_cont_bb.seco <- m_cont[grep("S-B-", rownames(m_cont)), ]
+
+# Partição bb.chuva (B)
+bb.chuva <- m_esc[, c("bb.habitat", "bb.ponto", "bb.rio")]
+bb.chuva <- bb.chuva[grep("C-B-", rownames(bb.chuva)), ]
+head(bb.chuva)
+dim(bb.chuva)
+m_cont_bb.chuva <- m_cont[grep("C-B-", rownames(m_cont)), ]
+
+# Partição ca.seco (C)
+ca.seco <- m_esc[, c("ca.habitat", "ca.ponto", "ca.rio")]
+ca.seco <- ca.seco[grep("S-C-", rownames(ca.seco)), ]
+head(ca.seco)
+dim(ca.seco)
+m_cont_ca.seco <- m_cont[grep("S-C-", rownames(m_cont)), ]
+
+# Partição ca.chuva (D)
+ca.chuva <- m_esc[, c("ca.habitat", "ca.ponto", "ca.rio")]
+ca.chuva <- ca.chuva[grep("C-C-", rownames(ca.chuva)), ]
+head(ca.chuva)
+dim(ca.chuva)
+m_cont_ca.chuva <- m_cont[grep("C-C-", rownames(m_cont)), ]
+
+#PARTIÇÃO
+
+#pt.total (m_cont)
+#pt.seco (m_cont_s), pt.chuva (m_cont_c)
+#bb.seco(A) (m_cont_bb.seco), bb.chuva(B) (m_cont_bb.chuva)
+#ca.seco(C) (m_cont_ca.seco), ca.chuva(D) (m_cont_ca.chuva)
+
+library(vegan)
+part1 <- ca.chuva
+cont <- m_cont_ca.chuva
+sink(file = "res/part-pt.ca.chuva.txt")
+#VALORES ABSOLUTOS
+set.seed(666)
+part.a <- adipart(y = cont, x = part1, index = "richness", relative = FALSE,
+                  weights = "unif", nsimul = 999)
+part.a
+
+#EM PORCENTAGEM
+set.seed(666)
+part.p <- adipart(y = cont, x = part1, index = "richness", relative = TRUE,
+                  weights = "unif", nsimul = 999)
+part.p
+
+#saveRDS(part.p, "res/part.p-pt.total.rds")
+#saveRDS(part.p, "res/part.p-pt.seco.rds")
+#saveRDS(part.p, "res/part.p-pt.chuva.rds")
+#saveRDS(part.p, "res/part.p-bb.seco.rds")
+#saveRDS(part.p, "res/part.p-bb.chuva.rds")
+#saveRDS(part.p, "res/part.p-ca.seco.rds")
+#saveRDS(part.p, "res/part.p-ca.chuva.rds")
+
+#part.p <- readRDS("res/part.p-pt.total.rds")
+#part.p <- readRDS("res/part.p-pt.seco.rds")
+#part.p <- readRDS("res/part.p-pt.chuva.rds")
+#part.p <- readRDS("res/part.p-bb.seco.rds")
+#part.p <- readRDS("res/part.p-bb.chuva.rds")
+#part.p <- readRDS("res/part.p-ca.seco.rds")
+#part.p <- readRDS("res/part.p-ca.chuva.rds")
+
+# Extrair valores do objeto part.p
+part2 <- part.p
+
+statistic <- part2$statistic
+SES <- part2$oecosimu$z
+mean <- part2$oecosimu$means
+lower_2.5 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.025)
+median_50 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.50)
+upper_97.5 <- apply(part2$oecosimu$simulated, 1, quantile, probs = 0.975)
+Pr_sim <- part2$oecosimu$pval
+
+# Definir função para adicionar significância
+get_significance <- function(p) {
+  if (p <= 0.001) {
+    return("***")
+  } else if (p <= 0.01) {
+    return("**")
+  } else if (p <= 0.05) {
+    return("*")
+  } else if (p <= 0.1) {
+    return(".")
+  } else {
+    return(" ")
+  }
+}
+significance <- sapply(Pr_sim, get_significance)
+
+# Criar dataframe com todas as informações
+diversity_data <- data.frame(
+  Component = names(statistic),
+  Observed = round(statistic, 2),
+  SES = round(SES, 2),
+  Mean = round(mean, 2),
+  Lower_2.5 = round(lower_2.5, 2),
+  Median_50 = round(median_50, 2),
+  Upper_97.5 = round(upper_97.5, 2),
+  Pr_sim = Pr_sim,
+  Sign = significance
+)
+
+# Exibir a tabela
+library(gt)
+print(diversity_data)
+#str(part2)
+gt(diversity_data)
+
+# Criar dataframe com valores observados e esperados
+observed_values <- part2$statistic
+observed_values
+expected_values <- part2$oecosimu$means
+expected_values
+
+# Combine observed and expected values into a dataframe
+df <- data.frame(
+  Component = rep(names(observed_values), 2), # Use names from observed_values
+  Type = rep(c("Observed", "Expected"), each = length(observed_values)),
+  Value = c(observed_values, expected_values) # Observado primeiro, Esperado depois
+)
+
+df$Type <- factor(df$Type, levels = c("Observed", "Expected"))
+df
+df_filtered <- df[!df$Component %in% c("alpha.2", "alpha.3", "alpha.4", "gamma"), ]
+df_filtered$Component <- factor(df_filtered$Component, levels = c("beta.4", "beta.3", "beta.2", "beta.1", "alpha.1"))
+df_filtered
+
+diversity_data <- df_filtered
+diversity_data
+
+# Calcular porcentagens para cada componente
+diversity_data <- diversity_data %>%
+  group_by(Type) %>%
+  mutate(Percentage = Value / sum(Value) * 100)
+
+hier <- hiersimu(y = cont, x = part1, FUN = diversity)
+hier
+sink()
+
+#saveRDS(diversity_data, "res/part-pt.gtotal.rds")
+#saveRDS(diversity_data, "res/part-pt.gseco.rds")
+#saveRDS(diversity_data, "res/part-pt.gchuva.rds")
+#saveRDS(diversity_data, "res/part-bb.gseco.rds")
+#saveRDS(diversity_data, "res/part-bb.gchuva.rds")
+#saveRDS(diversity_data, "res/part-ca.gseco.rds")
+#saveRDS(diversity_data, "res/part-ca.gchuva.rds")
+
+#GRÁFICOS
+
+library(ggplot2)
+library(dplyr)
+
+# PARTIÇÃO TOTAL
+
+pt.gtotal <- readRDS("res/part-pt.gtotal.rds")
+ggplot_pt.total <- ggplot(pt.gtotal, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Total",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+    legend.position = "right"
+  )
+ggplot_pt.total
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_total.png")
+
+# PARTIÇÃO POR PERÍODO
+
+# Partição seco #pt.seco (m_cont_s)
+pt.gseco <- readRDS("res/part-pt.gseco.rds")
+ggplot_pt.seco <- ggplot(pt.gseco, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Dry",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), #hjust 0=left, 0.5=center, 1=right
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_pt.seco
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_seco.png")
+
+# Partição chuvoso #pt.chuva (m_cont_c)
+pt.gchuva <- readRDS("res/part-pt.gchuva.rds")
+ggplot_pt.chuva <- ggplot(pt.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Wet",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), #hjust 0=left, 0.5=center, 1=right
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_pt.chuva
+ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_chuva.png")
+
+# PARTIÇÃO POR RIO
+
+# bb.seco (A) #bb.seco(A) (m_cont_bb.seco)
+bb.gseco <- readRDS("res/part-bb.gseco.rds")
+ggplot_bb.seco <- ggplot(bb.gseco, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Dry",
+       y = "% of the total diversity",
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), #hjust 0=left, 0.5=center, 1=right
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_bb.seco
+ggsave(ggplot_bb.seco, dpi = 300, filename = "res/fig-bb.seco.png")
+
+# bb.chuva (B) #bb.chuva(B) (m_cont_bb.chuva)
+bb.gchuva <- readRDS("res/part-bb.gchuva.rds")
+ggplot_bb.chuva <- ggplot(bb.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Wet",
+       y = "Barro Branco stream",
+       x = "") +
+  scale_y_continuous(position = "right") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), #hjust 0=left, 0.5=center, 1=right
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+  )
+ggplot_bb.chuva
+ggsave(ggplot_bb.chuva, dpi = 300, filename = "res/fig-bb.chuva.png")
+
+# ca.seco (C) #ca.seco(C) (m_cont_ca.seco)
+ca.gseco <- readRDS("res/part-ca.gseco.rds")
+ggplot_ca.seco <- ggplot(ca.gseco, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "",
+       y = "% of the total diversity", #\n quebra de linha
+       x = "") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    panel.grid = element_blank(),
+  )
+ggplot_ca.seco
+ggsave(ggplot_ca.seco, dpi = 300, filename = "res/fig-ca.seco.png")
+
+# ca.chuva (D) #ca.chuva(D) (m_cont_ca.chuva)
+ca.gchuva <- readRDS("res/part-ca.gchuva.rds")
+ggplot_ca.chuva <- ggplot(ca.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "",
+       y = "Caiana stream",
+       x = "") +
+  scale_y_continuous(position = "right") +
+  scale_fill_manual(values = c("alpha.1" = "black",
+                               "beta.1" = "darkgray",
+                               "beta.2" = "gray",
+                               "beta.3" = "lightgray",
+                               "beta.4" = gray(0.9)),
+                    labels = c("alpha.1" = "Habitat (α1)",
+                               "beta.1"  = "Habitat (β1)",
+                               "beta.2"  = "Site (β2)",
+                               "beta.3"  = "Stream (β3)",
+                               "beta.4"  = "β4")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5),
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+  )
+ggplot_ca.chuva
+ggsave(ggplot_ca.chuva, dpi = 300, filename = "res/fig-ca.chuva.png")
+
+# PAINEL DE GRÁFICOS CHUVOSO E SECO
+
+library(gridExtra)
+
+# Organizar os gráficos em 2 linhas e 2 colunas
+painel_c_s <- grid.arrange(
+  ggplot_pt.seco, ggplot_pt.chuva, 
+  ncol = 1, nrow = 2
+)
+
+# Salvar o painel em alta resolução (300 DPI)
+ggsave(
+  filename = "res/fig-painel_pt.cs.png",
+  plot = painel_c_s,
+  width = 4,
+  height = 8,
+  dpi = 300
+)
+
+# PAINEL DE GRÁFICOS POR RIO
+
+library(patchwork)
+
+shared_scale <- scale_fill_manual(
+  values = c("alpha.1" = "black",
+             "beta.1"  = "darkgray",
+             "beta.2"  = "gray",
+             "beta.3"  = "lightgray",
+             "beta.4"  = gray(0.9)),
+  labels = c("alpha.1" = "Habitat (α1)",
+             "beta.1"  = "Habitat (β1)",
+             "beta.2"  = "Site (β2)",
+             "beta.3"  = "Stream (β3)",
+             "beta.4"  = "β4"),
+  drop = TRUE)
+
+p1 <- ggplot_bb.seco  + shared_scale
+p2 <- ggplot_bb.chuva + shared_scale
+p3 <- ggplot_ca.seco  + shared_scale
+p4 <- ggplot_ca.chuva + shared_scale
+
+painel_rios <- (p1 + p2) / (p3 + p4) + 
+  plot_layout(guides = "collect") & 
+  theme(legend.position = "right",
+        legend.title = element_blank())
+
+painel_rios
+
+ggsave(
+  filename = "res/fig-painel_pt.rios.png",
+  plot = painel_rios,
+  width = 7,
+  height = 8,
+  dpi = 300
+)
+
+```
+
+```{r, PARTADI}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: Partição aditiva
+
+#TABELA DE PARTIÇÃO----
+
+#CRIANDO UMA FUNÇÃO DE EXTRAÇÃO
+
+extrair_linha_particao <- function(part_obj, sistema, periodo) {
+  
+  mapa_componentes <- c(
+    "alpha.1" = "α1 (Habitat)",
+    "alpha.2" = "α2 (Site)",
+    "alpha.3" = "α3 (Stream)",
+    "beta.1"  = "β1 (Between habitats)",
+    "beta.2"  = "β2 (Between sites)",
+    "beta.3"  = "β3 (Between streams)",
+    "gamma"   = "γ (Total richness)"
+  )
+  
+  stat <- part_obj$statistic
+  comp_names <- names(stat)
+  
+  df <- data.frame(
+    Sistema    = sistema,
+    Periodo    = periodo,
+    Componente = ifelse(comp_names %in% names(mapa_componentes), 
+                        mapa_componentes[comp_names], comp_names),
+    Observado  = sprintf("%.2f%%", stat * 100),
+    Esperado   = sprintf("%.2f%%", part_obj$oecosimu$means * 100),
+    SES        = sprintf("%.2f", part_obj$oecosimu$z),
+    p_val      = part_obj$oecosimu$pval,
+    stringsAsFactors = FALSE
+  )
+  
+  df$p_valor <- ifelse(df$p_val <= 0.001, "< 0.001*", 
+                       ifelse(df$p_val <= 0.05, sprintf("%.3f*", df$p_val), 
+                              sprintf("%.3f", df$p_val)))
+  
+  return(df %>% select(-p_val))
+}
+
+#PROCESSAMENTO E RUNDOWN DOS OBJETOS ADIPART
+
+# Rodando o adipart para cada cenário e gerando os objetos corretos
+
+#pt.total (m_cont)
+#pt.seco (m_cont_s), pt.chuva (m_cont_c)
+#bb.seco(A) (m_cont_bb.seco), bb.chuva(B) (m_cont_bb.chuva)
+#ca.seco(C) (m_cont_ca.seco), ca.chuva(D) (m_cont_ca.chuva)
+
+part_p_pt.total <- adipart(y = m_cont, x = pt.total, index = "richness", relative = TRUE,
+                           weights = "unif", nsimul = 999)
+
+set.seed(666)
+part_p_pt.seco <- adipart(y = m_cont_s,  x = pt.seco, index = "richness", relative = TRUE,
+                          weights = "unif", nsimul = 999)
+part_p_pt.chuva <- adipart(y = m_cont_c,  x = pt.chuva, index = "richness", relative = TRUE,
+                           weights = "unif", nsimul = 999)
+
+part_p_bb.seco <- adipart(y = m_cont_bb.seco,  x = bb.seco, index = "richness", relative = TRUE,
+                          weights = "unif", nsimul = 999)
+part_p_bb.chuva <- adipart(y = m_cont_bb.chuva,  x = bb.chuva, index = "richness", relative = TRUE,
+                           weights = "unif", nsimul = 999)
+
+part_p_ca.seco <- adipart(y = m_cont_ca.seco,  x = ca.seco, index = "richness", relative = TRUE,
+                          weights = "unif", nsimul = 999)
+part_p_ca.chuva <- adipart(y = m_cont_ca.chuva,  x = ca.chuva, index = "richness", relative = TRUE,
+                           weights = "unif", nsimul = 999)
+
+part_p_pt.seco <- readRDS("res/part_p_pt.seco.rds")
+
+
+part_p_pt.total <- readRDS("res/part.p-pt.total.rds")
+part_p_pt.seco <- readRDS("res/part.p-pt.seco.rds")
+part_p_pt.chuva <- readRDS("res/part.p-pt.chuva.rds")
+part_p_bb.seco <- readRDS("res/part.p-bb.seco.rds")
+part_p_bb.chuva <- readRDS("res/part.p-bb.chuva.rds")
+part_p_ca.seco <- readRDS("res/part.p-ca.seco.rds")
+part_p_ca.chuva <- readRDS("res/part.p-ca.chuva.rds")
+
+# CONSOLIDAÇÃO DA TABELA
+
+tabela_raw <- rbind(
+  extrair_linha_particao(part_p_pt.seco, "Partição Total (PT)", "Seco"),
+  extrair_linha_particao(part_p_pt.chuva, "Partição Total (PT)", "Chuvoso"),
+  extrair_linha_particao(part_p_bb.seco, "Riacho Barro Branco (BB)", "Seco"),
+  extrair_linha_particao(part_p_bb.chuva, "Riacho Barro Branco (BB)", "Chuvoso"),
+  extrair_linha_particao(part_p_ca.seco, "Riacho Caiana (CA)", "Seco"),
+  extrair_linha_particao(part_p_ca.chuva, "Riacho Caiana (CA)", "Chuvoso")
+)
+
+# IMPRESSÃO DA TABELA GT
+
+tabela_final <- tabela_raw %>%
+  gt(groupname_col = "Sistema") %>%
+  cols_label(
+    Periodo    = "Período",
+    Componente = "Componente Hierárquico",
+    Observado  = "Observado (%)",
+    Esperado   = "Esperado (%)",
+    SES        = "SES",
+    p_valor    = "p-valor"
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = c("Periodo", "Observado", "Esperado", "SES", "p_valor")
+  )
+tabela_final
+
+# Formatar nomes das colunas diretamente
+tabela_simples <- tabela_raw
+colnames(tabela_simples) <- c("Sistema", "Período", "Componente", "Obs (%)", "Esp (%)", "SES", "p-valor")
+
+# Imprimir no console
+print(tabela_simples, row.names = FALSE)
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(tabela_simples, file = "res/tabela de partição.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/tabela de partição.xlsx")
+writeData(wb, sheet = "Sheet 1", x = tabela_simples)
+saveWorkbook(wb, "res/tabela de partição.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+part_gttable <- read_excel(
+  path  = "res/tabela de partição.xlsx",
+  sheet = "tabela_final",
+  range = "A1:G28") #ajustar para o tamanho da tabela final 
+part_gttable
+library(gt)
+part_gttable <- gt(part_gttable)
+part_gttable <- sub_missing(part_gttable,
+                            columns = everything(), missing_text = "")
+part_gttable
+gtsave(part_gttable, "res/gt-part_gttable_xlsx.html")
+saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
+```
 
 ```{r, ADDPART}
 #| eval: false
@@ -2644,6 +3632,14 @@ De modo geral, mesmo sob a influência das condições ambientais e de conserva�
 
 Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho de campo. EGS agradece ao Programa de Iniciação Científica (PIBIC-UEPB) e ao CNPq pela bolsa concedida.
 
+# Autorização de coletas {.unnumbered}
+
+O presente trabalho teve duração de um ano e foi desenvolvido no laboratório de Ecologia (LABECO) do Campus V da UEPB. A coleta dos organismos foi realizada na Reserva Biológica Guaribas (REBIO Guaribas) de acordo com as licenças de coleta MMA/ICMBIO/SISBIO Número: 89415-1 e Número: 89429-2 (com datas de emissão de 04/07/2023 e 04/08/2023, respectivamente).
+
+# Uso de Inteligência Artificial Generativa (IAGen) {.unnumbered}
+
+Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a finalidade de auxiliar na revisão gramatical e no aprimoramento da clareza e da fluência da redação. Ressalta-se que todo o conteúdo gerado foi revisado, editado e validado pelos autores, garantindo a integridade e a autoria intelectual dos dados apresentados [@cnpq2026; @garrido2026].
+
 # Referências {.unnumbered}
 
 ::: {#refs}
@@ -2670,9 +3666,7 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 @fig-particao: <!--# Observed and expected diversity, partitioned into one alpha and three beta components, expressed as percent of total species richness. Numbers indicate the proportion of randomized samples containing more species than the observed sample for each partition. α1: subsample species richness, β1: beta diversity among sub-samples; β2: beta diversity among pools or habitats within pool, and β3: beta diversity among river reaches.-->
 
-@tbl-hab_gttable: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
-
-@tbl-nutri_gttable: <!--# Nutrient concentration (μg L⁻¹) averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+@tbl-hab_gttable_pt: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
 @tbl-spp_gttable: <!--# Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
 
@@ -2748,24 +3742,12 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 <details>
 
-<summary>@tbl-hab_gttable: Environmental data table</summary>
+<summary>@tbl-hab_gttable_pt: Environmental data table</summary>
 
-```{r tbl-hab_gttable}
+```{r tbl-hab_gttable_pt}
 #| echo: false
 #| tbl-cap: "Environment data GT table."
-readRDS("res/gt-hab_gttable_xlsx.rds")
-```
-
-</details>
-
-<details>
-
-<summary>@tbl-nutri_gttable: Nutrient data table</summary>
-
-```{r tbl-nutri_gttable}
-#| echo: false
-#| tbl-cap: "Nutrient concentrations at the sampling sites."
-readRDS("res/gt-nutri_gttable_xlsx.rds")
+readRDS("res/gt-hab_gttable_pt_xlsx.rds")
 ```
 
 </details>
