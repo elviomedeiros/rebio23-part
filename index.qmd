@@ -149,7 +149,7 @@ A decomposição da diversidade de espécies em escalas locais e regionais foi r
 
 $$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}
 
-em que γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβ [@oksanen2020; @whittaker1972]. A diversidade (βᵢ) foi calculada a partir da diversidade total (γ) e diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Portanto, a diversidade total (γ) é composta pela diversidade média local (α₁) e pela soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972]. Para a confecção dos gráficos e figuras referentes a partição foram utilizados os pacotes *eulerr*, *vegan* e *VennDiagram* e a função *adipart* para a partição aditiva.
+em que γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβ [@oksanen2020; @whittaker1972]. A diversidade (βᵢ) foi calculada a partir da diversidade total (γ) e diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Assim, a diversidade total (γ) é composta pela diversidade média local (α₁) e pela soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972]. Para a confecção dos gráficos e figuras referentes a partição foram utilizados os pacotes *eulerr*, *vegan* e *VennDiagram* e a função *adipart* para a partição aditiva.
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -1425,15 +1425,15 @@ gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
 saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
 ```
 
-## Descrição da comunidade
+## Descrição da comunidade zooplanctônica
 
 O presente estudo registrou 56 táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 2). No total, foram contabilizadas 39 espécies de Rotifera, 12 de Cladocera e 4 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos.
 
-Entre os Rotíferos, foram identificadas 14 famílias, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas, nas quais Lepadellidae e Synchaetidae apresentaram ambas 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6,194 indivíduos contabilizados, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *Brachionus patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), Lecane crepida Harring, 1914, Lecane leontina (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
+Foram identificadas 14 famílias de Rotifera, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas. Lepadellidae e Synchaetidae apresentaram 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6,194 indivíduos, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *B. patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), Lecane crepida Harring, 1914, Lecane leontina (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
 
-Dentre os Cladóceros, a maior família encontrada foi Chydoridae, com uma riqueza total de 5 espécies, seguida por Macrothricidae (3 espécies) e Sididae (2 espécies). *Alonella dadayi* Birge, 1910 foi a família mais representativa, com 1,051 indivíduos e 100% de frequência de ocorrência e Chydorus sp. (836 indivíduos), embora tenha ocorrido em apenas 75,0% das UAs. As espécies *Macrothrix mira* Smirnov 1982 *Ilyocryptus spinifer* Herrick, 1882 ocorreram em 100% das unidades amostrais.
+Dentre os Cladocera, Chydoridae foi a a família com maior riqueza encontrada, totalizando 5 espécies, seguida por Macrothricidae, com 3 espécies e Sididae, com 2 espécies. *Alonella dadayi* Birge, 1910 foi a espécie mais representativa, com 1,051 indivíduos e 100% de frequência de ocorrência. Já *Chydorus sp*. apresentou 836 indivíduos, embora tenha ocorrido em apenas 75,0% das UAs. As espécies *Macrothrix mira* Smirnov 1982 *Ilyocryptus spinifer* Herrick, 1882 também apresentaram frequência de ocorrência de 100%.
 
-Em relação aos Copépodos, foram encontrados duas famílias, Cyclopidae (Cyclopoida) com 3 espécies e Diaptomidae (Calanoida) com 1 espécie. *Paracyclops* sp. e *Mesocyclops* sp. foram os únicos táxons a apresentarem 100% de frequência de ocorrência, com 231 e 141 indivíduos registrados, respectivamente. Estágios juvenis de nauplius e copepodito foram os mais comuns nesse grupo, ocorrendo em 100% dos pontos amostrados, com um total de 2,433 e 4,061 indivíduos, respectivamente.
+Em relação aos Copepoda, foram identificadas duas famílias, Cyclopidae (Cyclopoida) com 3 espécies e Diaptomidae (Calanoida) com 1 espécie. *Paracyclops* sp. e *Mesocyclops* sp. foram os únicos táxons a apresentarem frequência de ocorrência de 100%, com 231 e 141 indivíduos registrados, respectivamente. Estágios juvenis de nauplius e copepodito foram os mais comuns nesse grupo, ocorrendo em 100% dos pontos amostrados, com um total de 2.433 e 4.061 indivíduos, respectivamente.
 
 ```{r COMM-ACCUMCURV}
 #| eval: false
@@ -2654,7 +2654,7 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 # Figuras e Tabelas {.unnumbered}
 
-@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: @mapbiomas2026 e @inpe2022 (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
+@fig-mapa: Mapa da área de influência da REBIO Guaribas localizada no município de Mamanguape. Fonte: @inpe2022 e @mapbiomas2026 (Site 1 06°43'06"S and 35°10'54"W; Site 2 06°42'38"S and 35°10'38"W; Site 3 06°43'06"S and 35°10'54"W; Site 4 06°41'46"S and 35°10'36"W; Site 5 06°40'56"S and 35°10'27"; Site 6 06°40'18"S and 35°10'34"W).
 
 @fig-modelo_escalas_espaciais: Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. Fonte: Adaptado de @frissell1986.
 
@@ -2684,7 +2684,7 @@ Somos profundamente gratos à equipe da REBIO Guaribas pelo auxílio no trabalho
 
 <summary>@fig-mapa: Localização das Unidades Amostrais</summary>
 
-![Mapa da área de influência da REBIO Guaribas. Fonte: @mapbiomas2026 e @inpe2022.](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
+![Mapa da área de influência da REBIO Guaribas. Fonte: @inpe2022 e @mapbiomas2026](imagens/Uso%20de%20Solo%20Rebio_pt.png){#fig-mapa}
 
 </details>
 
