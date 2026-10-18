@@ -1,0 +1,83 @@
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo, data = t_grps, permutations = perm, method = "bray")
+         Df SumOfSqs      R2      F Pr(>F)  
+Model     1  0.04509 0.04163 3.8225  0.012 *
+Residual 88  1.03797 0.95837                
+Total    89  1.08306 1.00000                
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Rio, data = t_grps, permutations = perm, method = "bray")
+         Df SumOfSqs     R2      F Pr(>F)    
+Model     1  0.08838 0.0816 7.8188  0.001 ***
+Residual 88  0.99468 0.9184                  
+Total    89  1.08306 1.0000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo * Rio, data = t_grps)
+         Df SumOfSqs      R2      F Pr(>F)    
+Model     3  0.16348 0.15095 5.0965  0.001 ***
+Residual 86  0.91957 0.84905                  
+Total    89  1.08306 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo * Rio, data = t_grps, by = "terms")
+            Df SumOfSqs      R2      F Pr(>F)   
+Periodo      1  0.04509 0.04163 4.2166  0.005 **
+Rio          1  0.08838 0.08160 8.2652  0.002 **
+Periodo:Rio  1  0.03002 0.02772 2.8075  0.032 * 
+Residual    86  0.91957 0.84905                 
+Total       89  1.08306 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo, data = t_grps, method = "bray")
+         Df SumOfSqs      R2      F Pr(>F)   
+Model     1  0.04509 0.04163 3.8225  0.008 **
+Residual 88  1.03797 0.95837                 
+Total    89  1.08306 1.00000                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo * Rio, data = t_grps, method = "bray")
+         Df SumOfSqs      R2      F Pr(>F)    
+Model     3  0.16348 0.15095 5.0965  0.001 ***
+Residual 86  0.91957 0.84905                  
+Total    89  1.08306 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = m_trab ~ Periodo * Rio, data = t_grps, method = "bray", by = "terms", strata = NULL)
+            Df SumOfSqs      R2      F Pr(>F)    
+Periodo      1  0.04509 0.04163 4.2166  0.004 ** 
+Rio          1  0.08838 0.08160 8.2652  0.001 ***
+Periodo:Rio  1  0.03002 0.02772 2.8075  0.031 *  
+Residual    86  0.91957 0.84905                  
+Total       89  1.08306 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

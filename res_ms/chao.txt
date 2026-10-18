@@ -1,0 +1,3 @@
+        Stream Observed Chao1       SE Lower95  Upper95
+1 Barro Branco       47  58.0 8.870301      47 75.38579
+2       Caiana       50  54.2 4.336893      50 62.70031
