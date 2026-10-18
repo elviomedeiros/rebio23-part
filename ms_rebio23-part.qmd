@@ -95,17 +95,17 @@ editor_options:
 
 # Introduction
 
-<!--# MATA ATLÂNTICA -->The Atlantic Forest, recognized for its species richness and high level of endemism, is one of the most threatened tropical forests in the world, making it a global priority for biodiversity conservation <!--# CITAS DE CONSERVAÇÃO --> --> [@fonseca1985; @tabarelli2010; @myers2000]. Originally, its vegetation cover extended over 1.5 million km², however, centuries of human occupation and resource exploitation have led to severe landscape reduction, compromising the ecological integrity of its remnants and the maintenance of biodiversity [@tabarelli2010; @safar2020; @vancine2024]. Habitat loss driven by deforestation is directly linked to forest fragmentation, which promotes the isolation of remnants, reduces landscape connectivity, and restricts species dispersal [@souza2025; @tabarelli2010; @zaú1998].
+<!--# MATA ATLÂNTICA -->The Atlantic Forest, recognized for its species richness and high level of endemism, is one of the most threatened tropical forests in the world, making it a global priority for biodiversity conservation <!--# CITAS DE CONSERVAÇÃO --> --\> [@fonseca1985; @tabarelli2010; @myers2000]. Originally, its vegetation cover extended over 1.5 million km², however, centuries of human occupation and resource exploitation have led to severe landscape reduction, compromising the ecological integrity of its remnants and the maintenance of biodiversity [@tabarelli2010; @safar2020; @vancine2024]. Habitat loss driven by deforestation is directly linked to forest fragmentation, which promotes the isolation of remnants, reduces landscape connectivity, and restricts species dispersal [@souza2025; @tabarelli2010; @zaú1998].
 
 <!--# MA E RIACHOS -->These impacts are not confined to terrestrial environments, they extend to the associated aquatic ecosystems and, most importantly, headwater streams [@meyer2007; @malabarba2006]. Forest fragmentation and land management can generate significant impacts on stream fauna within the Atlantic Forest, as aquatic organisms are highly sensitive to changes in natural water conditions [@england2004]. Furthermore, landscape-level processes—such as disturbance, fragmentation, dispersal, and mosaic structure—exert a direct influence on local populations [@maltchik2006; @lôbo2011]. Therefore, understanding the ecological processes structuring freshwater communities is essential to comprehend how diversity is distributed across different spatial scales [@ávila2011] and to evaluate the ecological health of stream.
 
-<!--# RIACHOS E TEMPO -->In addition to landscape alterations, stream dynamics are strongly driven by seasonal factors. The Atlantic Forest features a predominantly tropical climate with rainfall distributed throughout the year. These hydrological fluctuations directly influence Neotropical freshwater environments by modifying physical and chemical conditions \[@barboza2024\]. The shift between dry and rainy seasons alters resource availability, microhabitat structure, and the establishment and persistence of organisms, thereby shaping community composition and dynamics [@souza2025; @ward1998]. During the dry season, reduced precipitation and lower streamflow stabilize hydrological conditions, which may favor the persistence of local populations. Conversely, the wet season is characterized by increased rainfall and discharge, intensifying disturbance events, dispersal, and species turnover. Consequently, seasonality acts as a major driver of aquatic community organization, making these organisms valuable biological tools for assessing the ecological state of freshwater systems [@souza2025], and shifts in species composition and community turnover often reflect underlying alterations in environmental conditions \[@freiry2020; @melo2013; @keppeler2004; @shell2018\].
+<!--# RIACHOS E TEMPO -->In addition to landscape alterations, stream dynamics are strongly driven by seasonal factors. The Atlantic Forest features a predominantly tropical climate with rainfall distributed throughout the year. These hydrological fluctuations directly influence Neotropical freshwater environments by modifying physical and chemical conditions [@barboza2024]. The shift between dry and rainy seasons alters resource availability, microhabitat structure, and the establishment and persistence of organisms, thereby shaping community composition and dynamics [@souza2025; @ward1998]. During the dry season, reduced precipitation and lower streamflow stabilize hydrological conditions, which may favor the persistence of local populations. Conversely, the wet season is characterized by increased rainfall and discharge, intensifying disturbance events, dispersal, and species turnover. Consequently, seasonality acts as a major driver of aquatic community organization, making these organisms valuable biological tools for assessing the ecological state of freshwater systems [@souza2025], and shifts in species composition and community turnover often reflect underlying alterations in environmental conditions [@freiry2020; @melo2013; @keppeler2004; @shell2018].
 
-Within this context, the design of efficient protected areas that incorporate aquatic systems, ought to rely on a robust network of interconnected spatial scales and meaningful observation of species distributions within and surrounding the areas of biological interest [@maltchik2006; @socolar2016; @herbert2010]. <!--# ZOOPLÂNCTON (FICOU SOLTO) -->Among the biological components of lotic communities, zooplankton—particularly Rotifera, Cladocera, and Copepoda—play a pivotal role. These organisms exhibit diverse body sizes, morphologies, life histories, and functional roles, serving as excellent bioindicators due to their rapid sensitivity to environmental changes [@bonecker2013]. Furthermore, zooplankton constitute a critical food source for fish and other organisms, an essential trophic bridge that transfers energy from primary producers to higher trophic levels \[@altindag2025; @balkic2022; @marcelino2025; @souza2025\].
+Within this context, the design of efficient protected areas that incorporate aquatic systems, ought to rely on a robust network of interconnected spatial scales and meaningful observation of species distributions within and surrounding the areas of biological interest [@maltchik2006; @socolar2016; @herbert2010]. <!--# ZOOPLÂNCTON -->Essential to this is the choice of relevant species, capable of representing the central elements of the biological components of lotic communities. Zooplankton, particularly Rotifera, Cladocera, and Copepoda, play a pivotal role in stream ecosystems [@santos2024; @amaral2024]. These organisms exhibit diverse body sizes, morphologies, life histories, and functional roles, serving as excellent bioindicators due to their rapid sensitivity to environmental changes [@bonecker2013]. Furthermore, zooplankton constitute a critical food source for fish and other organisms, an essential trophic bridge that transfers energy from primary producers to higher trophic levels [@altindag2025; @balkic2022; @marcelino2025; @souza2025].
 
-<!--# PREPARANDO PARA PARTIÇÃO -->In recent decades, researchers have argued that biodiversity assessments should not be reduced to a single diversity index. @romanelli2022 proposes that a multiple statistical diversity approach with multi-taxon evaluation provides a more comprehensive understanding of environmental ecological health and species responses to anthropogenic stress. Nevertheless, few approaches allow for the assessment of diversity organization across explicit hierarchical spatial scales, such as in streams. Diversity partitioning stands out in this context. This framework decomposes overall diversity across multiple spatial levels, testing whether observed diversity is higher or lower than expected under a null distribution model [@lopes2014], thereby offering valuable insights into community assembly and underlying ecological drivers.
+<!--# PREPARANDO PARA PARTIÇÃO -->Furthermore, in recent decades, researchers have argued that biodiversity assessments should not be reduced to a single diversity index. @romanelli2022 proposes that a multiple statistical diversity approach with multi-taxon evaluation provides a more comprehensive understanding of environmental ecological health and species responses to anthropogenic stress. Nevertheless, few approaches allow for the assessment of diversity organization across explicit hierarchical spatial scales, such as in streams. Diversity partitioning stands out in this context. This framework decomposes overall diversity across multiple spatial levels, testing whether observed diversity is higher or lower than expected under a null distribution model [@lopes2014], thereby offering valuable insights into community assembly and underlying ecological drivers.
 
-<!--# PARTIÇÃO ADITIVA -->Among the diversity partitioning framework, additive partitioning is widely applied in ecological studies, even though, <!--# CONFERIR CITAÇÃO --> --> @ligeiro2010 point out that its application in freshwater systems remains relatively scarce and highlights a critical knowledge gap regarding alpha and beta diversity distribution in freshwater systems. Additive diversity partitioning has been shown to provide a robust framework to evaluate how freshwater communities respond to landscape fragmentation and/or seasonal dynamics [@akhyar2026]. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales [@jost2007]. That is, under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
+<!--# PARTIÇÃO ADITIVA -->Among the diversity partitioning framework, additive partitioning is widely applied in ecological studies, even though, <!--# CONFERIR CITAÇÃO--> --> @ligeiro2010 point out that its application in freshwater systems remains relatively scarce and highlights a critical knowledge gap regarding alpha and beta diversity distribution in freshwater systems. Additive diversity partitioning has been shown to provide a robust framework to evaluate how freshwater communities respond to landscape fragmentation and/or seasonal dynamics [@akhyar2026]. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales [@jost2007]. That is, under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
 
 <!--# PARTIÇÃO, TURNOVER E NESTEDNESS -->Therefore, understanding the spatial structure and distribution of biodiversity across scales remains a central theme in community ecology and conservation planning [@lande1996; @crist2003]. These approaches are based on the concepts of species turnover and nestedness, two distinct components used to break down and understand beta diversity – which measures how much species composition changes between different communities or sites [@baselga2010; @baselga2012]. <!--# ALFA, BETA E GAMA -->Total regional species richness ($\gamma$-diversity) can be hierarchically partitioned into its additive components: local richness ($\alpha$-diversity) and species turnover among assemblages ($\beta$-diversity) across spatial or temporal scales [@lande1996]. Examining these components allows ecologists to disentangle whether regional diversity is primarily governed by fine-scale local processes or broader spatial heterogeneity [@crist2003; @tuomisto2010]. <!--# BETA DIV, TURNOVER E NESTEDNESS -->Beta diversity itself reflects the variation in species composition among sites and is driven by two distinct ecological phenomena: turnover (species replacement) and nestedness (richness differences) [@baselga2010]. Species turnover occurs when species are replaced by different species along environmental or spatial gradients, usually driven by environmental filtering, competitive exclusion, or dispersal limitation [@baselga2010; @tuomisto2010]. In contrast, nestedness occurs when communities at species-poor sites are non-random subsets of those at species-rich sites [@baselga2010]. Nested patterns typically stem from deterministic processes such as selective extinction, differential colonization capacity, or habitat fragmentation that sequentially eliminate sensitive taxa while retaining tolerant generalists [@baselga2010; @veech2003].
 
@@ -230,32 +230,32 @@ nutrientes <- na.omit(nutrientes)
 
 ##SALVANDO MATRIZES FINAIS----
 
-write.table(m_part_cols, "res/m_hab_part.csv",
+write.table(m_part_cols, "res_ms/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-write.table(nutrientes, "res/t_nutri.csv",
+write.table(nutrientes, "res_ms/t_nutri.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-write.table(t_grps, "res/t_grps.csv",
+write.table(t_grps, "res_ms/t_grps.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-t_nutri <- read.csv("res/t_nutri.csv",
+t_nutri <- read.csv("res_ms/t_nutri.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
                   na.strings = NA)
-m_hab <- read.csv("res/m_hab_part.csv",
+m_hab <- read.csv("res_ms/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -304,12 +304,12 @@ m_dens <- as.data.frame((t(m_part_rows)))
 
 ##SALVANDO MATRIZES FINAIS REMOVIDAS AS LINHAS/COLUNAS ZERADAS----
 
-write.table(m_dens, "res/m_dens.csv",
+write.table(m_dens, "res_ms/m_dens.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_dens <- read.csv(res/"m_dens.csv",
+m_dens <- read.csv(res_ms/"m_dens.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -355,12 +355,12 @@ ncol(m_cont)
 
 ##SALVANDO MATRIZ FINAL DE CONTAGEM----
 
-write.table(m_cont, "res/m_cont.csv",
+write.table(m_cont, "res_ms/m_cont.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_cont <- read.csv("res/m_cont.csv",
+m_cont <- read.csv("res_ms/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -389,12 +389,12 @@ del_rows <- c("C-C-P11-H1", "C-C-P11-H2", "C-C-P11-H3", "S-C-P11-H1", "S-C-P11-H
 del_rows
 escalas <- escalas[!(row.names(escalas) %in% c(del_rows)),]
 
-write.table(escalas, "res/m_esc.csv",
+write.table(escalas, "res_ms/m_esc.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_esc <- read.csv("res/m_esc.csv",
+m_esc <- read.csv("res_ms/m_esc.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -419,12 +419,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab <- read.csv("res/m_hab_part.csv",
+m_hab <- read.csv("res_ms/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -434,7 +434,7 @@ m_hab <- read.csv("res/m_hab_part.csv",
 
 library(psych)
 colnames(m_hab)
-#png("res/fig-h.hab_pairs.png")
+#png("res_ms/fig-h.hab_pairs.png")
 pairs.panels(m_hab[,1:8],
              method = "pearson", # correlation method
              scale = FALSE, lm = FALSE,
@@ -448,13 +448,13 @@ cor <- cor(m_hab)
 cor
 
 library(corrplot)
-#png("res/fig-hab_corrplot.png")
+#png("res_ms/fig-hab_corrplot.png")
 corrplot(cor, method = "circle")
 #dev.off()
 
 ##DELETANDO COLINEARES OU INDESEJADAS----
 
-#sink(file = "res/colineares.txt", append = F, split = T)
+#sink(file = "res_ms/colineares.txt", append = F, split = T)
 colnames(m_hab)
 del_cols <- c("", "")
 #del_cols <- grep("^n\\.", colnames(m_hab), value = TRUE)
@@ -473,12 +473,12 @@ colnames(m_hab_part)
 m_hab_part
 #sink()
 
-write.table(m_hab_part, "res/m_hab_part.csv",
+write.table(m_hab_part, "res_ms/m_hab_part.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -542,12 +542,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -577,12 +577,12 @@ m_sh <- asin(sqrt(decostand(m_sh, method = "total", MARGIN = 2)))
 hab_trns <- cbind(m_sh, m_wm)
 
 # Salvado m_hab_trns
-write.table(hab_trns, "res/m_hab_trns.csv",
+write.table(hab_trns, "res_ms/m_hab_trns.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_hab_trns <- read.table("res/m_hab_trns.csv",
+m_hab_trns <- read.table("res_ms/m_hab_trns.csv",
                          sep = ";", dec = ".",
                          row.names = 1,
                          header = TRUE,
@@ -604,7 +604,7 @@ To compare the diversity of zooplankton taxa between streams, the Chao1 estimate
 
 <!--# ####PARTIÇÃO#### -->Additive diversity partitioning was used to quantify the contribution of within- and between-unit diversity to total zooplankton diversity. In this framework, alpha diversity ($\alpha$) represents diversity occurring within sampling units, whereas beta diversity ($\beta$) represents the contribution of differences among units at successive levels of the spatial hierarchy [@lande1996; @crist2003]. The hierarchical structure included three spatial scales. The finest scales consisted of the habitat samples within each site (n = 3), and of each site (n = 6, for the Barro Branco stream, and n = 9, for the Caiana stream). The intermediate scales corresponded to the upper and lower stream sections (n = 2), whereas the broadest scale represented differences among the two streams. Accordingly, the total diversity ($\gamma$) was decomposed into within-habitat diversity ($\alpha_{1}$) and the successive beta components associated with differences among habitats ($\beta_{1}$), among sites withing upper and lower stream reaches ($\beta_{2}$), and among streams ($\beta_{3}$). The contribution of each component was expressed as a percentage of total diversity [@crist2003; @farias2020]. To investigate seasonal variation in the hierarchical structure of diversity, additive partitioning was performed separately for each season and for each stream [@farias2020; @melo2013].
 
-<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the $\alpha$ and $\beta$ diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} < 0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp} > \text{Prop}_{obs} > 0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen2020]. All analyses were conducted in the statistical environment R [@rdevelopmentcoreteam2017].
+<!--# ####INTERPRETAÇÃO#### -->The overall diversity was taken to be the sum of the relative contributions of each scale in the hierarchical sampling design. Analysis of significance of the contribution of each hierarchical level was performed through with individual-based randomizations (type I null model) [see @freiry2020; @melo2013]. The randomization process was repeated 999 times to obtain null distributions of the $\alpha$ and $\beta$ diversity at each hierarchical level, and used to test whether the observed values were higher or lower than expected by chance [@crist2003]. The probabilities obtained from randomization tests were interpreted as *P*-values, as a low *P*-value ($\text{Prop}_{exp}>\text{Prop}_{obs}<0.05$) indicates an observed diversity significantly different than that expected under the null model. On the other hand, a high *P*-value ($\text{Prop}_{exp}>\text{Prop}_{obs}>0.95$) indicates an observed diversity not different than that expected by chance [@crist2003; @freiry2020; @gering2003; @veech2002]. The results of the analysis were subject to a Monte Carlo permutation test (999 permutations) for validation. The additive partitioning of the diversity was carried out with the function *adipart* from package `vegan` [@oksanen2020]. All analyses were conducted in the statistical environment R [@rdevelopmentcoreteam2017].
 
 # Results
 
@@ -630,12 +630,12 @@ habitat <- read.xlsx("dados/rebio23-habitat.xlsx",
                      colNames = T,
                      sheet = "ambiente",
                      startRow = 2)
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -710,12 +710,12 @@ m_wide <- m_wide[match(row_order, m_wide$Variable), ]
 m_wide
 
 # Salvado m_wide
-write.table(m_wide, "res/m_wide_hab_to.txt",
+write.table(m_wide, "res_ms/m_wide_hab_to.txt",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_wide_hab_to <- read.table("res/m_wide_hab_to.txt",
+m_wide_hab_to <- read.table("res_ms/m_wide_hab_to.txt",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -723,15 +723,15 @@ m_wide_hab_to <- read.table("res/m_wide_hab_to.txt",
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de habitat.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de habitat.xlsx")
+#write.xlsx(m_wide, file = "res_ms/tabela de habitat.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res_ms/tabela de habitat.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "res/tabela de habitat.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res_ms/tabela de habitat.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
 hab_gttable <- read_excel(
-  path  = "res/tabela de habitat.xlsx",
+  path  = "res_ms/tabela de habitat.xlsx",
   sheet = "tabela_final")
 #range = "A1:P30"#ajustar para o tamanho da tabela final 
 hab_gttable
@@ -741,8 +741,8 @@ hab_gttable <- sub_missing(hab_gttable,
                       columns = everything(), missing_text = "")
 #hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
 hab_gttable
-gtsave(hab_gttable, "res/gt-hab_gttable_xlsx.html")
-saveRDS(hab_gttable, "res/gt-hab_gttable_xlsx.rds")
+gtsave(hab_gttable, "res_ms/gt-hab_gttable_xlsx.html")
+saveRDS(hab_gttable, "res_ms/gt-hab_gttable_xlsx.rds")
 ```
 
 ```{r ENV-VAR_summ}
@@ -776,7 +776,7 @@ for (var in vars) {
 summaries
 summary_table <- do.call(rbind, lapply(summaries, as.data.frame.list))
 colnames(summary_table) <- c("Min", "Q1", "Median", "Mean", "Q3", "Max")
-#sink(file = "res/summary_w.txt", split = TRUE)
+#sink(file = "res_ms/summary_w.txt", split = TRUE)
 round(summary_table, 2)
 #round(summary_table[order(summary_table$Mean, decreasing = FALSE), ], 2)
 #sink()
@@ -787,12 +787,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -890,12 +890,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_trns <- read.csv("res/m_hab_trns.csv",
+m_hab_trns <- read.csv("res_ms/m_hab_trns.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -912,7 +912,7 @@ print(pca)
 eig.val <- get_eigenvalue(pca)
 eig.val
 
-#sink(file = "res/cor_matrix.txt", append = FALSE)
+#sink(file = "res_ms/cor_matrix.txt", append = FALSE)
 pca$var$cor
 #sink()
 
@@ -1063,14 +1063,14 @@ label_coords <- label_coords * 2.0
 label_coords <- label_coords * 2.0
 # Se quiser ajustar pontos específicos manualmente
 #fix(label_coords) #nomes das colunas
-#write.table(label_coords,"res/coords_lab.txt")
-label_coords <- read.table("res/coords_lab.txt",
+#write.table(label_coords,"res_ms/coords_lab.txt")
+label_coords <- read.table("res_ms/coords_lab.txt",
                          header=TRUE,
                          row.names=1)
 
 # GRÁFICO FINAL
 
-#png("res/fig-hab_PCA_periodo.png", width = 9, height = 7.5, units = "in", res = 300)
+#png("res_ms/fig-hab_PCA_periodo.png", width = 9, height = 7.5, units = "in", res = 300)
 fviz_pca_biplot(pca_filt,
   col.ind = my.cont.var, palette = "jco",
   addEllipses = TRUE, ellipse.type = "t",
@@ -1119,12 +1119,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_trns <- read.csv("res/m_hab_trns.csv",
+m_hab_trns <- read.csv("res_ms/m_hab_trns.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -1154,7 +1154,7 @@ mrpp_results
 # Print one result
 mrpp_results$Ref_site
 # Loop through summaries
-sink(file = "res/mrpp-env.txt", split = TRUE)#, append = TRUE)
+sink(file = "res_ms/mrpp-env.txt", split = TRUE)#, append = TRUE)
 for (v in names(mrpp_results)) {
   cat("\n============================\n")
   cat("MRPP for:", v, "\n")
@@ -1169,7 +1169,7 @@ mrpp_summary <- data.frame(
   A = sapply(mrpp_results, function(x) x$A),
   P_value = sapply(mrpp_results, function(x) x$Pvalue)
 )
-sink("res/mrpp-env.txt", append = TRUE)
+sink("res_ms/mrpp-env.txt", append = TRUE)
 mrpp_summary
 sink()
 
@@ -1214,7 +1214,7 @@ summary_tab <- data.frame(
   Delta = sapply(res_list, function(x) x$delta),
   Pvalue = sapply(res_list, function(x) x$Pvalue)
 )
-sink("res/mrpp-env.txt", append = TRUE)
+sink("res_ms/mrpp-env.txt", append = TRUE)
 summary_tab
 sink()
 
@@ -1253,11 +1253,11 @@ matrixstyle <- pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
 matrixstyle
-save_kable(matrixstyle, "res/kb-mrpp-env_matrixstyle.html")
+save_kable(matrixstyle, "res_ms/kb-mrpp-env_matrixstyle.html")
 
 ##GRÁFICO DA MRPP----
 
-png("res/fig-mrpp-env.png", width = 15, height = 10, units = "in", res = 300)
+png("res_ms/fig-mrpp-env.png", width = 15, height = 10, units = "in", res = 300)
 def.par <- par(no.readonly = TRUE)
 layout(matrix(1:2,nr=1))
 plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
@@ -1301,7 +1301,7 @@ all_test
 
 ## TESTES PARA VARIAVEIS COM DOIS FATORES
 
-sink(file = "res/perma-env.txt", split = TRUE)#, append = TRUE)
+sink(file = "res_ms/perma-env.txt", split = TRUE)#, append = TRUE)
 set.seed(123)
 perm <- 999
 adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
@@ -1423,7 +1423,7 @@ pval_df <- tibble::rownames_to_column(pval_df, "Group")
 pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
-save_kable(matrixstyle, "res/kb-perma_matrixstyle.html")
+save_kable(matrixstyle, "res_ms/kb-perma_matrixstyle.html")
 
 ## AVALIANDO INTERAÇÕES-----
 
@@ -1454,13 +1454,13 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_nutri <- read.csv("res/t_nutri.csv",
+t_nutri <- read.csv("res_ms/t_nutri.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -1507,12 +1507,12 @@ m_wide <- m_wide[, c(col_order)] #sequência das colunas
 m_wide
 
 # Salvado m_wide
-write.table(m_wide, "res/m_wide_nutri.txt",
+write.table(m_wide, "res_ms/m_wide_nutri.txt",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_wide_nutri <- read.table("res/m_wide_nutri.txt",
+m_wide_nutri <- read.table("res_ms/m_wide_nutri.txt",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -1520,15 +1520,15 @@ m_wide_nutri <- read.table("res/m_wide_nutri.txt",
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de nutrientes.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de nutrientes.xlsx")
+#write.xlsx(m_wide, file = "res_ms/tabela de nutrientes.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res_ms/tabela de nutrientes.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide_nutri)
-saveWorkbook(wb, "res/tabela de nutrientes.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res_ms/tabela de nutrientes.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
 nutri_gttable <- read_excel(
-  path  = "res/tabela de nutrientes.xlsx",
+  path  = "res_ms/tabela de nutrientes.xlsx",
   sheet = "tabela_final",
   range = "A1:P7") #ajustar para o tamanho da tabela final 
 nutri_gttable
@@ -1537,8 +1537,8 @@ nutri_gttable <- gt(nutri_gttable)
 nutri_gttable <- sub_missing(nutri_gttable,
                       columns = everything(), missing_text = "")
 nutri_gttable
-gtsave(nutri_gttable, "res/gt-nutri_gttable_xlsx.html")
-saveRDS(nutri_gttable, "res/gt-nutri_gttable_xlsx.rds")
+gtsave(nutri_gttable, "res_ms/gt-nutri_gttable_xlsx.html")
+saveRDS(nutri_gttable, "res_ms/gt-nutri_gttable_xlsx.rds")
 ```
 
 <!--# #### CHECKLIST #### -->A total of 56 taxa distributed among Rotifera (14 families), Cladocera (5 families) and Copepoda (2 families) were identified during the study period. Rotifera was the most species-rich group, represented by 39 species (plus Bdelloidea), followed by Cladocera (12 species) and Copepoda (4 species, in addition to the juvenile stages nauplii and copepodite). Across sampling periods, Lecanidae exhibited the highest richness among all recorded families of Rotifera with 15 species, followed by Lepadellidae, Synchaetidae (both with 4 species), Brachionidae and Mytilinidae (both with 3 species). Bdelloidea was the most abundant taxa (6194 individuals) followed by *Lecane curvicornis* with 626 individuals. Among the cladocerans, Chydoridae was the richest family with 5 species, followed by Macrothricidae (3 species). *Alonella dadayi* was the most abundant among the cladocerans with 1051 individuals. Juvenile stages (nauplii and copepodite) were also abundant with 2433 and 4061 individuals, respectively. Copepods were represented by he orders Cyclopoida and Calanoida, *Paracyclops* sp. *Mesocyclops* sp. being the most abundant (141 and 231 individuals, respectively) (@tbl-checklist_gttable).
@@ -1561,22 +1561,22 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_dens <- read.csv("res/m_dens.csv",
+m_dens <- read.csv("res_ms/m_dens.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
                   na.strings = NA)
-m_cont <- read.csv("res/m_cont.csv",
+m_cont <- read.csv("res_ms/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -1695,7 +1695,7 @@ DescritoresFinal
 # Salvando DescritoresFinal
 write.table(data.frame("SPP"=rownames(DescritoresFinal),
                        DescritoresFinal),
-            "res/DescritoresSPP.txt",
+            "res_ms/DescritoresSPP.txt",
             row.names=FALSE,
             sep="\t")
 
@@ -1707,8 +1707,8 @@ df <- cbind(SPP = rownames(df), df)
 gt <- gt(df, rowname_col = "SPP",
    caption = "Descritores da diversidade por espécie (colunas). Sum, soma; RA, abundância relativa (%); mean, média; DP, desvio padrão da média; Max, maior valor; Min, menor valor; MinZ, menor valor não zero; FO, frequência de ocorrência (%); S, riqueza (ou no. de ocorrências, da matriz transposta); E, índice de equitabilidade de Pielou; H, índice de diversidade de Shannon; D, índice de diversidade de Simpson.")
 gt
-gtsave(gt, "res/DescritoresSPP.html")
-gtsave(gt, "res/DescritoresSPP.png")
+gtsave(gt, "res_ms/DescritoresSPP.html")
+gtsave(gt, "res_ms/DescritoresSPP.png")
 
 ###NORMALIDADE----
 library(moments)
@@ -1737,7 +1737,7 @@ NormalidadeFinal
 # Salvando NormalidadeFinal
 write.table(data.frame("SPP"=rownames(NormalidadeFinal),
                        NormalidadeFinal),
-            "res/NormalidadeSPP.txt",
+            "res_ms/NormalidadeSPP.txt",
             row.names=FALSE,
             sep="\t")
 
@@ -1747,7 +1747,7 @@ ncol(nf); nrow(nf) #no. de N colunas x M linhas
 nf <- cbind(SPP = rownames(nf), nf)
 gt <- gt(nf, rowname_col = "SPP", caption = "Descritores da normalidade por SPP (COLUNA)")
 gt
-gtsave(gt, "res/NormalidadeSPP.html")
+gtsave(gt, "res_ms/NormalidadeSPP.html")
 
 #DIVERSIDADE EM DENSIDADE MATRIZ NÃO-TRANSPOSTA----
 
@@ -1775,7 +1775,7 @@ grafico1 <- Hill %>%
   theme_bw() +
   theme(text = element_text(size = 10)) #ajustar a fonte caso nao caiba no output html
 grafico1
-ggsave(grafico1, dpi = 300, filename = "res/fig-hill.png")
+ggsave(grafico1, dpi = 300, filename = "res_ms/fig-hill.png")
 
 # Gráfico de abunância
 abund <- colSums(m_trab)
@@ -1799,7 +1799,7 @@ grafico2 <- ggplot(df, aes(fct_reorder(sp, -abun),
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12))
 grafico2
-ggsave(grafico2, dpi = 300, filename = "res/fig-abun.png")
+ggsave(grafico2, dpi = 300, filename = "res_ms/fig-abun.png")
 
 # Curvas de rarefação
 m_trab_r <- mutate(as.data.frame(m_trab), across(everything(), ceiling)) #arredonda a matriz original para números inteiros
@@ -1851,7 +1851,7 @@ gLocais <- ggplot(plot_data, aes(x = UAs, y = Riqueza)) +
   theme_classic() +
   theme(text = element_text(size = 16))
 gLocais
-ggsave(gLocais, dpi = 300, filename = "res/fig-acum.png")
+ggsave(gLocais, dpi = 300, filename = "res_ms/fig-acum.png")
 
 plot_data <- data.frame("Individuos" = c(0, acumula$individuals),
                         "Riqueza" = c(0, acumula$richness),
@@ -1883,7 +1883,7 @@ Srare
 plot(S, Srare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species")
 abline(0, 1)
 
-#png("res/fig-rarecurve.png")
+#png("res_ms/fig-rarecurve.png")
 rarecurve(data, step = 20,
           sample = raremax, #linhas de rarefação
           col = "blue", cex = 0.6,
@@ -1925,12 +1925,12 @@ m_wide <- as.data.frame(m_wide)
 m_wide
 
 # Salvado m_wide
-write.table(m_wide, "res/m_wide_spp.txt",
+write.table(m_wide, "res_ms/m_wide_spp.txt",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_wide_spp <- read.table("res/m_wide_spp.txt",
+m_wide_spp <- read.table("res_ms/m_wide_spp.txt",
                   sep = ";", dec = ".",
                   row.names = 1,
                   header = TRUE,
@@ -1938,15 +1938,15 @@ m_wide_spp <- read.table("res/m_wide_spp.txt",
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide_spp, file = "res/tabela da comunidade.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela da comunidade.xlsx")
+#write.xlsx(m_wide_spp, file = "res_ms/tabela da comunidade.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res_ms/tabela da comunidade.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide_spp)
-saveWorkbook(wb, "res/tabela da comunidade.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res_ms/tabela da comunidade.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
 spp_gttable <- read_excel(
-  path  = "res/tabela da comunidade.xlsx",
+  path  = "res_ms/tabela da comunidade.xlsx",
   sheet = "tabela_final",
   col_names = T,
   range = "A1:AE61") #ajustar para o tamanho da tabela final
@@ -1958,17 +1958,17 @@ spp_gttable <- sub_missing(spp_gttable,
 #spp_gttable <- fmt_number(spp_gttable,
 #                          columns = "F.O.(%)", decimals = 1)
 spp_gttable
-gtsave(spp_gttable, "res/gt-spp_gttable_xlsx.html")
-saveRDS(spp_gttable, "res/gt-spp_gttable_xlsx.rds")
+gtsave(spp_gttable, "res_ms/gt-spp_gttable_xlsx.html")
+saveRDS(spp_gttable, "res_ms/gt-spp_gttable_xlsx.rds")
 
 #LISTA DE ESPÉCIES
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(m_wide_spp, file = "res/tabela da comunidade.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela da comunidade.xlsx")
+#write.xlsx(m_wide_spp, file = "res_ms/tabela da comunidade.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res_ms/tabela da comunidade.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_wide_spp)
-saveWorkbook(wb, "res/tabela da comunidade.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res_ms/tabela da comunidade.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
@@ -1985,8 +1985,8 @@ spp_gttable <- sub_missing(spp_gttable,
 #spp_gttable <- fmt_number(spp_gttable,
 #                          columns = "F.O.(%)", decimals = 1)
 spp_gttable
-gtsave(spp_gttable, "res/gt-checklist_gttable_xlsx.html")
-saveRDS(spp_gttable, "res/gt-checklist_gttable_xlsx.rds")
+gtsave(spp_gttable, "res_ms/gt-checklist_gttable_xlsx.html")
+saveRDS(spp_gttable, "res_ms/gt-checklist_gttable_xlsx.rds")
 ```
 
 ```{r COMM-VAR_summ}
@@ -2048,7 +2048,7 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-m_cont <- read.csv("res/m_cont.csv",
+m_cont <- read.csv("res_ms/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2095,7 +2095,7 @@ grafico3 <- ggiNEXT(out, type = 1, facet.var="None") + #ver como fica com facet.
         axis.text = element_text(size = 12)
 ) 
 grafico3
-ggsave(grafico3, width = 8, height = 6, dpi = 300, filename = "res/fig-rare1.png")
+ggsave(grafico3, width = 8, height = 6, dpi = 300, filename = "res_ms/fig-rare1.png")
 
 #ESTIMADORES DA DIVERSIDADE 
 
@@ -2156,7 +2156,7 @@ resultado_chao$Lower95 <- pmax(
   resultado_chao$Observed
 )
 
-sink(file = "res/chao.txt")
+sink(file = "res_ms/chao.txt")
 # Tabela pronta
 resultado_chao
 sink()
@@ -2182,22 +2182,22 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_dens <- read.csv("res/m_dens.csv",
+m_dens <- read.csv("res_ms/m_dens.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_hab_part <- read.csv("res/m_hab_part.csv",
+m_hab_part <- read.csv("res_ms/m_hab_part.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
                        na.strings = NA)
-m_cont <- read.csv("res/m_cont.csv",
+m_cont <- read.csv("res_ms/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2209,12 +2209,12 @@ library(vegan)
 m_dens_trns <- asin(sqrt(decostand(m_dens,
                                method="total", MARGIN = 2)))
 
-write.table(m_dens_trns, "res/m_dens_trns.csv",
+write.table(m_dens_trns, "res_ms/m_dens_trns.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_dens_trns <- read.csv("res/m_dens_trns.csv",
+m_dens_trns <- read.csv("res_ms/m_dens_trns.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2237,12 +2237,12 @@ m_dens_media <- aggregate(m_dens, by = list(Ponto = ponto_id), FUN = mean)
 rownames(m_dens_media) <- m_dens_media$Ponto
 m_dens_media$Ponto <- NULL
 
-write.table(m_dens_media, "res/m_dens_media.csv",
+write.table(m_dens_media, "res_ms/m_dens_media.csv",
             sep = ";", dec = ".", #"\t",
             row.names = TRUE,
             quote = TRUE,
             append = FALSE)
-m_dens_media <- read.csv("res/m_dens_media.csv",
+m_dens_media <- read.csv("res_ms/m_dens_media.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2287,7 +2287,7 @@ upgma_chuv$labels <- sub("^[A-Z]-", "", upgma_chuv$labels)
 dend_seco <- as.dendrogram(hclust(dist_seco, method = "average"))
 dend_chuv <- as.dendrogram(hclust(dist_chuv, method = "average"))
 
-#png("res/fig-upgma.png", width=11, height=9, units="in", res=400)
+#png("res_ms/fig-upgma.png", width=11, height=9, units="in", res=400)
 par(mfrow = c(1, 2), mar = c(5, 4, 2, 6)) #B, L, T, R
 plot(as.dendrogram(upgma_seco), 
      horiz = TRUE, 
@@ -2366,12 +2366,12 @@ dev.off()
 rm(list=ls(all=TRUE))
 cat("\014")
 
-t_grps <- read.csv("res/t_grps.csv",
+t_grps <- read.csv("res_ms/t_grps.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_dens_trns <- read.csv("res/m_dens_trns.csv",
+m_dens_trns <- read.csv("res_ms/m_dens_trns.csv",
                        sep = ";", dec = ".",
                        row.names = 1,
                        header = TRUE,
@@ -2401,7 +2401,7 @@ mrpp_results
 # Print one result
 mrpp_results$Ref_site
 # Loop through summaries
-sink(file = "res/mrpp-dens.txt", split = TRUE)#, append = TRUE)
+sink(file = "res_ms/mrpp-dens.txt", split = TRUE)#, append = TRUE)
 for (v in names(mrpp_results)) {
   cat("\n============================\n")
   cat("MRPP for:", v, "\n")
@@ -2416,7 +2416,7 @@ mrpp_summary <- data.frame(
   A = sapply(mrpp_results, function(x) x$A),
   P_value = sapply(mrpp_results, function(x) x$Pvalue)
 )
-sink("res/mrpp-dens.txt", append = TRUE)
+sink("res_ms/mrpp-dens.txt", append = TRUE)
 mrpp_summary
 sink()
 
@@ -2461,7 +2461,7 @@ summary_tab <- data.frame(
   Delta = sapply(res_list, function(x) x$delta),
   Pvalue = sapply(res_list, function(x) x$Pvalue)
 )
-sink("res/mrpp-dens.txt", append = TRUE)
+sink("res_ms/mrpp-dens.txt", append = TRUE)
 summary_tab
 sink()
 
@@ -2500,11 +2500,11 @@ matrixstyle <- pval_df %>%
   kable("html", escape = FALSE) %>%
   kable_styling(full_width = FALSE)
 matrixstyle
-save_kable(matrixstyle, "res/kb-mrpp-dens_matrixstyle.html")
+save_kable(matrixstyle, "res_ms/kb-mrpp-dens_matrixstyle.html")
 
 ##GRÁFICO DA MRPP----
 
-png("res/fig-mrpp-dens.png", width = 15, height = 10, units = "in", res = 300)
+png("res_ms/fig-mrpp-dens.png", width = 15, height = 10, units = "in", res = 300)
 def.par <- par(no.readonly = TRUE)
 layout(matrix(1:2,nr=1))
 plot(ord <- metaMDS(m_trab, distance="bray"), type="text", display="sites")
@@ -2545,7 +2545,7 @@ all_test
 
 ## TESTES PARA VARIAVEIS COM DOIS FATORES
 
-sink(file = "res/perma-dens.txt", split = TRUE)#, append = TRUE)
+sink(file = "res_ms/perma-dens.txt", split = TRUE)#, append = TRUE)
 set.seed(123)
 perm <- 999
 adonis2(m_trab ~ Periodo, data = t_grps, method = "bray", permutations = perm)
@@ -2605,17 +2605,17 @@ dev.off() #apaga os graficos, se houver algum
 rm(list=ls(all=TRUE)) #limpa a memória
 cat("\014") #limpa o console
 
-m_esc <- read.csv("res/m_esc.csv",
+m_esc <- read.csv("res_ms/m_esc.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_dens <- read.csv("res/m_dens.csv",
+m_dens <- read.csv("res_ms/m_dens.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
                    na.strings = NA)
-m_cont <- read.csv("res/m_cont.csv",
+m_cont <- read.csv("res_ms/m_cont.csv",
                    sep = ";", dec = ".",
                    row.names = 1,
                    header = TRUE,
@@ -2681,7 +2681,7 @@ m_cont_ca.chuva <- m_cont[grep("C-C-", rownames(m_cont)), ]
 library(vegan)
 part1 <- ca.chuva
 cont <- m_cont_ca.chuva
-sink(file = "res/part-pt.ca.chuva.txt")
+sink(file = "res_ms/part-pt.ca.chuva.txt")
 #VALORES ABSOLUTOS
 set.seed(666)
 part.a <- adipart(y = cont, x = part1, index = "richness", relative = FALSE,
@@ -2694,21 +2694,21 @@ part.p <- adipart(y = cont, x = part1, index = "richness", relative = TRUE,
                     weights = "unif", nsimul = 999)
 part.p
 
-#saveRDS(part.p, "res/part.p-pt.total.rds")
-#saveRDS(part.p, "res/part.p-pt.seco.rds")
-#saveRDS(part.p, "res/part.p-pt.chuva.rds")
-#saveRDS(part.p, "res/part.p-bb.seco.rds")
-#saveRDS(part.p, "res/part.p-bb.chuva.rds")
-#saveRDS(part.p, "res/part.p-ca.seco.rds")
-#saveRDS(part.p, "res/part.p-ca.chuva.rds")
+#saveRDS(part.p, "res_ms/part.p-pt.total.rds")
+#saveRDS(part.p, "res_ms/part.p-pt.seco.rds")
+#saveRDS(part.p, "res_ms/part.p-pt.chuva.rds")
+#saveRDS(part.p, "res_ms/part.p-bb.seco.rds")
+#saveRDS(part.p, "res_ms/part.p-bb.chuva.rds")
+#saveRDS(part.p, "res_ms/part.p-ca.seco.rds")
+#saveRDS(part.p, "res_ms/part.p-ca.chuva.rds")
 
-#part.p <- readRDS("res/part.p-pt.total.rds")
-#part.p <- readRDS("res/part.p-pt.seco.rds")
-#part.p <- readRDS("res/part.p-pt.chuva.rds")
-#part.p <- readRDS("res/part.p-bb.seco.rds")
-#part.p <- readRDS("res/part.p-bb.chuva.rds")
-#part.p <- readRDS("res/part.p-ca.seco.rds")
-#part.p <- readRDS("res/part.p-ca.chuva.rds")
+#part.p <- readRDS("res_ms/part.p-pt.total.rds")
+#part.p <- readRDS("res_ms/part.p-pt.seco.rds")
+#part.p <- readRDS("res_ms/part.p-pt.chuva.rds")
+#part.p <- readRDS("res_ms/part.p-bb.seco.rds")
+#part.p <- readRDS("res_ms/part.p-bb.chuva.rds")
+#part.p <- readRDS("res_ms/part.p-ca.seco.rds")
+#part.p <- readRDS("res_ms/part.p-ca.chuva.rds")
 
 # Extrair valores do objeto part.p
 part2 <- part.p
@@ -2787,13 +2787,13 @@ hier <- hiersimu(y = cont, x = part1, FUN = diversity)
 hier
 sink()
 
-#saveRDS(diversity_data, "res/part-pt.gtotal.rds")
-#saveRDS(diversity_data, "res/part-pt.gseco.rds")
-#saveRDS(diversity_data, "res/part-pt.gchuva.rds")
-#saveRDS(diversity_data, "res/part-bb.gseco.rds")
-#saveRDS(diversity_data, "res/part-bb.gchuva.rds")
-#saveRDS(diversity_data, "res/part-ca.gseco.rds")
-#saveRDS(diversity_data, "res/part-ca.gchuva.rds")
+#saveRDS(diversity_data, "res_ms/part-pt.gtotal.rds")
+#saveRDS(diversity_data, "res_ms/part-pt.gseco.rds")
+#saveRDS(diversity_data, "res_ms/part-pt.gchuva.rds")
+#saveRDS(diversity_data, "res_ms/part-bb.gseco.rds")
+#saveRDS(diversity_data, "res_ms/part-bb.gchuva.rds")
+#saveRDS(diversity_data, "res_ms/part-ca.gseco.rds")
+#saveRDS(diversity_data, "res_ms/part-ca.gchuva.rds")
 
 #GRÁFICOS
 
@@ -2802,7 +2802,7 @@ library(dplyr)
 
 # PARTIÇÃO TOTAL
 
-pt.gtotal <- readRDS("res/part-pt.gtotal.rds")
+pt.gtotal <- readRDS("res_ms/part-pt.gtotal.rds")
 ggplot_pt.total <- ggplot(pt.gtotal, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "Total",
@@ -2825,12 +2825,12 @@ ggplot_pt.total <- ggplot(pt.gtotal, aes(fill = Component, y = Percentage, x = T
     legend.position = "right"
   )
 ggplot_pt.total
-ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_total.png")
+ggsave(ggplot_pt.total, dpi = 300, filename = "res_ms/fig-part_total.png")
 
 # PARTIÇÃO POR PERÍODO
 
 # Partição seco #pt.seco (m_cont_s)
-pt.gseco <- readRDS("res/part-pt.gseco.rds")
+pt.gseco <- readRDS("res_ms/part-pt.gseco.rds")
 ggplot_pt.seco <- ggplot(pt.gseco, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "Dry",
@@ -2853,10 +2853,10 @@ ggplot_pt.seco <- ggplot(pt.gseco, aes(fill = Component, y = Percentage, x = Typ
     panel.grid = element_blank(),
   )
 ggplot_pt.seco
-ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_seco.png")
+ggsave(ggplot_pt.total, dpi = 300, filename = "res_ms/fig-part_seco.png")
 
 # Partição chuvoso #pt.chuva (m_cont_c)
-pt.gchuva <- readRDS("res/part-pt.gchuva.rds")
+pt.gchuva <- readRDS("res_ms/part-pt.gchuva.rds")
 ggplot_pt.chuva <- ggplot(pt.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "Wet",
@@ -2879,12 +2879,12 @@ ggplot_pt.chuva <- ggplot(pt.gchuva, aes(fill = Component, y = Percentage, x = T
     panel.grid = element_blank(),
   )
 ggplot_pt.chuva
-ggsave(ggplot_pt.total, dpi = 300, filename = "res/fig-part_chuva.png")
+ggsave(ggplot_pt.total, dpi = 300, filename = "res_ms/fig-part_chuva.png")
 
 # PARTIÇÃO POR RIO
 
 # bb.seco (A) #bb.seco(A) (m_cont_bb.seco)
-bb.gseco <- readRDS("res/part-bb.gseco.rds")
+bb.gseco <- readRDS("res_ms/part-bb.gseco.rds")
 ggplot_bb.seco <- ggplot(bb.gseco, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "Dry",
@@ -2907,10 +2907,10 @@ ggplot_bb.seco <- ggplot(bb.gseco, aes(fill = Component, y = Percentage, x = Typ
     panel.grid = element_blank(),
   )
 ggplot_bb.seco
-ggsave(ggplot_bb.seco, dpi = 300, filename = "res/fig-bb.seco.png")
+ggsave(ggplot_bb.seco, dpi = 300, filename = "res_ms/fig-bb.seco.png")
 
 # bb.chuva (B) #bb.chuva(B) (m_cont_bb.chuva)
-bb.gchuva <- readRDS("res/part-bb.gchuva.rds")
+bb.gchuva <- readRDS("res_ms/part-bb.gchuva.rds")
 ggplot_bb.chuva <- ggplot(bb.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "Wet",
@@ -2935,10 +2935,10 @@ ggplot_bb.chuva <- ggplot(bb.gchuva, aes(fill = Component, y = Percentage, x = T
     panel.grid = element_blank(),
   )
 ggplot_bb.chuva
-ggsave(ggplot_bb.chuva, dpi = 300, filename = "res/fig-bb.chuva.png")
+ggsave(ggplot_bb.chuva, dpi = 300, filename = "res_ms/fig-bb.chuva.png")
 
 # ca.seco (C) #ca.seco(C) (m_cont_ca.seco)
-ca.gseco <- readRDS("res/part-ca.gseco.rds")
+ca.gseco <- readRDS("res_ms/part-ca.gseco.rds")
 ggplot_ca.seco <- ggplot(ca.gseco, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "",
@@ -2960,10 +2960,10 @@ ggplot_ca.seco <- ggplot(ca.gseco, aes(fill = Component, y = Percentage, x = Typ
     panel.grid = element_blank(),
   )
 ggplot_ca.seco
-ggsave(ggplot_ca.seco, dpi = 300, filename = "res/fig-ca.seco.png")
+ggsave(ggplot_ca.seco, dpi = 300, filename = "res_ms/fig-ca.seco.png")
 
 # ca.chuva (D) #ca.chuva(D) (m_cont_ca.chuva)
-ca.gchuva <- readRDS("res/part-ca.gchuva.rds")
+ca.gchuva <- readRDS("res_ms/part-ca.gchuva.rds")
 ggplot_ca.chuva <- ggplot(ca.gchuva, aes(fill = Component, y = Percentage, x = Type)) +
   geom_bar(position = "stack", stat = "identity") +
   labs(title = "",
@@ -2987,7 +2987,7 @@ ggplot_ca.chuva <- ggplot(ca.gchuva, aes(fill = Component, y = Percentage, x = T
     panel.grid = element_blank(),
   )
 ggplot_ca.chuva
-ggsave(ggplot_ca.chuva, dpi = 300, filename = "res/fig-ca.chuva.png")
+ggsave(ggplot_ca.chuva, dpi = 300, filename = "res_ms/fig-ca.chuva.png")
 
 # PAINEL DE GRÁFICOS CHUVOSO E SECO
 
@@ -3001,7 +3001,7 @@ painel_c_s <- grid.arrange(
 
 # Salvar o painel em alta resolução (300 DPI)
 ggsave(
-  filename = "res/fig-painel_pt.cs.png",
+  filename = "res_ms/fig-painel_pt.cs.png",
   plot = painel_c_s,
   width = 4,
   height = 8,
@@ -3038,7 +3038,7 @@ painel_rios <- (p1 + p2) / (p3 + p4) +
 painel_rios
 
 ggsave(
-  filename = "res/fig-painel_pt.rios.png",
+  filename = "res_ms/fig-painel_pt.rios.png",
   plot = painel_rios,
   width = 7,
   height = 8,
@@ -3121,16 +3121,16 @@ part_p_ca.seco <- adipart(y = m_cont_ca.seco,  x = ca.seco, index = "richness", 
 part_p_ca.chuva <- adipart(y = m_cont_ca.chuva,  x = ca.chuva, index = "richness", relative = TRUE,
                           weights = "unif", nsimul = 999)
 
-part_p_pt.seco <- readRDS("res/part_p_pt.seco.rds")
+part_p_pt.seco <- readRDS("res_ms/part_p_pt.seco.rds")
 
 
-part_p_pt.total <- readRDS("res/part.p-pt.total.rds")
-part_p_pt.seco <- readRDS("res/part.p-pt.seco.rds")
-part_p_pt.chuva <- readRDS("res/part.p-pt.chuva.rds")
-part_p_bb.seco <- readRDS("res/part.p-bb.seco.rds")
-part_p_bb.chuva <- readRDS("res/part.p-bb.chuva.rds")
-part_p_ca.seco <- readRDS("res/part.p-ca.seco.rds")
-part_p_ca.chuva <- readRDS("res/part.p-ca.chuva.rds")
+part_p_pt.total <- readRDS("res_ms/part.p-pt.total.rds")
+part_p_pt.seco <- readRDS("res_ms/part.p-pt.seco.rds")
+part_p_pt.chuva <- readRDS("res_ms/part.p-pt.chuva.rds")
+part_p_bb.seco <- readRDS("res_ms/part.p-bb.seco.rds")
+part_p_bb.chuva <- readRDS("res_ms/part.p-bb.chuva.rds")
+part_p_ca.seco <- readRDS("res_ms/part.p-ca.seco.rds")
+part_p_ca.chuva <- readRDS("res_ms/part.p-ca.chuva.rds")
 
 # CONSOLIDAÇÃO DA TABELA
 
@@ -3170,15 +3170,15 @@ print(tabela_simples, row.names = FALSE)
 
 # Exportando dados para Excel
 library(openxlsx)
-#write.xlsx(tabela_simples, file = "res/tabela de partição.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de partição.xlsx")
+#write.xlsx(tabela_simples, file = "res_ms/tabela de partição.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res_ms/tabela de partição.xlsx")
 writeData(wb, sheet = "Sheet 1", x = tabela_simples)
-saveWorkbook(wb, "res/tabela de partição.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "res_ms/tabela de partição.xlsx", overwrite = TRUE)
 
 # Tabela final ajustada no Excel
 library(readxl)
 part_gttable <- read_excel(
-  path  = "res/tabela de partição.xlsx",
+  path  = "res_ms/tabela de partição.xlsx",
   sheet = "tabela_final",
   range = "A1:G28") #ajustar para o tamanho da tabela final 
 part_gttable
@@ -3187,8 +3187,8 @@ part_gttable <- gt(part_gttable)
 part_gttable <- sub_missing(part_gttable,
                       columns = everything(), missing_text = "")
 part_gttable
-gtsave(part_gttable, "res/gt-part_gttable_xlsx.html")
-saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
+gtsave(part_gttable, "res_ms/gt-part_gttable_xlsx.html")
+saveRDS(part_gttable, "res_ms/gt-part_gttable_xlsx.rds")
 ```
 
 # Discussion
@@ -3348,7 +3348,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-hab_PCA_rio</summary>
 
-![Principal Component Analysis, streams](res/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
+![Principal Component Analysis, streams](res_ms/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
 </details>
 
@@ -3356,7 +3356,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-hab_PCA_periodo</summary>
 
-![Principal Component Analysis, seasons](res/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
+![Principal Component Analysis, seasons](res_ms/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
 
 </details>
 
@@ -3364,7 +3364,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-rare1</summary>
 
-![Accumulation curves](res/fig-rare1.png){#fig-rare1}
+![Accumulation curves](res_ms/fig-rare1.png){#fig-rare1}
 
 </details>
 
@@ -3372,7 +3372,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-upgma</summary>
 
-![UPGMA Classification](res/fig-upgma.png){#fig-upgma}
+![UPGMA Classification](res_ms/fig-upgma.png){#fig-upgma}
 
 </details>
 
@@ -3380,7 +3380,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-particao_cs</summary>
 
-![Partitioning plots season](res/fig-painel_pt.cs.png){#fig-particao_cs}
+![Partitioning plots season](res_ms/fig-painel_pt.cs.png){#fig-particao_cs}
 
 </details>
 
@@ -3388,7 +3388,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 <summary>@fig-particao_rios</summary>
 
-![Partitioning plots stream](res/fig-painel_pt.rios.png){#fig-particao_rios}
+![Partitioning plots stream](res_ms/fig-painel_pt.rios.png){#fig-particao_rios}
 
 </details>
 
@@ -3401,7 +3401,7 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 ```{r tbl-hab_gttable}
 #| echo: false
 #| tbl-cap: "Environment data GT table."
-readRDS("res/gt-hab_gttable_xlsx.rds")
+readRDS("res_ms/gt-hab_gttable_xlsx.rds")
 ```
 
 </details>
@@ -3413,7 +3413,7 @@ readRDS("res/gt-hab_gttable_xlsx.rds")
 ```{r tbl-nutri_gttable}
 #| echo: false
 #| tbl-cap: "Nutrient concentrations at the sampling sites."
-readRDS("res/gt-nutri_gttable_xlsx.rds")
+readRDS("res_ms/gt-nutri_gttable_xlsx.rds")
 ```
 
 </details>
@@ -3425,7 +3425,7 @@ readRDS("res/gt-nutri_gttable_xlsx.rds")
 ```{r, tbl-checklist_gttable}
 #| echo: false
 #| tbl-cap: "Checklist of taxa GT table."
-readRDS("res/gt-checklist_gttable_xlsx.rds")
+readRDS("res_ms/gt-checklist_gttable_xlsx.rds")
 ```
 
 </details>
@@ -3437,7 +3437,7 @@ readRDS("res/gt-checklist_gttable_xlsx.rds")
 ```{r, tbl-spp_gttable}
 #| echo: false
 #| tbl-cap: "Density (ind/m^2^) taxa GT table."
-readRDS("res/gt-spp_gttable_xlsx.rds")
+readRDS("res_ms/gt-spp_gttable_xlsx.rds")
 ```
 </details>
 -->
@@ -3450,7 +3450,7 @@ readRDS("res/gt-spp_gttable_xlsx.rds")
 ```{r, tbl-part_gttable}
 #| echo: false
 #| tbl-cap: "Partition data GT table."
-readRDS("res/gt-part_gttable_xlsx.rds")
+readRDS("res_ms/gt-part_gttable_xlsx.rds")
 ```
 
 </details>
