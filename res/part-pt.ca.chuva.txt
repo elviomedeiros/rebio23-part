@@ -1,6 +1,7 @@
 adipart object
 
-Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = FALSE, nsimul = 999)
+Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = FALSE, nsimul
+= 999)
 
 nullmodel method ‘r2dtable’ with 999 simulations
 options:  index richness, weights unif
@@ -16,7 +17,8 @@ beta.2     18.556  26.5822  7.0993  6.2222  7.1111  7.8889    0.001 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 adipart object
 
-Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = TRUE, nsimul = 999)
+Call: adipart(y = cont, x = part1, index = "richness", weights = "unif", relative = TRUE, nsimul =
+999)
 
 nullmodel method ‘r2dtable’ with 999 simulations
 options:  index richness, weights unif
