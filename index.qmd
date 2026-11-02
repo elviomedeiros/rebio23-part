@@ -151,7 +151,7 @@ A decomposição da diversidade de espécies em escalas locais e regionais foi r
 
 $$\gamma=\alpha_1+\sum_{i=1}^{m} \beta_i \text{}$$ {#eq-aditiva}
 
-em que γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβ [@oksanen2020; @whittaker1972]. A diversidade (βᵢ) foi calculada a partir da diversidade total (γ) e diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Assim, a diversidade total (γ) é composta pela diversidade média local (α₁) e pela soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972]. Para a confecção dos gráficos e figuras referentes a partição foram utilizados os pacotes *eulerr*, *vegan* e *VennDiagram* e a função *adipart* para a partição aditiva.
+em que γ é expressa como a soma da diversidade alfa do nível amostral (α₁) e das contribuições da diversidade beta (βᵢ) associadas a cada unidade amostral, conforme a equação γ = α₁ + Σβ [@oksanen2020; @whittaker1972]. A diversidade (βᵢ) foi calculada a partir da diversidade total (γ) e diversidade alfa observada em cada unidade amostral (αᵢ), permitindo avaliar o grau de diferenciação entre as unidades amostrais em relação ao conjunto total de amostras. Valores elevados de βᵢ indicam maior heterogeneidade entre as unidades amostrais, enquanto valores menores sugerem maior similaridade entre elas. Assim, a diversidade total (γ) é composta pela diversidade média local (α₁) e pela soma das diferenças entre as unidades amostrais (βᵢ) [@jost2007; @lande1996; @melo2012; @melo2009; @oksanen2020; @whittaker1972]. O diagrama de Venn foi aplicado para visualizar a quantidade de espécies exclusivas (aquelas que ocorrem apenas em um determinado local) e compartilhadas entre os riachos [@venn1880]. Para a confecção dos gráficos e figuras referentes à partição, foram utilizados os pacotes *eulerr*, *vegan* e *VennDiagram*, além da função *adipart*, para a partição aditiva.
 
 ```{r ZOOREBIO23_PART-ORG}
 #| eval: false
@@ -717,28 +717,8 @@ m_wide_hab_to <- read.table("res/m_wide_hab_to_pt.txt",
                             header = TRUE,
                             na.strings = NA)
 
-# Exportando dados para Excel
-library(openxlsx)
-#write.xlsx(m_wide, file = "res/tabela de habitat_pt.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/tabela de habitat_pt.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "res/tabela de habitat_pt.xlsx", overwrite = TRUE)
 
-# Tabela final ajustada no Excel
-library(readxl)
-hab_gttable <- read_excel(
-  path  = "res/tabela de habitat_pt.xlsx",
-  sheet = "tabela_final")
-#range = "A1:P30"#ajustar para o tamanho da tabela final 
-hab_gttable
-library(gt)
-hab_gttable <- gt(hab_gttable)
-hab_gttable <- sub_missing(hab_gttable,
-                           columns = everything(), missing_text = "")
-#hab_gttable <- fmt_number(hab_gttable, columns = "F.O.(%)", decimals = 1)
-hab_gttable
-gtsave(hab_gttable, "res/gt-hab_gttable_pt_xlsx.html")
-saveRDS(hab_gttable, "res/gt-hab_gttable_pt_xlsx.rds")
+
 
 ```
 
@@ -2029,7 +2009,7 @@ resultado_chao
 sink()
 ```
 
-Conforme a UPGMA da composição da comunidade zooplanctônica (@fig-upgma), algumas unidades amostrais formaram agrupamentos distintos, embora grande parte não tenha se agregado de forma que houvesse separação entre os riachos ao longo dos períodos. A confiabilidade destes resultados foi confirmada pelos coeficientes cofenéticos (CC~seco~ = 0,84 e CC~chuvoso~ = 0,87), indicando que os resultados refletem bem as dissimilaridades originais de Bray-Curtis entre as UAs. No entanto, foi revelado que a força do agrupamento espacial foi baixa a moderada para as comunidades em ambos os períodos, conforme os coeficientes aglomerativos (AC~seco~ = 0,34 e AC~chuvoso~ = 0,39). A PERMANOVA, baseada na distância de Bray-Curtis, mostrou que houve diferenças significativas quando avaliados os períodos (F~1,86~ = 5,3; R² = 0,056; *p* = 0,001), os rios (F~1,86~ = 1,8; R² = 0,019; *p* = 0,036) e a interação entre ambos (F~1,86~ = 2,0; R² = 0,21; *p* = 0,019).
+Conforme a UPGMA (@fig-upgma), algumas unidades amostrais formaram agrupamentos distintos, embora grande parte não tenha se agregado de forma que houvesse separação entre os riachos ao longo dos períodos. A confiabilidade destes resultados foi confirmada pelos coeficientes cofenéticos (CC~seco~ = 0,84 e CC~chuvoso~ = 0,87), indicando que os resultados refletem bem as dissimilaridades originais de Bray-Curtis entre as UAs. No entanto, foi revelado que a força do agrupamento espacial foi baixa a moderada para as comunidades em ambos os períodos, conforme os coeficientes aglomerativos (AC~seco~ = 0,34 e AC~chuvoso~ = 0,39). A PERMANOVA, mostrou que houve diferenças significativas quando avaliados os períodos (F~1,86~ = 5,3; R² = 0,056; *p* = 0,001), os rios (F~1,86~ = 1,8; R² = 0,019; *p* = 0,036) e a interação entre ambos (F~1,86~ = 2,0; R² = 0,21; *p* = 0,019).
 
 ```{r, COMM-UPGMA}
 #| eval: false
@@ -2767,41 +2747,257 @@ saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
 
 ```
 
-SERÁ EDITADO
+Os diagramas de Venn (Figuras 3 e 4) revelaram a distribuição da riqueza de táxons nos riachos Barro Branco e Caiana. No período seco (Figura 3), o riacho Caiana apresentou uma diversidade alfa (α) de 46 táxons, enquanto o Barro Branco registrou 39 táxons. Considerando ambos os riachos, a diversidade gama (γ) foi de 58 táxons. Desses, 27 foram compartilhados entre os riachos, com o Caiana detendo 19 táxons exclusivos e o Barro Branco, 12 táxons exclusivos (Figura 4) (ver Tabela). No período chuvoso (Figura 4), a diversidade gama observada foi de 40 táxons. O número de táxons compatilhados permaneceu idêntico ao período anterior (27 táxons). Entretanto, houve redução no número daqueles que são exclusivos para os riachos Barro Branco, que compreendeu 6 táxons, e para o Caiana, com apenas 7 táxons exclusivos.
 
-A análise dos dados, conduzida por meio de diagramas de Venn, revelou a distribuição da riqueza de espécies nos riachos Barro Branco e Caiana durante os períodos seco e chuvoso, destacando como diferentes espécies são compartilhadas e exclusivas entre estes ambientes.
+A frequência de ocorrência (F.O.) dos táxons registrados nos riachos Barro Branco e Caiana evidenciou diferenças na distribuição da comunidade zooplanctônica entre os períodos seco e chuvoso, conforme apresentado na **Tabela**. Entre os Rotifera, Bdelloidea apresentou os maiores valores de frequência de ocorrência em ambos os riachos, tanto no período seco (55,22% no Barro Branco e 30,93% no Caiana) quanto no período chuvoso (100,00% e 90,19%, respectivamente). Entre os demais táxons, destacaram-se *Lecane bulla* (Gosse, 1851) no Barro Branco (3,33%) e *Polyarthra bicerca* Wulfert, 1956 (1,33%) no Caiana durante o período seco. No período chuvoso, foram registradas *Lecane curvicornis* (Murray, 1913), com 22,74% no Caiana, e *Platyias quadricornis* (Ehrenberg, 1832), com 9,78% no Barro Branco.Branco.
+
+Foram registradas baixa frequência de ocorrência entre os taxóns de Cladocera no período seco. *Alonella dadayi* Birge, 1910 obteve maior representativida de F.O no período seco (0,78% no Barro Branco e 0,48% no Caiana), enquanto no período chuvoso, ocorreu em 47,56% das UAs do Barro Branco. Ainda no período chuvoso, *Chydorus* sp. apresentou frequência de ocorrência de 27,94% no Barro Branco e 12,26% no Caiana, seguido por *Disparalona lucianae* Sousa, Elmoor-Loureiro, Mugnai, Panarelli & Paggi 2018 com alta incidência no Barro Branco (9,39%) e pelas espécies *Macrothrix laticornis* (Jurine, 1820) (8,59%), *Diaphanosoma birgei* Korínek, 1981 no Caiana (8,59% e 12,81%, respectivamente).
+
+Em relação aos Copepoda, *Paracyclops* sp. apresentou as maior frequência em ambos os períodos, especialmente durante o período chuvoso no Barro Branco (6,44%). Estágios naupliares e copepoditos também apresentaram alta frequência de ocorrência. A maior incidência de nauplius ocorreu no Caiana durante o período seco (40,89%), enquanto Copepodito é registrado em 100% das unidades amostrais do Barro Branco no período chuvoso.
+
+```{r, COMM-F.O}
+#| eval: false
+#| warning: false
+#| message: false
+#| results: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: Frequência de ocorrência da comunidade
+
+#REBIO23 - DIAGRAMA DE VENN, PERÍODO SECO ----
+#####....----
+
+#Inserindo coluna para agrupamentos
+ncol(m_cont_s); nrow(m_cont_s) #no. de N colunas x M linhas
+m_cont_s_g <- cbind(Grupos = rownames(m_cont_s), m_cont_s)
+# Mantém a tabela completa
+m_cont_s_g <- as.data.frame(m_cont_s_g)
+
+# Vetor de agrupamento
+agrup1 <- substr(m_cont_s_g$Grupos, 1, 3)
+agrup1
+
+# Filtra apenas os grupos que começam com "S"
+m_cont_s_g <- m_cont_s_g[startsWith(agrup1, "S"), ]
+m_cont_s_g$Grupos <- agrup1[startsWith(agrup1, "S")]  # ajusta a coluna Grupos
+m_cont_s_g
+
+# Agora pode calcular médias
+library(dplyr)
+m_avg_s <- m_cont_s_g %>%
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
+
+m_avg_s <- as.data.frame(m_avg_s)
+rownames(m_avg_s) <- m_avg_s$Grupos
+m_avg_s$Grupos <- NULL
+m_avg_s
+#Salvando a matriz
+write.table(m_avg_s,
+            "m_avgcsv_s.csv",
+            append = F,
+            quote = TRUE,
+            sep = ";", dec = ",",
+            row.names = T)
+m_avg1_csv <- read.csv("m_avgcsv_s.csv",
+                       sep = ";", dec = ",",
+                       header = T,
+                       row.names = 1,
+                       na.strings = NA)
+library("gt")
+m_venn_s <- as.data.frame(t(m_avg_s))
+m_venn_s
+gt(round(m_venn_s, 2), rownames_to_stub = TRUE)
+m_venn_s[m_venn_s !=0] <- 1 #matriz binária
+m_venn_s
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_venn_s, file = "res/m_venn_s.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/m_venn_s.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_venn_s)
+saveWorkbook(wb, "res/m_venn_s.xlsx", overwrite = TRUE)
+
+library("eulerr")
+#set.seed() #this seed changes the orientation of the sets        
+plot(euler(m_venn_s), counts = TRUE, fontface = 1)
+# Load required libraries
+library(VennDiagram)
+library(ggvenn)
+SB <- rownames(m_venn_s)[which(m_venn_s$`S-B` == 1)]
+SC <- rownames(m_venn_s)[which(m_venn_s$`S-C` == 1)]
+
+overlap_SB_SC <- intersect(SB, SC)
+
+#######Visualizar número de espécies em cada grupo e sobreposição
+cat("Número de espécies S-B:", length(SB), "\n")
+cat("Número de espécies S-C:", length(SC), "\n")
+cat("Número de espécies em ambos (S-B ∩ S-C):", length(overlap_SB_SC), "\n")
+
+#########Plotar
+grid.newpage()
+draw.pairwise.venn(
+  area1 = length(SB),
+  area2 = length(SC),
+  cross.area = length(overlap_SB_SC),
+  category = c("S-B", "S-C"),
+  lty = rep("blank", 2),
+  fill = c("grey40", "grey70"),
+  alpha = rep(0.5, 2),
+  cat.pos = c(0, 0),
+  cat.dist = rep(0.025, 2)
+)
+
+##############Salvar em PNG
+venn.diagram(
+  x = list(SB, SC),
+  category.names = c("S-B", "S-C"),
+  filename = "res/fig-venn_s.png",
+  height = 2000,
+  width = 2000,
+  resolution = 300,
+  lty = "blank",
+  fill = c("grey40", "grey70"),
+  alpha = 0.5
+)
+
+##########################################
+#REBIO23 - DIAGRAMA DE VENN, PERÍODO CHUVOSO ----
+#####....----
+
+#Inserindo coluna para agrupamentos
+ncol(m_cont_c); nrow(m_cont_c) #no. de N colunas x M linhas
+m_cont_c_g <- cbind(Grupos = rownames(m_cont_c), m_cont_c)
+# Mantém a tabela completa
+m_cont_c_g <- as.data.frame(m_cont_c_g)
+
+# Vetor de agrupamento
+agrup1 <- substr(m_cont_c_g$Grupos, 1, 3)
+agrup1
+
+# Filtra apenas os grupos que começam com "C"
+m_cont_c_g <- m_cont_c_g[startsWith(agrup1, "C"), ]
+m_cont_c_g$Grupos <- agrup1[startsWith(agrup1, "C")]  # ajusta a coluna Grupos
+m_cont_c_g
+
+# Agora pode calcular médias
+library(dplyr)
+m_avg_c <- m_cont_c_g %>%
+  group_by(Grupos) %>%
+  summarise(across(.cols = everything(), ~ mean(as.numeric(.x), na.rm = TRUE)))
+
+m_avg_c <- as.data.frame(m_avg_c)
+rownames(m_avg_c) <- m_avg_c$Grupos
+m_avg_c$Grupos <- NULL
+m_avg_c
+#Salvando a matriz
+write.table(m_avg_c,
+            "m_avgcsv_c.csv",
+            append = F,
+            quote = TRUE,
+            sep = ";", dec = ",",
+            row.names = T)
+m_avg1_csv <- read.csv("m_avgcsv_c.csv",
+                       sep = ";", dec = ",",
+                       header = T,
+                       row.names = 1,
+                       na.strings = NA)
+library("gt")
+m_venn_c <- as.data.frame(t(m_avg_c))
+m_venn_c
+gt(round(m_venn_c, 2), rownames_to_stub = TRUE)
+m_venn_c[m_venn_c !=0] <- 1 #matriz binária
+m_venn_c
+
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_venn_c, file = "res/m_venn_c.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/m_venn_c.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_venn_c)
+saveWorkbook(wb, "res/m_venn_c.xlsx", overwrite = TRUE)
+
+library("eulerr")
+#set.seed() #this seed changes the orientation of the sets        
+plot(euler(m_venn_c), counts = TRUE, fontface = 1)
+# Load required libraries
+library(VennDiagram)
+library(ggvenn)
+CB <- rownames(m_venn_c)[which(m_venn_c$`C-B` == 1)]
+CC <- rownames(m_venn_c)[which(m_venn_c$`C-C` == 1)]
+
+overlap_CB_CC <- intersect(CB, CC)
+
+#######Visualizar número de espécies em cada grupo e sobreposição
+cat("Número de espécies C-B:", length(CB), "\n")
+cat("Número de espécies C-C:", length(CC), "\n")
+cat("Número de espécies em ambos (C-B ∩ C-C):", length(overlap_SB_SC), "\n")
+
+#########Plotar
+grid.newpage()
+draw.pairwise.venn(
+  area1 = length(CB),
+  area2 = length(CC),
+  cross.area = length(overlap_CB_CC),
+  category = c("C-B", "C-C"),
+  lty = rep("blank", 2),
+  fill = c("grey40", "grey70"),
+  alpha = rep(0.5, 2),
+  cat.pos = c(0, 0),
+  cat.dist = rep(0.025, 2)
+)
+
+##############Salvar em PNG
+venn.diagram(
+  x = list(CB, CC),
+  category.names = c("C-B", "C-C"),
+  filename = "res/fig-venn_c.png",
+  height = 2000,
+  width = 2000,
+  resolution = 300,
+  lty = "blank",
+  fill = c("grey40", "grey70"),
+  alpha = 0.5
+)
+
+##########################################
+# Exportando dados para Excel
+library(openxlsx)
+#write.xlsx(m_wide, file = "res/venn.xlsx", rowNames = FALSE)
+wb <- loadWorkbook("res/venn.xlsx")
+writeData(wb, sheet = "Sheet 1", x = m_wide)
+saveWorkbook(wb, "res/venn.xlsx", overwrite = TRUE)
+
+# Tabela final ajustada no Excel
+library(readxl)
+venn <- read_excel(
+  path  = "res/venn.xlsx",
+  sheet = "tabela_final")
+#range = "A1:P30"#ajustar para o tamanho da tabela final 
+venn
+library(gt)
+venn <- gt(venn)
+venn <- sub_missing(venn,
+                    columns = everything(), missing_text = "")
+#venn <- fmt_number(venn, columns = "F.O.(%)", decimals = 1)
+venn
+gtsave(venn, "res/gt-venn_xlsx.html")
+saveRDS(venn, "res/gt-venn_xlsx.rds")
+
+```
 
 No período seco, foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
 
 No período chuvoso, o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
 
-De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos.
+De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos. Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
 
-Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
+A tabela e figuras (Figuras 5A,5B e 5C e Figuras 6A, 6B e 6C) abordam duas escalas espaciais: uma maior, englobando ambos os riachos Caiana e Barro Branco, e uma menor, que se refere a apenas um dos riachos, seja Barro Branco ou Caiana separadamente. Em uma escala mais ampla, considerando ambos os riachos no período seco, a diversidade alfa (α) observada entre os riachos Barro Branco e Caiana foi significativamente menor e diferente (0,12%) do que o esperado (0,19%; P\<0,999). A diversidade observada entre os habitats (β1) foi de 0,10%, tendo um valor menor do que o esperado (0,15%; P\<0,999). Contudo, a respeito da diversidade entre todos os pontos (β2), a riqueza observada (0,51%) é ligeiramente similar à esperada (0,50%), com um valor de significância P=0,477. Entre os riachos Barro Branco e Caiana (β3), o valor observado (0,27%) foi maior do que o esperado (0,16%), com valor de significância P=0,001.
 
-A tabela e figuras (Figuras 5A,5B e 5C e Figuras 6A, 6B e 6C) abordam duas escalas espaciais: uma maior, englobando ambos os riachos Caiana e Barro Branco, e uma menor, que se refere a apenas um dos riachos, seja Barro Branco ou Caiana separadamente.
+A α-diversidade observada no riacho Barro Branco foi significativamente menor e diferente (0,20%) do esperado (0,27%; P\<0,999). O mesmo acontece na diversidade entre os habitats (β1), com 0,15% de diversidade observada (P\<0,999). Entretanto, a diversidade entre os pontos (β2) foi significativamente maior (0,65%) que o esperado (0,53%; P=0,001). No Caiana, a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
 
-**Período seco**
+No período chuvoso, considerando ambos os riachos, a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999). A diversidade β2 observada (0,48%) foi superior ao esperado (0,27%), com nível de significância P=0,001. Foi observada em β3 uma diversidade acima (0,16%) do esperado (0,04%; P=0,001). No Barro Branco, a α-diversidade observada foi de 0,24%, abaixo do esperado (0,44%; P\<0,999). Sua diversidade entre habitats apresentou valor observado de 0,13%, inferior ao esperado (0,18%; P=0,003). Entre os pontos, o valor observado (0,63%) foi superior ao esperado (0,38%; P=0,001). O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
 
-Em uma escala mais ampla, considerando ambos os riachos, a diversidade alfa (α) observada entre os riachos Barro Branco e Caiana foi significativamente menor e diferente (0,12%) do que o esperado (0,19%; P\<0,999).
-
-A diversidade observada entre os habitats (β1) foi de 0,10%, tendo um valor menor do que o esperado (0,15%; P\<0,999). Contudo, a respeito da diversidade entre todos os pontos (β2), a riqueza observada (0,51%) é ligeiramente similar à esperada (0,50%), com um valor de significância P=0,477. Entre os riachos Barro Branco e Caiana (β3), o valor observado (0,27%) foi maior do que o esperado (0,16%), com valor de significância P=0,001.
-
-A α-diversidade observada no riacho Barro Branco foi significativamente menor e diferente (0,20%) do esperado (0,27%; P\<0,999). O mesmo acontece na diversidade entre os habitats (β1), com 0,15% de diversidade observada (P\<0,999). Entretanto, a diversidade entre os pontos (β2) foi significativamente maior (0,65%) que o esperado (0,53%; P=0,001).
-
-No Caiana, a diversidade estimada no componente alfa foi menor do que o esperado (0,22%), com apenas 0,15% observada (P\<0,999). Em β1, foi observado 0,12%, sendo significativamente inferior ao esperado (0,16%; P\<0,999), tendo em vista que o valor esperado era de 0,16% (P\<0,999). Em β2, o observado foi de 0,73%, maior do que o valor esperado de 0,61% (P=0,001).
-
-**Período chuvoso**
-
-No período chuvoso, considerando ambos os riachos, a diversidade α apresentou valor observado de 0,24%, inferior ao esperado (0,52%; P\<0,999). A diversidade β1 apresentou valor observado de 0,12%, inferior ao valor esperado (0,18%; P\<0,999).
-
-A diversidade β2 observada (0,48%) foi superior ao esperado (0,27%), com nível de significância P=0,001. Foi observada em β3 uma diversidade acima (0,16%) do esperado (0,04%; P=0,001).
-
-No Barro Branco, a α-diversidade observada foi de 0,24%, abaixo do esperado (0,44%; P\<0,999). Sua diversidade entre habitats apresentou valor observado de 0,13%, inferior ao esperado (0,18%; P=0,003). Entre os pontos, o valor observado (0,63%) foi superior ao esperado (0,38%; P=0,001).
-
-O Caiana também demonstrou α-diversidade observada (0,31%) abaixo do esperado (0,62%; P\<0,999). Entre habitats, a diversidade observada era de 0,15%, quando o esperado era de 0,18% (P=0,007). Contudo, seu β2 foi acima do esperado (P=0,001), com valor observado (0,55%) superior ao esperado (0,21%).
-
-Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) não muda, sendo assim, é assumido o valor de 1,00.
+Diversidades com significância P menor que 0,999 indicam que a diversidade observada é relativamente comum ou não é rara se comparada ao que seria esperado. Vale ressaltar que em todas as comparações, o valor da diversidade gama (γ) permaneceu imutável, assumindo o valor de 1,00.
 
 ```{r, PARTDIVER}
 #| eval: false
@@ -3638,7 +3834,7 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 @fig-hab_PCA_rio: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por rio. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
-@fig-hab_PCA_periodo: : Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
+@fig-hab_PCA_periodo: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
 @fig-rare1: <!--# Individual-based extrapolation and rarefaction curves for the richness of resting stages of zooplanktonic taxa in each study stream. Shaded areas indicate 95% confidence intervals.-->
 
@@ -3712,7 +3908,7 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 <details>
 
-<summary>@fig-particao.: Partição da diversidade</summary>
+<summary>@fig-particao : Partição da diversidade</summary>
 
 ![Partição da diversidade observada e esperada.](res/fig-painel_partição.png){#fig-particao}
 
