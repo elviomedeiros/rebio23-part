@@ -1410,9 +1410,9 @@ adonis2(m_trab ~ Periodo*Rio, data = t_grps,
 
 ## Descrição da comunidade zooplanctônica
 
-O presente estudo registrou 56 táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 2). No total, foram contabilizadas 39 espécies de Rotifera, 12 de Cladocera e 4 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos. Foram identificadas 14 famílias de Rotifera, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas. Lepadellidae e Synchaetidae apresentaram 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6,194 indivíduos, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *B. patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), Lecane crepida Harring, 1914, Lecane leontina (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
+O presente estudo registrou 56 táxons pertencentes aos grupos Rotifera, Cladocera e Copepoda, distribuídos entre os riachos Barro Branco e Caiana, durante os períodos seco e chuvoso (Tabela 2). No total, foram contabilizadas 39 espécies de Rotifera, 12 de Cladocera e 4 de Copepoda, incluindo estágios juvenis, como náuplios e copepoditos. Foram identificadas 14 famílias de Rotifera, sendo Lecanidae a mais representativa em ambos os períodos amostrais, com 15 espécies registradas. Lepadellidae e Synchaetidae apresentaram 4 espécies, seguidas por Brachionidae e Mytilinidae, com 3 espécies cada. As demais famílias não apresentaram mais do que 3 espécies. Considerando ambos os riachos e períodos, Bdelloidea foi o táxon mais abundante, com um total de 6.194 indivíduos, seguido pelas espécies *Lecane curvicornis* (Murray, 1913) (626 indivíduos), *Platyias quadricornis* (Ehrenberg, 1832) (391 indivíduos), *Brachionus patulus* Müller, 1786 (227 indivíduos) e *Lecane luna* (Müller, 1776) (206 indivíduos). Com exceção de *B. patulus*, todas as espécies citadas anteriormente apresentaram 100% de frequência de ocorrência. O mesmo padrão foi observado para *Lecane bulla* (Gosse, 1851), *Lecane cornuta* (Müller, 1786), *Lecane crepida* Harring, 1914, *Lecane leontina* (Turner, 1892), *Lecane lunaris* (Ehrenberg, 1832) e *Testudinella patina* (Hermann, 1783).
 
-Dentre os Cladocera, Chydoridae foi a a família com maior riqueza encontrada, totalizando 5 espécies, seguida por Macrothricidae, com 3 espécies e Sididae, com 2 espécies. *Alonella dadayi* Birge, 1910 foi a espécie mais representativa, com 1,051 indivíduos e 100% de frequência de ocorrência. Já *Chydorus sp*. apresentou 836 indivíduos, embora tenha ocorrido em apenas 75,0% das UAs. As espécies *Macrothrix mira* Smirnov 1982 *Ilyocryptus spinifer* Herrick, 1882 também apresentaram frequência de ocorrência de 100%.
+Dentre os Cladocera, Chydoridae foi a a família com maior riqueza encontrada, totalizando 5 espécies, seguida por Macrothricidae, com 3 espécies e Sididae, com 2 espécies. *Alonella dadayi* Birge, 1910 foi a espécie mais representativa, com 1.051 indivíduos e 100% de frequência de ocorrência. Já *Chydorus sp*. apresentou 836 indivíduos, embora tenha ocorrido em apenas 75,0% das UAs. As espécies *Macrothrix mira* Smirnov 1982 *Ilyocryptus spinifer* Herrick, 1882 também apresentaram frequência de ocorrência de 100%.
 
 Em relação aos Copepoda, foram identificadas duas famílias, Cyclopidae (Cyclopoida) com 3 espécies e Diaptomidae (Calanoida) com 1 espécie. *Paracyclops* sp. e *Mesocyclops* sp. foram os únicos táxons a apresentarem frequência de ocorrência de 100%, com 231 e 141 indivíduos registrados, respectivamente. Estágios juvenis de nauplius e copepodito foram os mais comuns nesse grupo, ocorrendo em 100% dos pontos amostrados, com um total de 2.433 e 4.061 indivíduos, respectivamente.
 
@@ -2747,22 +2747,24 @@ saveRDS(part_gttable, "res/gt-part_gttable_xlsx.rds")
 
 ```
 
-Os diagramas de Venn (Figuras 3 e 4) revelaram a distribuição da riqueza de táxons nos riachos Barro Branco e Caiana. No período seco (Figura 3), o riacho Caiana apresentou uma diversidade alfa (α) de 46 táxons, enquanto o Barro Branco registrou 39 táxons. Considerando ambos os riachos, a diversidade gama (γ) foi de 58 táxons. Desses, 27 foram compartilhados entre os riachos, com o Caiana detendo 19 táxons exclusivos e o Barro Branco, 12 táxons exclusivos (Figura 4) (ver Tabela). No período chuvoso (Figura 4), a diversidade gama observada foi de 40 táxons. O número de táxons compatilhados permaneceu idêntico ao período anterior (27 táxons). Entretanto, houve redução no número daqueles que são exclusivos para os riachos Barro Branco, que compreendeu 6 táxons, e para o Caiana, com apenas 7 táxons exclusivos.
+Os diagramas de Venn (fig e fig) revelaram a distribuição da riqueza de táxons nos riachos Barro Branco e Caiana. No período seco (Figura 3), o riacho Caiana apresentou uma diversidade alfa (α) de 46 táxons, enquanto o Barro Branco registrou 39 táxons. Considerando ambos os riachos, a diversidade gama (γ) foi de 58 táxons. Desses, 27 foram compartilhados entre os riachos, com o Caiana detendo 19 táxons exclusivos e o Barro Branco, 12 táxons exclusivos (Figura 4) (ver Tabela). No período chuvoso (Figura 4), a diversidade gama observada foi de 40 táxons. O número de táxons compatilhados permaneceu idêntico ao período anterior (27 táxons). Entretanto, houve redução no número daqueles que são exclusivos para os riachos Barro Branco, que compreendeu 6 táxons, e para o Caiana, com apenas 7 táxons exclusivos.
 
-A frequência de ocorrência (F.O.) dos táxons registrados nos riachos Barro Branco e Caiana evidenciou diferenças na distribuição da comunidade zooplanctônica entre os períodos seco e chuvoso, conforme apresentado na **Tabela**. Entre os Rotifera, Bdelloidea apresentou os maiores valores de frequência de ocorrência em ambos os riachos, tanto no período seco (55,22% no Barro Branco e 30,93% no Caiana) quanto no período chuvoso (100,00% e 90,19%, respectivamente). Entre os demais táxons, destacaram-se *Lecane bulla* (Gosse, 1851) no Barro Branco (3,33%) e *Polyarthra bicerca* Wulfert, 1956 (1,33%) no Caiana durante o período seco. No período chuvoso, foram registradas *Lecane curvicornis* (Murray, 1913), com 22,74% no Caiana, e *Platyias quadricornis* (Ehrenberg, 1832), com 9,78% no Barro Branco.Branco.
+A frequência de ocorrência (F.O.) dos táxons registrados nos riachos Barro Branco e Caiana evidenciou diferenças na distribuição da comunidade zooplanctônica entre os períodos seco e chuvoso, conforme apresentado na **Tabela**. Entre os Rotifera, Bdelloidea apresentou os maiores valores de frequência de ocorrência em ambos os riachos, tanto no período seco (55,22% no Barro Branco e 30,93% no Caiana) quanto no período chuvoso (100,00% e 90,19%, respectivamente). Entre os demais táxons, destacaram-se as espécies *Lecane bulla* (Gosse, 1851) no Barro Branco (3,33%) e *Polyarthra bicerca* Wulfert, 1956 (1,33%) no Caiana durante o período seco. No período chuvoso, foram registradas *Lecane curvicornis* (Murray, 1913), com 22,74% no Caiana, e *Platyias quadricornis*, com 9,78% no Barro Branco.
 
-Foram registradas baixa frequência de ocorrência entre os taxóns de Cladocera no período seco. *Alonella dadayi* Birge, 1910 obteve maior representativida de F.O no período seco (0,78% no Barro Branco e 0,48% no Caiana), enquanto no período chuvoso, ocorreu em 47,56% das UAs do Barro Branco. Ainda no período chuvoso, *Chydorus* sp. apresentou frequência de ocorrência de 27,94% no Barro Branco e 12,26% no Caiana, seguido por *Disparalona lucianae* Sousa, Elmoor-Loureiro, Mugnai, Panarelli & Paggi 2018 com alta incidência no Barro Branco (9,39%) e pelas espécies *Macrothrix laticornis* (Jurine, 1820) (8,59%), *Diaphanosoma birgei* Korínek, 1981 no Caiana (8,59% e 12,81%, respectivamente).
+Foram registradas baixa frequência de ocorrência entre os taxóns de Cladocera no período seco. *Alonella dadayi* Birge, 1910 obteve maior representativida de F.O no período seco (0,78% no Barro Branco e 0,48% no Caiana), enquanto no período chuvoso, ocorreu em 47,56% das UAs do Barro Branco. Ainda no período chuvoso, *Chydorus* sp. apresentou frequência de ocorrência de 27,94% no Barro Branco e 12,26% no Caiana, seguido por *Disparalona lucianae* Sousa, Elmoor-Loureiro, Mugnai, Panarelli & Paggi 2018 com alta incidência no Barro Branco (9,39%) e pelas espécies *Macrothrix laticornis* (Jurine, 1820) (8,59%) e *Diaphanosoma birgei* Korínek, 1981 no Caiana (8,59% e 12,81%, respectivamente).
 
 Em relação aos Copepoda, *Paracyclops* sp. apresentou as maior frequência em ambos os períodos, especialmente durante o período chuvoso no Barro Branco (6,44%). Estágios naupliares e copepoditos também apresentaram alta frequência de ocorrência. A maior incidência de nauplius ocorreu no Caiana durante o período seco (40,89%), enquanto Copepodito é registrado em 100% das unidades amostrais do Barro Branco no período chuvoso.
 
-```{r, COMM-F.O}
+No período seco, foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies. No período chuvoso, o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
+
+```{r, COMM-F.O-Venn}
 #| eval: false
 #| warning: false
 #| message: false
 #| results: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: Frequência de ocorrência da comunidade
+#| code-summary: Frequência de ocorrência da comunidade e diagrama de Venn
 
 #REBIO23 - DIAGRAMA DE VENN, PERÍODO SECO ----
 #####....----
@@ -2808,15 +2810,17 @@ library("gt")
 m_venn_s <- as.data.frame(t(m_avg_s))
 m_venn_s
 gt(round(m_venn_s, 2), rownames_to_stub = TRUE)
-m_venn_s[m_venn_s !=0] <- 1 #matriz binária
-m_venn_s
-
 # Exportando dados para Excel
 library(openxlsx)
 #write.xlsx(m_venn_s, file = "res/m_venn_s.xlsx", rowNames = FALSE)
 wb <- loadWorkbook("res/m_venn_s.xlsx")
 writeData(wb, sheet = "Sheet 1", x = m_venn_s)
 saveWorkbook(wb, "res/m_venn_s.xlsx", overwrite = TRUE)
+#saveRDS(m_venn_s, "res/m_venn_s.rds")
+#m_venn_s <- readRDS("res/m_venn_s.rds")
+
+m_venn_s[m_venn_s !=0] <- 1 #matriz binária
+m_venn_s
 
 library("eulerr")
 #set.seed() #this seed changes the orientation of the sets        
@@ -2852,7 +2856,7 @@ draw.pairwise.venn(
 venn.diagram(
   x = list(SB, SC),
   category.names = c("S-B", "S-C"),
-  filename = "res/fig-venn_s.png",
+  filename = "res/fig-diagr-venn_s.png",
   height = 2000,
   width = 2000,
   resolution = 300,
@@ -2860,6 +2864,8 @@ venn.diagram(
   fill = c("grey40", "grey70"),
   alpha = 0.5
 )
+
+dev.off()
 
 ##########################################
 #REBIO23 - DIAGRAMA DE VENN, PERÍODO CHUVOSO ----
@@ -2906,15 +2912,30 @@ library("gt")
 m_venn_c <- as.data.frame(t(m_avg_c))
 m_venn_c
 gt(round(m_venn_c, 2), rownames_to_stub = TRUE)
-m_venn_c[m_venn_c !=0] <- 1 #matriz binária
-m_venn_c
-
 # Exportando dados para Excel
 library(openxlsx)
 #write.xlsx(m_venn_c, file = "res/m_venn_c.xlsx", rowNames = FALSE)
 wb <- loadWorkbook("res/m_venn_c.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_venn_c)
+writeData(wb, sheet = "Sheet 1", x = m_venn_s)
 saveWorkbook(wb, "res/m_venn_c.xlsx", overwrite = TRUE)
+# Tabela final ajustada no Excel
+library(readxl)
+m_venn <- read_excel(
+  path  = "res/m_venn_c.xlsx",
+  sheet = "tabela_final")
+#range = "A1:P30"#ajustar para o tamanho da tabela final 
+m_venn
+library(gt)
+m_venn <- gt(m_venn)
+m_venn <- sub_missing(m_venn,
+                      columns = everything(), missing_text = "")
+#m_venn <- fmt_number(m_venn, columns = "F.O.(%)", decimals = 1)
+m_venn
+gtsave(m_venn, "res/gt-m_venn_xlsx.html")
+saveRDS(m_venn, "res/gt-m_venn_xlsx.rds")
+
+m_venn_c[m_venn_c !=0] <- 1 #matriz binária
+m_venn_c
 
 library("eulerr")
 #set.seed() #this seed changes the orientation of the sets        
@@ -2950,7 +2971,7 @@ draw.pairwise.venn(
 venn.diagram(
   x = list(CB, CC),
   category.names = c("C-B", "C-C"),
-  filename = "res/fig-venn_c.png",
+  filename = "res/fig-diagr-venn_c.png",
   height = 2000,
   width = 2000,
   resolution = 300,
@@ -2959,35 +2980,9 @@ venn.diagram(
   alpha = 0.5
 )
 
-##########################################
-# Exportando dados para Excel
-library(openxlsx)
-#write.xlsx(m_wide, file = "res/venn.xlsx", rowNames = FALSE)
-wb <- loadWorkbook("res/venn.xlsx")
-writeData(wb, sheet = "Sheet 1", x = m_wide)
-saveWorkbook(wb, "res/venn.xlsx", overwrite = TRUE)
-
-# Tabela final ajustada no Excel
-library(readxl)
-venn <- read_excel(
-  path  = "res/venn.xlsx",
-  sheet = "tabela_final")
-#range = "A1:P30"#ajustar para o tamanho da tabela final 
-venn
-library(gt)
-venn <- gt(venn)
-venn <- sub_missing(venn,
-                    columns = everything(), missing_text = "")
-#venn <- fmt_number(venn, columns = "F.O.(%)", decimals = 1)
-venn
-gtsave(venn, "res/gt-venn_xlsx.html")
-saveRDS(venn, "res/gt-venn_xlsx.rds")
+dev.off()
 
 ```
-
-No período seco, foram registradas 27 espécies compartilhadas entre os riachos. O Caiana apresentou alfa (α) diversidade de 46 espécies, destas, 19 eram espécies exclusivas, enquanto o Barro Branco apresentou α-diversidade de 39 espécies, com 12 espécies exclusivas. Considerando ambos os riachos, o patrimônio regional (γ) foi de 58 espécies.
-
-No período chuvoso, o número de espécies compartilhadas permaneceu inalterado, com 27 espécies. Entretanto, observou-se uma redução na α-diversidade e no número de espécies exclusivas, bem como na diversidade gama. No Caiana, a α-diversidade foi de 34 espécies, com 7 espécies ocorrendo apenas neste riacho. No Barro Branco, registrou-se α-diversidade de 33 espécies, com 6 espécies exclusivas. A γ-diversidade total foi de 40 espécies.
 
 De modo geral, os resultados indicam que o número de espécies exclusivas variou entre os períodos hidrológicos, embora grande parte da riqueza tenha sido compartilhada entre os riachos. Os valores observados representam a proporção percentual da diversidade zooplanctônica registrada no presente estudo, enquanto os valores esperados correspondem à proporção estimada a partir de amostras aleatórias contendo maior riqueza de espécies do que a amostra observada. Utilizou-se o método de partição aditiva, com base nas médias do componente alfa (α), para realização das comparações entre habitats, pontos de amostragem e riachos (Tabela 2 e Figura 5 e 6). Assim, a variação total da diversidade zooplanctônica (diversidade gama) foi decomposta em diversidade alfa (α) e beta (β). A diversidade total (γ) foi assumida como constante e igual a 1,00 em todas as comparações.
 
@@ -3836,17 +3831,27 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 @fig-hab_PCA_periodo: Biplot da Análise de Componentes Principais (PCA) das unidades amostrais (UAs) e das variáveis ambientais nos riachos Barro Branco e Caiana durante o período de estudo, categorizados por período. Os pontos representam as UAs, enquanto os vetores indicam as variáveis ambientais associadas à estrutura do habitat. As elipses representam regiões de confiança de 95% para a distribuição dos grupos de pontos, calculadas com base na distribuição *t*.
 
-@fig-rare1: <!--# Individual-based extrapolation and rarefaction curves for the richness of resting stages of zooplanktonic taxa in each study stream. Shaded areas indicate 95% confidence intervals.-->
+@fig-rare1: Curvas de rarefação e extrapolação baseadas em indivíduos para a riqueza de estágios de repouso de táxons zooplanctônicos em cada riacho estudado. As áreas sombreadas indicam intervalos de confiança de 95%.
 
-@fig-upgma: <!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
+<!--# Individual-based extrapolation and rarefaction curves for the richness of resting stages of zooplanktonic taxa in each study stream. Shaded areas indicate 95% confidence intervals.-->
+
+@fig-upgma: Análise de classificação (UPGMA utilizando a dissimilaridade de Bray-Curtis) de amostras de zooplâncton coletadas nos riachos Barro Branco (B) e Caiana (C) durante os períodos Seco (à esquerda) e Chuvoso (à direita). O caractere "P" se refere à unidade amostral/ponto, seguido pelo número identificador (ex: P12 = ponto 12).
+
+<!--# Classification analysis (UPGMA using Bray-Curtis dissimilarity) of wetland macroinvertebrate samples obtained in a. permanent and b. intermitent wetlands. The first number of the sample label indicates the  wetland. The second number indicates the habitat type (1=hydrophytes; 2=reed-like emergent plants; and 3=leafy emergent plants). The third number indicates the individual sweeps realized in each habitat (1–3)UPGMA Hierarchical flexible beta clustering (β = −0.25) based on Bray-Curtis distance of (a) macroinvertebrates and (b) Chironomidae in the Paraíba River during the 2015 wet season. Tag codes indicate different sections of the river: U = upper segment, M = middle segment, and T = Taperoá River segment. R = reaches (1–3), S = sites (1–3), and Hab = habitat types (1–3). Percent chaining <4%.-->
 
 @fig-particao: <!--# Observed and expected diversity, partitioned into one alpha and three beta components, expressed as percent of total species richness. Numbers indicate the proportion of randomized samples containing more species than the observed sample for each partition. α1: subsample species richness, β1: beta diversity among sub-samples; β2: beta diversity among pools or habitats within pool, and β3: beta diversity among river reaches.-->
 
-@tbl-hab_gttable_pt: <!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
+@tbl-hab_gttable_pt: Variáveis ambientais com valores médios por local de amostragem (mínimo-máximo) para os riachos Barro Branco e Caiana.
 
-@tbl-spp_gttable: <!--# Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
+<!--# Environmental variables averaged for sampling sites (minimum-maximum) for the Barro Branco stream (Mamanguape, PB).-->
 
-@tbl-part_gttable: <!--# Contribution (expressed in percentage values 9 100) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition. -->
+@tbl-spp_gttable: Densidade (ind/m²) e frequência de ocorrência (FO%) do zooplâncton coletado durante o ciclo hidrológico de 2024.
+
+<!--# Density (ind/m2) and frequency of occurrence (FO%) of zooplankton collected during the 2024 hydrological cycle.-->
+
+@tbl-part_gttable: Partição aditiva expressa em valores percentuais a partir dos dados de riqueza de espécies. Os valores de significância P (0,05) indicam a proporção de amostras aleatórias contendo mais espécies do que a amostra observada para cada partição.
+
+<!--# Contribution (expressed in percentage values 9 100) of each spatial scale assessed to the total diversity (richness) of the dormant stages of the zooplankton. Numbers in ‘P value’ column indicate the proportion of randomized samples containing more species than the observed sample for each partition. -->
 
 ## Figuras {.unnumbered}
 
@@ -3864,7 +3869,7 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 ![Representação das escalas espaciais de diversidade aplicadas ao desenho amostral do presente estudo. Fonte: Adaptado de @frissell1986.](imagens/Modelo_Escalas_Espaciais.png){#fig-modelo_escalas_espaciais}
 
-<details>
+</details>
 
 <details>
 
@@ -3902,7 +3907,7 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 <summary>@fig-upgma: Análise de Classificação</summary>
 
-![Análise de Classificação (UPGMA usando dissimilaridade de Bray-Curtis).](res/fig-upgma.png){#fig-upgma}
+![Análise de Classificação (UPGMA) usando dissimilaridade de Bray-Curtis.](res/fig-upgma.png){#fig-upgma}
 
 </details>
 
@@ -3918,11 +3923,11 @@ Este trabalho utilizou a ferramenta de IAGen ChatGPT, versão GPT-6, com a final
 
 <details>
 
-<summary>@tbl-hab_gttable_pt: Environmental data table</summary>
+<summary>@tbl-hab_gttable_pt: Tabela de dados ambientais</summary>
 
 ```{r tbl-hab_gttable_pt}
 #| echo: false
-#| tbl-cap: "Environment data GT table."
+#| tbl-cap: "Tabela de dados ambientais."
 readRDS("res/gt-hab_gttable_pt_xlsx.rds")
 ```
 
@@ -3930,11 +3935,11 @@ readRDS("res/gt-hab_gttable_pt_xlsx.rds")
 
 <details>
 
-<summary>@tbl-spp_gttable: Density of taxa GT table</summary>
+<summary>@tbl-spp_gttable: Tabela de densidade dos táxons</summary>
 
 ```{r, tbl-spp_gttable}
 #| echo: false
-#| tbl-cap: "Density (ind/m^2^) taxa GT table."
+#| tbl-cap: "Tabela de densidade (ind/m^2^) dos táxons."
 readRDS("res/gt-spp_gttable_xlsx.rds")
 ```
 
@@ -3942,11 +3947,11 @@ readRDS("res/gt-spp_gttable_xlsx.rds")
 
 <details>
 
-<summary>@tbl-part_gttable: Diversity partition GT table</summary>
+<summary>@tbl-part_gttable: Tabela de partição aditiva da diversidade</summary>
 
 ```{r, tbl-part_gttable}
 #| echo: false
-#| tbl-cap: "Partition data GT table."
+#| tbl-cap: "Tabela de partição aditiva da diversidade."
 readRDS("res/gt-part_gttable_xlsx.rds")
 ```
 
