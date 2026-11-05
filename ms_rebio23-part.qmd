@@ -105,9 +105,7 @@ Within this context, the design of efficient protected areas that incorporate aq
 
 <!--# PREPARANDO PARA PARTIÇÃO -->Furthermore, in recent decades, researchers have argued that biodiversity assessments should not be reduced to a single diversity index. @romanelli2022 proposes that a multiple statistical diversity approach with multi-taxon evaluation provides a more comprehensive understanding of environmental ecological health and species responses to anthropogenic stress. Nevertheless, few approaches allow for the assessment of diversity organization across explicit hierarchical spatial scales, such as in streams. Diversity partitioning stands out in this context. This framework decomposes overall diversity across multiple spatial levels, testing whether observed diversity is higher or lower than expected under a null distribution model [@lopes2014], thereby offering valuable insights into community assembly and underlying ecological drivers.
 
-<!--# PARTIÇÃO ADITIVA -->
-
-Among the diversity partitioning framework, additive partitioning is widely applied in ecological studies, even though, <!--# CONFERIR CITAÇÃO --> @ligeiro2010 point out that its application in freshwater systems remains relatively scarce and highlights a critical knowledge gap regarding alpha and beta diversity distribution in freshwater systems. Additive diversity partitioning has been shown to provide a robust framework to evaluate how freshwater communities respond to landscape fragmentation and/or seasonal dynamics [@akhyar2026]. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales [@jost2007]. That is, under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
+<!--# PARTIÇÃO ADITIVA -->Among the diversity partitioning framework, additive partitioning is widely applied in ecological studies, even though, <!--# CONFERIR CITAÇÃO --> @ligeiro2010 point out that its application in freshwater systems remains relatively scarce and highlights a critical knowledge gap regarding alpha and beta diversity distribution in freshwater systems. Additive diversity partitioning has been shown to provide a robust framework to evaluate how freshwater communities respond to landscape fragmentation and/or seasonal dynamics [@akhyar2026]. By decomposing total diversity into hierarchical $\alpha$ and $\beta$ components, it is possible to quantify spatial contributions to overall diversity and detect species turnover across scales [@jost2007]. That is, under the additive partitioning model, total regional diversity ($\gamma$-diversity) is partitioned into additive alpha ($\alpha$) and beta ($\beta$) components [@crist2003], where $\alpha$-diversity represents the mean local richness and $\beta$-diversity reflects spatial turnover or variation in species composition among sampling units [@ávila2011; @baselga2012; @jost2007; @ligeiro2010; @whittaker1972].
 
 <!--# PARTIÇÃO, TURNOVER E NESTEDNESS -->Therefore, understanding the spatial structure and distribution of biodiversity across scales remains a central theme in community ecology and conservation planning [@lande1996; @crist2003]. These approaches are based on the concepts of species turnover and nestedness, two distinct components used to break down and understand beta diversity – which measures how much species composition changes between different communities or sites [@baselga2010; @baselga2012]. <!--# ALFA, BETA E GAMA -->Total regional species richness ($\gamma$-diversity) can be hierarchically partitioned into its additive components: local richness ($\alpha$-diversity) and species turnover among assemblages ($\beta$-diversity) across spatial or temporal scales [@lande1996]. Examining these components allows ecologists to disentangle whether regional diversity is primarily governed by fine-scale local processes or broader spatial heterogeneity [@crist2003; @tuomisto2010]. <!--# BETA DIV, TURNOVER E NESTEDNESS -->Beta diversity itself reflects the variation in species composition among sites and is driven by two distinct ecological phenomena: turnover (species replacement) and nestedness (richness differences) [@baselga2010]. Species turnover occurs when species are replaced by different species along environmental or spatial gradients, usually driven by environmental filtering, competitive exclusion, or dispersal limitation [@baselga2010; @tuomisto2010]. In contrast, nestedness occurs when communities at species-poor sites are non-random subsets of those at species-rich sites [@baselga2010]. Nested patterns typically stem from deterministic processes such as selective extinction, differential colonization capacity, or habitat fragmentation that sequentially eliminate sensitive taxa while retaining tolerant generalists [@baselga2010; @veech2003].
 
@@ -3195,7 +3193,11 @@ saveRDS(part_gttable, "res_ms/gt-part_gttable_xlsx.rds")
 
 # Discussion
 
-Effective biodiversity conservation, whether through designing resilient networks of protected areas, quantifying species loss, or determining processes that maintain diversity, requires accounting for the spatial structuring of biological communities [@socolar2016]. Fundamental to this framework is beta-diversity.
+Effective biodiversity conservation, whether through designing resilient networks of protected areas, quantifying species loss, or determining processes that maintain diversity, requires accounting for the spatial structuring of biological communities [@socolar2016]. Fundamental to this framework is the structure and quality of the habitat available for the aquatic colonizers [@santos2026].
+
+Our results show important variations across environmental variables between streams studied and between seasons, with indication that the effect of hydrological period on the environmental variables differed between Barro Branco and Caiana. Variables explaining these variations included a higher elevation, the predominance of muddy substrate and a narrower array of underwater structures, being representative of the Barro Branco stream. This stream had greater influence of algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables, which included higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream.
+
+Fundamental to this framework is beta-diversity.
 
 , which represents the portion of regional species richness driven by compositional dissimilarity among local assemblages. Anthropogenic pressures such as agricultural expansion, selective timber extraction, urban development, biological invasions, overexploitation, and climate change alter beta-diversity by shifting the balance between biotic heterogenization and homogenization. Although elevated beta-diversity is not inherently an ultimate conservation objective, evaluating its dynamics is critical for safeguarding regional diversity and informing strategic spatial planning.
 
@@ -3343,61 +3345,19 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 ## Figures {.unnumbered}
 
-<details>
-
-<summary>@fig-mapa</summary>
-
 ![Study area](imagens/Uso%20de%20Solo%20Rebio_en.png){#fig-mapa}
-
-</details>
-
-<details>
-
-<summary>@fig-hab_PCA_rio</summary>
 
 ![Principal Component Analysis, streams](res_ms/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
-</details>
-
-<details>
-
-<summary>@fig-hab_PCA_periodo</summary>
-
 ![Principal Component Analysis, seasons](res_ms/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
-
-</details>
-
-<details>
-
-<summary>@fig-rare1</summary>
 
 ![Accumulation curves](res_ms/fig-rare1.png){#fig-rare1}
 
-</details>
-
-<details>
-
-<summary>@fig-upgma</summary>
-
 ![UPGMA Classification](res_ms/fig-upgma.png){#fig-upgma}
-
-</details>
-
-<details>
-
-<summary>@fig-particao_cs</summary>
 
 ![Partitioning plots season](res_ms/fig-painel_pt.cs.png){#fig-particao_cs}
 
-</details>
-
-<details>
-
-<summary>@fig-particao_rios</summary>
-
 ![Partitioning plots stream](res_ms/fig-painel_pt.rios.png){#fig-particao_rios}
-
-</details>
 
 ## Tables {.unnumbered}
 
