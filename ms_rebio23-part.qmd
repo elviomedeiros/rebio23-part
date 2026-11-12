@@ -3193,7 +3193,7 @@ saveRDS(part_gttable, "res_ms/gt-part_gttable_xlsx.rds")
 
 # Discussion
 
-Zooplankton has been shown to be influenced by a range of environmental factor, including temperature, pH, dissolved oxygen and nutrients [@rahman2025].
+Zooplankton has been shown to be influenced by a range of environmental factors, including temperature, pH, dissolved oxygen and nutrients [@rahman2025].
 
 Depth and width showed greater variations across sites as a result from the fact the streams are barred at some points from roads for local traffic and small dams for water storage. Stream width and depth showed greater variations reflecting the range of habitats along the study streams, from small and narrow streams to wider and deeper manmade reservoirs.
 
@@ -3217,7 +3217,7 @@ Why would we expect turnover during the rainy season? If all habitats become con
 
 <!--# ENVIRONMENT -->
 
-Freshwater habitats are among the most altered ecosystems on the planet, driven by anthropogenic activities such as improper effluent discharge, habitat destruction and degradation, and the introduction of exotic species [@marcelino2025]. Fundamental to this framework is the structure and quality of the habitat available for the aquatic colonizers [@santos2026]. It is essential to understand and evaluate how habitat structure influences the diversity and composition of aquatic fauna, such as zooplankton, a group recognized as bioindicators of pollution and eutrophication processes that provides critical ecosystem services in freshwater environments [@santos2025]. Environmental and spatial factors play a central role in structuring biological communities, particularly in aquatic ecosystems [@gomes2020; @cottenie2005].
+Freshwater habitats are among the most altered ecosystems on the planet, driven mostly by anthropogenic activities. Among these alterations, habitat destruction and degradation, are of particular concern, since there is an important link between the riparian vegetation and the structure and quality of the aquatic habitat available for the colonizers [@marcelino2025; @santos2026]. It is essential to understand and evaluate how the habitat structure influences the diversity and composition of aquatic fauna, such as zooplankton, a group recognized as bioindicators of pollution and eutrophication processes that provides critical ecosystem services in freshwater environments [@santos2025]. Environmental and spatial factors play a central role in structuring biological communities, particularly in aquatic ecosystems [@gomes2020; @cottenie2005].
 
 Our results show important variations across environmental variables between streams studied and between seasons, with indication that the effect of hydrological period on the environmental variables differed between Barro Branco and Caiana. Variables explaining these variations included a higher elevation, the predominance of muddy substrate and a narrower array of underwater structures, being representative of the Barro Branco stream. This stream had greater influence of algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables, which included higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream.
 
