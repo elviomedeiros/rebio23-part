@@ -3215,11 +3215,13 @@ Why would we expect turnover during the rainy season? If all habitats become con
 
 <!--# DISCUSSÃO DE ELLEN -->
 
-<!--# ENVIRONMENT -->Freshwater habitats are among the most altered ecosystems on the planet, driven by anthropogenic activities such as improper effluent discharge, habitat destruction and degradation, and the introduction of exotic species [@marcelino2025]. Fundamental to this framework is the structure and quality of the habitat available for the aquatic colonizers [@santos2026]. It is essential to understand and evaluate how habitat structure influences the diversity and composition of aquatic fauna, such as zooplankton, a group recognized as bioindicators of pollution and eutrophication processes that provides critical ecosystem services in freshwater environments [@santos2025]. Environmental and spatial factors play a central role in structuring biological communities, particularly in aquatic ecosystems \[@gomes2020; @cottenie2005\].
+<!--# ENVIRONMENT -->
+
+Freshwater habitats are among the most altered ecosystems on the planet, driven by anthropogenic activities such as improper effluent discharge, habitat destruction and degradation, and the introduction of exotic species [@marcelino2025]. Fundamental to this framework is the structure and quality of the habitat available for the aquatic colonizers [@santos2026]. It is essential to understand and evaluate how habitat structure influences the diversity and composition of aquatic fauna, such as zooplankton, a group recognized as bioindicators of pollution and eutrophication processes that provides critical ecosystem services in freshwater environments [@santos2025]. Environmental and spatial factors play a central role in structuring biological communities, particularly in aquatic ecosystems [@gomes2020; @cottenie2005].
 
 Our results show important variations across environmental variables between streams studied and between seasons, with indication that the effect of hydrological period on the environmental variables differed between Barro Branco and Caiana. Variables explaining these variations included a higher elevation, the predominance of muddy substrate and a narrower array of underwater structures, being representative of the Barro Branco stream. This stream had greater influence of algae, macrophytes, leaf litter and woody debris. The Caiana stream showed a wider range of variables, which included higher pH, turbidity and depths, as well as a predominance of sandy substrates and, to a lesser degree, root masses. Water velocity was also important for this stream.
 
-In open hydrological systems, such as streams, creeks, and large rivers, the continuous flow of water from headwaters to the mouth generates turbulence and suspended particle transport \[\@schäfer1985; @wetzel2000\], influencing the composition and spatial distribution of biological communities. Variables such as water temperature, dissolved oxygen, pH, transparency, conductivity, depth, and channel width, along with other attributes associated with habitat complexity, are widely recognized as key drivers of zooplankton community structure \[\@silva2009; \@sousa2008; \@vieira2009; \@wetzel2001\].
+In open hydrological systems, such as streams, creeks, and large rivers, the continuous flow of water from headwaters to the mouth generates turbulence and suspended particle transport [\@schäfer1985; @wetzel2000], influencing the composition and spatial distribution of biological communities. Variables such as water temperature, dissolved oxygen, pH, transparency, conductivity, depth, and channel width, along with other attributes associated with habitat complexity, are widely recognized as key drivers of zooplankton community structure \[\@silva2009; \@sousa2008; \@vieira2009; \@wetzel2001\].
 
 The results obtained from the PCA revealed a clear differentiation among sampling units (SUs). The pattern displayed by the Barro Branco stream during the dry season, particularly at SUs located inside the biological reserve (P05 and P07), showed a stronger association with structural features such as leaf litter, as well as filamentous and attached algae. This pattern may be linked to the lower hydrological variability characteristic of the dry period, which favors structural stability \[\@allan2007; \@allan2021\]. Furthermore, low flow conditions allow submerged and marginal structures to facilitate food capture and provide spatial refuge for organisms, helping them persist in specific zones of the water column \[\@esteves2011\]. Riparian vegetation further enhances the diversity of underwater and bank structures, creating microhabitats that can be colonized by various zooplankton species \[\@cyr1988; \@margalef1983; \@medeiros2008\].
 
@@ -3348,25 +3350,26 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 ## Figures {.unnumbered}
 
 @fig-mapa
+
 ![Study area](imagens/Uso%20de%20Solo%20Rebio_en.png){#fig-mapa}
 
-@fig-hab_PCA_rio
+<details>
+
+<summary>@fig-hab_PCA_rio: Principal Component Analysis, streams</summary>
+
 ![Principal Component Analysis, streams](res_ms/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
-@fig-hab_PCA_periodo
-![Principal Component Analysis, seasons](res_ms/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
+</details>
 
-@fig-rare1
-![Accumulation curves](res_ms/fig-rare1.png){#fig-rare1}
+@fig-hab_PCA_periodo ![Principal Component Analysis, seasons](res_ms/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
 
-@fig-upgma
-![UPGMA Classification](res_ms/fig-upgma.png){#fig-upgma}
+@fig-rare1 ![Accumulation curves](res_ms/fig-rare1.png){#fig-rare1}
 
-@fig-particao_cs
-![Partitioning plots season](res_ms/fig-painel_pt.cs.png){#fig-particao_cs}
+@fig-upgma ![UPGMA Classification](res_ms/fig-upgma.png){#fig-upgma}
 
-@fig-particao_rios
-![Partitioning plots stream](res_ms/fig-painel_pt.rios.png){#fig-particao_rios}
+@fig-particao_cs ![Partitioning plots season](res_ms/fig-painel_pt.cs.png){#fig-particao_cs}
+
+@fig-particao_rios ![Partitioning plots stream](res_ms/fig-painel_pt.rios.png){#fig-particao_rios}
 
 ## Tables {.unnumbered}
 
