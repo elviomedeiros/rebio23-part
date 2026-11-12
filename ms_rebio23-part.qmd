@@ -3347,18 +3347,25 @@ During the preparation of this manuscript, the authors used ChatGPT (OpenAI) to 
 
 ## Figures {.unnumbered}
 
+@fig-mapa
 ![Study area](imagens/Uso%20de%20Solo%20Rebio_en.png){#fig-mapa}
 
+@fig-hab_PCA_rio
 ![Principal Component Analysis, streams](res_ms/fig-hab_PCA_rio.png){#fig-hab_PCA_rio}
 
+@fig-hab_PCA_periodo
 ![Principal Component Analysis, seasons](res_ms/fig-hab_PCA_periodo.png){#fig-hab_PCA_periodo}
 
+@fig-rare1
 ![Accumulation curves](res_ms/fig-rare1.png){#fig-rare1}
 
+@fig-upgma
 ![UPGMA Classification](res_ms/fig-upgma.png){#fig-upgma}
 
+@fig-particao_cs
 ![Partitioning plots season](res_ms/fig-painel_pt.cs.png){#fig-particao_cs}
 
+@fig-particao_rios
 ![Partitioning plots stream](res_ms/fig-painel_pt.rios.png){#fig-particao_rios}
 
 ## Tables {.unnumbered}
